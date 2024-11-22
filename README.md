@@ -1,8 +1,13 @@
 # We Got Hacked
+![menu](https://raw.github.com/RothschildGames/release-cycles/master/public/screen-0.png)..![start](https://raw.github.com/RothschildGames/release-cycles/master/public/screen-1.png)
+
 
 We Got Hacked é um jogo bla bla bla bla divido em três capitulos bla bla bla
 
-Objetivo
+Objetivo do Jogo
+-------
+
+Mecanicas Principais
 -------
 
 Como Jogar
@@ -14,6 +19,14 @@ We Got Hacked tera seu inicio de produção em janeiro de 2025, com previsão pa
 
 Equipe
 -------
+Bernardo
+Jairo
+Igor 
+Luciano
+Mauricio
+Tiago
 
-License
+
+
+Licença 
 -------
