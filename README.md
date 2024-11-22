@@ -57,13 +57,13 @@ Equipe
     <th>Funcionario</th><th>Função</th>
   </tr>
   <tr>
-    <td>Bernardo Klein]</td><td> Artista 2D </td>
+    <td>Bernardo Klein</td><td> Artista 2D </td>
   </tr>
   <tr>
-    <td>Jairo Augusto]</td><td> Artista 3D </td>
+    <td>Jairo Augusto</td><td> Artista 3D </td>
   </tr>
   <tr>
-    <td>Igor Flores]</td><td> Programador </td>
+    <td>Igor Flores</td><td> Programador </td>
   </tr>
   <tr>
     <td>Tiago Gazzola</td><td> Game Designer </td>
