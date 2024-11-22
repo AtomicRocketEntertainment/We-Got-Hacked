@@ -10,6 +10,7 @@ Objetivo do Jogo
 
 Instruções
 -------
+<a href=”https://searchlab.com.br/”>Um link para Search Lab</a>
 <table>
   <tr>
     <th>Ação</th><th>Tecla</th>
