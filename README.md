@@ -42,15 +42,29 @@ Ferramentas
 
 Equipe
 -------
-Bernardo
-
-Jairo
-
-Igor 
-
-Luciano
-
-Mauricio
+<table>
+  <tr>
+    <th>Funcionario</th><th>Função</th>
+  </tr>
+  <tr>
+    <td>Bernardo</td><td> Artista 2D </td>
+  </tr>
+  <tr>
+    <td>Jairo</td><td> Artista 3D </td>
+  </tr>
+  <tr>
+    <td>Igor Flores</td><td> Programador </td>
+  </tr>
+  <tr>
+    <td>Luciano</td><td> Coordenador </td>
+  </tr>
+  <tr>
+    <td>Mauricio</td><td> Gestor de Equipe</td>
+  </tr>
+  <tr>
+    <td>Tiago Umbert Gazzola</td><td> Game Designer </td>
+  </tr>
+</table>
 
 Tiago
 
