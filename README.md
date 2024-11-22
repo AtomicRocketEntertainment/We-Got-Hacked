@@ -10,8 +10,30 @@ Objetivo do Jogo
 Mecanicas Principais
 -------
 
-Como Jogar
+Instruções
 -------
+## Input
+
+<table>
+  <tr>
+    <th>Action</th><th>Keys</th>
+  </tr>
+  <tr>
+    <td>Left</td><td>Q, A, LEFT ARROW</td>
+  </tr>
+  <tr>
+    <td>Right</td><td>D, RIGHT ARROW</td>
+  </tr>
+  <tr>
+    <td>Jump</td><td>Z, W, UP ARROW, SPACE</td>
+  </tr>
+  <tr>
+    <td>Restart</td><td>R</td>
+  </tr>
+  <tr>
+    <td>Next level</td><td>N, ENTER</td>
+  </tr>
+</table>
 
 Estado de Desenvolvimento
 -------
