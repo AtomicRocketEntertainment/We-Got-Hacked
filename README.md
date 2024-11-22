@@ -47,22 +47,22 @@ Equipe
     <th>Funcionario</th><th>Função</th>
   </tr>
   <tr>
-    <td>Bernardo</td><td> Artista 2D </td>
+    <td>Bernardo Klein</td><td> Artista 2D </td>
   </tr>
   <tr>
-    <td>Jairo</td><td> Artista 3D </td>
+    <td>Jairo Augusto</td><td> Artista 3D </td>
   </tr>
   <tr>
     <td>Igor Flores</td><td> Programador </td>
   </tr>
   <tr>
-    <td>Luciano</td><td> Coordenador </td>
+    <td>Luciano Ignaczak</td><td> Coordenador </td>
   </tr>
   <tr>
-    <td>Mauricio</td><td> Gestor de Equipe</td>
+    <td>Mauricio Gehling</td><td> Gestor de Equipe</td>
   </tr>
   <tr>
-    <td>Tiago Umbert Gazzola</td><td> Game Designer </td>
+    <td>Tiago Gazzola</td><td> Game Designer </td>
   </tr>
 </table>
 
