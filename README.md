@@ -40,16 +40,15 @@ Ferramentas
 
 Equipe
 -------
-[Luciano Ignaczak](http://www.linkedin.com/in/mobleyscott)
 <table>
   <tr>
     <th>Funcionario</th><th>Função</th>
   </tr>
   <tr>
-    <td>[Luciano Ignaczak](http://www.linkedin.com/in/mobleyscott)</td><td> Coordenador </td>
+    <td>Luciano Ignaczak</td><td> Coordenador </td>
   </tr>
   <tr>
-    <td>[Mauricio Gehling](google.com)</td><td> Gestor de Equipe</td>
+    <td>Mauricio Gehling</td><td> Gestor de Equipe</td>
   </tr>
 </table>
 
@@ -58,16 +57,16 @@ Equipe
     <th>Funcionario</th><th>Função</th>
   </tr>
   <tr>
-    <td>[Bernardo Klein](google.com)</td><td> Artista 2D </td>
+    <td>Bernardo Klein]</td><td> Artista 2D </td>
   </tr>
   <tr>
-    <td>[Jairo Augusto](google.com)</td><td> Artista 3D </td>
+    <td>Jairo Augusto]</td><td> Artista 3D </td>
   </tr>
   <tr>
-    <td>[Igor Flores](google.com)</td><td> Programador </td>
+    <td>Igor Flores]</td><td> Programador </td>
   </tr>
   <tr>
-    <td>[Tiago Gazzola](google.com)</td><td> Game Designer </td>
+    <td>Tiago Gazzola</td><td> Game Designer </td>
   </tr>
 </table>
 
