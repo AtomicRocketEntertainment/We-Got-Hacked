@@ -7,8 +7,6 @@ We Got Hacked é um jogo bla bla bla bla divido em três capitulos bla bla bla
 Objetivo do Jogo
 -------
 
-Mecanicas Principais
--------
 
 Instruções
 -------
@@ -65,8 +63,6 @@ Equipe
     <td>Tiago Gazzola</td><td> Game Designer </td>
   </tr>
 </table>
-
-Tiago
 
 Licença 
 -------
