@@ -14,22 +14,22 @@ Instruções
 -------
 <table>
   <tr>
-    <th>Action</th><th>Keys</th>
+    <th>Ação</th><th>Tecla</th>
   </tr>
   <tr>
-    <td>Left</td><td>Q, A, LEFT ARROW</td>
+    <td>Esquerda</td><td>Q, A, Tecla Esquerda</td>
   </tr>
   <tr>
-    <td>Right</td><td>D, RIGHT ARROW</td>
+    <td>Direita</td><td>D, Tecla Direita</td>
   </tr>
   <tr>
-    <td>Jump</td><td>Z, W, UP ARROW, SPACE</td>
+    <td>Pular</td><td>Z, W, Tecla pra Cima, SPACE</td>
   </tr>
   <tr>
-    <td>Restart</td><td>R</td>
+    <td>Reiniciar</td><td>R</td>
   </tr>
   <tr>
-    <td>Next level</td><td>N, ENTER</td>
+    <td>Proximo Nivel</td><td>N, ENTER</td>
   </tr>
 </table>
 
