@@ -42,6 +42,11 @@ Equipe
 -------
 | Funcionario        | Função               |
 |-------------|-------------------------|
+| [Luciano Ignaczak](https://github.com/tiago) | Orientador |
+| [Mauricio Gehling](https://github.com/tiago) | Gestor de Equipe |
+
+| Funcionario        | Função               |
+|-------------|-------------------------|
 | [Bernardo Klein](https://github.com/tiago) | Artista 2D |
 | [Jairo Augusto](https://github.com/tiago) | Artista 3D |
 | [Igor Flores](https://github.com/tiago) | Programador |
