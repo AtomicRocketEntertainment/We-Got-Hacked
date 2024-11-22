@@ -17,6 +17,9 @@ Estado de Desenvolvimento
 -------
 We Got Hacked tera seu inicio de produção em janeiro de 2025, com previsão para ficar completo em dezembro de 2025.
 
+Ferramentas 
+-------
+
 Equipe
 -------
 Bernardo
@@ -30,8 +33,6 @@ Luciano
 Mauricio
 
 Tiago
-
-
 
 Licença 
 -------
