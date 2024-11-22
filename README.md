@@ -42,6 +42,15 @@ Equipe
 -------
 <table>
   <tr>
+    <td>Luciano Ignaczak</td><td> Coordenador </td>
+  </tr>
+  <tr>
+    <td>Mauricio Gehling</td><td> Gestor de Equipe</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <th>Funcionario</th><th>Função</th>
   </tr>
   <tr>
@@ -52,12 +61,6 @@ Equipe
   </tr>
   <tr>
     <td>Igor Flores</td><td> Programador </td>
-  </tr>
-  <tr>
-    <td>Luciano Ignaczak</td><td> Coordenador </td>
-  </tr>
-  <tr>
-    <td>Mauricio Gehling</td><td> Gestor de Equipe</td>
   </tr>
   <tr>
     <td>Tiago Gazzola</td><td> Game Designer </td>
