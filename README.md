@@ -42,6 +42,9 @@ Equipe
 -------
 <table>
   <tr>
+    <th>Funcionario</th><th>Função</th>
+  </tr>
+  <tr>
     <td>Luciano Ignaczak</td><td> Coordenador </td>
   </tr>
   <tr>
