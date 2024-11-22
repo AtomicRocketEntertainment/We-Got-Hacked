@@ -20,10 +20,15 @@ We Got Hacked tera seu inicio de produção em janeiro de 2025, com previsão pa
 Equipe
 -------
 Bernardo
+
 Jairo
+
 Igor 
+
 Luciano
+
 Mauricio
+
 Tiago
 
 
