@@ -10,26 +10,12 @@ Objetivo do Jogo
 
 Instruções
 -------
-<table>
-  <tr>
-    <th>Ação</th><th>Tecla</th>
-  </tr>
-  <tr>
-    <td>Esquerda</td><td>Q, A, Tecla Esquerda</td>
-  </tr>
-  <tr>
-    <td>Direita</td><td>D, Tecla Direita</td>
-  </tr>
-  <tr>
-    <td>Pular</td><td>Z, W, Tecla pra Cima, SPACE</td>
-  </tr>
-  <tr>
-    <td>Reiniciar</td><td>R</td>
-  </tr>
-  <tr>
-    <td>Proximo Nivel</td><td>N, ENTER</td>
-  </tr>
-</table>
+| Ação        | Tecla               |
+|-------------|-------------------------|
+| Esquerda | Tecla Esquerda |
+| Direita | Tecla Direita |
+| Cima | Tecla Cima |
+| Baixo | Tecla Baixo |
 
 Estado de Desenvolvimento
 -------
