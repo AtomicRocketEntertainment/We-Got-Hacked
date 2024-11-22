@@ -1,5 +1,5 @@
 # We Got Hacked
-![menu](https://raw.githubusercontent.com/AtomicRocketEntertainment/We-Got-Hacked/refs/heads/main/ImagemTeste.png)..![start]
+![menu](https://raw.githubusercontent.com/AtomicRocketEntertainment/We-Got-Hacked/refs/heads/main/ImagemTeste.png)
 
 
 We Got Hacked é um jogo bla bla bla bla divido em três capitulos bla bla bla
