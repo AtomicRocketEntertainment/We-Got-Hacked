@@ -40,12 +40,13 @@ Ferramentas
 
 Equipe
 -------
+[Luciano Ignaczak](http://www.linkedin.com/in/mobleyscott)
 <table>
   <tr>
     <th>Funcionario</th><th>Função</th>
   </tr>
   <tr>
-    <td>[Luciano Ignaczak](google.com)</td><td> Coordenador </td>
+    <td>[Luciano Ignaczak](http://www.linkedin.com/in/mobleyscott)</td><td> Coordenador </td>
   </tr>
   <tr>
     <td>[Mauricio Gehling](google.com)</td><td> Gestor de Equipe</td>
