@@ -40,40 +40,12 @@ Ferramentas
 
 Equipe
 -------
-| Nome        | Descrição               |
+| Funcionario        | Função               |
 |-------------|-------------------------|
-| [Tiago](https://github.com/tiago) | Perfil no GitHub de Tiago |
-
-
-<table>
-  <tr>
-    <th>Funcionario</th><th>Função</th>
-  </tr>
-  <tr>
-    <td>Luciano Ignaczak</td><td> Coordenador </td>
-  </tr>
-  <tr>
-    <td>Mauricio Gehling</td><td> Gestor de Equipe</td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>Funcionario</th><th>Função</th>
-  </tr>
-  <tr>
-    <td>Bernardo Klein</td><td> Artista 2D </td>
-  </tr>
-  <tr>
-    <td>Jairo Augusto</td><td> Artista 3D </td>
-  </tr>
-  <tr>
-    <td>Igor Flores</td><td> Programador </td>
-  </tr>
-  <tr>
-    <td>Tiago Gazzola</td><td> Game Designer </td>
-  </tr>
-</table>
+| [Bernardo Klein](https://github.com/tiago) | Artista 2D |
+| [Jairo Augusto](https://github.com/tiago) | Artista 3D |
+| [Igor Flores](https://github.com/tiago) | Programador |
+| [Tiago Gazzola](https://github.com/tiago) | Game Designer |
 
 Licença 
 -------
