@@ -10,7 +10,6 @@ Objetivo do Jogo
 
 Instruções
 -------
-<a href=”https://searchlab.com.br/”>Um link para Search Lab</a>
 <table>
   <tr>
     <th>Ação</th><th>Tecla</th>
@@ -41,6 +40,11 @@ Ferramentas
 
 Equipe
 -------
+| Nome        | Descrição               |
+|-------------|-------------------------|
+| [Tiago](https://github.com/tiago) | Perfil no GitHub de Tiago |
+
+
 <table>
   <tr>
     <th>Funcionario</th><th>Função</th>
