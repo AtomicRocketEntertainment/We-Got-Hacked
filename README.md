@@ -12,8 +12,6 @@ Mecanicas Principais
 
 Instruções
 -------
-## Input
-
 <table>
   <tr>
     <th>Action</th><th>Keys</th>
