@@ -1,7 +1,9 @@
 # We Got Hacked
 ![menu](https://raw.githubusercontent.com/AtomicRocketEntertainment/We-Got-Hacked/refs/heads/main/ImagemTeste.png)
 
-"We Got Hacked" é um jogo de simulação e treinamento voltado para estudantes e profissionais da área de cibersegurança. Dividido em três capítulos, o jogo simula situações reais e desafiadoras frequentemente enfrentadas no setor de cibersegurança, como ataques de hackers, vazamento de dados e outros cenários críticos. 
+"We Got Hacked" é um jogo de simulação e treinamento desenvolvido pela Atomic Rocket Entertainment, financiado pela RNP (Rede Nacional de Ensino e Pesquisa). Voltado para estudantes e profissionais da área de cibersegurança, o jogo é dividido em três capítulos, cada um simulando cenários reais e desafiadores comuns no setor, como ataques de hackers, vazamentos de dados e outras situações críticas. A proposta é oferecer uma experiência prática e envolvente, contribuindo para o aprimoramento das habilidades necessárias no controle de ameaças digitais.
+
+O jogo 
 
 Objetivo
 -------
