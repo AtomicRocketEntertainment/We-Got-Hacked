@@ -30,8 +30,8 @@ Equipe
 -------
 | Funcionario        | Função               |
 |-------------|-------------------------|
-| [Luciano Ignaczak](https://github.com/ignaczak) | Orientador |
-| [Mauricio Gehling](https://github.com/MauricioBG) | Gestor de Equipe |
+| [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Orientador |
+| [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | Gestor de Equipe |
 
 | Funcionario        | Função               |
 |-------------|-------------------------|
