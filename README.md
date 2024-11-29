@@ -11,10 +11,9 @@ Instruções
 -------
 | Ação        | Tecla               |
 |-------------|-------------------------|
-| Esquerda | Tecla Esquerda |
-| Direita | Tecla Direita |
-| Cima | Tecla Cima |
-| Baixo | Tecla Baixo |
+| Exemplo 1 | Tecla Esquerda |
+| Exemplo 2 | Tecla Direita |
+| Exemplo 3 | Tecla Cima |
 
 Estado de Desenvolvimento
 -------
