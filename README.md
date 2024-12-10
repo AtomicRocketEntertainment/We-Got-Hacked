@@ -6,7 +6,7 @@ We Got Hacked é um jogo de simulação e treinamento desenvolvido pela [Atomic 
 Objetivo
 -------
 O objetivo de "We Got Hacked" é gamificar cenários comuns de cibersegurança, proporcionando uma forma dinâmica e interativa de aprimorar as competências de estudantes e profissionais, preparando-os para lidar com desafios do mundo real. Cada capítulo ira oferecer uma experiência prática e imersiva, permitindo aos jogadores aprimorarem suas habilidades em um ambiente controlado.
-<div align="center">
+
 Instruções
 -------
 | Ação        | Tecla               |
@@ -15,7 +15,7 @@ Instruções
 | Exemplo 2 | Tecla Direita |
 | Exemplo 3 | Tecla Cima |
 
-</div>
+
 Estado de Desenvolvimento
 -------
 We Got Hacked tera seu inicio de produção em janeiro de 2025, com previsão de conclusão em dezembro de 2025.
