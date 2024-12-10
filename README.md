@@ -7,7 +7,7 @@ Objetivo
 -------
 O objetivo de "We Got Hacked" é gamificar cenários comuns de cibersegurança, proporcionando uma forma dinâmica e interativa de aprimorar as competências de estudantes e profissionais, preparando-os para lidar com desafios do mundo real. Cada capítulo ira oferecer uma experiência prática e imersiva, permitindo aos jogadores aprimorarem suas habilidades em um ambiente controlado.
 
-Instruções
+<h1 align="center"> Instruções </h1>
 -------
 | Ação        | Tecla               |
 |-------------|-------------------------|
