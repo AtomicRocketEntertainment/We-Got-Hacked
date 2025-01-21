@@ -11,10 +11,8 @@ Instruções
 -------
 | Ação        | Tecla               |
 |-------------|-------------------------|
-| Exemplo 1 | Tecla Esquerda |
-| Exemplo 2 | Tecla Direita |
-| Exemplo 3 | Tecla Cima |
-
+| Exemplo 1 | Botão Esquerdo do Mouse |
+| Exemplo 2 | Botão Direito do Mouse |
 
 Estado de Desenvolvimento
 -------
@@ -30,17 +28,16 @@ Equipe
 -------
 | Funcionario        | Função               |
 |-------------|-------------------------|
-| [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Orientador |
-| [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | Gestor de Equipe |
+| [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Coordenador Acadêmico |
+| [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | GCoordenador de Desenvolvimento |
 
 | Funcionario        | Função               |
 |-------------|-------------------------|
 | [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D |
 | [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | Artista 3D |
-| [Igor Flores](https://www.linkedin.com/in/igorflores96/) | Programador |
+| [Igor Flores](https://www.linkedin.com/in/igorflores96/) | Desenvolvedor |
 | [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer |
 
-Licença 
--------
+
 ![logo-atomic](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-atomic.png)
 ![logo-rnp](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-rnp-branco.png)
