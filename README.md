@@ -29,7 +29,8 @@ Equipe
 | Funcionario        | Função               |
 |-------------|-------------------------|
 | [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Coordenador Acadêmico |
-| [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | GCoordenador de Desenvolvimento |
+| [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | Coordenador de Desenvolvimento |
+| [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) | Analista de Segurança |
 
 | Funcionario        | Função               |
 |-------------|-------------------------|
