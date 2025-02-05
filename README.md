@@ -22,7 +22,7 @@ A empresa brasileira PetroGás, responsável pela geração de energia, produç�
 
 Conheça os Personagens
 -------
-![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens.png?raw=true)
+![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
 - N1: Tiago Monteiro, 20 anos, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
 - N2: Rafael Martins, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
 - N3: Eduardo Silva, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
