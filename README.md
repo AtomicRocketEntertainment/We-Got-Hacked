@@ -34,6 +34,8 @@ We Got Hacked terá diversos momentos em que o jogador poderá tomar decisões, 
 
 Estado de Desenvolvimento
 -------
+![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC1.png?raw=true)
+![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC2.png?raw=true)
 We Got Hacked teve seu inicio de produção em janeiro de 2025, com previsão de conclusão para dezembro de 2025. Atualmente, fevereiro, diversos pontos ja foram definidos para o jogo e estão sendo colocados em pratica (Atualizações em breve). 
 
 Ferramentas 
