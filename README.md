@@ -39,7 +39,7 @@ We Got Hacked teve seu inicio de produção em janeiro de 2025, com previsão de
 Ferramentas 
 -------
 * Unity (Engine para criação de jogos digitais)
-* Photoshop (Software para edição e criação de imagens)
+* Clip Studio (Software para edição e criação de imagens)
 * Maya e Blender (Softwares para criação de objetos virtuais em 3D)
 
 Equipe 
