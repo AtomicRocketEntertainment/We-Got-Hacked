@@ -16,8 +16,6 @@ Instruções
 
 Conheça a Empresa
 -------
-![pretrogas](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrogas.png?raw=true)
-
 A empresa brasileira PetroGás, responsável pela geração de energia, produção de petróleo e gás para o território nacional e exportação, foi fundada em 1974 como uma estatal. Na década de 2000, abriu seu capital e atualmente compete no mercado global. Ao longo de sua história, a PetroGás investiu em refinarias, plataformas offshore e exploração em águas profundas, tornando-se a maior empresa latino-americana do setor energético.
 
 Conheça os Personagens
