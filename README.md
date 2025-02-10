@@ -16,13 +16,11 @@ Instruções
 
 Conheça a Empresa
 -------
-![pretrogas](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrogas.png?raw=true)
-
 A empresa brasileira PetroGás, responsável pela geração de energia, produção de petróleo e gás para o território nacional e exportação, foi fundada em 1974 como uma estatal. Na década de 2000, abriu seu capital e atualmente compete no mercado global. Ao longo de sua história, a PetroGás investiu em refinarias, plataformas offshore e exploração em águas profundas, tornando-se a maior empresa latino-americana do setor energético.
 
 Conheça os Personagens
 -------
-![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens.png?raw=true)
+![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
 - N1: Tiago Monteiro, 20 anos, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
 - N2: Rafael Martins, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
 - N3: Eduardo Silva, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
@@ -36,12 +34,14 @@ We Got Hacked terá diversos momentos em que o jogador poderá tomar decisões, 
 
 Estado de Desenvolvimento
 -------
+![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC1.png?raw=true)
+![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC2.png?raw=true)
 We Got Hacked teve seu inicio de produção em janeiro de 2025, com previsão de conclusão para dezembro de 2025. Atualmente, fevereiro, diversos pontos ja foram definidos para o jogo e estão sendo colocados em pratica (Atualizações em breve). 
 
 Ferramentas 
 -------
 * Unity (Engine para criação de jogos digitais)
-* Photoshop (Software para edição e criação de imagens)
+* Clip Studio (Software para edição e criação de imagens)
 * Maya e Blender (Softwares para criação de objetos virtuais em 3D)
 
 Equipe 
