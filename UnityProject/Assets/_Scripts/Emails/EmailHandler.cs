@@ -11,13 +11,22 @@ public class EmailHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _emailTitle;
     [SerializeField] private TextMeshProUGUI _emailSender;
     [SerializeField] private TextMeshProUGUI _emailContent;
-    private List<Email> _currentEmails = new List<Email>();
     private int _currentEmailSended = 0;
     private Dictionary<GameObject, Email> _emailsInstanciados = new Dictionary<GameObject, Email>();
 
     private void OnEnable() 
     {
         _currentEmailSended = 0;
+        EventManager.OnOpenEmail += OpenEmail;
+        EventManager.OnLinkIsClicked += OpenSite;
+
+    }
+
+    void OnDisable()
+    {
+        EventManager.OnOpenEmail -= OpenEmail;
+        EventManager.OnLinkIsClicked -= OpenSite;
+
     }
 
     [ContextMenu("Spawn Email")]
@@ -34,7 +43,6 @@ public class EmailHandler : MonoBehaviour
         if(instanceEmail.TryGetComponent(out EmailInstance instance))
         {
             instance.UpdateInfos(sender: email.Sender, title: email.Title, contentSmall: email.Content);
-            instance.OnClickEmail.AddListener(OpenEmail);
         }
 
         if(!_emailsInstanciados.ContainsKey(instanceEmail))
@@ -60,5 +68,10 @@ public class EmailHandler : MonoBehaviour
     {
         _homeEmailCanvas.gameObject.SetActive(true);
         _emailCanvas.gameObject.SetActive(false);
+    }
+
+    private void OpenSite(string siteName)
+    {
+        print(siteName);
     }
 }

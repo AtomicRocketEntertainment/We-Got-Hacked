@@ -1,12 +1,13 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class EmailInstance : MonoBehaviour
 {
-    public UnityEvent<GameObject> OnClickEmail;
     [SerializeField] private Button _emailButton;
+    [SerializeField] private GameObject _newBg;
+    [SerializeField] private Image _emailBackground;
+    [SerializeField] private Color _openedEmailColor;
     [SerializeField] private TextMeshProUGUI _sender;
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private TextMeshProUGUI _contentSmall;
@@ -30,6 +31,8 @@ public class EmailInstance : MonoBehaviour
 
     private void ClickEmail()
     {
-        OnClickEmail?.Invoke(this.gameObject);
+        _newBg.SetActive(false);
+        _emailBackground.color = _openedEmailColor;
+        EventManager.OpenEmail(this.gameObject);
     }
 }
