@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EmailHandler : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class EmailHandler : MonoBehaviour
     [SerializeField] private Transform _homeEmailCanvas;
     [SerializeField] private Transform _emailCanvas;
     [SerializeField] private TextMeshProUGUI _emailTitle;
-    [SerializeField] private TextMeshProUGUI _emailSender;
+    [SerializeField] private TextMeshProUGUI _senderName;
+    [SerializeField] private TextMeshProUGUI _senderEmail;
     [SerializeField] private TextMeshProUGUI _emailContent;
+    [SerializeField] private Image _senderProfilePicture;
     private int _currentEmailSended = 0;
     private Dictionary<GameObject, Email> _emailsInstanciados = new Dictionary<GameObject, Email>();
 
@@ -38,7 +41,7 @@ public class EmailHandler : MonoBehaviour
         instanceEmail.transform.SetParent(_homeEmailCanvas);
         instanceEmail.name = email.Title;
         instanceEmail.transform.localScale = new Vector3(1, 1, 1);
-        instanceEmail.transform.localPosition = new Vector3(-960f, 350f + (_currentEmailSended * -50f), 0);
+        instanceEmail.transform.localPosition = new Vector3(-730f, 350f + (_currentEmailSended * -50f), 0);
 
         if(instanceEmail.TryGetComponent(out EmailInstance instance))
         {
@@ -60,7 +63,9 @@ public class EmailHandler : MonoBehaviour
         {
             _emailTitle.text = instance.Title;
             _emailContent.text = instance.Content;
-            _emailSender.text = instance.Sender;
+            _senderName.text = instance.Sender.Name;
+            _senderEmail.text = instance.Sender.Email;
+            _senderProfilePicture.sprite = instance.Sender.Profile;
         }
     }
 

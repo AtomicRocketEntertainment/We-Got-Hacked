@@ -1,7 +1,7 @@
 [System.Serializable]
 public class Email
 {
-    public string _sender;
+    public EmailSender _sender;
     public string _title;
     public string _content;
 
@@ -12,7 +12,7 @@ public class Email
         _content = emailInfo.Content;
     }
 
-    public string Sender => _sender;
+    public EmailSender Sender => _sender;
     public string Title => _title;
     public string Content => _content;
 }

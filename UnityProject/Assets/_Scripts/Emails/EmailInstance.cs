@@ -22,9 +22,9 @@ public class EmailInstance : MonoBehaviour
         _emailButton.onClick.RemoveListener(ClickEmail);
     }
 
-    public void UpdateInfos(string sender, string title, string contentSmall)
+    public void UpdateInfos(EmailSender sender, string title, string contentSmall)
     {
-        _sender.text = sender;
+        _sender.text = sender.Name;
         _title.text = title;
         _contentSmall.text = contentSmall;
     }
