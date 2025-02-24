@@ -41,7 +41,7 @@ public class EmailHandler : MonoBehaviour
         instanceEmail.transform.SetParent(_homeEmailCanvas);
         instanceEmail.name = email.Title;
         instanceEmail.transform.localScale = new Vector3(1, 1, 1);
-        instanceEmail.transform.localPosition = new Vector3(-730f, 350f + (_currentEmailSended * -50f), 0);
+        //instanceEmail.transform.localPosition = new Vector3(-730f, 350f + (_currentEmailSended * -50f), 0);
 
         if(instanceEmail.TryGetComponent(out EmailInstance instance))
         {
