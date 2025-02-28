@@ -10,23 +10,40 @@ public class StockManager : MonoBehaviour
     [SerializeField] private Sprite _stockPoint;
     [SerializeField] private float _pointSize = 15f;
 
+    [Header("Company Infos")]
+    [SerializeField] private Image[] _companyImages;
+    [SerializeField] private TextMeshProUGUI[] _companyNames;
+
+
     [Header("Graph Infos")]
     [SerializeField] private RectTransform _graphContainer;
     [SerializeField] private RectTransform _yLabelTemplate;
     [SerializeField] private RectTransform _yDashTemplate;
     [SerializeField] private float _xSpaceBetweenDots = 50f;
     [Tooltip("O valor máximo que vai aparecer na altura do gráfico"), SerializeField] private float _yMaximumValue = 150f;
-    [Tooltip("O valor minimo que vai aparecer na altura do gráfico"), SerializeField] private float _yMininumValue = 0f;
+    [Tooltip("O valor minimo que vai aparecer na altura do gráfico"), SerializeField] private float _yMininumValue = 40f;
 
     [Header("Companys to Show")]
     [SerializeField] private List<SO_Stock> _companys;
+
+    [Header("New's info")]
+    [SerializeField] private StockInformationHolder[] _news;
+    [SerializeField] private SO_StockNew[] _newsSos;
 
     private void Awake()
     {
         for(int i = 0; i < _companys.Count; i++)
         {
             ShowGraph(_companys[i].Values, _companys[i].Color, i);
+            _companyImages[i].color = _companys[i].Color;
+            _companyNames[i].text = _companys[i].CompanyName;
         }
+    }
+
+    private void OnEnable()
+    {
+        for(int i = 0; i < _news.Length; i++)
+            _news[i].UpdateNewsInfo(_newsSos[i].Image, _newsSos[i].Header, _newsSos[i].Content);
     }
 
     private GameObject CreateCircle(Vector2 anchoredPosition, Color companyColor)
@@ -73,7 +90,7 @@ public class StockManager : MonoBehaviour
 
             int separatorYCount = 10;
 
-            for(int i = 0; i <= separatorYCount; i++)
+            for(int i = 1; i <= separatorYCount; i++)
             {
                 RectTransform labelY = Instantiate(_yLabelTemplate);
                 labelY.TryGetComponent(out TextMeshProUGUI tmpro);
@@ -88,7 +105,7 @@ public class StockManager : MonoBehaviour
 
                 dashY.SetParent(_graphContainer, false);
                 dashY.gameObject.SetActive(true);
-                dashY.anchoredPosition = new Vector2(dashY.anchoredPosition.x, 2.0f + (normalizedValue * graphHeight)); 
+                dashY.anchoredPosition = new Vector2(dashY.anchoredPosition.x, 2.0f + (normalizedValue * graphHeight - 5f)); 
             }
         }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,23 @@ public class SO_Stock : ScriptableObject
 {
     public Sprite Icon;
     public string CompanyName;
-    public List<float> Values;
+    [Tooltip("Valores menores que 50 são reajustados.")] public List<float> Values;
     public Color Color;
+
+
+    private void OnValidate()
+    {
+        ClampValues();
+    }
+
+    private void ClampValues()
+    {
+        for (int i = 0; i < Values.Count; i++)
+        {
+            if (Values[i] < 50)
+            {
+                Values[i] = 50;
+            }
+        }
+    }
 }
