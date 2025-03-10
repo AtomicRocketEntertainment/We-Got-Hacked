@@ -55,7 +55,7 @@ Equipe
 | Funcionario        | Função               |
 |-------------|-------------------------|
 | [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D |
-| [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | Artista 3D |
+| [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | Artista 3D e Roteirista |
 | [Igor Flores](https://www.linkedin.com/in/igorflores96/) | Desenvolvedor |
 | [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer |
 
