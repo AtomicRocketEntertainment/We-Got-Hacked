@@ -41,8 +41,17 @@ public class StockManager : MonoBehaviour
 
     private void OnEnable()
     {
+        EventManager.OnCorrectChoice += CorrectChoice;
+        EventManager.OnWrongChoice += WrongChoice;
+
         for(int i = 0; i < _news.Length; i++)
             _news[i].UpdateNewsInfo(_newsSos[i].Image, _newsSos[i].Header, _newsSos[i].Content);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnCorrectChoice -= CorrectChoice;
+        EventManager.OnWrongChoice -= WrongChoice;
     }
 
     private GameObject CreateCircle(Vector2 anchoredPosition, Color companyColor)
@@ -144,5 +153,15 @@ public class StockManager : MonoBehaviour
         rect.anchoredPosition = (dotPositionA + dotPositionB) * 0.5f;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         rect.localEulerAngles = new Vector3(0, 0, angle);
+    }
+
+    private void CorrectChoice()
+    {
+        Debug.Log("Stock Manager ouviu uma escolha correta");
+    }
+
+    private void WrongChoice()
+    {
+        Debug.Log("Stock Manager ouviu uma escolha errada");
     }
 }

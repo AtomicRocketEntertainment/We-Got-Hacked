@@ -2,26 +2,36 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
+
 
 public class EmailHandler : MonoBehaviour
 {
     [SerializeField] private List<SO_Email> _emailsToSend = new List<SO_Email>();
-    [SerializeField] private GameObject _emailPrefab;
+
     [SerializeField] private Transform _homeEmailCanvas;
     [SerializeField] private Transform _emailCanvas;
-    [SerializeField] private TextMeshProUGUI _emailTitle;
-    [SerializeField] private TextMeshProUGUI _senderName;
-    [SerializeField] private TextMeshProUGUI _senderEmail;
-    [SerializeField] private TextMeshProUGUI _emailContent;
-    [SerializeField] private Image _senderProfilePicture;
+    [BoxGroup("Opened Content"), HorizontalLine(color: EColor.Green)][SerializeField] private TextMeshProUGUI _emailTitle;
+    [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderName;
+    [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
+    [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _emailContent;
+    [BoxGroup("Opened Content")] [SerializeField] private Image _senderProfilePicture;
+
+    [HorizontalLine(color: EColor.Yellow)]
+    [BoxGroup("Prefabs")] [SerializeField] private GameObject _emailPrefab;
+
     private int _currentEmailSended = 0;
     private Dictionary<GameObject, Email> _emailsInstanciados = new Dictionary<GameObject, Email>();
+    private Email _currentEmailOpen;
 
     private void OnEnable() 
     {
         _currentEmailSended = 0;
         EventManager.OnOpenEmail += OpenEmail;
         EventManager.OnLinkIsClicked += OpenSite;
+        EventManager.OnChangeEmailContentText += ChangeContentEmail;
+        EventManager.OnEmailIsAnswered += EmailIsAnswered;
+        EventManager.OnReturnEmailContent += ReturnEmailContent;
 
     }
 
@@ -29,7 +39,9 @@ public class EmailHandler : MonoBehaviour
     {
         EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnLinkIsClicked -= OpenSite;
-
+        EventManager.OnChangeEmailContentText -= ChangeContentEmail;
+        EventManager.OnEmailIsAnswered -= EmailIsAnswered;
+        EventManager.OnReturnEmailContent -= ReturnEmailContent;
     }
 
     [ContextMenu("Spawn Email")]
@@ -41,7 +53,6 @@ public class EmailHandler : MonoBehaviour
         instanceEmail.transform.SetParent(_homeEmailCanvas);
         instanceEmail.name = email.Title;
         instanceEmail.transform.localScale = new Vector3(1, 1, 1);
-        //instanceEmail.transform.localPosition = new Vector3(-730f, 350f + (_currentEmailSended * -50f), 0);
 
         if(instanceEmail.TryGetComponent(out EmailInstance instance))
         {
@@ -61,18 +72,39 @@ public class EmailHandler : MonoBehaviour
 
         if(_emailsInstanciados.TryGetValue(email, out Email instance))
         {
+            _currentEmailOpen = instance;
             _emailTitle.text = instance.Title;
             _emailContent.text = instance.Content;
             _senderName.text = instance.Sender.Name;
             _senderEmail.text = instance.Sender.Email;
             _senderProfilePicture.sprite = instance.Sender.Profile;
         }
+
+        if(_currentEmailOpen.HasResponse && !_currentEmailOpen.IsAnswered)
+            EventManager.OpenEmailResponse(_currentEmailOpen);
     }
 
     public void CloseEmail()
     {
         _homeEmailCanvas.gameObject.SetActive(true);
         _emailCanvas.gameObject.SetActive(false);
+        _currentEmailOpen = null;
+    }
+
+    private void EmailIsAnswered()
+    {
+        _currentEmailOpen.AnswerEmail();
+        CloseEmail();
+    }
+
+    private void ChangeContentEmail(string newEmailText)
+    {
+        _emailContent.text = newEmailText;
+    }
+
+    private void ReturnEmailContent()
+    {
+        _emailContent.text = _currentEmailOpen.Content;
     }
 
     private void OpenSite(string siteName)

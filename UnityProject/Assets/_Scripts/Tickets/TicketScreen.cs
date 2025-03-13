@@ -93,8 +93,6 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         List<string> typeOptions = new List<string> { _typeSelect };
         List<string> dateOptions = new List<string> { _dateSelect };
 
-
-
         foreach(Ticket ticket in siem.ActiveTickets)
         {
             idOptions.Add(ticket.ID);
