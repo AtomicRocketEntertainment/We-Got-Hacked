@@ -8,6 +8,7 @@ public class Ticket
     private string _location;
     private DispositiveType _dispositive;
     private string _date;
+    private int _riskLevel;
     private List<TicketObjectives> _objectives;
     private int _currentObjective;
 
@@ -17,6 +18,7 @@ public class Ticket
     public string Location => _location;
     public DispositiveType Dispositive => _dispositive;
     public string Date => _date;
+    public int RiskLevel => _riskLevel;
 
     public Ticket(SO_Ticket infos)
     {
@@ -26,6 +28,7 @@ public class Ticket
         _location = infos.Location;
         _dispositive = infos.Dispositive;
         _date = infos.Date;
+        _riskLevel = infos.RiskLevel;
         _objectives = infos.Objectives;
         _currentObjective = 0;
 

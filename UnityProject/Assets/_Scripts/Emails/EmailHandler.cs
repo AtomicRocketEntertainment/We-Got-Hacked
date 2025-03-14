@@ -8,17 +8,18 @@ using NaughtyAttributes;
 public class EmailHandler : MonoBehaviour
 {
     [SerializeField] private List<SO_Email> _emailsToSend = new List<SO_Email>();
+    [SerializeField] private Button _writeEmailBtn;
 
-    [SerializeField] private Transform _homeEmailCanvas;
-    [SerializeField] private Transform _emailCanvas;
+    [HorizontalLine(color: EColor.Red)]
+    [BoxGroup("Canvases")] [SerializeField] private Transform _homeEmailCanvas;
+    [BoxGroup("Canvases")] [SerializeField] private Transform _emailCanvas;
     [BoxGroup("Opened Content"), HorizontalLine(color: EColor.Green)][SerializeField] private TextMeshProUGUI _emailTitle;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderName;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _emailContent;
     [BoxGroup("Opened Content")] [SerializeField] private Image _senderProfilePicture;
 
-    [HorizontalLine(color: EColor.Yellow)]
-    [BoxGroup("Prefabs")] [SerializeField] private GameObject _emailPrefab;
+    [BoxGroup("Prefabs"), HorizontalLine(color: EColor.Yellow)] [SerializeField] private GameObject _emailPrefab;
 
     private int _currentEmailSended = 0;
     private Dictionary<GameObject, Email> _emailsInstanciados = new Dictionary<GameObject, Email>();

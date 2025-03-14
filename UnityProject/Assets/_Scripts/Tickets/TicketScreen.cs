@@ -82,7 +82,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         { 
             _playbookSelect,
             PlaybookType.Pichacao.ToString(),
-            PlaybookType.Pishing.ToString(),
+            PlaybookType.Phishing.ToString(),
             PlaybookType.Ransomware.ToString(),
             PlaybookType.DataLeak.ToString()
         };

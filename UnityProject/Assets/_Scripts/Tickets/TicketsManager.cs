@@ -24,10 +24,10 @@ public class TicketsManager : MonoBehaviour
 
     void OnEnable()
     {
-        _screens.Add(_newTicketBtn, _newTicketCanvas);
-        _screens.Add(_currentTicketBtn, _currentTicketCanvas);
-        _screens.Add(_doneTicketBtn, _doneTicketCanvas);
-        _screens.Add(_playbookBtn, _playbooksCanvas);
+        if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
+        if(!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
+        if(!_screens.ContainsKey(_doneTicketBtn)) _screens.Add(_doneTicketBtn, _doneTicketCanvas);
+        if(!_screens.ContainsKey(_playbookBtn)) _screens.Add(_playbookBtn, _playbooksCanvas);
 
         _newTicketBtn.onClick.AddListener(() => OpenScreen(_newTicketBtn));
         _currentTicketBtn.onClick.AddListener(() => OpenScreen(_currentTicketBtn));
@@ -39,10 +39,10 @@ public class TicketsManager : MonoBehaviour
 
     void OnDisable()
     {
-        _newTicketBtn.onClick.RemoveListener(() => OpenScreen(_newTicketBtn));
-        _currentTicketBtn.onClick.RemoveListener(() => OpenScreen(_currentTicketBtn));
-        _doneTicketBtn.onClick.RemoveListener(() => OpenScreen(_doneTicketBtn));
-        _playbookBtn.onClick.RemoveListener(() => OpenScreen(_playbookBtn));
+        _newTicketBtn.onClick.RemoveAllListeners();
+        _currentTicketBtn.onClick.RemoveAllListeners();
+        _doneTicketBtn.onClick.RemoveAllListeners();
+        _playbookBtn.onClick.RemoveAllListeners();
     }
 
     private void OpenScreen(Button button)
