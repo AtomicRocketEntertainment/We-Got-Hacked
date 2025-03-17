@@ -14,6 +14,7 @@ public class SiemManager : MonoBehaviour
 
     [HorizontalLine(color: EColor.Green)]
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertScreen;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _alertPopupScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _yanomamiScreen;
 
     [HorizontalLine(color: EColor.Yellow)]
@@ -31,8 +32,14 @@ public class SiemManager : MonoBehaviour
     public List<Ticket> ActiveTickets => _instanceTickets;
     void OnEnable()
     {
+        EventManager.OnAlertIsOpen += OpenAlert;
         _instanceTickets = new List<Ticket>();
         SpawnAlert();
+    }
+
+    void OnDisable()
+    {
+        EventManager.OnAlertIsOpen -= OpenAlert;
     }
 
     [ContextMenu("Spawn Alert")]
@@ -48,14 +55,20 @@ public class SiemManager : MonoBehaviour
         instanceTicket.name = ticket.ID;
 
         if(instanceTicket.TryGetComponent(out AlertInstance instance))
-        {
             instance.Init(ticket);
-        }
 
         if(!_instanceTickets.Contains(ticket))
             _instanceTickets.Add(ticket);
         
         _currentTicket++;
+    }
+
+    private void OpenAlert(Ticket alert, Color ticketColor)
+    {
+        //UpdateInfos(int id, string ip, string timestamp, string location, Sprite icon, Color alertRisk)
+        _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
+        holder.UpdateInfos(alert.ID, alert.IP, alert.Date, alert.Location, alert.Dispositive.Icon, ticketColor);
+        _alertPopupScreen.SetActive(true);
     }
 }
 

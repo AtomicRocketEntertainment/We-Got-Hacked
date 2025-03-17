@@ -24,6 +24,6 @@ public class AlertInstance : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("Clicou num alerta. " + _currentHolder.ID);
+        EventManager.OpenAlert(_currentHolder, _riskBg.color);
     }
 }

@@ -8,7 +8,7 @@ public class SO_Ticket : ScriptableObject
     public string ID;
     public string IP;
     public string Location;
-    public DispositiveType Dispositive;
+    public DispostiveInfos Dispositive;
     public string Date;
     public int RiskLevel;
     public List<TicketObjectives> Objectives;
@@ -46,6 +46,13 @@ public enum PlaybookType
 public enum DispositiveType
 {
     MobileAndroid, MobileIOS, DesktopLinux, DesktopWindows, DesktopApple
+}
+
+[System.Serializable]
+public struct DispostiveInfos
+{
+    public DispositiveType Type;
+    public Sprite Icon;
 }
 
 [System.Serializable]

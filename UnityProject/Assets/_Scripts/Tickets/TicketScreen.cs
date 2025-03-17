@@ -98,7 +98,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             idOptions.Add(ticket.ID);
             ipOptions.Add(ticket.IP);
             geolocationOptions.Add(ticket.Location);
-            typeOptions.Add(ticket.Dispositive.ToString());
+            typeOptions.Add(ticket.Dispositive.Type.ToString());
             dateOptions.Add(ticket.Date);
         }
 

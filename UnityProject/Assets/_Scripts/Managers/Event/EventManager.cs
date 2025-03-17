@@ -11,6 +11,9 @@ public static class EventManager
     public static event Action OnEmailIsAnswered;
     public static event Action OnReturnEmailContent;
 
+    //Alert related
+    public static event Action<Ticket, Color> OnAlertIsOpen;
+
     //Global Gaming Mechanic
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
@@ -108,6 +111,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnWrongChoice event.");
+        }
+    }
+
+    public static void OpenAlert(Ticket alert, Color color)
+    {
+        if (OnAlertIsOpen != null)
+        {
+            OnAlertIsOpen(alert, color);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnAlertIsOpen event.");
         }
     }
 }

@@ -6,7 +6,7 @@ public class Ticket
     private string _iD;
     private string _iP;
     private string _location;
-    private DispositiveType _dispositive;
+    private DispostiveInfos _dispositive;
     private string _date;
     private int _riskLevel;
     private List<TicketObjectives> _objectives;
@@ -16,7 +16,7 @@ public class Ticket
     public string ID => _iD;
     public string IP => _iP;
     public string Location => _location;
-    public DispositiveType Dispositive => _dispositive;
+    public DispostiveInfos Dispositive => _dispositive;
     public string Date => _date;
     public int RiskLevel => _riskLevel;
 
