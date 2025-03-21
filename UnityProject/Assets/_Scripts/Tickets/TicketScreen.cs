@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
@@ -7,14 +7,25 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 {
     [SerializeField] private ScreenType _screenType;
 
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _playbookDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _idDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _ipDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _geolocationDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _typeDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _dateDp;
 
-    [Header("New Ticket Components")]
-    [SerializeField] private TMP_Dropdown _playbookDp;
-    [SerializeField] private TMP_Dropdown _idDp;
-    [SerializeField] private TMP_Dropdown _ipDp;
-    [SerializeField] private TMP_Dropdown _geolocationDp;
-    [SerializeField] private TMP_Dropdown _typeDp;
-    [SerializeField] private TMP_Dropdown _dateDp;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _pichacaoScreen;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _phishingScreen;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _ransowareScreen;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _dataLeakScreen;
+
+    private List<GameObject> _playbookScreens => new List<GameObject> 
+    {
+        _pichacaoScreen,
+        _phishingScreen,
+        _ransowareScreen,
+        _dataLeakScreen
+    };
 
     private string _playbookSelect = "";
     private string _idSelect = "";
@@ -33,7 +44,6 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _geolocationDp?.onValueChanged.AddListener(UpdateLocationSelected);
         _typeDp?.onValueChanged.AddListener(UpdateDeviceSelected);
         _dateDp?.onValueChanged.AddListener(UpdateDateSelected);
-
     }
 
     void OnDisable()
@@ -46,7 +56,16 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp?.onValueChanged.RemoveListener(UpdateDateSelected);
     }
 
-    private void UpdatePlaybookSelected(int value) { _playbookSelect = _playbookDp.options[value].text; }
+    private void UpdatePlaybookSelected(int value) 
+    { 
+        _playbookSelect = _playbookDp.options[value].text;
+
+        foreach(GameObject screen in _playbookScreens)
+            screen.SetActive(false);
+
+        if (value > 0 && value <= _playbookScreens.Count) 
+            _playbookScreens[value - 1].SetActive(true);
+    }
     private void UpdateIdSelected(int value) { _idSelect = _idDp.options[value].text; }
     private void UpdateIpSelected(int value) { _ipSelect = _ipDp.options[value].text; }
     private void UpdateLocationSelected(int value) { _geolocationSelect = _geolocationDp.options[value].text; }
@@ -123,6 +142,12 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdatePlaybook()
     {
 
+    }
+
+
+    private bool NewTicketEditorChecker()
+    {
+        return _screenType == ScreenType.NewTicket;
     }
 
 

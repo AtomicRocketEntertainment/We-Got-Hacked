@@ -2,8 +2,6 @@
 public interface IScreenInfoUpdater
 {
     public void UpdateInfos(ScreenType typeScreen, SiemManager siem);
-
-    
 }
 
 
