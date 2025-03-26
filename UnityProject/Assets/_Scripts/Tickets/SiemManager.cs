@@ -34,7 +34,6 @@ public class SiemManager : MonoBehaviour
     {
         EventManager.OnAlertIsOpen += OpenAlert;
         _instanceTickets = new List<Ticket>();
-        SpawnAlert();
     }
 
     void OnDisable()
@@ -65,7 +64,6 @@ public class SiemManager : MonoBehaviour
 
     private void OpenAlert(Ticket alert, Color ticketColor)
     {
-        //UpdateInfos(int id, string ip, string timestamp, string location, Sprite icon, Color alertRisk)
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
         holder.UpdateInfos(alert.ID, alert.IP, alert.Date, alert.Location, alert.Dispositive.Icon, ticketColor);
         _alertPopupScreen.SetActive(true);
