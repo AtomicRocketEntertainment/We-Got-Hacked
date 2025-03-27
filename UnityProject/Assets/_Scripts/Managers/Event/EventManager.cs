@@ -8,6 +8,7 @@ public static class EventManager
     public static event Action<string> OnLinkIsClicked;
     public static event Action<string> OnChangeEmailContentText;
     public static event Action<Email> OnEmailResponseNeeded;
+    public static event Action<EmailType> OnSpawnEmail;
     public static event Action OnEmailIsAnswered;
     public static event Action OnReturnEmailContent;
 
@@ -63,6 +64,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnEmailResponseNeeded event.");
+        }
+    }
+
+    public static void SpawnEmail(EmailType type)
+    {
+        if (OnSpawnEmail != null)
+        {
+            OnSpawnEmail(type);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnSpawnEmail event.");
         }
     }
 

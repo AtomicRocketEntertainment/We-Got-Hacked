@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SiemManager : MonoBehaviour
+public class SiemManager : MonoBehaviour, INeedOpenCanvas
 {
     [SerializeField] private List<SO_Ticket> _tickets;
 
@@ -13,6 +12,7 @@ public class SiemManager : MonoBehaviour
     [BoxGroup("Header")] [SerializeField] private Button _yanomamitBtn;
 
     [HorizontalLine(color: EColor.Green)]
+    [BoxGroup("Screens")] [SerializeField] private GameObject _mainCanvas;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertPopupScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _yanomamiScreen;
@@ -26,14 +26,13 @@ public class SiemManager : MonoBehaviour
 
 
 
-    private List<Ticket> _instanceTickets;
+    private List<Ticket> _instanceTickets = new List<Ticket>();
     private int _currentTicket = 0;
 
     public List<Ticket> ActiveTickets => _instanceTickets;
     void OnEnable()
     {
         EventManager.OnAlertIsOpen += OpenAlert;
-        _instanceTickets = new List<Ticket>();
     }
 
     void OnDisable()
@@ -67,6 +66,16 @@ public class SiemManager : MonoBehaviour
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
         holder.UpdateInfos(alert.ID, alert.IP, alert.Date, alert.Location, alert.Dispositive.Icon, ticketColor);
         _alertPopupScreen.SetActive(true);
+    }
+
+    public void OpenCanvas()
+    {
+        _mainCanvas.SetActive(true);
+    }
+
+    public void CloseCanvas()
+    {
+        _mainCanvas.SetActive(false);
     }
 }
 

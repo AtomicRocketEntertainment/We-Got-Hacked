@@ -3,8 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StockManager : MonoBehaviour
+public class StockManager : MonoBehaviour, INeedOpenCanvas
 {
+    [SerializeField] private GameObject _mainCanvas;
     [Header("Point Infos")]
     [SerializeField] private Sprite _stockPoint;
     [SerializeField] private float _pointSize = 15f;
@@ -163,5 +164,16 @@ public class StockManager : MonoBehaviour
     private void WrongChoice()
     {
         Debug.Log("Stock Manager ouviu uma escolha errada");
+    }
+
+
+    public void OpenCanvas()
+    {
+        _mainCanvas.SetActive(true);
+    }
+
+    public void CloseCanvas()
+    {
+        _mainCanvas.SetActive(false);
     }
 }

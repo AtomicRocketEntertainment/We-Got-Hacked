@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,11 +22,13 @@ public class SiteTabsManager : MonoBehaviour
             _buttons[index].onClick.AddListener(() => OpenSite(_buttons[index]));
             GameObject newScreen = Instantiate(_softwares[i].Prefab, Vector3.zero, Quaternion.identity);
             _softwareHandler.Add(_buttons[i], new SiteInfoHolder(_softwares[i], newScreen));
-            newScreen.SetActive(false);
+            newScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
+            closecanvas?.CloseCanvas();
+            
 
             if(newScreen.TryGetComponent(out EmailHandler emailHandler))
             {
-                emailHandler.gameObject.SetActive(true);
+                emailHandler.OpenCanvas();
                 _lastSite = newScreen;
             }
         }
@@ -34,20 +37,28 @@ public class SiteTabsManager : MonoBehaviour
     private void OpenSite(Button button)
     {
         _softwareHandler.TryGetValue(button, out SiteInfoHolder newScreen);
+        newScreen.InstanciedScreen.TryGetComponent(out INeedOpenCanvas openCanvas);
+
         
         foreach(SiteInfoHolder screen in _softwareHandler.Values)
-            screen.InstanciedScreen.SetActive(false);
+        {
+            screen.InstanciedScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
+            closecanvas?.CloseCanvas();
+        }
         
         if(newScreen != null)
         {
-            newScreen.InstanciedScreen.SetActive(true);
+            openCanvas.OpenCanvas();
             _monitor.ClosePrograms();
         } 
     }
 
     public void OpenLastSite()
     {
-        _lastSite?.SetActive(true);
+        if(_lastSite == null) return;
+
+        _lastSite.TryGetComponent(out INeedOpenCanvas openCanvas);
+        openCanvas.OpenCanvas();
     }
 
     public void CloseSites()
@@ -57,7 +68,8 @@ public class SiteTabsManager : MonoBehaviour
             if(screen.InstanciedScreen.activeSelf)
                 _lastSite = screen.InstanciedScreen;
                 
-            screen.InstanciedScreen.SetActive(false);
+            screen.InstanciedScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
+            closecanvas?.CloseCanvas();
         }
     }
 

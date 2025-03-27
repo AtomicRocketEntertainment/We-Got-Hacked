@@ -19,20 +19,26 @@ public class ToolBarManager : MonoBehaviour
             _softwareButtons[index].onClick.AddListener(() => OpenScreen(_softwareButtons[index]));
             GameObject newScreen = Instantiate(_softwares[index].Prefab, Vector3.zero, Quaternion.identity);
             _softwareHandler.Add(_softwareButtons[index], newScreen);
-            newScreen.SetActive(false);
+
+            newScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
+            closecanvas?.CloseCanvas();
         }
     }
 
     private void OpenScreen(Button button)
     {
         _softwareHandler.TryGetValue(button, out GameObject newScreen);
+        newScreen.TryGetComponent(out INeedOpenCanvas openCanvas);
         
         foreach(GameObject screen in _softwareHandler.Values)
-            screen.SetActive(false);
+        {
+            screen.TryGetComponent(out INeedOpenCanvas closecanvas);
+            closecanvas?.CloseCanvas();
+        }
         
         if(newScreen)
         {
-            newScreen.SetActive(true);
+            openCanvas.OpenCanvas();
             _monitorReference.CloseSites();
         } 
     }
@@ -46,6 +52,9 @@ public class ToolBarManager : MonoBehaviour
     public void ClosePrograms()
     {
         foreach(GameObject screen in _softwareHandler.Values)
-            screen.SetActive(false);
+        {
+            screen.TryGetComponent(out INeedOpenCanvas closecanvas);
+            closecanvas?.CloseCanvas();
+        }
     }
 }

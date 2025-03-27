@@ -3707,7 +3707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7433561840142940257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3922,7 +3922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5814441283148998163
 Transform:
   m_ObjectHideFlags: 0
@@ -3951,8 +3951,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea3ebe3f97c3744eb77836a41fcd413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _emailsToSend: []
+  _spamToSend:
+  - {fileID: 11400000, guid: 6cf6a6e11dde6d34d8aff0d38ab42b61, type: 2}
+  - {fileID: 11400000, guid: 20ef1cc79b0f45e44a8221b236a690f1, type: 2}
+  _loreToSend:
+  - {fileID: 11400000, guid: 4caffdca75a75d64792fe05ebda841eb, type: 2}
+  - {fileID: 11400000, guid: 606decb417acfc540870cc6bd2b84630, type: 2}
+  - {fileID: 11400000, guid: a25a472653651d248b42d829f1069ad7, type: 2}
+  _hackingToSend: []
+  _newsToSend:
+  - {fileID: 11400000, guid: e7070f3404ffb674fa2aa267d3b72c37, type: 2}
   _writeEmailBtn: {fileID: 5167060416290641621}
+  _mainCanvas: {fileID: 8385983775903078833}
   _homeEmailCanvas: {fileID: 229812949067846991}
   _emailCanvas: {fileID: 4614261676178699409}
   _emailTitle: {fileID: 164252675455448142}

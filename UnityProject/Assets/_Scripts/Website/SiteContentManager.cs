@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SiteContentManager : MonoBehaviour
+public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
 {
+    [SerializeField] private GameObject _mainCanvas;
     [SerializeField] private Button[] _siteButtons;
     [SerializeField] private GameObject[] _siteContentScreens;
 
@@ -40,5 +41,16 @@ public class SiteContentManager : MonoBehaviour
 
         if (_screenHandler.TryGetValue(btn, out GameObject screenToActivate))
             screenToActivate.SetActive(true);
+    }
+
+
+    public void OpenCanvas()
+    {
+        _mainCanvas.SetActive(true);
+    }
+
+    public void CloseCanvas()
+    {
+        _mainCanvas.SetActive(false);
     }
 }

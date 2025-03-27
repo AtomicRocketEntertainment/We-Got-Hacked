@@ -5,12 +5,17 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 
 
-public class EmailHandler : MonoBehaviour
+public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 {
-    [SerializeField] private List<SO_Email> _emailsToSend = new List<SO_Email>();
+    [SerializeField] private List<SO_Email> _spamToSend = new List<SO_Email>();
+    [SerializeField] private List<SO_Email> _loreToSend = new List<SO_Email>();
+    [SerializeField] private List<SO_Email> _hackingToSend = new List<SO_Email>();
+    [SerializeField] private List<SO_Email> _newsToSend = new List<SO_Email>();
+
     [SerializeField] private Button _writeEmailBtn;
 
     [HorizontalLine(color: EColor.Red)]
+    [BoxGroup("Canvases")] [SerializeField] private GameObject _mainCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _homeEmailCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _emailCanvas;
     [BoxGroup("Opened Content"), HorizontalLine(color: EColor.Green)][SerializeField] private TextMeshProUGUI _emailTitle;
@@ -21,23 +26,32 @@ public class EmailHandler : MonoBehaviour
 
     [BoxGroup("Prefabs"), HorizontalLine(color: EColor.Yellow)] [SerializeField] private GameObject _emailPrefab;
 
-    private int _currentEmailSended = 0;
     private Dictionary<GameObject, Email> _emailsInstanciados = new Dictionary<GameObject, Email>();
     private Email _currentEmailOpen;
+    private int _currentSpamSended;
+    private int _currentNewsSended;
+    private int _currentLoreSended;
+    private int _currentHackingSended;
+
 
     private void OnEnable() 
     {
-        _currentEmailSended = 0;
+        _currentSpamSended = _currentNewsSended = _currentLoreSended = _currentHackingSended = 0;
+        EventManager.OnSpawnEmail += CreateEmail;
         EventManager.OnOpenEmail += OpenEmail;
         EventManager.OnLinkIsClicked += OpenSite;
         EventManager.OnChangeEmailContentText += ChangeContentEmail;
         EventManager.OnEmailIsAnswered += EmailIsAnswered;
         EventManager.OnReturnEmailContent += ReturnEmailContent;
 
+        CreateEmail(EmailType.SPAM);
+        CreateEmail(EmailType.SPAM);
+        CreateEmail(EmailType.NEWS);
     }
 
     void OnDisable()
     {
+        EventManager.OnSpawnEmail -= CreateEmail;
         EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnLinkIsClicked -= OpenSite;
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
@@ -45,25 +59,53 @@ public class EmailHandler : MonoBehaviour
         EventManager.OnReturnEmailContent -= ReturnEmailContent;
     }
 
-    [ContextMenu("Spawn Email")]
-    public void SpawnEmail()
+    private void CreateEmail(EmailType emailType)
     {
-        Email email = new Email(_emailsToSend[_currentEmailSended]);
+        Email email = null;
+        switch (emailType)
+        {
+            case EmailType.SPAM:
+                if (_currentSpamSended < _spamToSend.Count)
+                {
+                    email = new Email(_spamToSend[_currentSpamSended]);
+                    _currentSpamSended++;
+                }
+                break;
+            case EmailType.LORE:
+                if (_currentLoreSended < _loreToSend.Count)
+                {
+                    email = new Email(_loreToSend[_currentLoreSended]);
+                    _currentLoreSended++;
+                }
+                break;
+            case EmailType.HACKING:
+                if (_currentHackingSended < _hackingToSend.Count)
+                {
+                    email = new Email(_hackingToSend[_currentHackingSended]);
+                    _currentHackingSended++;
+                }
+                break;
+            case EmailType.NEWS:
+                if (_currentNewsSended < _newsToSend.Count)
+                {
+                    email = new Email(_newsToSend[_currentNewsSended]);
+                    _currentNewsSended++;
+                }
+                break;
+        }
+        
+        if (email == null) return;
 
         GameObject instanceEmail = Instantiate(_emailPrefab, Vector3.zero, Quaternion.identity);
         instanceEmail.transform.SetParent(_homeEmailCanvas);
         instanceEmail.name = email.Title;
-        instanceEmail.transform.localScale = new Vector3(1, 1, 1);
+        instanceEmail.transform.localScale = Vector3.one;
 
-        if(instanceEmail.TryGetComponent(out EmailInstance instance))
-        {
+        if (instanceEmail.TryGetComponent(out EmailInstance instance))
             instance.UpdateInfos(sender: email.Sender, title: email.Title, contentSmall: email.Content);
-        }
 
-        if(!_emailsInstanciados.ContainsKey(instanceEmail))
+        if (!_emailsInstanciados.ContainsKey(instanceEmail))
             _emailsInstanciados.Add(instanceEmail, email);
-        
-        _currentEmailSended++;
     }
 
     public void OpenEmail(GameObject email)
@@ -111,5 +153,15 @@ public class EmailHandler : MonoBehaviour
     private void OpenSite(string siteName)
     {
         print(siteName);
+    }
+
+    public void OpenCanvas()
+    {
+        _mainCanvas.SetActive(true);
+    }
+
+    public void CloseCanvas()
+    {
+        _mainCanvas.SetActive(false);
     }
 }
