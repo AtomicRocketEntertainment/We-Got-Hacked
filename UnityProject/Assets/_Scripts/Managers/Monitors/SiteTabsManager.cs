@@ -65,7 +65,7 @@ public class SiteTabsManager : MonoBehaviour
     {
         foreach(SiteInfoHolder screen in _softwareHandler.Values)
         {
-            if(screen.InstanciedScreen.activeSelf)
+            if(screen.InstanciedScreen.transform.GetChild(0).gameObject.activeSelf)
                 _lastSite = screen.InstanciedScreen;
                 
             screen.InstanciedScreen.TryGetComponent(out INeedOpenCanvas closecanvas);

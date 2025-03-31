@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
 
     [HorizontalLine(color: EColor.Green)]
     [BoxGroup("Screens")] [SerializeField] private GameObject _mainCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _blockedCanvas;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertPopupScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _yanomamiScreen;
@@ -24,20 +26,24 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Prefabs")] [SerializeField] private GameObject _alertPrefab;
 
 
-
-
     private List<Ticket> _instanceTickets = new List<Ticket>();
     private int _currentTicket = 0;
+    private SoftwareState _currentState = SoftwareState.Blocked;
+
 
     public List<Ticket> ActiveTickets => _instanceTickets;
+
     void OnEnable()
     {
         EventManager.OnAlertIsOpen += OpenAlert;
+        EventManager.OnEventEmailHandlerIsOpen += UpdateState;
     }
 
     void OnDisable()
     {
         EventManager.OnAlertIsOpen -= OpenAlert;
+        EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
+
     }
 
     [ContextMenu("Spawn Alert")]
@@ -68,9 +74,31 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
         _alertPopupScreen.SetActive(true);
     }
 
+    private void HandleCurrentState()
+    {
+        switch(_currentState)
+        {
+            case SoftwareState.Blocked:
+                EventManager.FirstTimeOpenSoftware();
+                break;
+
+            case SoftwareState.FirstTimeOpened: 
+                _blockedCanvas.SetActive(false);
+                _currentState = SoftwareState.Opened;
+                break;
+        }
+    }
+
+    private void UpdateState(string emailIndex)
+    {
+        if(emailIndex == "Lore 1")
+            _currentState = SoftwareState.FirstTimeOpened;
+    }
+
     public void OpenCanvas()
     {
         _mainCanvas.SetActive(true);
+        HandleCurrentState();
     }
 
     public void CloseCanvas()

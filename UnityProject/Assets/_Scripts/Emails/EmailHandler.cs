@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using System;
 
 
 public class EmailHandler : MonoBehaviour, INeedOpenCanvas
@@ -18,7 +19,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Canvases")] [SerializeField] private GameObject _mainCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _homeEmailCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _emailCanvas;
-    [BoxGroup("Opened Content"), HorizontalLine(color: EColor.Green)][SerializeField] private TextMeshProUGUI _emailTitle;
+    [BoxGroup("Opened Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailTitle;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderName;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _emailContent;
@@ -43,12 +44,12 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnChangeEmailContentText += ChangeContentEmail;
         EventManager.OnEmailIsAnswered += EmailIsAnswered;
         EventManager.OnReturnEmailContent += ReturnEmailContent;
+        EventManager.OnTimerIsComplete += CheckToSpawn;
 
         CreateEmail(EmailType.SPAM);
         CreateEmail(EmailType.SPAM);
         CreateEmail(EmailType.NEWS);
     }
-
     void OnDisable()
     {
         EventManager.OnSpawnEmail -= CreateEmail;
@@ -57,6 +58,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
         EventManager.OnReturnEmailContent -= ReturnEmailContent;
+        EventManager.OnTimerIsComplete -= CheckToSpawn;
     }
 
     private void CreateEmail(EmailType emailType)
@@ -125,6 +127,18 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
         if(_currentEmailOpen.HasResponse && !_currentEmailOpen.IsAnswered)
             EventManager.OpenEmailResponse(_currentEmailOpen);
+
+        if(_currentEmailOpen.DisptacherInfo.HasEmailEvent && !_currentEmailOpen.DisptacherInfo.EmailEventSended)
+        {
+            _currentEmailOpen.DispatchEmailEvent();
+            EventManager.SpawnEmail(_currentEmailOpen.DisptacherInfo.EmailTypeToCreate);
+        }
+
+        if(_currentEmailOpen.DisptacherInfo.HasNormalEvent && !_currentEmailOpen.DisptacherInfo.NormalEventSended)
+        {
+            _currentEmailOpen.DispatchNormalEvent();
+            EventManager.EventEmailIsOpen(_currentEmailOpen.Index);
+        }
     }
 
     public void CloseEmail()
@@ -164,4 +178,19 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     {
         _mainCanvas.SetActive(false);
     }
+
+    private void CheckToSpawn(int timerEventNumber)
+    {
+        switch(timerEventNumber)
+        {
+            case (int)TimerEventSpawner.WelcomeEmail:
+                CreateEmail(EmailType.LORE);
+                break;
+        }
+    }
+}
+
+public enum TimerEventSpawner
+{
+    WelcomeEmail
 }

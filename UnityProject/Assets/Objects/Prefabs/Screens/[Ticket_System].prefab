@@ -5013,12 +5013,12 @@ MonoBehaviour:
   _currentTicketBtn: {fileID: 80733044015718394}
   _doneTicketBtn: {fileID: 8229155310631376469}
   _playbookBtn: {fileID: 5075184884493787999}
+  _blockedCanvas: {fileID: 4497959796779920119}
   _mainCanvas: {fileID: 2758301858076220452}
   _newTicketCanvas: {fileID: 5989833205419810709}
   _currentTicketCanvas: {fileID: 7878405659623818146}
   _doneTicketCanvas: {fileID: 7989910072420525677}
   _playbooksCanvas: {fileID: 8988170535614505637}
-  _siem: {fileID: 0}
 --- !u!1 &1652837376238969687
 GameObject:
   m_ObjectHideFlags: 0
@@ -8579,6 +8579,7 @@ RectTransform:
   m_Children:
   - {fileID: 1128120755456507426}
   - {fileID: 2856049348695530255}
+  - {fileID: 7239026556645199186}
   m_Father: {fileID: 7265004034469866163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15686,6 +15687,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4497959796779920119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7239026556645199186}
+  - component: {fileID: 9064100493600486332}
+  - component: {fileID: 4926469119327997451}
+  m_Layer: 0
+  m_Name: Spr_Blocked
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7239026556645199186
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497959796779920119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3429743977167734565}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9064100493600486332
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497959796779920119}
+  m_CullTransparentMesh: 1
+--- !u!114 &4926469119327997451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497959796779920119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: df67fbed2abc63f4c92429d47e429ab0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4531439743286625082
 GameObject:
   m_ObjectHideFlags: 0
@@ -22730,6 +22806,7 @@ MonoBehaviour:
   _geolocationDp: {fileID: 1363521830811285516}
   _typeDp: {fileID: 3147159752510609720}
   _dateDp: {fileID: 6549773805483887416}
+  _blockedCanvas: {fileID: 0}
   _pichacaoScreen: {fileID: 8124526707656557753}
   _phishingScreen: {fileID: 399867992799977470}
   _ransowareScreen: {fileID: 7653074440891368113}
@@ -30037,6 +30114,7 @@ MonoBehaviour:
   _geolocationDp: {fileID: 0}
   _typeDp: {fileID: 0}
   _dateDp: {fileID: 0}
+  _blockedCanvas: {fileID: 0}
   _pichacaoScreen: {fileID: 0}
   _phishingScreen: {fileID: 0}
   _ransowareScreen: {fileID: 0}
@@ -30250,6 +30328,7 @@ MonoBehaviour:
   _geolocationDp: {fileID: 0}
   _typeDp: {fileID: 0}
   _dateDp: {fileID: 0}
+  _blockedCanvas: {fileID: 0}
   _pichacaoScreen: {fileID: 0}
   _phishingScreen: {fileID: 0}
   _ransowareScreen: {fileID: 0}
@@ -33761,6 +33840,7 @@ MonoBehaviour:
   _geolocationDp: {fileID: 0}
   _typeDp: {fileID: 0}
   _dateDp: {fileID: 0}
+  _blockedCanvas: {fileID: 0}
   _pichacaoScreen: {fileID: 0}
   _phishingScreen: {fileID: 0}
   _ransowareScreen: {fileID: 0}

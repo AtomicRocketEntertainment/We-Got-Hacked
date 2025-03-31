@@ -18,6 +18,11 @@ public static class EventManager
     //Global Gaming Mechanic
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
+    
+    //Lore related
+    public static event Action OnFirstTimeSoftwareOpen;
+    public static event Action<string> OnEventEmailHandlerIsOpen;
+    public static event Action<int> OnTimerIsComplete;
 
     public static void OpenEmail(GameObject emailObject)
     {
@@ -136,6 +141,43 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnAlertIsOpen event.");
+        }
+    }
+
+
+    public static void FirstTimeOpenSoftware()
+    {
+        if (OnFirstTimeSoftwareOpen != null)
+        {
+            OnFirstTimeSoftwareOpen();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnFirstTimeSoftwareOpen event.");
+        }
+    }
+
+    public static void EventEmailIsOpen(string emailIndex)
+    {
+        if (OnEventEmailHandlerIsOpen != null)
+        {
+            OnEventEmailHandlerIsOpen(emailIndex);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnEventEmailHandlerIsOpen event.");
+        }
+    }
+
+    public static void TimerCompleted(int currentEvent)
+    {
+        if (OnTimerIsComplete != null)
+        {
+            OnTimerIsComplete(currentEvent);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnTimerIsComplete event.");
         }
     }
 }
