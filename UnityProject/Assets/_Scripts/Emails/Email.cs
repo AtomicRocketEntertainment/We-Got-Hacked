@@ -29,6 +29,8 @@ public class Email
         _responses = new List<EmailResponse>();
         _responses = emailInfo.Responses;
         _isAnswered = false;
+        _disptacherInfo.EmailEventSended = false;
+        _disptacherInfo.NormalEventSended = false;
     }
 
     public void AnswerEmail()

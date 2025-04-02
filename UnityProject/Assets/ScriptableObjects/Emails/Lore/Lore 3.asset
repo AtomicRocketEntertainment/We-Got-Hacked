@@ -20,10 +20,10 @@ MonoBehaviour:
     Email: raquel.oliveira.gercyber@cafesoc.com
   DispatcherInfo:
     HasEmailEvent: 0
-    HasEvent: 0
+    HasNormalEvent: 0
     EmailTypeToCreate: 0
-    AlreadySendEmailEvent: 0
-    AlreadySendNormalEvent: 0
+    EmailEventSended: 0
+    NormalEventSended: 0
   HasResponse: 1
   Title: Acesso ao Tick Task e Uso dos Playbooks
   Content: "Tiago,\n\nRecebi relatos de que alguns usu\xE1rios est\xE3o enfrentando
@@ -35,7 +35,7 @@ MonoBehaviour:
     o foco.\n\nRaquel Oliveira\nGerente de Ciberseguran\xE7a \u2013 C.A.F.E."
   QuestionText: "O que ser\xE1 que responde para a Raquel?"
   Responses:
-  - TextOption: Resposta 1
+  - TextOption: "O site t\xE1 pichado! Precisamos arrumar isso..."
     EmailText: "\n\n\nOl\xE1, Raquel! Tudo certo?\n\nFiz uma verifica\xE7\xE3o no
       site da PetroCais e\u2026 deu ruim! \U0001F62C Uma das p\xE1ginas foi pichada,
       com todos os textos alterados pra ferrar com a reputa\xE7\xE3o da empresa.
@@ -59,7 +59,7 @@ MonoBehaviour:
       exige aten\xE7\xE3o e responsabilidade.\n\nMantenha o foco.\n\nRaquel Oliveira\nGerente
       de Ciberseguran\xE7a \u2013 C.A.F.E"
     IsCorrectAnswer: 1
-  - TextOption: Resposta 2
+  - TextOption: "N\xE3o tem nada de errado no site, n\xE3o."
     EmailText: "\n\n\nOl\xE1, Raquel! Tudo certo?\n\nVerifiquei o site da PetroCais
       e n\xE3o detectei nada de errado por l\xE1! \U0001F389 Dei uma olhada nas p\xE1ginas
       e parece tar tudo tranquilo.\n\nOs relatos dos usu\xE1rios podem ser de problemas
@@ -80,7 +80,7 @@ MonoBehaviour:
       Se precisar de algo, me comunique diretamente.\n\nRaquel Oliveira\nGerente
       de Cyberseguran\xE7a \u2013 S.A.F.E"
     IsCorrectAnswer: 0
-  - TextOption: Resposta 3
+  - TextOption: Vou ver e te aviso.
     EmailText: "\n\n\nOl\xE1, Raquel! Tudo certo?\n\nT\xF4 meio ocupado agora...\n\nMas
       me d\xE1 uns 15 minutos que eu j\xE1 dou uma olhada e te aviso! \U0001F44D\n\nAtt,
       Tiago\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo

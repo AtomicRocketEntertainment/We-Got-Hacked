@@ -18,6 +18,9 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     [SerializeField] private GameObject _doneTicketCanvas;
     [SerializeField] private GameObject _playbooksCanvas;
     
+    [Header("Lore to Update State")]
+    [SerializeField] private readonly string _emailLoreToOpen = "Lore 2";  
+    
     private SoftwareState _currentState = SoftwareState.Blocked;
     private SiemManager _siem;
 
@@ -85,7 +88,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if(emailIndex == "Lore 1")
+        if(emailIndex == _emailLoreToOpen)
             _currentState = SoftwareState.FirstTimeOpened;
     }
 

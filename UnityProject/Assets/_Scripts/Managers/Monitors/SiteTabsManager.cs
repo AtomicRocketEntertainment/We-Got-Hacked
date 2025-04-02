@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +7,8 @@ public class SiteTabsManager : MonoBehaviour
 {
     [SerializeField] List<SO_Software> _softwares;
     [SerializeField] List<Button> _buttons;
+    [SerializeField] private GridObjectActiveHandler _petroButton;
+    
 
     private Dictionary<Button, SiteInfoHolder> _softwareHandler = new Dictionary<Button, SiteInfoHolder>();
     private MonitorManager _monitor;
@@ -59,6 +60,11 @@ public class SiteTabsManager : MonoBehaviour
 
         _lastSite.TryGetComponent(out INeedOpenCanvas openCanvas);
         openCanvas.OpenCanvas();
+    }
+
+    public void ActiveSite()
+    {
+        _petroButton.Active();
     }
 
     public void CloseSites()

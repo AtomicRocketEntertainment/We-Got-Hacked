@@ -10,7 +10,10 @@ public class SO_Email : ScriptableObject
     public string Index;
     public EmailType Type;
     public EmailSender Sender;
+    
+    [Tooltip("Usado para enviar eventos a partir da abertura desse email. Disptach de emails, cria novos emails. Disptach de eventos, só gera um evento normal. O Evento passa o Index deste email.")]
     public EventDispatcher DispatcherInfo;
+    
     public bool HasResponse;
    
     [HorizontalLine(color: EColor.Blue), ResizableTextArea] public string Title;
@@ -29,6 +32,12 @@ public enum EmailType
 [Serializable]
 public class EventDispatcher
 {
+    public EventDispatcher() 
+    { 
+        EmailEventSended = false;
+        NormalEventSended = false;
+    }
+    
     public bool HasEmailEvent;
     public bool HasNormalEvent;
     public EmailType EmailTypeToCreate;
