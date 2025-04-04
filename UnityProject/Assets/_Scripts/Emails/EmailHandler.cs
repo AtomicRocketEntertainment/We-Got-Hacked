@@ -40,7 +40,6 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         _currentSpamSended = _currentNewsSended = _currentLoreSended = _currentHackingSended = 0;
         EventManager.OnSpawnEmail += CreateEmail;
         EventManager.OnOpenEmail += OpenEmail;
-        EventManager.OnLinkIsClicked += OpenSite;
         EventManager.OnChangeEmailContentText += ChangeContentEmail;
         EventManager.OnEmailIsAnswered += EmailIsAnswered;
         EventManager.OnReturnEmailContent += ReturnEmailContent;
@@ -54,7 +53,6 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     {
         EventManager.OnSpawnEmail -= CreateEmail;
         EventManager.OnOpenEmail -= OpenEmail;
-        EventManager.OnLinkIsClicked -= OpenSite;
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
         EventManager.OnReturnEmailContent -= ReturnEmailContent;
@@ -125,24 +123,12 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
             _senderProfilePicture.sprite = instance.Sender.Profile;
         }
 
-        if(_currentEmailOpen.HasResponse && !_currentEmailOpen.IsAnswered)
-            EventManager.OpenEmailResponse(_currentEmailOpen);
-
-        if(_currentEmailOpen.DisptacherInfo.HasEmailEvent && !_currentEmailOpen.DisptacherInfo.EmailEventSended)
-        {
-            _currentEmailOpen.DispatchEmailEvent();
-            EventManager.SpawnEmail(_currentEmailOpen.DisptacherInfo.EmailTypeToCreate);
-        }
-
-        if(_currentEmailOpen.DisptacherInfo.HasNormalEvent && !_currentEmailOpen.DisptacherInfo.NormalEventSended)
-        {
-            _currentEmailOpen.DispatchNormalEvent();
-            EventManager.EventEmailIsOpen(_currentEmailOpen.Index);
-        }
+        CheckEmailEvents();
     }
 
     public void CloseEmail()
     {
+        EventManager.CloseResponseScreen();
         _homeEmailCanvas.gameObject.SetActive(true);
         _emailCanvas.gameObject.SetActive(false);
         _currentEmailOpen = null;
@@ -164,11 +150,6 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         _emailContent.text = _currentEmailOpen.Content;
     }
 
-    private void OpenSite(string siteName)
-    {
-        print(siteName);
-    }
-
     public void OpenCanvas()
     {
         _mainCanvas.SetActive(true);
@@ -176,6 +157,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     public void CloseCanvas()
     {
+        CloseEmail();
         _mainCanvas.SetActive(false);
     }
 
@@ -186,6 +168,24 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
             case (int)TimerEventSpawner.WelcomeEmail:
                 CreateEmail(EmailType.LORE);
                 break;
+        }
+    }
+
+    private void CheckEmailEvents()
+    {
+        if(_currentEmailOpen.HasResponse && !_currentEmailOpen.IsAnswered)
+            EventManager.OpenEmailResponse(_currentEmailOpen);
+
+        if(_currentEmailOpen.DisptacherInfo.HasEmailEvent && !_currentEmailOpen.DisptacherInfo.EmailEventSended)
+        {
+            _currentEmailOpen.DispatchEmailEvent();
+            EventManager.SpawnEmail(_currentEmailOpen.DisptacherInfo.EmailTypeToCreate);
+        }
+
+        if(_currentEmailOpen.DisptacherInfo.HasNormalEvent && !_currentEmailOpen.DisptacherInfo.NormalEventSended)
+        {
+            _currentEmailOpen.DispatchNormalEvent();
+            EventManager.EventEmailIsOpen(_currentEmailOpen.Index);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -18,6 +17,8 @@ public class EmailChoices : MonoBehaviour
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
 
     [BoxGroup("New Email"), HorizontalLine(color: EColor.Blue)] [SerializeField] private GameObject _createContainer;
+
+    private EmailChoiceState _currentState = EmailChoiceState.Response_One;
 
     private void OnEnable()
     {
@@ -71,6 +72,7 @@ public class EmailChoices : MonoBehaviour
     {
         EventManager.EmailIsAnswered();
         EventManager.CorrectChoice();
+        FeedbackByState();
         ReturnChoices(false);
         gameObject.SetActive(false);
     }
@@ -98,4 +100,27 @@ public class EmailChoices : MonoBehaviour
         _firstResponseEmailChoices.SetActive(true);
     }
 
+    private void FeedbackByState()
+    {
+        switch(_currentState)
+        {
+            case EmailChoiceState.Response_One:
+                EventManager.SpawnEmail(EmailType.SPAM);
+                EventManager.SpawnEmail(EmailType.NEWS);
+                break;
+            case EmailChoiceState.Response_Two:
+                break;
+            case EmailChoiceState.Response_Three:
+                break;
+        }
+
+
+        _currentState++;
+    }
+
+}
+
+public enum EmailChoiceState
+{
+    Response_One, Response_Two, Response_Three
 }

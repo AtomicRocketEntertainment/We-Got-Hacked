@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class TicketsManager : MonoBehaviour, INeedOpenCanvas
 {
     [Header("UI Dependencies")]
+    [SerializeField] private Button _sendTicketBtn;
     [SerializeField] private Button _newTicketBtn;
     [SerializeField] private Button _currentTicketBtn;
     [SerializeField] private Button _doneTicketBtn;
@@ -81,6 +82,8 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
 
             case SoftwareState.FirstTimeOpened: 
                 _blockedCanvas.SetActive(false);
+                EventManager.SpawnEmail(EmailType.SPAM);
+                EventManager.SpawnEmail(EmailType.LORE);
                 _currentState = SoftwareState.Opened;
                 break;
         }

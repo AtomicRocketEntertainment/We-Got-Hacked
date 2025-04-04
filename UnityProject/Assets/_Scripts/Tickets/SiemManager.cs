@@ -26,7 +26,8 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Prefabs")] [SerializeField] private GameObject _alertPrefab;
 
     [BoxGroup("Lore to Update State"), HorizontalLine(color: EColor.White)]
-    [SerializeField] private readonly string _emailLoreToOpen = "Lore 1"; 
+    [SerializeField] private const string _emailLoreToOpen = "Lore 1"; 
+    [SerializeField] private const string _emailLoreToSpawnAlerts = "Lore 4"; 
 
 
     private List<Ticket> _instanceTickets = new List<Ticket>();
@@ -98,8 +99,17 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if(emailIndex == _emailLoreToOpen)
-            _currentState = SoftwareState.FirstTimeOpened;
+        switch(emailIndex)
+        {
+            case _emailLoreToOpen:
+                _currentState = SoftwareState.FirstTimeOpened;
+                break;
+            case _emailLoreToSpawnAlerts:
+                for(int i = 0; i < 5; i++)
+                    SpawnAlert();
+                break;
+  
+        }
     }
 
     public void OpenCanvas()

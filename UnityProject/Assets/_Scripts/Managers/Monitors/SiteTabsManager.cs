@@ -14,9 +14,13 @@ public class SiteTabsManager : MonoBehaviour
     private MonitorManager _monitor;
     private GameObject _lastSite;
 
+    private readonly string _siteUrl = "petrocais.com";
+
     public void Init(MonitorManager monitor)
     {
         _monitor = monitor;
+        EventManager.OnLinkIsClicked += ActiveSite;
+
         for(int i = 0; i < _buttons.Count; i++)
         {
             int index = i;
@@ -62,8 +66,10 @@ public class SiteTabsManager : MonoBehaviour
         openCanvas.OpenCanvas();
     }
 
-    public void ActiveSite()
+    public void ActiveSite(string siteName)
     {
+        if(siteName != _siteUrl) return;
+        
         _petroButton.Active();
     }
 
@@ -81,6 +87,7 @@ public class SiteTabsManager : MonoBehaviour
 
     public void CloseSiteBar()
     {
+        EventManager.OnLinkIsClicked -= ActiveSite;
         foreach(Button button in _softwareHandler.Keys)
             button.onClick.RemoveAllListeners();
     }

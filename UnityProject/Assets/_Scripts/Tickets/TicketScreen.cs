@@ -6,7 +6,6 @@ using UnityEngine;
 public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 {
     [SerializeField] private ScreenType _screenType;
-
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _playbookDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _idDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _ipDp;

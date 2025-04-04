@@ -18,6 +18,7 @@ public static class EventManager
     //Global Gaming Mechanic
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
+    public static event Action OnCloseResponseScreen;
     
     //Lore related
     public static event Action OnFirstTimeSoftwareOpen;
@@ -129,6 +130,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnWrongChoice event.");
+        }
+    }
+
+    public static void CloseResponseScreen()
+    {
+        if (OnCloseResponseScreen != null)
+        {
+            OnCloseResponseScreen();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnCloseResponseScreen event.");
         }
     }
 
