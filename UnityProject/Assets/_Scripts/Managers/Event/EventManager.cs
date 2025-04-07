@@ -5,10 +5,12 @@ public static class EventManager
 {
     //Email Related
     public static event Action<GameObject> OnOpenEmail;
+    public static event Action OnTryWriteEmail;
     public static event Action<string> OnLinkIsClicked;
     public static event Action<string> OnChangeEmailContentText;
     public static event Action<Email> OnEmailResponseNeeded;
     public static event Action<EmailType> OnSpawnEmail;
+    public static event Action<SO_Email, bool> OnCreateEspecificEmail;    
     public static event Action OnEmailIsAnswered;
     public static event Action OnReturnEmailContent;
 
@@ -19,6 +21,7 @@ public static class EventManager
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
     public static event Action OnCloseResponseScreen;
+    public static event Action<string> OnPlayerNeedToThink;
     
     //Lore related
     public static event Action OnFirstTimeSoftwareOpen;
@@ -34,6 +37,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnOpenEmail event.");
+        }
+    }
+
+    public static void TryWriteEmail()
+    {
+        if (OnTryWriteEmail != null)
+        {
+            OnTryWriteEmail();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnTryWriteEmail event.");
         }
     }
 
@@ -82,6 +97,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnSpawnEmail event.");
+        }
+    }
+
+    public static void CreateEspecificEmail(SO_Email email, bool shouldAdvaneHistory)
+    {
+        if (OnCreateEspecificEmail != null)
+        {
+            OnCreateEspecificEmail(email, shouldAdvaneHistory);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnCreateEspecificEmail event.");
         }
     }
 
@@ -191,6 +218,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnTimerIsComplete event.");
+        }
+    }
+
+    public static void MakePlayerThink(string quote)
+    {
+        if (OnPlayerNeedToThink != null)
+        {
+            OnPlayerNeedToThink(quote);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerNeedToThink event.");
         }
     }
 }

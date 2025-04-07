@@ -16,9 +16,8 @@ public class EmailChoices : MonoBehaviour
     [BoxGroup("Response")] [SerializeField] private List<Button> _responsesBtn;
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
 
-    [BoxGroup("New Email"), HorizontalLine(color: EColor.Blue)] [SerializeField] private GameObject _createContainer;
-
-    private EmailChoiceState _currentState = EmailChoiceState.Response_One;
+    private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
+    private HistoryPartState _currentWritingState = HistoryPartState.Part_One;
 
     private void OnEnable()
     {
@@ -48,7 +47,6 @@ public class EmailChoices : MonoBehaviour
            
         }
         
-        _createContainer.SetActive(false);
         _confirmResponse.SetActive(false);
         _responseContainer.SetActive(true);
         _firstResponseEmailChoices.SetActive(true);
@@ -72,7 +70,7 @@ public class EmailChoices : MonoBehaviour
     {
         EventManager.EmailIsAnswered();
         EventManager.CorrectChoice();
-        FeedbackByState();
+        ResponseFeedbackUpdate();
         ReturnChoices(false);
         gameObject.SetActive(false);
     }
@@ -93,34 +91,49 @@ public class EmailChoices : MonoBehaviour
     {
         if(shouldUpdateContent) EventManager.ReturnEmailContent();
 
-        _createContainer.SetActive(false);
         _confirmResponse.SetActive(false);
         _wrongfeedbackScreen.SetActive(false);
         _responseContainer.SetActive(true);
         _firstResponseEmailChoices.SetActive(true);
     }
 
-    private void FeedbackByState()
+    private void WritinngFeedbackUpdate()
     {
-        switch(_currentState)
+        switch(_currentWritingState)
         {
-            case EmailChoiceState.Response_One:
-                EventManager.SpawnEmail(EmailType.SPAM);
-                EventManager.SpawnEmail(EmailType.NEWS);
+            case HistoryPartState.Part_One:
                 break;
-            case EmailChoiceState.Response_Two:
+            case HistoryPartState.Part_Two:
                 break;
-            case EmailChoiceState.Response_Three:
+            case HistoryPartState.Part_Three:
                 break;
         }
 
 
-        _currentState++;
+        _currentWritingState++;
+    }
+
+    private void ResponseFeedbackUpdate()
+    {
+        switch(_currentResponseState)
+        {
+            case HistoryPartState.Part_One:
+                EventManager.SpawnEmail(EmailType.SPAM);
+                EventManager.SpawnEmail(EmailType.NEWS);
+                break;
+            case HistoryPartState.Part_Two:
+                break;
+            case HistoryPartState.Part_Three:
+                break;
+        }
+
+
+        _currentResponseState++;
     }
 
 }
 
-public enum EmailChoiceState
+public enum HistoryPartState
 {
-    Response_One, Response_Two, Response_Three
+    Part_One, Part_Two, Part_Three
 }

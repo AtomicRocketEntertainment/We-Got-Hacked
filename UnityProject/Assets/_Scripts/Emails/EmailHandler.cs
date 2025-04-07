@@ -39,6 +39,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     {
         _currentSpamSended = _currentNewsSended = _currentLoreSended = _currentHackingSended = 0;
         EventManager.OnSpawnEmail += CreateEmail;
+        EventManager.OnCreateEspecificEmail += CreateSpecificEmail;
         EventManager.OnOpenEmail += OpenEmail;
         EventManager.OnChangeEmailContentText += ChangeContentEmail;
         EventManager.OnEmailIsAnswered += EmailIsAnswered;
@@ -52,6 +53,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     void OnDisable()
     {
         EventManager.OnSpawnEmail -= CreateEmail;
+        EventManager.OnCreateEspecificEmail -= CreateSpecificEmail;
         EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
@@ -107,6 +109,25 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         if (!_emailsInstanciados.ContainsKey(instanceEmail))
             _emailsInstanciados.Add(instanceEmail, email);
     }
+    private void CreateSpecificEmail(SO_Email emailToCreate, bool shouldAdvanceHistory)
+    {
+        if(shouldAdvanceHistory) _currentLoreSended++;
+        
+        Email email = new Email(emailToCreate);
+
+        GameObject instanceEmail = Instantiate(_emailPrefab, Vector3.zero, Quaternion.identity);
+        instanceEmail.transform.SetParent(_homeEmailCanvas);
+        instanceEmail.name = email.Title;
+        instanceEmail.transform.localScale = Vector3.one;
+
+        if (instanceEmail.TryGetComponent(out EmailInstance instance))
+            instance.UpdateInfos(sender: email.Sender, title: email.Title, contentSmall: email.Content);
+
+        if (!_emailsInstanciados.ContainsKey(instanceEmail))
+            _emailsInstanciados.Add(instanceEmail, email);
+
+    }
+
 
     public void OpenEmail(GameObject email)
     {

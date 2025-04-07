@@ -149,5 +149,33 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         return _screenType == ScreenType.NewTicket;
     }
 
+    public bool AllInfoAreSelected()
+    {
+        return _playbookDp.value != 0 &&
+            _idDp.value != 0 &&
+            _ipDp.value != 0 &&
+            _geolocationDp.value != 0 &&
+            _typeDp.value != 0 &&
+            _dateDp.value != 0;
+    }
+
+    public bool CheckInfo(Ticket ticket)
+    {
+        string selectedId = _idDp.options[_idDp.value].text;
+        string selectedIp = _ipDp.options[_ipDp.value].text;
+        string selectedLocation = _geolocationDp.options[_geolocationDp.value].text;
+        string selectedType = _typeDp.options[_typeDp.value].text;
+        string selectedDate = _dateDp.options[_dateDp.value].text;
+        string selectedPlaybook = _playbookDp.options[_playbookDp.value].text;
+
+        return 
+            selectedPlaybook == ticket.Playbook.ToString() &&
+            selectedId == ticket.ID &&
+            selectedIp == ticket.IP &&
+            selectedLocation == ticket.Location &&
+            selectedType == ticket.Dispositive.Type.ToString() &&
+            selectedDate == ticket.Date;
+    }
+
 
 }
