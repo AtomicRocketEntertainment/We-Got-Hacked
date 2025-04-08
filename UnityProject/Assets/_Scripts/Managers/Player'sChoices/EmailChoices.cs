@@ -17,13 +17,12 @@ public class EmailChoices : MonoBehaviour
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
 
     private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
-    private HistoryPartState _currentWritingState = HistoryPartState.Part_One;
 
     private void OnEnable()
     {
         _rewriteResponseEmailBtn.onClick.AddListener(ReturnChoiceWithUpdate);
         _confirmWrongFeedbackBtn.onClick.AddListener(ReturnChoiceWithUpdate);
-    }
+    } 
 
     private void OnDisable()
     {
@@ -95,22 +94,6 @@ public class EmailChoices : MonoBehaviour
         _wrongfeedbackScreen.SetActive(false);
         _responseContainer.SetActive(true);
         _firstResponseEmailChoices.SetActive(true);
-    }
-
-    private void WritinngFeedbackUpdate()
-    {
-        switch(_currentWritingState)
-        {
-            case HistoryPartState.Part_One:
-                break;
-            case HistoryPartState.Part_Two:
-                break;
-            case HistoryPartState.Part_Three:
-                break;
-        }
-
-
-        _currentWritingState++;
     }
 
     private void ResponseFeedbackUpdate()

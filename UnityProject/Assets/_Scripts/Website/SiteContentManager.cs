@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
 {
+    [SerializeField] private GameObject _siteHeaderTitle;
+    [SerializeField] private GameObject _siteHeaderBg;
+    [SerializeField] private RectTransform _buttonsTransform;
     [SerializeField] private GameObject _mainCanvas;
     [SerializeField] private Button[] _siteButtons;
     [SerializeField] private GameObject[] _siteContentScreens;
@@ -40,7 +43,22 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
             screen.SetActive(false);
 
         if (_screenHandler.TryGetValue(btn, out GameObject screenToActivate))
+        {
             screenToActivate.SetActive(true);
+
+            if(btn != _siteButtons[0])
+            {
+                _siteHeaderBg.SetActive(false);
+                _siteHeaderTitle.SetActive(false);
+                _buttonsTransform.anchoredPosition = new Vector2(_buttonsTransform.anchoredPosition.x, 290f);
+            }
+            else
+            {
+                _siteHeaderBg.SetActive(true);
+                _siteHeaderTitle.SetActive(true);
+                _buttonsTransform.anchoredPosition = new Vector2(_buttonsTransform.anchoredPosition.x, 5f);
+            }
+        }
     }
 
 

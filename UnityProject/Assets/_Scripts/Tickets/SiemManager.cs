@@ -27,7 +27,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
 
     [BoxGroup("Lore to Update State"), HorizontalLine(color: EColor.White)]
     [SerializeField] private const string _emailLoreToOpen = "Lore 1"; 
-    [SerializeField] private const string _emailLoreToSpawnAlerts = "Lore 4"; 
+    [SerializeField] private const string _emailLoreToSpawnAlerts = "Lore 4";
 
 
     private List<Ticket> _instanceTickets = new List<Ticket>();

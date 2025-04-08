@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
@@ -17,6 +18,7 @@ public class ChoicesManager : MonoBehaviour
         _currentEmailToWrite = 0;
         _emailScreen.SetActive(false);
         EventManager.OnEmailResponseNeeded += OpenEmailResponse;
+        EventManager.OnTryWriteEmail += OpenWriteEmail;
         EventManager.OnPlayerNeedToThink += ShowThink;
         EventManager.OnCloseResponseScreen += CloseResponse;
     }
@@ -24,8 +26,16 @@ public class ChoicesManager : MonoBehaviour
     void OnDisable()
     {
         EventManager.OnEmailResponseNeeded -= OpenEmailResponse;
+        EventManager.OnTryWriteEmail -= OpenWriteEmail;
         EventManager.OnPlayerNeedToThink -= ShowThink;
         EventManager.OnCloseResponseScreen -= CloseResponse;
+    }
+
+    private void OpenWriteEmail()
+    {
+        Email email = new Email(_emailsToWrite[_currentEmailToWrite]);
+        EventManager.WriteEmail(email);
+        OpenEmailResponse(email);//Fake response, do the same thing.
     }
 
     private void OpenEmailResponse(Email email)

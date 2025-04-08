@@ -25,9 +25,9 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     [SerializeField] private readonly string _emailLoreToUnlockSend = "Lore 4";
 
     
-    [BoxGroup("Pichacao Ticket Related")] [SerializeField] private SO_Ticket _corretTicketSO;
-    [BoxGroup("Pichacao Ticket Related")] [SerializeField] private SO_Email _firstWrongEmailToSend;
-    [BoxGroup("Pichacao Ticket Related")] [SerializeField] private SO_Email _ticketAdjusteEmailToSend;
+    [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Ticket _correctTicketSO;
+    [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _firstWrongEmailToSend;
+    [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _ticketAdjusteEmailToSend;
 
 
     private const string _onTryCreateTicket = "Eu não tenho informações disponíveis.";
@@ -45,7 +45,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     {
         //problemas com o siem aqui, provavelmente é por causa disso.
         _siem = FindAnyObjectByType<SiemManager>();
-        _correctTicket = new Ticket(_corretTicketSO);
+        _correctTicket = new Ticket(_correctTicketSO);
 
         if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
         if(!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
@@ -111,7 +111,11 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
         if(emailIndex == _emailLoreToOpen)
             _currentState = SoftwareState.FirstTimeOpened;
         else if(emailIndex == _emailLoreToUnlockSend)
+        {
             _currentState = SoftwareState.Opened;
+            _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
+            ticketUpdater.UpdateInfos(ScreenType.NewTicket, _siem);
+        }
     }
 
     private void TrySendTicket()

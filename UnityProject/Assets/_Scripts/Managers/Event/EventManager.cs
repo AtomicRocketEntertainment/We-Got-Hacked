@@ -6,6 +6,7 @@ public static class EventManager
     //Email Related
     public static event Action<GameObject> OnOpenEmail;
     public static event Action OnTryWriteEmail;
+    public static event Action<Email> OnWriteEmail;
     public static event Action<string> OnLinkIsClicked;
     public static event Action<string> OnChangeEmailContentText;
     public static event Action<Email> OnEmailResponseNeeded;
@@ -37,6 +38,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnOpenEmail event.");
+        }
+    }
+
+    public static void WriteEmail(Email email)
+    {
+        if (OnWriteEmail != null)
+        {
+            OnWriteEmail(email);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnWriteEmail event.");
         }
     }
 

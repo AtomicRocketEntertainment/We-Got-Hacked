@@ -34,13 +34,18 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private int _currentLoreSended;
     private int _currentHackingSended;
 
+    private const string _playerCantWriteEmail = "Ainda não tenho o que escrever";
+    private const int _loreToOpenWriteEmail = 5;
+
 
     private void OnEnable() 
     {
         _currentSpamSended = _currentNewsSended = _currentLoreSended = _currentHackingSended = 0;
+        _writeEmailBtn.onClick.AddListener(TryWriteEmail);
         EventManager.OnSpawnEmail += CreateEmail;
         EventManager.OnCreateEspecificEmail += CreateSpecificEmail;
         EventManager.OnOpenEmail += OpenEmail;
+        EventManager.OnWriteEmail += TryWriteEmail;
         EventManager.OnChangeEmailContentText += ChangeContentEmail;
         EventManager.OnEmailIsAnswered += EmailIsAnswered;
         EventManager.OnReturnEmailContent += ReturnEmailContent;
@@ -52,8 +57,10 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     }
     void OnDisable()
     {
+        _writeEmailBtn.onClick.RemoveListener(TryWriteEmail);
         EventManager.OnSpawnEmail -= CreateEmail;
         EventManager.OnCreateEspecificEmail -= CreateSpecificEmail;
+        EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
@@ -147,6 +154,19 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         CheckEmailEvents();
     }
 
+    public void TryWriteEmail(Email email)
+    {
+        _homeEmailCanvas.gameObject.SetActive(false);
+        _emailCanvas.gameObject.SetActive(true);
+
+        _currentEmailOpen = email;
+        _emailTitle.text = email.Title;
+        _emailContent.text = email.Content;
+        _senderName.text = email.Sender.Name;
+        _senderEmail.text = email.Sender.Email;
+        _senderProfilePicture.sprite = email.Sender.Profile;
+    }
+
     public void CloseEmail()
     {
         EventManager.CloseResponseScreen();
@@ -208,6 +228,14 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
             _currentEmailOpen.DispatchNormalEvent();
             EventManager.EventEmailIsOpen(_currentEmailOpen.Index);
         }
+    }
+
+    private void TryWriteEmail()
+    {
+        if(_currentLoreSended == _loreToOpenWriteEmail)
+            EventManager.TryWriteEmail();
+        else
+            EventManager.MakePlayerThink(_playerCantWriteEmail);
     }
 }
 
