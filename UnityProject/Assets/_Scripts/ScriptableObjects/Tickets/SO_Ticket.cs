@@ -6,7 +6,8 @@ public class SO_Ticket : ScriptableObject
 {
     public PlaybookType Playbook;
     public string ID;
-    public string IP;
+    public string IPOrigem;
+    public string IPDestiny;
     public string Location;
     public DispostiveInfos Dispositive;
     public string Date;
@@ -25,7 +26,12 @@ public class SO_Ticket : ScriptableObject
         int part1 = Random.Range(100, 999);
         int part2 = Random.Range(100, 999);
         int part3 = Random.Range(100, 999);
-        IP = $"{part1}.{part2}.{part3}";
+        IPOrigem = $"{part1}.{part2}.{part3}";
+
+        part1 = Random.Range(100, 999);
+        part2 = Random.Range(100, 999);
+        part3 = Random.Range(100, 999);
+        IPDestiny = $"{part1}.{part2}.{part3}";
     }
 
     void OnValidate()

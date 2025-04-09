@@ -8,7 +8,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [SerializeField] private ScreenType _screenType;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _playbookDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _idDp;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _ipDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _ipODp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _ipDDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _geolocationDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _typeDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _dateDp;
@@ -29,7 +30,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     private string _playbookSelect = "";
     private string _idSelect = "";
-    private string _ipSelect = "";
+    private string _ipOSelect = "";
+    private string _ipDSelect = "";
     private string _geolocationSelect = "";
     private string _typeSelect = "";
     private string _dateSelect = "";
@@ -40,7 +42,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     {
         _playbookDp?.onValueChanged.AddListener(UpdatePlaybookSelected);
         _idDp?.onValueChanged.AddListener(UpdateIdSelected);
-        _ipDp?.onValueChanged.AddListener(UpdateIpSelected);
+        _ipODp?.onValueChanged.AddListener(UpdateIpOSelected);
+        _ipDDp?.onValueChanged.AddListener(UpdateIpDSelected);
         _geolocationDp?.onValueChanged.AddListener(UpdateLocationSelected);
         _typeDp?.onValueChanged.AddListener(UpdateDeviceSelected);
         _dateDp?.onValueChanged.AddListener(UpdateDateSelected);
@@ -50,7 +53,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     {
         _playbookDp?.onValueChanged.RemoveListener(UpdatePlaybookSelected);
         _idDp?.onValueChanged.RemoveListener(UpdateIdSelected);
-        _ipDp?.onValueChanged.RemoveListener(UpdateIpSelected);
+        _ipODp?.onValueChanged.RemoveListener(UpdateIpOSelected);
+        _ipDDp?.onValueChanged.RemoveListener(UpdateIpDSelected);
         _geolocationDp?.onValueChanged.RemoveListener(UpdateLocationSelected);
         _typeDp?.onValueChanged.RemoveListener(UpdateDeviceSelected);
         _dateDp?.onValueChanged.RemoveListener(UpdateDateSelected);
@@ -67,7 +71,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             _playbookScreens[value - 1].SetActive(true);
     }
     private void UpdateIdSelected(int value) { _idSelect = _idDp.options[value].text; }
-    private void UpdateIpSelected(int value) { _ipSelect = _ipDp.options[value].text; }
+    private void UpdateIpOSelected(int value) { _ipOSelect = _ipODp.options[value].text; }
+    private void UpdateIpDSelected(int value) { _ipDSelect = _ipDDp.options[value].text; }
     private void UpdateLocationSelected(int value) { _geolocationSelect = _geolocationDp.options[value].text; }
     private void UpdateDeviceSelected(int value) { _typeSelect = _typeDp.options[value].text; }
     private void UpdateDateSelected(int value) { _dateSelect = _dateDp.options[value].text; }
@@ -92,7 +97,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     {
         _playbookDp.ClearOptions();
         _idDp.ClearOptions();
-        _ipDp.ClearOptions();
+        _ipODp.ClearOptions();
+        _ipDDp.ClearOptions();
         _geolocationDp.ClearOptions();
         _typeDp.ClearOptions();
         _dateDp.ClearOptions();
@@ -107,7 +113,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         };
         
         List<string> idOptions = new List<string> { _idSelect };
-        List<string> ipOptions = new List<string> { _ipSelect };
+        List<string> ipOOptions = new List<string> { _ipOSelect };
+        List<string> ipDOptions = new List<string> { _ipDSelect };
         List<string> geolocationOptions = new List<string> { _geolocationSelect };
         List<string> typeOptions = new List<string> { _typeSelect };
         List<string> dateOptions = new List<string> { _dateSelect };
@@ -115,7 +122,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         foreach(Ticket ticket in siem.ActiveTickets)
         {
             idOptions.Add(ticket.ID);
-            ipOptions.Add(ticket.IP);
+            ipOOptions.Add(ticket.IPOrigem);
+            ipDOptions.Add(ticket.IPDestiny);
             geolocationOptions.Add(ticket.Location);
             typeOptions.Add(ticket.Dispositive.Type.ToString());
             dateOptions.Add(ticket.Date);
@@ -123,7 +131,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
         _playbookDp.AddOptions(playBookOptions);
         _idDp.AddOptions(idOptions);
-        _ipDp.AddOptions(ipOptions);
+        _ipODp.AddOptions(ipOOptions);
+        _ipDDp.AddOptions(ipDOptions);
         _geolocationDp.AddOptions(geolocationOptions);
         _typeDp.AddOptions(typeOptions);
         _dateDp.AddOptions(dateOptions);
@@ -153,7 +162,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     {
         return _playbookDp.value != 0 &&
             _idDp.value != 0 &&
-            _ipDp.value != 0 &&
+            _ipODp.value != 0 &&
+            _ipDDp.value != 0 &&
             _geolocationDp.value != 0 &&
             _typeDp.value != 0 &&
             _dateDp.value != 0;
@@ -162,7 +172,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     public bool CheckInfo(Ticket ticket)
     {
         string selectedId = _idDp.options[_idDp.value].text;
-        string selectedIp = _ipDp.options[_ipDp.value].text;
+        string selectedIpO = _ipDDp.options[_ipDDp.value].text;
+        string selectedIpD = _ipODp.options[_ipODp.value].text;
         string selectedLocation = _geolocationDp.options[_geolocationDp.value].text;
         string selectedType = _typeDp.options[_typeDp.value].text;
         string selectedDate = _dateDp.options[_dateDp.value].text;
@@ -171,7 +182,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         return 
             selectedPlaybook == ticket.Playbook.ToString() &&
             selectedId == ticket.ID &&
-            selectedIp == ticket.IP &&
+            selectedIpO == ticket.IPOrigem &&
+            selectedIpD == ticket.IPDestiny &&
             selectedLocation == ticket.Location &&
             selectedType == ticket.Dispositive.Type.ToString() &&
             selectedDate == ticket.Date;

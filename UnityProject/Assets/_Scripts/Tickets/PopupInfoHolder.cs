@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PopupInfoHolder : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _id;
-    [SerializeField] private TextMeshProUGUI _ip;
+    [SerializeField] private TextMeshProUGUI _ipO;
+    [SerializeField] private TextMeshProUGUI _ipD;
     [SerializeField] private TextMeshProUGUI _timestamp;
     [SerializeField] private TextMeshProUGUI _location;
     [SerializeField] private Image _icon;
@@ -23,10 +24,11 @@ public class PopupInfoHolder : MonoBehaviour
     };
 
 
-    public void UpdateInfos(string id, string ip, string timestamp, string location, Sprite icon, Color alertRisk)
+    public void UpdateInfos(string id, string ipO, string ipD, string timestamp, string location, Sprite icon, Color alertRisk)
     {
         _id.text = $"ID Alert:{id}";
-        _ip.text = ip;
+        _ipO.text = ipO;
+        _ipD.text = ipD;
         _timestamp.text = timestamp;
         _location.text = location;
         _icon.sprite = icon;
