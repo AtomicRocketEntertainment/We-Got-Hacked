@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 {
@@ -14,12 +17,19 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _typeDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _dateDp;
 
+    [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private ToggleGroup _RisktoggleGroup;
+    [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private Transform _SitetoggleGroup;
+
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _blockedCanvas;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _pichacaoScreen;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _phishingScreen;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _ransowareScreen;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _dataLeakScreen;
 
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private Transform _objectiveList;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private GameObject _objectivePrefab;
+
+    private List<GameObject> _objectivesActive = new List<GameObject>();
     private List<GameObject> _playbookScreens => new List<GameObject> 
     {
         _pichacaoScreen,
@@ -78,13 +88,13 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateDateSelected(int value) { _dateSelect = _dateDp.options[value].text; }
 
 
-    public void UpdateInfos(ScreenType typeScreen, SiemManager siem)
+    public void UpdateInfos(ScreenType typeScreen, SiemManager siem, Ticket currentTicket)
     {
         switch(typeScreen)
         {
             case ScreenType.NewTicket: UpdateNewTicket(siem);
             break;
-            case ScreenType.CurrentTicket: UpdateCurrentTicket();
+            case ScreenType.CurrentTicket: UpdateCurrentTicket(currentTicket);
             break;
             case ScreenType.TicketDone: UpdateDoneTicket();
             break;
@@ -138,9 +148,46 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp.AddOptions(dateOptions);
     }
 
-    private void UpdateCurrentTicket()
+    private void UpdateCurrentTicket(Ticket currentTicket)
+    {
+        int completedObjectives = currentTicket.GetObjectivesCompletedQuantity();
+        if(completedObjectives == 0 || completedObjectives + 1 == _objectivesActive.Count) return;
+
+        CheckObjectivesPanel(currentTicket, completedObjectives);
+    }
+
+    private void CheckObjectivesPanel(Ticket currentTicket, int index)
     {
 
+        if(index == 1)
+        {
+            GameObject obj = SpawnObjective();
+            UpdateObjective(obj, currentTicket, index - 1);
+            _objectivesActive.Add(obj);
+        }
+        else
+            UpdateObjective(_objectivesActive[index - 1], currentTicket, index - 1);
+
+        GameObject newObj = SpawnObjective();
+        UpdateObjective(newObj, currentTicket, index);
+
+        _objectivesActive.Add(newObj);
+    }
+
+    private GameObject SpawnObjective()
+    {
+        GameObject objective = Instantiate(_objectivePrefab, Vector3.zero, Quaternion.identity);
+        objective.transform.SetParent(_objectiveList);
+        objective.transform.localScale = Vector3.one;
+
+        return objective;
+    }
+
+    private void UpdateObjective(GameObject obj, Ticket currentTicket, int index)
+    {
+        obj.TryGetComponent(out ImTicketObjetiveHolder newHolder);
+        TicketObjectives newObjectiveToShow = currentTicket.Objectives[index];
+        newHolder.SetInfos(newObjectiveToShow.IsCompleted, newObjectiveToShow.Name);
     }
 
     private void UpdateDoneTicket()
@@ -158,26 +205,52 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         return _screenType == ScreenType.NewTicket;
     }
 
+    private bool CurrentTicketEditorChecker()
+    {
+        return _screenType == ScreenType.CurrentTicket;
+    }
+
     public bool AllInfoAreSelected()
     {
+        bool riskToggle = _RisktoggleGroup.ActiveToggles().Any();
+        bool siteToggle = GetSelectedToggles().Count > 0;
+
         return _playbookDp.value != 0 &&
             _idDp.value != 0 &&
             _ipODp.value != 0 &&
             _ipDDp.value != 0 &&
             _geolocationDp.value != 0 &&
             _typeDp.value != 0 &&
-            _dateDp.value != 0;
+            _dateDp.value != 0 &&
+            riskToggle &&
+            siteToggle;
     }
 
     public bool CheckInfo(Ticket ticket)
     {
         string selectedId = _idDp.options[_idDp.value].text;
-        string selectedIpO = _ipDDp.options[_ipDDp.value].text;
-        string selectedIpD = _ipODp.options[_ipODp.value].text;
+        string selectedIpD = _ipDDp.options[_ipDDp.value].text;
+        string selectedIpO = _ipODp.options[_ipODp.value].text;
         string selectedLocation = _geolocationDp.options[_geolocationDp.value].text;
         string selectedType = _typeDp.options[_typeDp.value].text;
         string selectedDate = _dateDp.options[_dateDp.value].text;
         string selectedPlaybook = _playbookDp.options[_playbookDp.value].text;
+        int selectedRisk = 0;
+        List<SiteType> selectedSites = new List<SiteType>();
+
+        Toggle selectedRiskToggle = _RisktoggleGroup.ActiveToggles().FirstOrDefault();
+        
+        if (selectedRiskToggle != null)
+        {
+            selectedRiskToggle.TryGetComponent(out ImRiskHolder riskLevel);
+            selectedRisk = riskLevel.RiskLevel;
+        }
+
+        foreach (var toggle in GetSelectedToggles())
+            if (toggle.TryGetComponent(out ImSiteHolder siteHolder))
+                selectedSites.Add(siteHolder.Site);
+
+        bool isCorrectSiteSelected = selectedSites.Count == 1 && selectedSites[0] == ticket.Site;
 
         return 
             selectedPlaybook == ticket.Playbook.ToString() &&
@@ -186,7 +259,25 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             selectedIpD == ticket.IPDestiny &&
             selectedLocation == ticket.Location &&
             selectedType == ticket.Dispositive.Type.ToString() &&
-            selectedDate == ticket.Date;
+            selectedDate == ticket.Date &&
+            selectedRisk == ticket.RiskLevel &&
+            isCorrectSiteSelected;
+    }
+
+    public List<Toggle> GetSelectedToggles()
+    {
+        List<Toggle> selected = new List<Toggle>();
+
+        foreach (Transform child in _SitetoggleGroup)
+        {
+            Toggle toggle = child.GetComponent<Toggle>();
+            if (toggle != null && toggle.isOn)
+            {
+                selected.Add(toggle);
+            }
+        }
+
+        return selected;
     }
 
 

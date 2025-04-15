@@ -12,6 +12,7 @@ public class SO_Ticket : ScriptableObject
     public DispostiveInfos Dispositive;
     public string Date;
     public int RiskLevel;
+    [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")]public SiteType CorrectSite;
     public List<TicketObjectives> Objectives;
 
     [ContextMenu("Gerar random ID")]
@@ -68,4 +69,15 @@ public class TicketObjectives
     public string Text;
     public bool IsCompleted;
     public bool ShouldShow;
+
+    public TicketObjectives Clone()
+    {
+        return new TicketObjectives
+        {
+            Name = this.Name,
+            Text = this.Text,
+            IsCompleted = this.IsCompleted,
+            ShouldShow = this.ShouldShow
+        };
+    }
 }

@@ -26,6 +26,7 @@ public static class EventManager
     
     //Lore related
     public static event Action OnFirstTimeSoftwareOpen;
+    public static event Action OnCompletedTicketObjective;
     public static event Action<string> OnEventEmailHandlerIsOpen;
     public static event Action<int> OnTimerIsComplete;
 
@@ -207,6 +208,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnFirstTimeSoftwareOpen event.");
+        }
+    }
+
+    public static void TicketObjectiveCompleted()
+    {
+        if (OnCompletedTicketObjective != null)
+        {
+            OnCompletedTicketObjective();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnCompletedTicketObjective event.");
         }
     }
 

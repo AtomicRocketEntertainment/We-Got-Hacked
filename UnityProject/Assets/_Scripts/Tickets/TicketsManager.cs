@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -5,26 +6,22 @@ using UnityEngine.UI;
 
 public class TicketsManager : MonoBehaviour, INeedOpenCanvas
 {
-    [Header("UI Dependencies")]
-    [SerializeField] private Button _sendTicketBtn;
-    [SerializeField] private Button _newTicketBtn;
-    [SerializeField] private Button _currentTicketBtn;
-    [SerializeField] private Button _doneTicketBtn;
-    [SerializeField] private Button _playbookBtn;   
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _sendTicketBtn;
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _newTicketBtn;
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _currentTicketBtn;
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _doneTicketBtn;
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _playbookBtn;   
 
-    [Header("Screens")]
-    [SerializeField] private GameObject _blockedCanvas;
-    [SerializeField] private GameObject _mainCanvas;
-    [SerializeField] private GameObject _newTicketCanvas;
-    [SerializeField] private GameObject _currentTicketCanvas;
-    [SerializeField] private GameObject _doneTicketCanvas;
-    [SerializeField] private GameObject _playbooksCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _blockedCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _mainCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _newTicketCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _currentTicketCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _doneTicketCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _playbooksCanvas;
     
-    [Header("Lore to Update State")]
-    [SerializeField] private readonly string _emailLoreToOpen = "Lore 2";  
-    [SerializeField] private readonly string _emailLoreToUnlockSend = "Lore 4";
+    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _emailLoreToOpen = "Lore 2";  
+    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _emailLoreToUnlockSend = "Lore 4";
 
-    
     [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Ticket _correctTicketSO;
     [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _firstWrongEmailToSend;
     [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _ticketAdjusteEmailToSend;
@@ -46,6 +43,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
         //problemas com o siem aqui, provavelmente é por causa disso.
         _siem = FindAnyObjectByType<SiemManager>();
         _correctTicket = new Ticket(_correctTicketSO);
+        Debug.Log("Criando ticket. Objetivos completos: " + _correctTicket.GetObjectivesCompletedQuantity());
 
         if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
         if(!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
@@ -59,12 +57,21 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
         _playbookBtn.onClick.AddListener(() => OpenScreen(_playbookBtn));
 
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
+        EventManager.OnCompletedTicketObjective += UpdateTicketProgress;
         OpenScreen(_newTicketBtn);
+    }
+
+    [ContextMenu("Complet Ticket")]
+    private void UpdateTicketProgress()
+    {
+        Debug.Log("Atualizano progresso do ticket. Objetivos completos: " + _correctTicket.GetObjectivesCompletedQuantity());
+        _correctTicket.ObjectiveCompleted();
     }
 
     void OnDisable()
     {
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
+        EventManager.OnCompletedTicketObjective -= UpdateTicketProgress;
         _sendTicketBtn.onClick.RemoveListener(TrySendTicket);
         _newTicketBtn.onClick.RemoveAllListeners();
         _currentTicketBtn.onClick.RemoveAllListeners();
@@ -80,9 +87,8 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
             {
                 GameObject screenObj = screen.Value;
                 screenObj.TryGetComponent(out TicketScreen ticketUpdater);
-                ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _siem);
+                ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _siem, _correctTicket);
                 screenObj.SetActive(true);
-
             }
             else
                 screen.Value.SetActive(false);
@@ -114,7 +120,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
         {
             _currentState = SoftwareState.Opened;
             _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
-            ticketUpdater.UpdateInfos(ScreenType.NewTicket, _siem);
+            ticketUpdater.UpdateInfos(ScreenType.NewTicket, _siem, _correctTicket);
         }
     }
 
@@ -134,27 +140,31 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
             return;
         }
 
-        if(ticket.CheckInfo(_correctTicket) && !_ticketCreatedWrongOneTime)
-        {
-            EventManager.SpawnEmail(EmailType.LORE);
-            EventManager.CorrectChoice();
-            _ticketCreatedWrongOneTime = true;
-            return;
-        }
-
-        if(ticket.CheckInfo(_correctTicket) && _ticketCreatedWrongOneTime)
-        {
-            EventManager.CreateEspecificEmail(_ticketAdjusteEmailToSend, shouldAdvaneHistory: true);
-            EventManager.CorrectChoice();
-            return;
-        }
-
         if(!ticket.CheckInfo(_correctTicket))
         {
             EventManager.CreateEspecificEmail(_firstWrongEmailToSend, shouldAdvaneHistory: false);
+            _ticketCreatedWrongOneTime = true;
             EventManager.WrongChoice();
             return;
         }
+        
+        if(ticket.CheckInfo(_correctTicket) && _ticketCreatedWrongOneTime)
+        {
+            EventManager.CreateEspecificEmail(_ticketAdjusteEmailToSend, shouldAdvaneHistory: true);
+            UpdateTicketProgress();
+            EventManager.CorrectChoice();
+            return;
+        }
+        
+        if(ticket.CheckInfo(_correctTicket) && !_ticketCreatedWrongOneTime)
+        {
+            EventManager.SpawnEmail(EmailType.LORE);
+            UpdateTicketProgress();
+            EventManager.CorrectChoice();
+            return;
+        }
+
+
 
     }
 
