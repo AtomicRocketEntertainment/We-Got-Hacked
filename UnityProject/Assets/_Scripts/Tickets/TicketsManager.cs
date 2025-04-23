@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -43,7 +42,6 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
         //problemas com o siem aqui, provavelmente é por causa disso.
         _siem = FindAnyObjectByType<SiemManager>();
         _correctTicket = new Ticket(_correctTicketSO);
-        Debug.Log("Criando ticket. Objetivos completos: " + _correctTicket.GetObjectivesCompletedQuantity());
 
         if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
         if(!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
@@ -61,10 +59,8 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
         OpenScreen(_newTicketBtn);
     }
 
-    [ContextMenu("Complet Ticket")]
     private void UpdateTicketProgress()
     {
-        Debug.Log("Atualizano progresso do ticket. Objetivos completos: " + _correctTicket.GetObjectivesCompletedQuantity());
         _correctTicket.ObjectiveCompleted();
     }
 

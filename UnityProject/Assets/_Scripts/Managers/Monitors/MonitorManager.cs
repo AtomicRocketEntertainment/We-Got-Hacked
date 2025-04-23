@@ -1,8 +1,11 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MonitorManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _webSite;
     [SerializeField] private SiteTabsManager _siteManager;
     [SerializeField] private ToolBarManager _toolsManager;
 
@@ -14,6 +17,7 @@ public class MonitorManager : MonoBehaviour
         _siteManager.Init(this);
         _toolsManager.Init(this);
 
+        EventManager.OnWebsiteLinkerIsOpen += UpdateWebSite;
         _browserButton.onClick.AddListener(OpenSite);
     }
 
@@ -21,7 +25,13 @@ public class MonitorManager : MonoBehaviour
     {
         _toolsManager.CloseToolBar();
         _siteManager.CloseSiteBar();
+        EventManager.OnWebsiteLinkerIsOpen -= UpdateWebSite;
         _browserButton.onClick.RemoveListener(OpenSite);
+    }
+
+    private void UpdateWebSite(string link)
+    {
+        _webSite.text = link;
     }
 
     private void OpenSite()

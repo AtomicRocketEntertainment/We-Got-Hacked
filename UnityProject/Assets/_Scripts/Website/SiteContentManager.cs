@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
     [SerializeField] private GameObject _siteHeaderBg;
     [SerializeField] private RectTransform _buttonsTransform;
     [SerializeField] private GameObject _mainCanvas;
+    [SerializeField] private GameObject _petrolinhoLeft;
+    [SerializeField] private GameObject _petrolinhoRight;
     [SerializeField] private Button[] _siteButtons;
     [SerializeField] private GameObject[] _siteContentScreens;
 
@@ -46,14 +49,18 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
         {
             screenToActivate.SetActive(true);
 
-            if(btn != _siteButtons[0])
+            if(btn != _siteButtons[0]) //not home screen
             {
+                _petrolinhoLeft.gameObject.SetActive(false);
+                _petrolinhoRight.gameObject.SetActive(false);
                 _siteHeaderBg.SetActive(false);
                 _siteHeaderTitle.SetActive(false);
                 _buttonsTransform.anchoredPosition = new Vector2(_buttonsTransform.anchoredPosition.x, 290f);
             }
-            else
+            else //home screen
             {
+                _petrolinhoLeft.gameObject.SetActive(true);
+                _petrolinhoRight.gameObject.SetActive(true);
                 _siteHeaderBg.SetActive(true);
                 _siteHeaderTitle.SetActive(true);
                 _buttonsTransform.anchoredPosition = new Vector2(_buttonsTransform.anchoredPosition.x, 5f);

@@ -24,15 +24,17 @@ public class SO_Ticket : ScriptableObject
     [ContextMenu("Gerar random IP")]
     private void GenerateRandomIP()
     {
-        int part1 = Random.Range(100, 999);
-        int part2 = Random.Range(100, 999);
-        int part3 = Random.Range(100, 999);
-        IPOrigem = $"{part1}.{part2}.{part3}";
+        int part1 = Random.Range(0, 256);
+        int part2 = Random.Range(0, 256);
+        int part3 = Random.Range(0, 256);
+        int part4 = Random.Range(0, 256);
+        IPOrigem = $"{part1}.{part2}.{part3}.{part4}";
 
-        part1 = Random.Range(100, 999);
-        part2 = Random.Range(100, 999);
-        part3 = Random.Range(100, 999);
-        IPDestiny = $"{part1}.{part2}.{part3}";
+        part1 = Random.Range(0, 256);
+        part2 = Random.Range(0, 256);
+        part3 = Random.Range(0, 256);
+        part4 = Random.Range(0, 256);
+        IPDestiny = $"{part1}.{part2}.{part3}.{part4}";
     }
 
     void OnValidate()

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
-using System;
+using System.Collections;
 
 
 public class EmailHandler : MonoBehaviour, INeedOpenCanvas
@@ -34,8 +34,8 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private int _currentLoreSended;
     private int _currentHackingSended;
 
-    private const string _playerCantWriteEmail = "Ainda não tenho o que escrever";
-    private const int _loreToOpenWriteEmail = 5;
+    private const string PLAYER_CANT_WRITE_EMAIL = "Ainda não tenho o que escrever";
+    private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
 
 
     private void OnEnable() 
@@ -105,22 +105,20 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         
         if (email == null) return;
 
-        GameObject instanceEmail = Instantiate(_emailPrefab, Vector3.zero, Quaternion.identity);
-        instanceEmail.transform.SetParent(_homeEmailCanvas);
-        instanceEmail.name = email.Title;
-        instanceEmail.transform.localScale = Vector3.one;
-
-        if (instanceEmail.TryGetComponent(out EmailInstance instance))
-            instance.UpdateInfos(sender: email.Sender, title: email.Title, contentSmall: email.Content);
-
-        if (!_emailsInstanciados.ContainsKey(instanceEmail))
-            _emailsInstanciados.Add(instanceEmail, email);
+        StartCoroutine(SpawnEmail(email, Random.Range(2, 6)));
     }
+
     private void CreateSpecificEmail(SO_Email emailToCreate, bool shouldAdvanceHistory)
     {
         if(shouldAdvanceHistory) _currentLoreSended++;
         
         Email email = new Email(emailToCreate);
+        StartCoroutine(SpawnEmail(email, Random.Range(2, 6)));
+    }
+
+    IEnumerator SpawnEmail(Email email, int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
 
         GameObject instanceEmail = Instantiate(_emailPrefab, Vector3.zero, Quaternion.identity);
         instanceEmail.transform.SetParent(_homeEmailCanvas);
@@ -132,9 +130,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
         if (!_emailsInstanciados.ContainsKey(instanceEmail))
             _emailsInstanciados.Add(instanceEmail, email);
-
     }
-
 
     public void OpenEmail(GameObject email)
     {
@@ -232,11 +228,16 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void TryWriteEmail()
     {
-        if(_currentLoreSended == _loreToOpenWriteEmail)
+        if(_currentLoreSended == LORE_TO_OPEN_WRITE_EMAIL)
             EventManager.TryWriteEmail();
         else
-            EventManager.MakePlayerThink(_playerCantWriteEmail);
+            EventManager.MakePlayerThink(PLAYER_CANT_WRITE_EMAIL);
     }
+}
+
+public enum WriteEmailState
+{
+    CantWrite, CanWrite
 }
 
 public enum TimerEventSpawner

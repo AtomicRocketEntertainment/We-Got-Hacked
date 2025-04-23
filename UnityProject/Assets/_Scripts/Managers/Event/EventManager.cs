@@ -30,6 +30,9 @@ public static class EventManager
     public static event Action<string> OnEventEmailHandlerIsOpen;
     public static event Action<int> OnTimerIsComplete;
 
+    //WebsiteRelated
+    public static event Action<string> OnWebsiteLinkerIsOpen;
+
     public static void OpenEmail(GameObject emailObject)
     {
         if (OnOpenEmail != null)
@@ -256,6 +259,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnPlayerNeedToThink event.");
+        }
+    }
+
+    public static void WebsiteIsOpen(string siteLink)
+    {
+        if (OnWebsiteLinkerIsOpen != null)
+        {
+            OnWebsiteLinkerIsOpen(siteLink);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnWebsiteLinkerIsOpen event.");
         }
     }
 }
