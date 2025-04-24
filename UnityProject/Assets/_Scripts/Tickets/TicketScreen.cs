@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
@@ -88,11 +87,11 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateDateSelected(int value) { _dateSelect = _dateDp.options[value].text; }
 
 
-    public void UpdateInfos(ScreenType typeScreen, SiemManager siem, Ticket currentTicket)
+    public void UpdateInfos(ScreenType typeScreen, SO_TicketList ticketList, Ticket currentTicket, SoftwareState softwareState)
     {
         switch(typeScreen)
         {
-            case ScreenType.NewTicket: UpdateNewTicket(siem);
+            case ScreenType.NewTicket: UpdateNewTicket(ticketList, softwareState);
             break;
             case ScreenType.CurrentTicket: UpdateCurrentTicket(currentTicket);
             break;
@@ -103,7 +102,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         }
     }
 
-    private void UpdateNewTicket(SiemManager siem)
+    private void UpdateNewTicket(SO_TicketList ticketList, SoftwareState softwareState)
     {
         _playbookDp.ClearOptions();
         _idDp.ClearOptions();
@@ -122,6 +121,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             PlaybookType.DataLeak.ToString()
         };
         
+        if(softwareState != SoftwareState.FullAccess) return;
+        
         List<string> idOptions = new List<string> { _idSelect };
         List<string> ipOOptions = new List<string> { _ipOSelect };
         List<string> ipDOptions = new List<string> { _ipDSelect };
@@ -129,7 +130,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         List<string> typeOptions = new List<string> { _typeSelect };
         List<string> dateOptions = new List<string> { _dateSelect };
 
-        foreach(Ticket ticket in siem.ActiveTickets)
+        foreach(SO_Ticket ticket in ticketList.Tickets)
         {
             idOptions.Add(ticket.ID);
             ipOOptions.Add(ticket.IPOrigem);
@@ -151,27 +152,22 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateCurrentTicket(Ticket currentTicket)
     {
         int completedObjectives = currentTicket.GetObjectivesCompletedQuantity();
-        if(completedObjectives == 0 || completedObjectives + 1 == _objectivesActive.Count) return;
+        if(completedObjectives == 0) return;
 
         CheckObjectivesPanel(currentTicket, completedObjectives);
     }
 
     private void CheckObjectivesPanel(Ticket currentTicket, int index)
     {
+        for(int i = _objectivesActive.Count - 1; i >= 0; i--) 
+            Destroy(_objectivesActive[i]);
 
-        if(index == 1)
+        for(int i = 0; i < index + 1; i++)
         {
             GameObject obj = SpawnObjective();
-            UpdateObjective(obj, currentTicket, index - 1);
             _objectivesActive.Add(obj);
+            UpdateObjective(obj, currentTicket, i);
         }
-        else
-            UpdateObjective(_objectivesActive[index - 1], currentTicket, index - 1);
-
-        GameObject newObj = SpawnObjective();
-        UpdateObjective(newObj, currentTicket, index);
-
-        _objectivesActive.Add(newObj);
     }
 
     private GameObject SpawnObjective()

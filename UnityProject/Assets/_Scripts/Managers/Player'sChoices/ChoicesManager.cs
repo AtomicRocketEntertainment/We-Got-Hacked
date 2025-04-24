@@ -10,6 +10,7 @@ public class ChoicesManager : MonoBehaviour
     [BoxGroup("Screens")] [SerializeField] private GameObject _thinkScreen;
     [BoxGroup("Email")] [SerializeField] private List<SO_Email> _emailsToWrite;
 
+    private const string PLAYER_DONT_HAVE_EMAIL_TO_WRITE = "Não tenho nada para escrever";
     private int _currentEmailToWrite;
     private Coroutine _closeCrt;
 
@@ -17,6 +18,7 @@ public class ChoicesManager : MonoBehaviour
     {
         _currentEmailToWrite = 0;
         _emailScreen.SetActive(false);
+        EventManager.OnEmailIsWriten += UpdateEmailToWrite;
         EventManager.OnEmailResponseNeeded += OpenEmailResponse;
         EventManager.OnTryWriteEmail += OpenWriteEmail;
         EventManager.OnPlayerNeedToThink += ShowThink;
@@ -25,24 +27,36 @@ public class ChoicesManager : MonoBehaviour
 
     void OnDisable()
     {
+        EventManager.OnEmailIsWriten -= UpdateEmailToWrite;
         EventManager.OnEmailResponseNeeded -= OpenEmailResponse;
         EventManager.OnTryWriteEmail -= OpenWriteEmail;
         EventManager.OnPlayerNeedToThink -= ShowThink;
         EventManager.OnCloseResponseScreen -= CloseResponse;
     }
 
-    private void OpenWriteEmail()
+    private void UpdateEmailToWrite()
     {
-        Email email = new Email(_emailsToWrite[_currentEmailToWrite]);
-        EventManager.WriteEmail(email);
-        OpenEmailResponse(email);//Fake response, do the same thing.
+        _currentEmailToWrite++;
     }
 
-    private void OpenEmailResponse(Email email)
+    private void OpenWriteEmail()
+    {
+        if(_currentEmailToWrite == _emailsToWrite.Count)
+        {
+            ShowThink(PLAYER_DONT_HAVE_EMAIL_TO_WRITE);
+            return;
+        }
+
+        Email email = new Email(_emailsToWrite[_currentEmailToWrite]);
+        EventManager.WriteEmail(email);
+        OpenEmailResponse(email, false);//Fake response, do the same thing.
+    }
+
+    private void OpenEmailResponse(Email email, bool isResponse)
     {
         _emailScreen.SetActive(true);
         _emailScreen.TryGetComponent(out EmailChoices emailManager);
-        emailManager.OpenResponse(email);
+        emailManager.OpenResponse(email, isResponse);
     }
 
     private void ShowThink(string obj)
@@ -65,6 +79,8 @@ public class ChoicesManager : MonoBehaviour
 
     private void CloseResponse()
     {
+        _emailScreen.TryGetComponent(out EmailChoices emailManager);
+        emailManager.CloseResponse();
         _emailScreen.SetActive(false);
         _thinkScreen.SetActive(false);
         //include others when we'll have

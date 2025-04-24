@@ -1,19 +1,22 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="Ticket Infos", menuName ="Scriptable Objcts/Objects Info/Ticket Info")]
 public class SO_Ticket : ScriptableObject
 {
-    public PlaybookType Playbook;
-    public string ID;
-    public string IPOrigem;
-    public string IPDestiny;
-    public string Location;
-    public DispostiveInfos Dispositive;
-    public string Date;
-    public int RiskLevel;
-    [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")]public SiteType CorrectSite;
+    [BoxGroup("Commum Infos")] public PlaybookType Playbook;
+    [BoxGroup("Commum Infos")] public string ID;
+    [BoxGroup("Commum Infos")] public string IPOrigem;
+    [BoxGroup("Commum Infos")] public string IPDestiny;
+    [BoxGroup("Commum Infos")] public string Location;
+    [BoxGroup("Commum Infos")] public DispostiveInfos Dispositive;
+    [BoxGroup("Commum Infos")] public string Date;
+    [BoxGroup("Commum Infos")] public int RiskLevel;
+    [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))] [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
     public List<TicketObjectives> Objectives;
+
+
 
     [ContextMenu("Gerar random ID")]
     private void GenerateRandomID()
@@ -24,16 +27,16 @@ public class SO_Ticket : ScriptableObject
     [ContextMenu("Gerar random IP")]
     private void GenerateRandomIP()
     {
-        int part1 = Random.Range(0, 256);
-        int part2 = Random.Range(0, 256);
-        int part3 = Random.Range(0, 256);
-        int part4 = Random.Range(0, 256);
+        int part1 = Random.Range(1, 255);
+        int part2 = Random.Range(1, 255);
+        int part3 = Random.Range(1, 255);
+        int part4 = Random.Range(1, 255);
         IPOrigem = $"{part1}.{part2}.{part3}.{part4}";
 
-        part1 = Random.Range(0, 256);
-        part2 = Random.Range(0, 256);
-        part3 = Random.Range(0, 256);
-        part4 = Random.Range(0, 256);
+        part1 = Random.Range(1, 255);
+        part2 = Random.Range(1, 255);
+        part3 = Random.Range(1, 255);
+        part4 = Random.Range(1, 255);
         IPDestiny = $"{part1}.{part2}.{part3}.{part4}";
     }
 
@@ -44,6 +47,11 @@ public class SO_Ticket : ScriptableObject
             Debug.LogWarning("Risco não pode ser menor que 1 e maior que 5.");
             RiskLevel = Random.Range(1, 6);
         }
+    }
+
+    private bool IsPichacao()
+    {
+        return Playbook == PlaybookType.Pichacao;
     }
 }
 

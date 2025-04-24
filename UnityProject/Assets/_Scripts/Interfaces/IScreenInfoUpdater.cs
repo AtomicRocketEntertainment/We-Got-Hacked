@@ -1,7 +1,7 @@
 
 public interface IScreenInfoUpdater
 {
-    public void UpdateInfos(ScreenType typeScreen, SiemManager siem, Ticket ticket);
+    public void UpdateInfos(ScreenType typeScreen, SO_TicketList ticketList, Ticket ticket, SoftwareState state);
 }
 
 

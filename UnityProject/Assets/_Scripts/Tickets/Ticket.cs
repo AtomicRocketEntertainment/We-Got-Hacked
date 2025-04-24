@@ -38,7 +38,6 @@ public class Ticket
         _date = infos.Date;
         _riskLevel = infos.RiskLevel;
         _site = infos.CorrectSite;
-        _currentObjective = 0;
 
         _objectives = new List<TicketObjectives>();
 
@@ -47,7 +46,9 @@ public class Ticket
             _objectives.Add(obj.Clone());
         }
         
-        UnityEngine.Debug.Log("Lista clonada, tamanho: " + _objectives.Count);
+        _currentObjective = GetObjectivesCompletedQuantity();
+        
+        UnityEngine.Debug.Log("Current Objective " + _currentObjective);
         if(_objectives.Count > 0)
             _objectives[_currentObjective].ShouldShow = true;
     }

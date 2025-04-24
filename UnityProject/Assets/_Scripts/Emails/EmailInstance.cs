@@ -22,11 +22,17 @@ public class EmailInstance : MonoBehaviour
         _emailButton.onClick.RemoveListener(ClickEmail);
     }
 
-    public void UpdateInfos(EmailSender sender, string title, string contentSmall)
+    public void UpdateInfos(EmailSender sender, string title, string contentSmall, bool startOpen)
     {
         _sender.text = sender.Name;
         _title.text = title;
         _contentSmall.text = contentSmall;
+
+        if(startOpen)
+        {
+            _newBg.SetActive(false);
+            _emailBackground.color = _openedEmailColor;
+        }
     }
 
     private void ClickEmail()

@@ -7,20 +7,20 @@ using System;
 [CreateAssetMenu(fileName =" Email Info", menuName ="Scriptable Objcts/Objects Info/Email Info")]
 public class SO_Email : ScriptableObject
 {
-    public string Index;
-    public EmailType Type;
-    public EmailSender Sender;
-    
-    [Tooltip("Usado para enviar eventos a partir da abertura desse email. Disptach de emails, cria novos emails. Disptach de eventos, só gera um evento normal. O Evento passa o Index deste email.")]
-    public EventDispatcher DispatcherInfo;
-    
-    public bool HasResponse;
-   
-    [HorizontalLine(color: EColor.Blue), ResizableTextArea] public string Title;
-    [ResizableTextArea] public string Content; 
-
+    [BoxGroup("Common Infos")] public string Index;
+    [BoxGroup("Common Infos")] public bool StartOpen;
+    [BoxGroup("Common Infos")] public EmailType Type;
+    [BoxGroup("Common Infos")] public EmailSender Sender;
+    [BoxGroup("Common Infos"), ResizableTextArea] public string Title;
+    [BoxGroup("Common Infos"), ResizableTextArea] public string Content; 
+    [BoxGroup("Response Area")] public bool HasResponse;
     [BoxGroup("Response Area"), ShowIf(nameof(HasResponse)), ResizableTextArea] public string QuestionText;
+    [BoxGroup("Response Area"), ShowIf(nameof(HasResponse)), ResizableTextArea] public string ConfirmQuestionText;
+    [BoxGroup("Response Area"), ShowIf(nameof(HasResponse)), ResizableTextArea] public string WrongFeedbackQuestionText;
     [BoxGroup("Response Area"), ShowIf(nameof(HasResponse))] public List<EmailResponse> Responses;
+    [BoxGroup("Event Info")] public bool HasEventToSend; 
+    [BoxGroup("Event Info"), ShowIf(nameof(HasEventToSend))] public EventDispatcher DispatcherInfo;
+    
     [NonSerialized] public bool IsAnswered;
 }
 

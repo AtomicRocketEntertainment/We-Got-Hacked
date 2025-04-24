@@ -62,5 +62,5 @@ public class ToolBarManager : MonoBehaviour
 
 public enum SoftwareState
 {
-    Blocked, FirstTimeOpened, Opened, Empty
+    Blocked, FirstTimeOpened, Opened, Empty, FullAccess
 }

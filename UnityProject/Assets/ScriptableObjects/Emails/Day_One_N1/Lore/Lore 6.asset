@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d03a1bbc822ffa4fa78b3031c5392f1, type: 3}
+  m_Name: Lore 6
+  m_EditorClassIdentifier: 
+  Index: Lore 6
+  StartOpen: 0
+  Type: 2
+  Sender:
+    Profile: {fileID: 21300000, guid: 23a89a2cc200834428901852d33e85f0, type: 3}
+    Name: Tiago Monteiro
+    Email: tiagomonteiro@cafesoc.com
+  Title: "Notifica\xE7\xE3o sobre o Ticket Criado"
+  Content: 
+  HasResponse: 1
+  QuestionText: Sobre o que eu devo escrever mesmo?
+  ConfirmQuestionText: "Hmm, ser\xE1 que \xE9 isso que eu devo enviar? N\xE3o posso
+    vacilar no primeiro dia..."
+  WrongFeedbackQuestionText: "Nossa, n\xE3o! Isso n\xE3o t\xE1 certo... J\xE1 perdi
+    muito tempo, preciso arrumar isso r\xE1pido!"
+  Responses:
+  - TextOption: Avisar sobre o site pichado
+    EmailText: "Ol\xE1, Raquel! Tudo certo?\n\nDeu ruim! Um dos sites da PetroCais
+      foi pichado! \U0001F628 Pelo que vi, parece ser coisa de um grupo de ativistas
+      doidos chamados de PetroKillers. \U0001F480\n\nSendo sincero, n\xE3o fa\xE7o
+      ideia do que fazer. Preciso de ajuda pra resolver isso, os clientes n\xE3o
+      podem ver o site desse jeito!\n\nAguardo retorno! \U0001F642\u200D\u2195\uFE0F\n\nAtt,
+      Tiago"
+    IsCorrectAnswer: 0
+  - TextOption: Avisar sobre o Ticket
+    EmailText: "Fala, time! Tudo certo?\n\nOs boatos eram verdadeiros! Alguns hackers
+      malditos chamados PetroKillers realmente invadiram o site da PetroCais e zoaram
+      tudo! \U0001F621\n\nTodos as informa\xE7\xF5es do ataque j\xE1 est\xE3o direitinho
+      l\xE1 no ticket que criei. Agora contamos com o Rafa pra terminar o servi\xE7o
+      e resolver esse problema.\n\nSe algu\xE9m precisar de mais informa\xE7\xF5es,
+      s\xF3 dar um toque! \U0001F609\n\nAtt, Tiago"
+    IsCorrectAnswer: 1
+  - TextOption: "Avisar sobre a M\xE1quina de Caf\xE9 Quebrada"
+    EmailText: "Ol\xE1, Central! Tudo certo?\n\nTemos um problema s\xE9rio! Uma das
+      m\xE1quinas de caf\xE9 deu pau. Eu t\xF4 tendo que ir at\xE9 a sala ao lado
+      pra encher a minha caneca! \u2615\n\nJ\xE1 tentei tirar da tomada e colocar
+      de novo, resetar e at\xE9 bater na m\xE1quina algumas vezes, mas nada funcionou.
+      N\xE3o posso ficar sem caf\xE9, vou acabar pegando no sono! Preciso que resolvam
+      isso, por favor. \U0001F979\n\nAguardo refor\xE7os! \U0001F691\n\nAtt, Tiago"
+    IsCorrectAnswer: 0
+  HasEventToSend: 0
+  DispatcherInfo:
+    HasEmailEvent: 0
+    HasNormalEvent: 0
+    EmailTypeToCreate: 1
+    EmailEventSended: 0
+    NormalEventSended: 0

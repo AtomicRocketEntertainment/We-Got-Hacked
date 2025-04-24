@@ -17,6 +17,8 @@ public class EmailChoices : MonoBehaviour
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
 
     private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
+    private Email _currentEmailToRespond = null;
+    private bool _isResponse = false;
 
     private void OnEnable()
     {
@@ -30,19 +32,23 @@ public class EmailChoices : MonoBehaviour
         _confirmWrongFeedbackBtn.onClick.RemoveListener(ReturnChoiceWithUpdate);
     }
 
-    public void OpenResponse(Email email)
+    public void OpenResponse(Email email, bool isResponse)
     {
-        _responseQuestion.text = email.QuestionText;
+        if(email == null) return;
 
-        for(int response = 0; response < email.Responses.Count; response++)
+        _currentEmailToRespond = email;
+        _isResponse = isResponse;
+        _responseQuestion.text = _currentEmailToRespond.QuestionText;
+
+        for(int response = 0; response < _currentEmailToRespond.Responses.Count; response++)
         {
             int index = response; //necessário guardar um valor fixo pra usar na lambda.
-            EmailResponse responseInfos = email.Responses[index];
+            EmailResponse responseInfos = _currentEmailToRespond.Responses[index];
             _responsesBtn[index].onClick.RemoveAllListeners();
-            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos.IsCorrectAnswer, responseInfos.EmailText));
+            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos.IsCorrectAnswer, responseInfos.EmailText, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText));
 
             TextMeshProUGUI btnText = _responsesBtn[response].GetComponentInChildren<TextMeshProUGUI>();
-            if(btnText) btnText.text = email.Responses[response].TextOption;
+            if(btnText) btnText.text = _currentEmailToRespond.Responses[response].TextOption;
            
         }
         
@@ -51,9 +57,15 @@ public class EmailChoices : MonoBehaviour
         _firstResponseEmailChoices.SetActive(true);
     }
 
-    private void RespondEmail(bool isCorrectAnswer, string emailResponseText)
+    public void CloseResponse()
+    {
+        ReturnChoices(false);
+    }
+
+    private void RespondEmail(bool isCorrectAnswer, string emailResponseText, string confirmFeedback, string wrongFeedbackQuestionText)
     {
         _firstResponseEmailChoices.SetActive(false);
+        _responseQuestion.text = confirmFeedback;
         _confirmResponse.SetActive(true);
         EventManager.ChangeEmailTextContent(emailResponseText);
 
@@ -62,20 +74,26 @@ public class EmailChoices : MonoBehaviour
         if(isCorrectAnswer) 
             _confirmResponseEmailBtn.onClick.AddListener(CorrectFeedbackChoices);
         else
-            _confirmResponseEmailBtn.onClick.AddListener(WrongFeedbackChoices);
+            _confirmResponseEmailBtn.onClick.AddListener(() => WrongFeedbackChoices(wrongFeedbackQuestionText));
     }
 
     private void CorrectFeedbackChoices()
     {
-        EventManager.EmailIsAnswered();
+        Debug.Log("O bool isResponse está como: " + _isResponse);
+        if(_isResponse)
+            EventManager.EmailIsAnswered();
+        else
+            EventManager.EmailIsWriten();
+
         EventManager.CorrectChoice();
         ResponseFeedbackUpdate();
         ReturnChoices(false);
         gameObject.SetActive(false);
     }
 
-    private void WrongFeedbackChoices()
+    private void WrongFeedbackChoices(string wrongFeedbackQuestionText)
     {
+        _responseQuestion.text = wrongFeedbackQuestionText;
         EventManager.WrongChoice();
         _confirmResponse.SetActive(false);
         _wrongfeedbackScreen.SetActive(true);
@@ -92,8 +110,7 @@ public class EmailChoices : MonoBehaviour
 
         _confirmResponse.SetActive(false);
         _wrongfeedbackScreen.SetActive(false);
-        _responseContainer.SetActive(true);
-        _firstResponseEmailChoices.SetActive(true);
+        OpenResponse(_currentEmailToRespond, _isResponse);
     }
 
     private void ResponseFeedbackUpdate()

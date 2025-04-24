@@ -7,9 +7,10 @@ public static class EventManager
     public static event Action<GameObject> OnOpenEmail;
     public static event Action OnTryWriteEmail;
     public static event Action<Email> OnWriteEmail;
+    public static event Action OnEmailIsWriten;
     public static event Action<string> OnLinkIsClicked;
     public static event Action<string> OnChangeEmailContentText;
-    public static event Action<Email> OnEmailResponseNeeded;
+    public static event Action<Email, bool> OnEmailResponseNeeded;
     public static event Action<EmailType> OnSpawnEmail;
     public static event Action<SO_Email, bool> OnCreateEspecificEmail;    
     public static event Action OnEmailIsAnswered;
@@ -57,6 +58,18 @@ public static class EventManager
         }
     }
 
+    public static void EmailIsWriten()
+    {
+        if (OnEmailIsWriten != null)
+        {
+            OnEmailIsWriten();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnEmailIsWriten event.");
+        }
+    }
+
     public static void TryWriteEmail()
     {
         if (OnTryWriteEmail != null)
@@ -93,11 +106,11 @@ public static class EventManager
         }
     }
 
-    public static void OpenEmailResponse(Email email)
+    public static void OpenEmailResponse(Email email, bool isResponse)
     {
         if (OnEmailResponseNeeded != null)
         {
-            OnEmailResponseNeeded(email);
+            OnEmailResponseNeeded(email, isResponse);
         }
         else
         {

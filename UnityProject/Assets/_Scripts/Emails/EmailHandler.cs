@@ -8,17 +8,19 @@ using System.Collections;
 
 public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 {
+    [BoxGroup("Player Initial Status")] [SerializeField] private WriteEmailState _writeEmailState;
+    [BoxGroup("Player Initial Status")] [SerializeField] private List<SO_Email> _firstEmails = new List<SO_Email>();
     [SerializeField] private List<SO_Email> _spamToSend = new List<SO_Email>();
     [SerializeField] private List<SO_Email> _loreToSend = new List<SO_Email>();
     [SerializeField] private List<SO_Email> _hackingToSend = new List<SO_Email>();
     [SerializeField] private List<SO_Email> _newsToSend = new List<SO_Email>();
 
-    [SerializeField] private Button _writeEmailBtn;
 
     [HorizontalLine(color: EColor.Red)]
     [BoxGroup("Canvases")] [SerializeField] private GameObject _mainCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _homeEmailCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _emailCanvas;
+
     [BoxGroup("Opened Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailTitle;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderName;
     [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
@@ -26,6 +28,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Opened Content")] [SerializeField] private Image _senderProfilePicture;
 
     [BoxGroup("Prefabs"), HorizontalLine(color: EColor.Yellow)] [SerializeField] private GameObject _emailPrefab;
+    [SerializeField] private Button _writeEmailBtn;
 
     private Dictionary<GameObject, Email> _emailsInstanciados = new Dictionary<GameObject, Email>();
     private Email _currentEmailOpen;
@@ -51,16 +54,16 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnReturnEmailContent += ReturnEmailContent;
         EventManager.OnTimerIsComplete += CheckToSpawn;
 
-        CreateEmail(EmailType.SPAM);
-        CreateEmail(EmailType.SPAM);
-        CreateEmail(EmailType.NEWS);
+        foreach(SO_Email email in _firstEmails) 
+            CreateSpecificEmail(email, false);
+
     }
     void OnDisable()
     {
         _writeEmailBtn.onClick.RemoveListener(TryWriteEmail);
+        EventManager.OnWriteEmail -= TryWriteEmail;
         EventManager.OnSpawnEmail -= CreateEmail;
         EventManager.OnCreateEspecificEmail -= CreateSpecificEmail;
-        EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
@@ -85,6 +88,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
                 {
                     email = new Email(_loreToSend[_currentLoreSended]);
                     _currentLoreSended++;
+                    UpdateLoreMechanics();
                 }
                 break;
             case EmailType.HACKING:
@@ -110,7 +114,11 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void CreateSpecificEmail(SO_Email emailToCreate, bool shouldAdvanceHistory)
     {
-        if(shouldAdvanceHistory) _currentLoreSended++;
+        if(shouldAdvanceHistory)
+        {
+            _currentLoreSended++;
+            UpdateLoreMechanics();
+        }
         
         Email email = new Email(emailToCreate);
         StartCoroutine(SpawnEmail(email, Random.Range(2, 6)));
@@ -126,10 +134,16 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         instanceEmail.transform.localScale = Vector3.one;
 
         if (instanceEmail.TryGetComponent(out EmailInstance instance))
-            instance.UpdateInfos(sender: email.Sender, title: email.Title, contentSmall: email.Content);
+            instance.UpdateInfos(sender: email.Sender, title: email.Title, contentSmall: email.Content, startOpen: email.StartOpen);
 
         if (!_emailsInstanciados.ContainsKey(instanceEmail))
             _emailsInstanciados.Add(instanceEmail, email);
+    }
+
+    private void UpdateLoreMechanics()
+    {
+        if(_currentLoreSended == LORE_TO_OPEN_WRITE_EMAIL)
+            _writeEmailState = WriteEmailState.CanWrite;
     }
 
     public void OpenEmail(GameObject email)
@@ -211,7 +225,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private void CheckEmailEvents()
     {
         if(_currentEmailOpen.HasResponse && !_currentEmailOpen.IsAnswered)
-            EventManager.OpenEmailResponse(_currentEmailOpen);
+            EventManager.OpenEmailResponse(_currentEmailOpen, isResponse: true);
 
         if(_currentEmailOpen.DisptacherInfo.HasEmailEvent && !_currentEmailOpen.DisptacherInfo.EmailEventSended)
         {
@@ -228,7 +242,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void TryWriteEmail()
     {
-        if(_currentLoreSended == LORE_TO_OPEN_WRITE_EMAIL)
+        if(_writeEmailState == WriteEmailState.CanWrite)
             EventManager.TryWriteEmail();
         else
             EventManager.MakePlayerThink(PLAYER_CANT_WRITE_EMAIL);

@@ -11,6 +11,9 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _doneTicketBtn;
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _playbookBtn;   
 
+    [BoxGroup("Other Dependencies")] [SerializeField] private SO_TicketList _listOfTickets;
+
+
     [BoxGroup("Screens")] [SerializeField] private GameObject _blockedCanvas;
     [BoxGroup("Screens")] [SerializeField] private GameObject _mainCanvas;
     [BoxGroup("Screens")] [SerializeField] private GameObject _newTicketCanvas;
@@ -26,13 +29,12 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _ticketAdjusteEmailToSend;
 
 
-    private const string _onTryCreateTicket = "Eu não tenho informações disponíveis.";
+    private const string _onTryCreateTicket = "Não preciso fazer isso agora.";
     private const string _onTryCreateEmptyTicket = "Preciso preencher todas as informações.";
 
     
-    private SoftwareState _currentState = SoftwareState.Blocked;
+    [SerializeField] private SoftwareState _currentState = SoftwareState.Blocked;
     private bool _ticketCreatedWrongOneTime = false;
-    private SiemManager _siem;
     private Ticket _correctTicket;
 
     private Dictionary<Button, GameObject> _screens = new Dictionary<Button, GameObject>();
@@ -40,7 +42,6 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     private void Start()
     {
         //problemas com o siem aqui, provavelmente é por causa disso.
-        _siem = FindAnyObjectByType<SiemManager>();
         _correctTicket = new Ticket(_correctTicketSO);
 
         if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
@@ -83,7 +84,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
             {
                 GameObject screenObj = screen.Value;
                 screenObj.TryGetComponent(out TicketScreen ticketUpdater);
-                ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _siem, _correctTicket);
+                ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _listOfTickets, _correctTicket, _currentState);
                 screenObj.SetActive(true);
             }
             else
@@ -114,15 +115,15 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
             _currentState = SoftwareState.FirstTimeOpened;
         else if(emailIndex == _emailLoreToUnlockSend)
         {
-            _currentState = SoftwareState.Opened;
+            _currentState = SoftwareState.FullAccess;
             _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
-            ticketUpdater.UpdateInfos(ScreenType.NewTicket, _siem, _correctTicket);
+            ticketUpdater.UpdateInfos(ScreenType.NewTicket, _listOfTickets, _correctTicket, _currentState);
         }
     }
 
     private void TrySendTicket()
     {
-        if(_currentState != SoftwareState.Opened)
+        if(_currentState != SoftwareState.FullAccess)
         {
             EventManager.MakePlayerThink(_onTryCreateTicket);
             return;
@@ -159,9 +160,6 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
             EventManager.CorrectChoice();
             return;
         }
-
-
-
     }
 
     public void OpenCanvas()
