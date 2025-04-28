@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class EventManager
@@ -18,6 +19,11 @@ public static class EventManager
 
     //Alert related
     public static event Action<Ticket, Color> OnAlertIsOpen;
+
+    //Log related
+    public static event Action<List<string>> OnOpenLog;
+    public static event Action<SiteBackup> OnOpenBackup;
+
 
     //Global Gaming Mechanic
     public static event Action OnCorrectChoice;
@@ -214,6 +220,29 @@ public static class EventManager
         }
     }
 
+    public static void OpenLog(List<string> logList)
+    {
+        if (OnOpenLog != null)
+        {
+            OnOpenLog(logList);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnOpenLog event.");
+        }
+    }
+
+    public static void OpenBackup(SiteBackup backup)
+    {
+        if (OnOpenBackup != null)
+        {
+            OnOpenBackup(backup);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnOpenBackup event.");
+        }
+    }
 
     public static void FirstTimeOpenSoftware()
     {

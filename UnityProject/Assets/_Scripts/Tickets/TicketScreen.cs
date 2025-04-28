@@ -137,7 +137,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             ipDOptions.Add(ticket.IPDestiny);
             geolocationOptions.Add(ticket.Location);
             typeOptions.Add(ticket.Dispositive.Type.ToString());
-            dateOptions.Add(ticket.Date);
+            dateOptions.Add($"{ticket.DateDay} - {ticket.DateHour}");
         }
 
         _playbookDp.AddOptions(playBookOptions);
@@ -255,7 +255,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             selectedIpD == ticket.IPDestiny &&
             selectedLocation == ticket.Location &&
             selectedType == ticket.Dispositive.Type.ToString() &&
-            selectedDate == ticket.Date &&
+            selectedDate == $"{ticket.DateDay} - {ticket.DateHour}" &&
             selectedRisk == ticket.RiskLevel &&
             isCorrectSiteSelected;
     }

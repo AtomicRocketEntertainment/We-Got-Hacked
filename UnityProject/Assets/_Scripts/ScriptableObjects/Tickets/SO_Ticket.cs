@@ -11,9 +11,11 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Commum Infos")] public string IPDestiny;
     [BoxGroup("Commum Infos")] public string Location;
     [BoxGroup("Commum Infos")] public DispostiveInfos Dispositive;
-    [BoxGroup("Commum Infos")] public string Date;
+    [BoxGroup("Commum Infos")] public string DateDay;
+    [BoxGroup("Commum Infos")] public string DateHour;
     [BoxGroup("Commum Infos")] public int RiskLevel;
     [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))] [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
+    [BoxGroup("Pichação Infos"), ResizableTextArea, ShowIf(nameof(IsPichacao))] public List<string> Loggs;
     public List<TicketObjectives> Objectives;
 
 

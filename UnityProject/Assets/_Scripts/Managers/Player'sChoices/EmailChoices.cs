@@ -79,7 +79,6 @@ public class EmailChoices : MonoBehaviour
 
     private void CorrectFeedbackChoices()
     {
-        Debug.Log("O bool isResponse está como: " + _isResponse);
         if(_isResponse)
             EventManager.EmailIsAnswered();
         else

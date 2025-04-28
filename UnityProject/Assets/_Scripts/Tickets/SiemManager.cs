@@ -67,7 +67,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
     private void OpenAlert(Ticket alert, Color ticketColor)
     {
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
-        holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.Date, alert.Location, alert.Dispositive.Icon, ticketColor);
+        holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.DateDay, alert.DateHour, alert.Location, alert.Dispositive.Icon, ticketColor);
         _alertPopupScreen.SetActive(true);
     }
 

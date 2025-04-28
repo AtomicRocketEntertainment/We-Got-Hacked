@@ -24,12 +24,12 @@ public class PopupInfoHolder : MonoBehaviour
     };
 
 
-    public void UpdateInfos(string id, string ipO, string ipD, string timestamp, string location, Sprite icon, Color alertRisk)
+    public void UpdateInfos(string id, string ipO, string ipD, string day, string hour, string location, Sprite icon, Color alertRisk)
     {
         _id.text = $"ID Alert:{id}";
         _ipO.text = ipO;
         _ipD.text = ipD;
-        _timestamp.text = timestamp;
+        _timestamp.text = $"{day} - {hour}";
         _location.text = location;
         _icon.sprite = icon;
         _alertColor.color = alertRisk;

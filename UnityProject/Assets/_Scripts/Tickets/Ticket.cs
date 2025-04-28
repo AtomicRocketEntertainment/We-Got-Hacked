@@ -10,10 +10,12 @@ public class Ticket
     private string _iPDestiny;
     private string _location;
     private DispostiveInfos _dispositive;
-    private string _date;
+    private string _dateDay;
+    private string _dateHour;
     private int _riskLevel;
     private SiteType _site;
     private List<TicketObjectives> _objectives;
+    private List<string> _logs;
     private int _currentObjective;
 
     public PlaybookType Playbook => _playbook;
@@ -22,10 +24,12 @@ public class Ticket
     public string IPDestiny => _iPDestiny;
     public string Location => _location;
     public DispostiveInfos Dispositive => _dispositive;
-    public string Date => _date;
+    public string DateDay => _dateDay;
+    public string DateHour => _dateHour;
     public int RiskLevel => _riskLevel;
     public SiteType Site => _site;
     public List<TicketObjectives> Objectives => _objectives;
+    public List<string> Logs => _logs;
 
     public Ticket(SO_Ticket infos)
     {
@@ -35,20 +39,19 @@ public class Ticket
         _iPDestiny = infos.IPDestiny;
         _location = infos.Location;
         _dispositive = infos.Dispositive;
-        _date = infos.Date;
+        _dateDay = infos.DateDay;
+        _dateHour = infos.DateHour;
         _riskLevel = infos.RiskLevel;
         _site = infos.CorrectSite;
 
         _objectives = new List<TicketObjectives>();
+        _logs = infos.Loggs;
 
         foreach (var obj in infos.Objectives)
-        {
             _objectives.Add(obj.Clone());
-        }
         
         _currentObjective = GetObjectivesCompletedQuantity();
         
-        UnityEngine.Debug.Log("Current Objective " + _currentObjective);
         if(_objectives.Count > 0)
             _objectives[_currentObjective].ShouldShow = true;
     }
