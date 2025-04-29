@@ -21,15 +21,15 @@ No jogo, haverão três principais grupos em conflito. A PetroCorp, uma empresa 
 Conheça os Personagens
 -------
 ![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
-N1: **Tiago Monteiro**, 20 anos, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
+**N1:** Tiago Monteiro, 20 anos, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
 
-N2: **Rafael Martins**, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
+**N2:** Rafael Martins, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
 
-N3: **Eduardo Silva**, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
+**N3:** Eduardo Silva, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
 
-Gerente: **Raquel Oliveira**, 43 anos, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
+**Gerente:** Raquel Oliveira, 43 anos, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
 
-Contato da PatroCais: **Gustavo Ribeiro**, TEXTO TEXTO TEXTO
+**Contato da PatroCais:** Gustavo Ribeiro, TEXTO TEXTO TEXTO
 
 Narrativa Adaptativa
 -------
