@@ -47,11 +47,11 @@ Plataformas e Ferramentas
 
 Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comumente utilizadas no dia a dia em uma empresa de cibersegurança. A baixo, algumas ferramentas que estão presentes no jogo. 
 
-**J-Mail:** aaa
+**J-Mail:** software de leitura e envio de e-mails. O jogador receberá diversas mensagens ao longo da história do jogo, contendo escolhas importantes de respostas, que influenciarão o desenrolar da narrativa.
 
-**Tick Task:** aaa
+**Tick Task:** software de gerenciamento de tarefas em incidentes, que orienta o jogador passo a passo sobre como lidar com cada situação de ataque hacker. Funciona de maneira semelhante a um quadro de missões.
 
-**SIEMtinel:** aaa
+**SIEMtinel:** software de cibersegurança utilizado para analisar alertas de possíveis ataques hackers. Esses alertas trarão informações cruciais que ajudarão o jogador a determinar se representam uma ameaça real ou não.
 
 Estado de Desenvolvimento
 -------
