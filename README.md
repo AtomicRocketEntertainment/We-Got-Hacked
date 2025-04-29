@@ -1,42 +1,43 @@
 # We Got Hacked
 ![logo we-got-hacked](https://github.com/user-attachments/assets/bb6f00c3-9ca0-4741-994d-ca8dd04ba5a2)
 
-We Got Hacked é um jogo de simulação e treinamento desenvolvido pela [Atomic Rocket Entertainment](https://br.linkedin.com/company/atomic-rocket-entertainment), financiado pela [RNP](https://www.rnp.br/) (Rede Nacional de Ensino e Pesquisa). Voltado para estudantes e profissionais da área de cibersegurança, o jogo é dividido em três capítulos, cada um simulando cenários reais e desafiadores comuns no setor, como ataques de hackers, vazamentos de dados e outras situações críticas. A proposta é oferecer uma experiência prática e envolvente, contribuindo para o aprimoramento das habilidades necessárias no controle de ameaças digitais.
+We Got Hacked é um jogo de simulação e treinamento desenvolvido pela [Atomic Rocket Entertainment](https://br.linkedin.com/company/atomic-rocket-entertainment), financiado pela [RNP](https://www.rnp.br/) (Rede Nacional de Ensino e Pesquisa). Voltado para estudantes e profissionais de cibersegurança, o jogo é dividido em três capítulos que simulam situações reais e desafiadoras da área, como ataques hackers, vazamentos de dados e outros incidentes críticos. O objetivo é proporcionar uma experiência prática e imersiva, ajudando os jogadores a desenvolverem habilidades essenciais para lidar com ameaças digitais.
 
 Objetivo do Projeto
 -------
-O objetivo de We Got Hacked, é gamificar cenários comuns de cibersegurança, proporcionando uma forma dinâmica e interativa de aprimorar as competências de estudantes e profissionais, preparando-os para lidar com desafios do mundo real. Cada capítulo ira oferecer uma experiência prática e imersiva, permitindo aos jogadores aprimorarem suas habilidades em um ambiente controlado.
+O objetivo de We Got Hacked é gamificar cenários comuns de cibersegurança, oferecendo uma forma dinâmica e interativa de desenvolver as competências de estudantes e profissionais da área. Cada capítulo proporciona uma experiência prática e imersiva, permitindo que os jogadores aprimorem suas habilidades em um ambiente seguro e controlado.
 
 Conheça as Entidades 
 -------
-No jogo, haverão três principais grupos em conflito. A PetroCorp, uma empresa do setor petrolífero, PetroKillers, que se opõe à exploração de petróleo e está planejando um grande ciberataque contra a corporação. E a C.A.F.E (Cybersecurity and Assurance For Enterprises), empresa especializada em cibersegurança.
+**C.A.F.E** é uma empresa do setor de cibersegurança fundada em 2015 por um pequeno grupo de ex-engenheiros da área. Mesmo nos primeiros anos de atuação, tornou-se referência em segurança corporativa, com foco na proteção de grandes empresas, indústrias e corporações altamente visadas.
 
-**C.A.F.E** foi fundada em 2015 por um pequeno grupo de ex-engenheiros de segurança cibernética. Ainda nos seus primeiros anos, a C.A.F.E. se tornou referência em segurança corporativa, focando na proteção de empresas de grande porte, indústrias e corporações altamente visadas.
+**PetroCais** é uma empresa do setor petrolífero fundada em 1982 por Pedro Corpellius, um visionário patriota determinado a explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. Sua criação foi motivada pelo desejo de fortalecer a indústria energética nacional e tornar o país autossuficiente em suas demandas energéticas.
 
-**PetroCorp** foi fundada em 1982 por Pedro Corpellius, um visionário e patriota convicto, com a ambição de explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. A criação da empresa foi impulsionada pela determinação de Corpellius em fortalecer a indústria energética nacional e garantir que o país se tornasse autossuficiente em relação às suas necessidades energéticas.
-
-**PetroKiller** surgiu em 2017 como um pequeno servidor hacker na internet, criado por um grupo de jovens ativistas, realizando simples ataques de pichações em pequenos sites e realizando denúncias ambientais. Com o tempo, a PetroKiller começou a atrair membros mais experientes que passaram a contribuir com desenvolvimento de malwares personalizados e exploração de vulnerabilidades em sistemas corporativos do do mundo petrolífero.
-
+**PetroKiller** surgiu em 2017 como um pequeno servidor hacker criado por um grupo de jovens ativistas. No início, realizavam ataques simples, como pichações em sites e denúncias ambientais. Com o tempo, o grupo passou a atrair membros mais experientes, que contribuíram com o desenvolvimento de malwares personalizados e a exploração de vulnerabilidades em sistemas corporativos do setor petrolífero.
 
 Conheça os Personagens
 -------
 ![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
-**N1:** Tiago Monteiro, 20 anos, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
+**N1:** Tiago Monteiro, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
 
-**N2:** Rafael Martins, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
+**N2:** Rafael Martins, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
 
-**N3:** Eduardo Silva, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
+**N3:** Eduardo Silva, 34, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
 
-**Gerente:** Raquel Oliveira, 43 anos, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
+**Gerente:** Raquel Oliveira, 43, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
 
-**Contato da PatroCais:** Gustavo Ribeiro, TEXTO TEXTO TEXTO
+**Contato da PatroCais:** Gustavo Ribeiro, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança.
 
-Narrativa Adaptativa
+Narrativa
 -------
 ![SOC-escolha](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC1_escolha.png?raw=true)
-We Got Hacked terá diversos momentos em que o jogador poderá tomar decisões, tanto de natureza técnica quanto moral. Cada escolha influenciará o desenvolvimento da trama e levará a diferentes consequências na história.
+A história do jogo será contada por meio de quadrinhos, que aparecerão em momentos-chave para intensificar o impacto narrativo. Cada quadrinho será composto por uma imagem estática com uma legenda, e há a possibilidade de incluir narração em voz futuramente.
 
-O jogo sera dividido em três dias, onde cada dia sera abordado um indicente costumeiro de uma empresa de cibersegurança lidar. No primeiro dia, o jogador devera controlar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação da PetroKillers no web site da PetroCais. Neste primeiro dia, o jogador ira aprender diversos pontos importantes sobre como lidar com situações de pichação, aprendendo a lidar com softwares de analise de sites, gerenciamento de tickets alem do ter que lidar com escolhas corretas que podem afetar outros membros da equipe. 
+O jogo também contará com momentos de múltipla escolha, nos quais o jogador tomará decisões que influenciarão diretamente o desenrolar da trama. Essas escolhas afetarão não apenas a narrativa, mas também o sistema de reputação do jogo, representado por uma bolsa de valores que reflete o desempenho da C.A.F.E. em comparação com suas concorrentes no mercado.
+
+Primeiro Cenario (Pichação Ativista)
+-------
+O jogo será dividido em três dias, cada um abordando um incidente comum enfrentado por empresas de cibersegurança. No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKiller no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
 
 Plataformas e Ferramentas
 -------
@@ -52,7 +53,7 @@ Estado de Desenvolvimento
 -------
 ![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC1.png?raw=true)
 ![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC2.png?raw=true)
-We Got Hacked teve seu inicio de produção em janeiro de 2025, com previsão de conclusão para dezembro de 2025. Atualmente, abril, diversos pontos ja foram definidos para o jogo e estão sendo colocados em pratica. O jogo sera dividido em três dias (três cenarios), o primeiro cenario esta 90% concluido, e estamos atualmente começando a criação do segundo cenario. (Atualizações em breve). 
+We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (abril) diversos aspectos do jogo já foram definidos e estão em fase de implementação. O jogo será dividido em três dias (três cenários). O primeiro cenário está atualmente quase concluído, e a equipe já iniciou o desenvolvimento do segundo incidente.(Atualizações em breve). 
 
 Equipe 
 -------
