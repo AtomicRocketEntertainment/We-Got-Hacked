@@ -25,6 +25,7 @@ Conheça os Personagens
 - N2: Rafael Martins, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
 - N3: Eduardo Silva, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
 - Gerente: Raquel Oliveira, 43 anos, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
+- Contato da PatroCais: Gustavo Ribeiro, TEXTO TEXTO TEXTO
 
 Narrativa Adaptativa
 -------
