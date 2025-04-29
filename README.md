@@ -11,21 +11,21 @@ Conheça as Entidades
 -------
 No jogo, haverão três principais grupos em conflito. A PetroCorp, uma empresa do setor petrolífero, PetroKillers, que se opõe à exploração de petróleo e está planejando um grande ciberataque contra a corporação. E a C.A.F.E (Cybersecurity and Assurance For Enterprises), empresa especializada em cibersegurança.
 
-C.A.F.E.: foi fundada em 2015 por um pequeno grupo de ex-engenheiros de segurança cibernética. Ainda nos seus primeiros anos, a C.A.F.E. se tornou referência em segurança corporativa, focando na proteção de empresas de grande porte, indústrias e corporações altamente visadas.
+**C.A.F.E** foi fundada em 2015 por um pequeno grupo de ex-engenheiros de segurança cibernética. Ainda nos seus primeiros anos, a C.A.F.E. se tornou referência em segurança corporativa, focando na proteção de empresas de grande porte, indústrias e corporações altamente visadas.
 
-PetroCorp: foi fundada em 1982 por Pedro Corpellius, um visionário e patriota convicto, com a ambição de explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. A criação da empresa foi impulsionada pela determinação de Corpellius em fortalecer a indústria energética nacional e garantir que o país se tornasse autossuficiente em relação às suas necessidades energéticas.
+**PetroCorp** foi fundada em 1982 por Pedro Corpellius, um visionário e patriota convicto, com a ambição de explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. A criação da empresa foi impulsionada pela determinação de Corpellius em fortalecer a indústria energética nacional e garantir que o país se tornasse autossuficiente em relação às suas necessidades energéticas.
 
-PetroKiller: surgiu em 2017 como um pequeno servidor hacker na internet, criado por um grupo de jovens ativistas, realizando simples ataques de pichações em pequenos sites e realizando denúncias ambientais. Com o tempo, a PetroKiller começou a atrair membros mais experientes que passaram a contribuir com desenvolvimento de malwares personalizados e exploração de vulnerabilidades em sistemas corporativos do do mundo petrolífero.
+**PetroKiller** surgiu em 2017 como um pequeno servidor hacker na internet, criado por um grupo de jovens ativistas, realizando simples ataques de pichações em pequenos sites e realizando denúncias ambientais. Com o tempo, a PetroKiller começou a atrair membros mais experientes que passaram a contribuir com desenvolvimento de malwares personalizados e exploração de vulnerabilidades em sistemas corporativos do do mundo petrolífero.
 
 
 Conheça os Personagens
 -------
 ![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
-- N1: Tiago Monteiro, 20 anos, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
-- N2: Rafael Martins, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
-- N3: Eduardo Silva, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
-- Gerente: Raquel Oliveira, 43 anos, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
-- Contato da PatroCais: Gustavo Ribeiro, TEXTO TEXTO TEXTO
+**N1: Tiago Monteiro**, 20 anos, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
+**N2: Rafael Martins**, 29 anos, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
+**N3: Eduardo Silva**, 34 anos, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
+**Gerente: Raquel Oliveira*8, 43 anos, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
+**Contato da PatroCais: Gustavo Ribeiro**, TEXTO TEXTO TEXTO
 
 Narrativa Adaptativa
 -------
@@ -37,9 +37,9 @@ O jogo sera dividido em três dias, onde cada dia sera abordado um indicente cos
 Plataformas e Ferramentas
 -------
 Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comumente utilizadas no dia a dia em uma empresa de cibersegurança. A baixo, algumas ferramentas que estão presentes no jogo. 
-J-Mail: aaa
-Tick Task: aaa
-SIEMtinel: aaa
+**J-Mail:** aaa
+**Tick Task:** aaa
+**SIEMtinel:** aaa
 
 Estado de Desenvolvimento
 -------
