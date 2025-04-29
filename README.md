@@ -10,6 +10,7 @@ O objetivo de We Got Hacked é gamificar cenários comuns de cibersegurança, of
 Conheça as Entidades 
 -------
 (img logo das três empresas aqui!!!)
+
 **C.A.F.E** é uma empresa do setor de cibersegurança fundada em 2015 por um pequeno grupo de ex-engenheiros da área. Mesmo nos primeiros anos de atuação, tornou-se referência em segurança corporativa, com foco na proteção de grandes empresas, indústrias e corporações altamente visadas.
 
 **PetroCais** é uma empresa do setor petrolífero fundada em 1982 por Pedro Corpellius, um visionário patriota determinado a explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. Sua criação foi motivada pelo desejo de fortalecer a indústria energética nacional e tornar o país autossuficiente em suas demandas energéticas.
@@ -43,6 +44,7 @@ O jogo será dividido em três dias, cada um abordando um incidente comum enfren
 Plataformas e Ferramentas
 -------
 (img simplificada dos três softwares aqui!!!)
+
 Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comumente utilizadas no dia a dia em uma empresa de cibersegurança. A baixo, algumas ferramentas que estão presentes no jogo. 
 
 **J-Mail:** aaa
