@@ -35,7 +35,8 @@ We Got Hacked terá diversos momentos em que o jogador poderá tomar decisões, 
 O jogo sera dividido em três dias, onde cada dia sera abordado um indicente costumeiro de uma empresa de cibersegurança lidar. No primeiro dia, o jogador devera controlar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação da PetroKillers no web site da PetroCais. Neste primeiro dia, o jogador ira aprender diversos pontos importantes sobre como lidar com situações de pichação, aprendendo a lidar com softwares de analise de sites, gerenciamento de tickets alem do ter que lidar com escolhas corretas que podem afetar outros membros da equipe. 
 
 Plataformas e Ferramentas
-Em We Got Hacked o jogador ira aprender a utilizar varias ferramentas comunmente utilizadas no dia a dia em uma empresa de cibersegurança. A baixo, falamos um pouco sobre algumas das ferramentas que utilizaremos. 
+-------
+Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comumente utilizadas no dia a dia em uma empresa de cibersegurança. A baixo, algumas ferramentas que estão presentes no jogo. 
 J-Mail: aaa
 Tick Task: aaa
 SIEMtinel: aaa
