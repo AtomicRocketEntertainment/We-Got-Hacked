@@ -7,12 +7,6 @@ Objetivo
 -------
 O objetivo de "We Got Hacked" é gamificar cenários comuns de cibersegurança, proporcionando uma forma dinâmica e interativa de aprimorar as competências de estudantes e profissionais, preparando-os para lidar com desafios do mundo real. Cada capítulo ira oferecer uma experiência prática e imersiva, permitindo aos jogadores aprimorarem suas habilidades em um ambiente controlado.
 
-Instruções
--------
-| Tecla        | Ação               |
-|-------------|-------------------------|
-| Botão Esquerdo do Mouse | Realiza todas interações no jogo |
-
 Conheça as Entidades 
 -------
 No jogo, haverão três principais grupos em conflito. A PetroCorp, uma empresa do setor petrolífero, PetroKillers, que se opõe à exploração de petróleo e está planejando um grande ciberataque contra a corporação. E a C.A.F.E (Cybersecurity and Assurance For Enterprises), empresa especializada em cibersegurança.
@@ -65,6 +59,12 @@ Equipe
 | [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | Artista 3D e Roteirista |
 | [Igor Flores](https://www.linkedin.com/in/igorflores96/) | Desenvolvedor |
 | [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer |
+
+Instruções de Gameplay
+-------
+| Tecla        | Ação               |
+|-------------|-------------------------|
+| Botão Esquerdo do Mouse | Realiza todas interações no jogo |
 
 
 ![logo-atomic](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-atomic.png)
