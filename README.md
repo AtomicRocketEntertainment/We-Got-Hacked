@@ -1,5 +1,5 @@
 # We Got Hacked
-![logo we-got-hacked](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrolinhos.png)
+![Petrolinhos](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrolinhos.png)
 
 We Got Hacked é um jogo de simulação e treinamento desenvolvido pela [Atomic Rocket Entertainment](https://br.linkedin.com/company/atomic-rocket-entertainment), financiado pela [RNP](https://www.rnp.br/) (Rede Nacional de Ensino e Pesquisa). Voltado para estudantes e profissionais de cibersegurança, o jogo é dividido em três capítulos que simulam situações reais e desafiadoras da área, como ataques hackers, vazamentos de dados e outros incidentes críticos. O objetivo é proporcionar uma experiência prática e imersiva, ajudando os jogadores a desenvolverem habilidades essenciais para lidar com ameaças digitais.
 
@@ -9,7 +9,7 @@ O objetivo de We Got Hacked é gamificar cenários comuns de cibersegurança, of
 
 Conheça as Entidades 
 -------
-![logo we-got-hacked](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Entidades.png)
+![Entidades](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Entidades.png)
 **C.A.F.E** é uma empresa do setor de cibersegurança fundada em 2015 por um pequeno grupo de ex-engenheiros da área. Mesmo nos primeiros anos de atuação, tornou-se referência em segurança corporativa, com foco na proteção de grandes empresas, indústrias e corporações altamente visadas.
 
 **PetroCais** é uma empresa do setor petrolífero fundada em 1982 por Pedro Corpellius, um visionário patriota determinado a explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. Sua criação foi motivada pelo desejo de fortalecer a indústria energética nacional e tornar o país autossuficiente em suas demandas energéticas.
@@ -18,7 +18,7 @@ Conheça as Entidades
 
 Conheça os Personagens
 -------
-![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
+![Personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
 **N1:** Tiago Monteiro, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
 
 **N2:** Rafael Martins, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
@@ -31,12 +31,12 @@ Conheça os Personagens
 
 Narrativa
 -------
-![SOC-escolha](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Storyboards.png)
+![Storyboards](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Storyboards.png)
 A história do jogo será contada por meio de quadrinhos, que aparecerão em momentos-chave para intensificar o impacto narrativo. Cada quadrinho será composto por uma imagem estática com uma legenda, e há a possibilidade de incluir narração em voz futuramente.
 
 O jogo também contará com momentos de múltipla escolha, nos quais o jogador tomará decisões que influenciarão diretamente o desenrolar da trama. Essas escolhas afetarão não apenas a narrativa, mas também o sistema de reputação do jogo, representado por uma bolsa de valores que reflete o desempenho da C.A.F.E. em comparação com suas concorrentes no mercado.
 
-![SOC-escolha](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Decision.png)
+![Decision](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Decision.png)
 
 Primeiro Cenario (Pichação Ativista)
 -------
@@ -44,7 +44,7 @@ O jogo será dividido em três dias, cada um abordando um incidente comum enfren
 
 Plataformas e Ferramentas
 -------
-(img simplificada dos três softwares aqui!!!)
+![Softwares](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Softwares.png)
 
 Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comumente utilizadas no dia a dia em uma empresa de cibersegurança. A baixo, algumas ferramentas que estão presentes no jogo. 
 
