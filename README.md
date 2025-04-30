@@ -1,4 +1,3 @@
-# We Got Hacked
 ![logo-we-got-hacked](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-we-got-hacked.png)
 ![Petrolinhos](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrolinhos.png)
 
