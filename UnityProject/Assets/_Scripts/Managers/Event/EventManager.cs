@@ -20,9 +20,10 @@ public static class EventManager
     //Alert related
     public static event Action<Ticket, Color> OnAlertIsOpen;
 
-    //Log related
-    public static event Action<List<string>> OnOpenLog;
+    //Restore related
+    public static event Action<List<TicketLog>> OnOpenLog;
     public static event Action<SiteBackup> OnOpenBackup;
+    public static event Action<RestoreState> OnSiteIsOff;
 
 
     //Global Gaming Mechanic
@@ -39,6 +40,9 @@ public static class EventManager
 
     //WebsiteRelated
     public static event Action<string> OnWebsiteLinkerIsOpen;
+
+    //Question Related
+    public static event Action<SO_GenericResponse> OnGenericResponseNeeded;
 
     public static void OpenEmail(GameObject emailObject)
     {
@@ -220,7 +224,7 @@ public static class EventManager
         }
     }
 
-    public static void OpenLog(List<string> logList)
+    public static void OpenLog(List<TicketLog> logList)
     {
         if (OnOpenLog != null)
         {
@@ -241,6 +245,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnOpenBackup event.");
+        }
+    }
+
+    public static void SiteIsOff(RestoreState state)
+    {
+        if (OnSiteIsOff != null)
+        {
+            OnSiteIsOff(state);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnSiteIsOff event.");
         }
     }
 
@@ -313,6 +329,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnWebsiteLinkerIsOpen event.");
+        }
+    }
+
+    public static void OpenGenericResponse(SO_GenericResponse response)
+    {
+        if (OnGenericResponseNeeded != null)
+        {
+            OnGenericResponseNeeded(response);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnGenericResponseNeeded event.");
         }
     }
 }

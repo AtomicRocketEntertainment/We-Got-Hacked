@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class SiemManager : MonoBehaviour, INeedOpenCanvas
+public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 {
     [SerializeField] private List<SO_Ticket> _tickets;
 
@@ -22,16 +22,29 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
     [SerializeField] private const string _emailLoreToOpen = "Lore 1"; 
     [SerializeField] private const string _emailLoreToSpawnAlerts = "Lore 4";
 
+    [SerializeField] private SoftwareState _currentState = SoftwareState.Blocked;
+    [SerializeField] private Character _currentCharacter = Character.None;
 
+    
+    private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
     private List<Ticket> _instanceTickets = new List<Ticket>();
     private int _currentTicket = 0;
-    private SoftwareState _currentState = SoftwareState.Blocked;
 
 
     public List<Ticket> ActiveTickets => _instanceTickets;
 
     void OnEnable()
     {
+
+        _stateHandlers = new();
+
+        IStateSetup setup = _currentCharacter switch
+        {
+            Character.Tiago_Day_One => new TiagoSiemDayOneStateSetup(),
+            _ => null
+        };
+
+        setup?.RegisterStates(_stateHandlers);
         EventManager.OnAlertIsOpen += OpenAlert;
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
     }
@@ -114,6 +127,16 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas
     public void CloseCanvas()
     {
         _mainCanvas.SetActive(false);
+    }
+
+    public void ChangeBlockedCanvasStatus(bool status)
+    {
+        _blockedCanvas.SetActive(status);
+    }
+
+    public void ChangeSoftwareState(SoftwareState state)
+    {
+        _currentState = state;
     }
 }
 

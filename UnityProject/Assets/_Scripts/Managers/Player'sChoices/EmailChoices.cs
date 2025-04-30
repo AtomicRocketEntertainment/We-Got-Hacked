@@ -121,6 +121,8 @@ public class EmailChoices : MonoBehaviour
                 EventManager.SpawnEmail(EmailType.NEWS);
                 break;
             case HistoryPartState.Part_Two:
+                EventManager.SpawnEmail(EmailType.SPAM);
+                EventManager.SpawnEmail(EmailType.NEWS);
                 break;
             case HistoryPartState.Part_Three:
                 break;

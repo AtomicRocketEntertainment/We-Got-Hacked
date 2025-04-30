@@ -45,6 +45,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     {
         _currentSpamSended = _currentNewsSended = _currentLoreSended = _currentHackingSended = 0;
         _writeEmailBtn.onClick.AddListener(TryWriteEmail);
+        EventManager.OnEventEmailHandlerIsOpen += UpdateState;
         EventManager.OnSpawnEmail += CreateEmail;
         EventManager.OnCreateEspecificEmail += CreateSpecificEmail;
         EventManager.OnOpenEmail += OpenEmail;
@@ -62,6 +63,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     {
         _writeEmailBtn.onClick.RemoveListener(TryWriteEmail);
         EventManager.OnWriteEmail -= TryWriteEmail;
+        EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
         EventManager.OnSpawnEmail -= CreateEmail;
         EventManager.OnCreateEspecificEmail -= CreateSpecificEmail;
         EventManager.OnOpenEmail -= OpenEmail;
@@ -69,6 +71,14 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
         EventManager.OnReturnEmailContent -= ReturnEmailContent;
         EventManager.OnTimerIsComplete -= CheckToSpawn;
+    }
+
+    private void UpdateState(string emailIndex)
+    {
+        if(emailIndex == "Lore 9" || emailIndex == "Lore 12")
+            _writeEmailState = WriteEmailState.CanWrite;
+        else
+            _writeEmailState = WriteEmailState.CantWrite;
     }
 
     private void CreateEmail(EmailType emailType)
@@ -237,6 +247,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         {
             _currentEmailOpen.DispatchNormalEvent();
             EventManager.EventEmailIsOpen(_currentEmailOpen.Index);
+            Debug.Log("Lançou o evento com o index: " + _currentEmailOpen.Index);
         }
     }
 

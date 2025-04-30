@@ -15,7 +15,7 @@ public class Ticket
     private int _riskLevel;
     private SiteType _site;
     private List<TicketObjectives> _objectives;
-    private List<string> _logs;
+    private List<TicketLog> _logs;
     private int _currentObjective;
 
     public PlaybookType Playbook => _playbook;
@@ -29,7 +29,7 @@ public class Ticket
     public int RiskLevel => _riskLevel;
     public SiteType Site => _site;
     public List<TicketObjectives> Objectives => _objectives;
-    public List<string> Logs => _logs;
+    public List<TicketLog> Logs => _logs;
 
     public Ticket(SO_Ticket infos)
     {

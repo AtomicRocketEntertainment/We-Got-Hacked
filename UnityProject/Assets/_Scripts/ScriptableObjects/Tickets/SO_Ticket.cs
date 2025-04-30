@@ -14,9 +14,10 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Commum Infos")] public string DateDay;
     [BoxGroup("Commum Infos")] public string DateHour;
     [BoxGroup("Commum Infos")] public int RiskLevel;
-    [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))] [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
-    [BoxGroup("Pichação Infos"), ResizableTextArea, ShowIf(nameof(IsPichacao))] public List<string> Loggs;
+    [BoxGroup("Commum Infos")] public List<TicketLog> Loggs;
     public List<TicketObjectives> Objectives;
+    
+    [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))] [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
 
 
 
@@ -92,4 +93,16 @@ public class TicketObjectives
             ShouldShow = this.ShouldShow
         };
     }
+}
+
+[System.Serializable]
+public class TicketLog
+{
+    public bool IsCorrect;
+    public string Log;
+}
+
+public enum Character
+{
+    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One, Eduardo
 }

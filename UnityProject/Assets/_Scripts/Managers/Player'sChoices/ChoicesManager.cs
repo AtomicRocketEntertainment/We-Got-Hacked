@@ -7,6 +7,7 @@ using UnityEngine;
 public class ChoicesManager : MonoBehaviour
 {
     [BoxGroup("Screens")] [SerializeField] private GameObject _emailScreen;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _genericScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _thinkScreen;
     [BoxGroup("Email")] [SerializeField] private List<SO_Email> _emailsToWrite;
 
@@ -20,15 +21,18 @@ public class ChoicesManager : MonoBehaviour
         _emailScreen.SetActive(false);
         EventManager.OnEmailIsWriten += UpdateEmailToWrite;
         EventManager.OnEmailResponseNeeded += OpenEmailResponse;
+        EventManager.OnGenericResponseNeeded += OpenGenericResponse;
         EventManager.OnTryWriteEmail += OpenWriteEmail;
         EventManager.OnPlayerNeedToThink += ShowThink;
         EventManager.OnCloseResponseScreen += CloseResponse;
     }
 
+
     void OnDisable()
     {
         EventManager.OnEmailIsWriten -= UpdateEmailToWrite;
         EventManager.OnEmailResponseNeeded -= OpenEmailResponse;
+        EventManager.OnGenericResponseNeeded -= OpenGenericResponse;
         EventManager.OnTryWriteEmail -= OpenWriteEmail;
         EventManager.OnPlayerNeedToThink -= ShowThink;
         EventManager.OnCloseResponseScreen -= CloseResponse;
@@ -57,6 +61,13 @@ public class ChoicesManager : MonoBehaviour
         _emailScreen.SetActive(true);
         _emailScreen.TryGetComponent(out EmailChoices emailManager);
         emailManager.OpenResponse(email, isResponse);
+    }
+    
+    private void OpenGenericResponse(SO_GenericResponse response)
+    {
+        _genericScreen.SetActive(true);
+        _genericScreen.TryGetComponent(out GenericChoices genericManager);
+        genericManager.OpenResponse(response);
     }
 
     private void ShowThink(string obj)

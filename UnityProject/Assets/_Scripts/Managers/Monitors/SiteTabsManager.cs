@@ -7,7 +7,7 @@ public class SiteTabsManager : MonoBehaviour
 {
     [SerializeField] List<SO_Software> _softwares;
     [SerializeField] List<Button> _buttons;
-    [SerializeField] private GridObjectActiveHandler _petroButton;
+    [SerializeField] private GridObjectActiveHandler _btnToOpen;
     
 
     private Dictionary<Button, SiteInfoHolder> _softwareHandler = new Dictionary<Button, SiteInfoHolder>();
@@ -15,6 +15,7 @@ public class SiteTabsManager : MonoBehaviour
     private GameObject _lastSite;
 
     private readonly string _siteUrl = "petrocais.com";
+    private readonly string _n2Day1Pdf = "BaseConhecimentoCafe.pdf";
 
     public void Init(MonitorManager monitor)
     {
@@ -68,9 +69,9 @@ public class SiteTabsManager : MonoBehaviour
 
     public void ActiveSite(string siteName)
     {
-        if(siteName != _siteUrl) return;
+        if(siteName != _siteUrl || siteName == _n2Day1Pdf) return;
         
-        _petroButton.Active();
+        _btnToOpen.Active();
     }
 
     public void CloseSites()

@@ -1,0 +1,20 @@
+using System;
+using System.Collections.Generic;
+using NaughtyAttributes;
+using UnityEngine;
+
+[CreateAssetMenu(fileName ="Generic Response", menuName ="Scriptable Objcts/Response/Generic Response")]
+public class SO_GenericResponse : ScriptableObject
+{
+    [BoxGroup("Response Area"), ResizableTextArea] public string QuestionText;
+    [BoxGroup("Response Area"), ResizableTextArea] public string ConfirmQuestionText;
+    [BoxGroup("Response Area"), ResizableTextArea] public string WrongFeedbackQuestionText;
+    [BoxGroup("Response Area")] public List<GenericResponse> Responses;
+}
+
+[Serializable]
+public class GenericResponse
+{
+    [ResizableTextArea] public string TextOption;
+    public bool IsCorrectAnswer;
+}

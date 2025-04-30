@@ -3,7 +3,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TicketsManager : MonoBehaviour, INeedOpenCanvas
+public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 {
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _sendTicketBtn;
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _newTicketBtn;
@@ -22,11 +22,15 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Screens")] [SerializeField] private GameObject _playbooksCanvas;
     
     [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _emailLoreToOpen = "Lore 2";  
-    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _emailLoreToUnlockSend = "Lore 4";
+    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _unlockSendN1 = "Lore 4";
+    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _unlockSendN2 = "Lore 9";
+
 
     [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Ticket _correctTicketSO;
     [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _firstWrongEmailToSend;
     [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _ticketAdjusteEmailToSend;
+
+    private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
 
 
     private const string _onTryCreateTicket = "Não preciso fazer isso agora.";
@@ -34,15 +38,30 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
 
     
     [SerializeField] private SoftwareState _currentState = SoftwareState.Blocked;
+    [SerializeField] private Character _currentCharacter = Character.None;
+
     private bool _ticketCreatedWrongOneTime = false;
     private Ticket _correctTicket;
+    private Button _lastButtonClicked;
 
     private Dictionary<Button, GameObject> _screens = new Dictionary<Button, GameObject>();
 
     private void Start()
     {
-        //problemas com o siem aqui, provavelmente é por causa disso.
+
+        _stateHandlers = new();
+
+        IStateSetup setup = _currentCharacter switch
+        {
+            Character.Tiago_Day_One => new TiagoTicketDayOneStateSetup(),
+            Character.Rafael_Day_One => new RafaelTicketDayOneStateSetup(),
+            _ => null
+        };
+
+        setup?.RegisterStates(_stateHandlers);
+
         _correctTicket = new Ticket(_correctTicketSO);
+        _lastButtonClicked = null;
 
         if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
         if(!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
@@ -82,6 +101,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
         {
             if(screen.Key == button)
             {
+                _lastButtonClicked = button;
                 GameObject screenObj = screen.Value;
                 screenObj.TryGetComponent(out TicketScreen ticketUpdater);
                 ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _listOfTickets, _correctTicket, _currentState);
@@ -94,26 +114,22 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
 
     private void HandleCurrentState()
     {
-        switch(_currentState)
+        if (_stateHandlers.TryGetValue((_currentCharacter, _currentState), out var handler))
         {
-            case SoftwareState.Blocked:
-                EventManager.FirstTimeOpenSoftware();
-                break;
-
-            case SoftwareState.FirstTimeOpened: 
-                _blockedCanvas.SetActive(false);
-                EventManager.SpawnEmail(EmailType.SPAM);
-                EventManager.SpawnEmail(EmailType.LORE);
-                _currentState = SoftwareState.Empty;
-                break;
+            handler.Handle(this);
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum handler para este estado/personagem.");
         }
     }
 
     private void UpdateState(string emailIndex)
     {
+
         if(emailIndex == _emailLoreToOpen)
             _currentState = SoftwareState.FirstTimeOpened;
-        else if(emailIndex == _emailLoreToUnlockSend)
+        else if(emailIndex == _unlockSendN1 || emailIndex == _unlockSendN2)
         {
             _currentState = SoftwareState.FullAccess;
             _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
@@ -165,11 +181,22 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas
     public void OpenCanvas()
     {
         HandleCurrentState();
+        OpenScreen(_lastButtonClicked);
         _mainCanvas.SetActive(true);
     }
 
     public void CloseCanvas()
     {
         _mainCanvas.SetActive(false);
+    }
+
+    public void ChangeBlockedCanvasStatus(bool status)
+    {
+        _blockedCanvas.SetActive(status);
+    }
+
+    public void ChangeSoftwareState(SoftwareState state)
+    {
+        _currentState = state;
     }
 }
