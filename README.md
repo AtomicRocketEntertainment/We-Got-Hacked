@@ -1,7 +1,6 @@
 ![logo-we-got-hacked](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-we-got-hacked.png)
-![Petrolinhos](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrolinhos.png)
-
 We Got Hacked é um jogo de simulação e treinamento desenvolvido pela [Atomic Rocket Entertainment](https://br.linkedin.com/company/atomic-rocket-entertainment), financiado pela [RNP](https://www.rnp.br/) (Rede Nacional de Ensino e Pesquisa). Voltado para estudantes e profissionais de cibersegurança, o jogo é dividido em três capítulos que simulam situações reais e desafiadoras da área, como ataques hackers, vazamentos de dados e outros incidentes críticos. O objetivo é proporcionar uma experiência prática e imersiva, ajudando os jogadores a desenvolverem habilidades essenciais para lidar com ameaças digitais.
+![Petrolinhos](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrolinhos.png)
 
 Objetivo do Projeto
 -------
@@ -10,6 +9,7 @@ O objetivo de We Got Hacked é gamificar cenários comuns de cibersegurança, of
 Conheça as Entidades 
 -------
 ![Entidades](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/EntitiesNew.png)
+
 **C.A.F.E** é uma empresa do setor de cibersegurança fundada em 2015 por um pequeno grupo de ex-engenheiros da área. Mesmo nos primeiros anos de atuação, tornou-se referência em segurança corporativa, com foco na proteção de grandes empresas, indústrias e corporações altamente visadas.
 
 **PetroCais** é uma empresa do setor petrolífero fundada em 1982 por Pedro Corpellius, um visionário patriota determinado a explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. Sua criação foi motivada pelo desejo de fortalecer a indústria energética nacional e tornar o país autossuficiente em suas demandas energéticas.
@@ -32,6 +32,7 @@ Conheça os Personagens
 Narrativa
 -------
 ![Storyboards](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/StoryboardsNew.png)
+
 A história do jogo será contada por meio de quadrinhos, que aparecerão em momentos-chave para intensificar o impacto narrativo. Cada quadrinho será composto por uma imagem estática com uma legenda, e há a possibilidade de incluir narração em voz futuramente.
 
 O jogo também contará com momentos de múltipla escolha, nos quais o jogador tomará decisões que influenciarão diretamente o desenrolar da trama. Essas escolhas afetarão não apenas a narrativa, mas também o sistema de reputação do jogo, representado por uma bolsa de valores que reflete o desempenho da C.A.F.E. em comparação com suas concorrentes no mercado.
@@ -56,8 +57,7 @@ Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comument
 
 Estado de Desenvolvimento
 -------
-![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC1.png?raw=true)
-![personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC2.png?raw=true)
+![desktop-soc](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC%203.0.png)
 We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (abril) diversos aspectos do jogo já foram definidos e estão em fase de implementação. O jogo será dividido em três dias (três cenários). O primeiro cenário está atualmente quase concluído, e a equipe já iniciou o desenvolvimento do segundo incidente.(Atualizações em breve). 
 
 Equipe 
