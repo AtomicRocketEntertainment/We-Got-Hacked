@@ -1,5 +1,5 @@
 # We Got Hacked
-![logo we-got-hacked](https://github.com/user-attachments/assets/bb6f00c3-9ca0-4741-994d-ca8dd04ba5a2)
+![logo we-got-hacked](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Petrolinhos.png)
 
 We Got Hacked é um jogo de simulação e treinamento desenvolvido pela [Atomic Rocket Entertainment](https://br.linkedin.com/company/atomic-rocket-entertainment), financiado pela [RNP](https://www.rnp.br/) (Rede Nacional de Ensino e Pesquisa). Voltado para estudantes e profissionais de cibersegurança, o jogo é dividido em três capítulos que simulam situações reais e desafiadoras da área, como ataques hackers, vazamentos de dados e outros incidentes críticos. O objetivo é proporcionar uma experiência prática e imersiva, ajudando os jogadores a desenvolverem habilidades essenciais para lidar com ameaças digitais.
 
@@ -35,6 +35,7 @@ Narrativa
 A história do jogo será contada por meio de quadrinhos, que aparecerão em momentos-chave para intensificar o impacto narrativo. Cada quadrinho será composto por uma imagem estática com uma legenda, e há a possibilidade de incluir narração em voz futuramente.
 
 O jogo também contará com momentos de múltipla escolha, nos quais o jogador tomará decisões que influenciarão diretamente o desenrolar da trama. Essas escolhas afetarão não apenas a narrativa, mas também o sistema de reputação do jogo, representado por uma bolsa de valores que reflete o desempenho da C.A.F.E. em comparação com suas concorrentes no mercado.
+![SOC-escolha](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Decision.png)
 
 Primeiro Cenario (Pichação Ativista)
 -------
