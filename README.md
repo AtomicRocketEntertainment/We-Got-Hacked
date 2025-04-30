@@ -48,7 +48,7 @@ Plataformas e Ferramentas
 
 Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comumente utilizadas no dia a dia em uma empresa de cibersegurança. A baixo, algumas ferramentas que estão presentes no jogo. 
 
-**J-Mail:** software de leitura e envio de e-mails. O jogador receberá diversas mensagens ao longo da história do jogo, contendo escolhas importantes de respostas, que influenciarão o desenrolar da narrativa.
+**Anexus Mail:** software de leitura e envio de e-mails. O jogador receberá diversas mensagens ao longo da história do jogo, contendo escolhas importantes de respostas, que influenciarão o desenrolar da narrativa.
 
 **Tick Task:** software de gerenciamento de tarefas em incidentes, que orienta o jogador passo a passo sobre como lidar com cada situação de ataque hacker. Funciona de maneira semelhante a um quadro de missões.
 
