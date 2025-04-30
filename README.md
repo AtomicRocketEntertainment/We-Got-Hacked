@@ -35,6 +35,7 @@ Narrativa
 A história do jogo será contada por meio de quadrinhos, que aparecerão em momentos-chave para intensificar o impacto narrativo. Cada quadrinho será composto por uma imagem estática com uma legenda, e há a possibilidade de incluir narração em voz futuramente.
 
 O jogo também contará com momentos de múltipla escolha, nos quais o jogador tomará decisões que influenciarão diretamente o desenrolar da trama. Essas escolhas afetarão não apenas a narrativa, mas também o sistema de reputação do jogo, representado por uma bolsa de valores que reflete o desempenho da C.A.F.E. em comparação com suas concorrentes no mercado.
+
 ![SOC-escolha](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Decision.png)
 
 Primeiro Cenario (Pichação Ativista)
