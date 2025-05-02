@@ -15,7 +15,7 @@ Conheça as Entidades
 
 **PetroCais** é uma empresa do setor petrolífero fundada em 1982 por Pedro Corpellius, um visionário patriota determinado a explorar, produzir, refinar e comercializar petróleo e seus derivados no Brasil. Sua criação foi motivada pelo desejo de fortalecer a indústria energética nacional e tornar o país autossuficiente em suas demandas energéticas.
 
-**PetroKiller** surgiu em 2017 como um pequeno servidor hacker criado por um grupo de jovens ativistas. No início, realizavam ataques simples, como pichações em sites e denúncias ambientais. Com o tempo, o grupo passou a atrair membros mais experientes, que contribuíram com o desenvolvimento de malwares personalizados e a exploração de vulnerabilidades em sistemas corporativos do setor petrolífero.
+**PetroKillers** surgiu em 2017 como um pequeno servidor hacker criado por um grupo de jovens ativistas. No início, realizavam ataques simples, como pichações em sites e denúncias ambientais. Com o tempo, o grupo passou a atrair membros mais experientes, que contribuíram com o desenvolvimento de malwares personalizados e a exploração de vulnerabilidades em sistemas corporativos do setor petrolífero.
 
 Conheça os Personagens
 -------
@@ -42,7 +42,7 @@ O jogo também contará com momentos de múltipla escolha, nos quais o jogador t
 
 Primeiro Cenario (Pichação Ativista)
 -------
-O jogo será dividido em três dias, cada um abordando um incidente comum enfrentado por empresas de cibersegurança. No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKiller no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
+O jogo será dividido em três dias, cada um abordando um incidente comum enfrentado por empresas de cibersegurança. No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKillers no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
 
 Plataformas e Ferramentas
 -------
