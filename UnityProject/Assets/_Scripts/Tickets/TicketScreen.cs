@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
@@ -26,7 +27,11 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _dataLeakScreen;
 
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private Transform _objectiveList;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private Button _showCurrentInfoBtn;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private GameObject _currentScreenPopUp;
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private GameObject _objectivePrefab;
+
+    private readonly string CANT_OPEN_POPUP = "Ainda não tenho ticket para verificar";
 
     private List<GameObject> _objectivesActive = new List<GameObject>();
     private List<GameObject> _playbookScreens => new List<GameObject> 
@@ -44,11 +49,13 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private string _geolocationSelect = "";
     private string _typeSelect = "";
     private string _dateSelect = "";
+    private bool _canOpenPopUp = false;
 
     public ScreenType CurrentType => _screenType;
 
     void OnEnable()
     {
+        _showCurrentInfoBtn?.onClick.AddListener(ShowCurrentPopUp);
         _playbookDp?.onValueChanged.AddListener(UpdatePlaybookSelected);
         _idDp?.onValueChanged.AddListener(UpdateIdSelected);
         _ipODp?.onValueChanged.AddListener(UpdateIpOSelected);
@@ -58,8 +65,10 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp?.onValueChanged.AddListener(UpdateDateSelected);
     }
 
+
     void OnDisable()
     {
+        _showCurrentInfoBtn?.onClick.RemoveListener(ShowCurrentPopUp);
         _playbookDp?.onValueChanged.RemoveListener(UpdatePlaybookSelected);
         _idDp?.onValueChanged.RemoveListener(UpdateIdSelected);
         _ipODp?.onValueChanged.RemoveListener(UpdateIpOSelected);
@@ -135,8 +144,13 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             idOptions.Add(ticket.ID);
             ipOOptions.Add(ticket.IPOrigem);
             ipDOptions.Add(ticket.IPDestiny);
-            geolocationOptions.Add(ticket.Location);
-            typeOptions.Add(ticket.Dispositive.Type.ToString());
+            
+            if(!typeOptions.Contains(ticket.Location))
+                geolocationOptions.Add(ticket.Location);
+            
+            if(!typeOptions.Contains(ticket.Dispositive.Type.ToString()))
+                typeOptions.Add(ticket.Dispositive.Type.ToString());
+            
             dateOptions.Add($"{ticket.DateDay} - {ticket.DateHour}");
         }
 
@@ -152,9 +166,24 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateCurrentTicket(Ticket currentTicket)
     {
         int completedObjectives = currentTicket.GetObjectivesCompletedQuantity();
-        if(completedObjectives == 0) return;
+        if(completedObjectives == 0) 
+        {
+            _canOpenPopUp = false;
+            return;
+        }
+
+        _currentScreenPopUp.TryGetComponent(out TicketInfoPopUpScreen popUp);
+        _canOpenPopUp = true;
+        popUp.UpdateInfo(currentTicket);
 
         CheckObjectivesPanel(currentTicket, completedObjectives);
+    }
+    private void ShowCurrentPopUp()
+    {
+        if(_canOpenPopUp)
+            _currentScreenPopUp.SetActive(true);
+        else
+            EventManager.MakePlayerThink(CANT_OPEN_POPUP);
     }
 
     private void CheckObjectivesPanel(Ticket currentTicket, int index)
@@ -211,13 +240,13 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         bool riskToggle = _RisktoggleGroup.ActiveToggles().Any();
         bool siteToggle = GetSelectedToggles().Count > 0;
 
-        return _playbookDp.value != 0 &&
-            _idDp.value != 0 &&
-            _ipODp.value != 0 &&
-            _ipDDp.value != 0 &&
-            _geolocationDp.value != 0 &&
-            _typeDp.value != 0 &&
-            _dateDp.value != 0 &&
+        return _playbookSelect != "" &&
+            _idSelect != "" &&
+            _ipOSelect != "" &&
+            _ipDSelect != "" &&
+            _geolocationSelect != "" &&
+            _typeSelect != "" &&
+            _dateSelect != "" &&
             riskToggle &&
             siteToggle;
     }

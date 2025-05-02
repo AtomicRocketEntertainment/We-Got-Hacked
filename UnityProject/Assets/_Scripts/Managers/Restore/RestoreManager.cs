@@ -63,6 +63,9 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     private void ChangeState(RestoreState state)
     {
         _currentState = state;
+
+        if(_currentState != RestoreState.OnOff)
+            UpdateTurnToggles(false);
     }
 
     private void OpenScreen(Button key)
@@ -169,12 +172,17 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
         if(emailIndex == "Lore 11" || emailIndex == "Lore 15")
         {
             _currentState = RestoreState.OnOff;
-            foreach(OnOffLoggerToggle toggle in _controlToggles)
-                toggle.ChangeInteractable(true);
+            UpdateTurnToggles(true);
         }
 
         if(emailIndex == "Lore 14")
             _currentState = RestoreState.Backuper;
+    }
+
+    private void UpdateTurnToggles(bool status)
+    {
+        foreach(OnOffLoggerToggle toggle in _controlToggles)
+            toggle.ChangeInteractable(status);
     }
 
     public void OpenCanvas()

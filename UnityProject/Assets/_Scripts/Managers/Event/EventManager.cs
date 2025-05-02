@@ -5,6 +5,7 @@ using UnityEngine;
 public static class EventManager
 {
     //Email Related
+    public static event Action OnPlayerCantWriteEmail;
     public static event Action<GameObject> OnOpenEmail;
     public static event Action OnTryWriteEmail;
     public static event Action<Email> OnWriteEmail;
@@ -43,6 +44,19 @@ public static class EventManager
 
     //Question Related
     public static event Action<SO_GenericResponse> OnGenericResponseNeeded;
+
+
+    public static void BlockPlayerWriteEmail()
+    {
+        if (OnPlayerCantWriteEmail != null)
+        {
+            OnPlayerCantWriteEmail();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerCantWriteEmail event.");
+        }
+    }
 
     public static void OpenEmail(GameObject emailObject)
     {

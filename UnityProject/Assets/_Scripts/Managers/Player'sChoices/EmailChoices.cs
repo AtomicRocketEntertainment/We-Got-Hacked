@@ -114,6 +114,8 @@ public class EmailChoices : MonoBehaviour
 
     private void ResponseFeedbackUpdate()
     {
+        EventManager.BlockPlayerWriteEmail();
+        
         switch(_currentResponseState)
         {
             case HistoryPartState.Part_One:
