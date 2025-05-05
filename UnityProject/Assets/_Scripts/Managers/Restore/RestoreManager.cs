@@ -28,8 +28,6 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Spawn Dependencies")] [SerializeField] private GameObject _loggerPrefab;
     [BoxGroup("Spawn Dependencies")] [SerializeField] private GameObject _backupPrefab;
 
-    [BoxGroup("Responses Dependencies")] [SerializeField] private SO_GenericResponse _loggerResponse;
-
     private RestoreState _currentState = RestoreState.None;
     private Dictionary<Button, GameObject> _restoreScreens;
     
@@ -55,6 +53,7 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
         EventManager.OnOpenLog += ShowCmd;
         EventManager.OnOpenBackup += ShowConfirmBackup;
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
+        EventManager.OnGenericResponseIsMaded += UpdateState;
         
         foreach(var key in _restoreScreens)
             key.Key.onClick.AddListener(() => OpenScreen(key.Key));
@@ -83,6 +82,7 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
         EventManager.OnOpenLog -= ShowCmd;
         EventManager.OnOpenBackup += ShowConfirmBackup;
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
+        EventManager.OnGenericResponseIsMaded -= UpdateState;
 
         _confirmBackupBtn.onClick.RemoveAllListeners();
         
@@ -130,7 +130,7 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
             _cmdLoggerText.text += $"{log.Log}\n\n";
             
             if(log.IsCorrect && _currentState == RestoreState.Logger)
-                EventManager.OpenGenericResponse(_loggerResponse);
+                EventManager.OpenGenericResponse();
         }
     }
 
@@ -177,6 +177,9 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
 
         if(emailIndex == "Lore 14")
             _currentState = RestoreState.Backuper;
+
+        if(emailIndex == "Response 1")
+            _currentState = RestoreState.None;
     }
 
     private void UpdateTurnToggles(bool status)
@@ -193,6 +196,14 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     public void CloseCanvas()
     {
         _mainCanvas.SetActive(false);
+    }
+
+    public void CloseCMD()
+    {
+        _cmdScreen.SetActive(false);
+        
+        if(_currentState == RestoreState.Logger)
+            EventManager.CloseResponseScreen();
     }
 }
 

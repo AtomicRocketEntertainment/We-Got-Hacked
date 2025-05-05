@@ -155,7 +155,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
         if(!ticket.CheckInfo(_correctTicket))
         {
-            EventManager.CreateEspecificEmail(_firstWrongEmailToSend, shouldAdvaneHistory: false);
+            EventManager.CreateEspecificEmail(_firstWrongEmailToSend, shouldAdvaneHistory: false, spawnOnTime: false);
             _ticketCreatedWrongOneTime = true;
             EventManager.WrongChoice();
             return;
@@ -163,9 +163,11 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         
         if(ticket.CheckInfo(_correctTicket) && _ticketCreatedWrongOneTime)
         {
-            EventManager.CreateEspecificEmail(_ticketAdjusteEmailToSend, shouldAdvaneHistory: true);
+            EventManager.CreateEspecificEmail(_ticketAdjusteEmailToSend, shouldAdvaneHistory: true, spawnOnTime: false);
             UpdateTicketProgress();
+            ticket.ResetNewTicketInfos();
             EventManager.CorrectChoice();
+            _currentState = SoftwareState.Opened;
             return;
         }
         
@@ -173,7 +175,9 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         {
             EventManager.SpawnEmail(EmailType.LORE);
             UpdateTicketProgress();
+            ticket.ResetNewTicketInfos();
             EventManager.CorrectChoice();
+            _currentState = SoftwareState.Opened;
             return;
         }
     }

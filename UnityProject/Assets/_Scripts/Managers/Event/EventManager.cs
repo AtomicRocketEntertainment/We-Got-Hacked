@@ -14,7 +14,7 @@ public static class EventManager
     public static event Action<string> OnChangeEmailContentText;
     public static event Action<Email, bool> OnEmailResponseNeeded;
     public static event Action<EmailType> OnSpawnEmail;
-    public static event Action<SO_Email, bool> OnCreateEspecificEmail;    
+    public static event Action<SO_Email, bool, bool> OnCreateEspecificEmail;    
     public static event Action OnEmailIsAnswered;
     public static event Action OnReturnEmailContent;
 
@@ -43,7 +43,8 @@ public static class EventManager
     public static event Action<string> OnWebsiteLinkerIsOpen;
 
     //Question Related
-    public static event Action<SO_GenericResponse> OnGenericResponseNeeded;
+    public static event Action OnGenericResponseNeeded;
+    public static event Action<string> OnGenericResponseIsMaded;
 
 
     public static void BlockPlayerWriteEmail()
@@ -154,11 +155,11 @@ public static class EventManager
         }
     }
 
-    public static void CreateEspecificEmail(SO_Email email, bool shouldAdvaneHistory)
+    public static void CreateEspecificEmail(SO_Email email, bool shouldAdvaneHistory, bool spawnOnTime)
     {
         if (OnCreateEspecificEmail != null)
         {
-            OnCreateEspecificEmail(email, shouldAdvaneHistory);
+            OnCreateEspecificEmail(email, shouldAdvaneHistory, spawnOnTime);
         }
         else
         {
@@ -346,15 +347,27 @@ public static class EventManager
         }
     }
 
-    public static void OpenGenericResponse(SO_GenericResponse response)
+    public static void OpenGenericResponse()
     {
         if (OnGenericResponseNeeded != null)
         {
-            OnGenericResponseNeeded(response);
+            OnGenericResponseNeeded();
         }
         else
         {
             Debug.LogWarning("No listeners for OnGenericResponseNeeded event.");
+        }
+    }
+
+    public static void GenericResponseIsMade(string index)
+    {
+        if (OnGenericResponseIsMaded != null)
+        {
+            OnGenericResponseIsMaded(index);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnGenericResponseIsMaded event.");
         }
     }
 }

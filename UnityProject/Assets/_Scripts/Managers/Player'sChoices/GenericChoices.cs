@@ -15,6 +15,8 @@ public class GenericChoices : MonoBehaviour
     [BoxGroup("Response")] [SerializeField] private Button _confirmWrongFeedbackBtn;
     [BoxGroup("Response")] [SerializeField] private List<Button> _responsesBtn;
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
+
+
     
     private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
     private SO_GenericResponse _currentResponse = null;
@@ -77,6 +79,7 @@ public class GenericChoices : MonoBehaviour
     private void CorrectFeedbackChoices()
     {
         EventManager.CorrectChoice();
+        EventManager.GenericResponseIsMade(_currentResponse.Index);
         ResponseFeedbackUpdate();
         ReturnChoices();
         gameObject.SetActive(false);

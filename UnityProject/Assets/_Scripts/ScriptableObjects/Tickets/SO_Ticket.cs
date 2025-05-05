@@ -104,5 +104,5 @@ public class TicketLog
 
 public enum Character
 {
-    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One, Eduardo
+    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One
 }

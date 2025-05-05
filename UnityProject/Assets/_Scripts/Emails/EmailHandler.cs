@@ -57,7 +57,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnTimerIsComplete += CheckToSpawn;
 
         foreach(SO_Email email in _firstEmails) 
-            CreateSpecificEmail(email, false);
+            CreateSpecificEmail(email, false, true);
 
     }
     void OnDisable()
@@ -129,7 +129,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         StartCoroutine(SpawnEmail(email, Random.Range(2, 6)));
     }
 
-    private void CreateSpecificEmail(SO_Email emailToCreate, bool shouldAdvanceHistory)
+    private void CreateSpecificEmail(SO_Email emailToCreate, bool shouldAdvanceHistory, bool spawnOnTime)
     {
         if(shouldAdvanceHistory)
         {
@@ -137,8 +137,9 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
             UpdateLoreMechanics();
         }
         
+        int seconds = spawnOnTime ? 0 : Random.Range(2, 6);
         Email email = new Email(emailToCreate);
-        StartCoroutine(SpawnEmail(email, Random.Range(2, 6)));
+        StartCoroutine(SpawnEmail(email, seconds));
     }
 
     IEnumerator SpawnEmail(Email email, int seconds)

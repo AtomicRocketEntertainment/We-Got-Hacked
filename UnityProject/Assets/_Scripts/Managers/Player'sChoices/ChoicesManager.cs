@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
@@ -11,13 +10,17 @@ public class ChoicesManager : MonoBehaviour
     [BoxGroup("Screens")] [SerializeField] private GameObject _thinkScreen;
     [BoxGroup("Email")] [SerializeField] private List<SO_Email> _emailsToWrite;
 
+    [BoxGroup("Responses Dependencies")] [SerializeField] private List<SO_GenericResponse> _genericResponses;
+
     private const string PLAYER_DONT_HAVE_EMAIL_TO_WRITE = "Não tenho nada para escrever";
     private int _currentEmailToWrite;
+    private int _currentGenericResponse;
     private Coroutine _closeCrt;
 
     void OnEnable()
     {
         _currentEmailToWrite = 0;
+        _currentGenericResponse = 0;
         _emailScreen.SetActive(false);
         EventManager.OnEmailIsWriten += UpdateEmailToWrite;
         EventManager.OnEmailResponseNeeded += OpenEmailResponse;
@@ -25,6 +28,7 @@ public class ChoicesManager : MonoBehaviour
         EventManager.OnTryWriteEmail += OpenWriteEmail;
         EventManager.OnPlayerNeedToThink += ShowThink;
         EventManager.OnCloseResponseScreen += CloseResponse;
+        EventManager.OnGenericResponseIsMaded += UpdateGenericResponse;
     }
 
 
@@ -36,6 +40,12 @@ public class ChoicesManager : MonoBehaviour
         EventManager.OnTryWriteEmail -= OpenWriteEmail;
         EventManager.OnPlayerNeedToThink -= ShowThink;
         EventManager.OnCloseResponseScreen -= CloseResponse;
+        EventManager.OnGenericResponseIsMaded -= UpdateGenericResponse;
+    }
+
+    private void UpdateGenericResponse(string index)
+    {
+        _currentGenericResponse++;
     }
 
     private void UpdateEmailToWrite()
@@ -63,11 +73,11 @@ public class ChoicesManager : MonoBehaviour
         emailManager.OpenResponse(email, isResponse);
     }
     
-    private void OpenGenericResponse(SO_GenericResponse response)
+    private void OpenGenericResponse()
     {
         _genericScreen.SetActive(true);
         _genericScreen.TryGetComponent(out GenericChoices genericManager);
-        genericManager.OpenResponse(response);
+        genericManager.OpenResponse(_genericResponses[_currentGenericResponse]);
     }
 
     private void ShowThink(string obj)

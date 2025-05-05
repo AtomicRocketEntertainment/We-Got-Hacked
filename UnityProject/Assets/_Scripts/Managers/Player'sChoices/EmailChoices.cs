@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EmailChoices : MonoBehaviour
+public class EmailChoices : MonoBehaviour, IEmailContext
 {
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Screens") ] [SerializeField] private GameObject _responseContainer;
     [BoxGroup("Response")] [SerializeField] private GameObject _firstResponseEmailChoices;
@@ -16,12 +16,27 @@ public class EmailChoices : MonoBehaviour
     [BoxGroup("Response")] [SerializeField] private List<Button> _responsesBtn;
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
 
-    private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
+    [SerializeField] private HistoryPartState _currentState = HistoryPartState.Part_One;
+    [SerializeField] private Character _currentCharacter = Character.None;
+
+    
+    private Dictionary<(Character, HistoryPartState), IEmailStateHandler> _stateHandlers;
     private Email _currentEmailToRespond = null;
     private bool _isResponse = false;
 
     private void OnEnable()
     {
+        _stateHandlers = new();
+
+        IEmailStateSetup setup = _currentCharacter switch
+        {
+            Character.Tiago_Day_One => new TiagoEmailDayOneStateSetup(),
+            Character.Rafael_Day_One => new RafaelEmailDayOneStateSetup(),
+            Character.Raquel_Day_One => new RaquelEmailDayOneStateSetup(),
+            _ => null
+        };
+
+        setup?.RegisterStates(_stateHandlers);
         _rewriteResponseEmailBtn.onClick.AddListener(ReturnChoiceWithUpdate);
         _confirmWrongFeedbackBtn.onClick.AddListener(ReturnChoiceWithUpdate);
     } 
@@ -116,24 +131,20 @@ public class EmailChoices : MonoBehaviour
     {
         EventManager.BlockPlayerWriteEmail();
         
-        switch(_currentResponseState)
+        if (_stateHandlers.TryGetValue((_currentCharacter, _currentState), out var handler))
         {
-            case HistoryPartState.Part_One:
-                EventManager.SpawnEmail(EmailType.SPAM);
-                EventManager.SpawnEmail(EmailType.NEWS);
-                break;
-            case HistoryPartState.Part_Two:
-                EventManager.SpawnEmail(EmailType.SPAM);
-                EventManager.SpawnEmail(EmailType.NEWS);
-                break;
-            case HistoryPartState.Part_Three:
-                break;
+            handler.Handle(this);
         }
-
-
-        _currentResponseState++;
+        else
+        {
+            Debug.LogWarning("Nenhum handler para este estado/personagem.");
+        }
     }
 
+    public void ChangeSoftwareState(HistoryPartState state)
+    {
+        _currentState = state;
+    }
 }
 
 public enum HistoryPartState

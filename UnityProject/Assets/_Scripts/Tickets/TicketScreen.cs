@@ -289,6 +289,35 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             isCorrectSiteSelected;
     }
 
+    public void ResetNewTicketInfos()
+    {
+        _playbookSelect = "";
+        _idSelect = "";
+        _ipOSelect = "";
+        _ipDSelect = "";
+        _geolocationSelect = "";
+        _typeSelect = "";
+        _dateSelect = "";
+
+        _playbookDp.ClearOptions();
+        _idDp.ClearOptions();
+        _ipODp.ClearOptions();
+        _ipDDp.ClearOptions();
+        _geolocationDp.ClearOptions();
+        _typeDp.ClearOptions();
+        _dateDp.ClearOptions();
+        
+        foreach (var toggle in _RisktoggleGroup.GetComponentsInChildren<Toggle>())
+            toggle.isOn = false;
+
+        foreach (Transform child in _SitetoggleGroup)
+        {
+            Toggle toggle = child.GetComponent<Toggle>();
+            if (toggle != null)
+                toggle.isOn = false;
+        }
+    }
+
     public List<Toggle> GetSelectedToggles()
     {
         List<Toggle> selected = new List<Toggle>();
