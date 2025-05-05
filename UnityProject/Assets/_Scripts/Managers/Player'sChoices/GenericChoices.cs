@@ -33,6 +33,8 @@ public class GenericChoices : MonoBehaviour
 
     public void OpenResponse(SO_GenericResponse choices)
     {
+        if(choices == null) return;
+        
         _currentResponse = choices;
         _responseQuestion.text = _currentResponse.QuestionText;
 
