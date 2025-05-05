@@ -91,7 +91,10 @@ public class ChoicesManager : MonoBehaviour
     private void CloseResponse()
     {
         _emailScreen.TryGetComponent(out EmailChoices emailManager);
+        _genericScreen.TryGetComponent(out GenericChoices genericManager);
+        genericManager.CloseResponse();
         emailManager.CloseResponse();
+        _genericScreen.SetActive(false);
         _emailScreen.SetActive(false);
         _thinkScreen.SetActive(false);
         //include others when we'll have

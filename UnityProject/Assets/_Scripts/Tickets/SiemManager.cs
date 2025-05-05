@@ -86,20 +86,13 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     private void HandleCurrentState()
     {
-        switch(_currentState)
+        if (_stateHandlers.TryGetValue((_currentCharacter, _currentState), out var handler))
         {
-            case SoftwareState.Blocked:
-                EventManager.FirstTimeOpenSoftware();
-                break;
-
-            case SoftwareState.FirstTimeOpened: 
-                _blockedCanvas.SetActive(false);
-                EventManager.SpawnEmail(EmailType.SPAM);
-                EventManager.SpawnEmail(EmailType.LORE);
-                EventManager.SpawnEmail(EmailType.NEWS);
-                EventManager.SpawnEmail(EmailType.SPAM);
-                _currentState = SoftwareState.Opened;
-                break;
+            handler.Handle(this);
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum handler para este estado/personagem.");
         }
     }
 

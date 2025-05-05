@@ -53,6 +53,11 @@ public class GenericChoices : MonoBehaviour
         _firstResponseEmailChoices.SetActive(true);
     }
 
+    public void CloseResponse()
+    {
+        ReturnChoices();
+    }
+
     private void RespondQuestion(bool isCorrectAnswer, string confirmFeedback, string wrongFeedbackQuestionText)
     {
         _firstResponseEmailChoices.SetActive(false);
