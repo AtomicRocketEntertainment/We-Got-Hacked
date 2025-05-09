@@ -13,6 +13,5 @@ public class SO_Frame : ScriptableObject
 [Serializable]
 public struct FrameTextInfo
 {
-    public bool HasText;
     [ResizableTextArea] public string Text;
 }

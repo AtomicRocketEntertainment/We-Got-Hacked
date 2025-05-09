@@ -46,11 +46,17 @@ public class StoryboardManager : MonoBehaviour
             StartCoroutine(ShowFrames(GetContent()));
         }
         else
-        {
-            gameObject.SetActive(false);
-        }
-
+            EndCutscene(currentContent.EndFrame);
     }   
+
+    private void EndCutscene(bool isEndFrame)
+    {
+        if(isEndFrame)
+            EventManager.StoryBoardIsEnded();
+        else
+            gameObject.SetActive(false);
+
+    }
 
     private CutsceneContent GetContent()
     {

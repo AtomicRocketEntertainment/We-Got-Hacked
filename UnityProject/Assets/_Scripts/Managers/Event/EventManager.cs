@@ -28,6 +28,8 @@ public static class EventManager
 
 
     //Global Gaming Mechanic
+    public static event Action OnEndStoryBoard;
+    public static event Action OnStoryBoardNeeded;
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
     public static event Action OnCloseResponseScreen;
@@ -188,6 +190,30 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnReturnEmailContent event.");
+        }
+    }
+
+    public static void StoryBoardIsEnded()
+    {
+        if (OnEndStoryBoard != null)
+        {
+            OnEndStoryBoard();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnEndStoryBoard event.");
+        }
+    }
+
+    public static void ShowStoryBoard()
+    {
+        if (OnStoryBoardNeeded != null)
+        {
+            OnStoryBoardNeeded();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnStoryBoardNeeded event.");
         }
     }
 

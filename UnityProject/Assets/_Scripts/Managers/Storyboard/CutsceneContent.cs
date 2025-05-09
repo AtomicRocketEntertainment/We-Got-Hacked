@@ -20,4 +20,5 @@ public class CutsceneContent : MonoBehaviour
 
     public int FramesQuantity => _frames.Count;
     public bool HaveFrameToShow => _currentFrameIndex != _frames.Count;
+    public bool EndFrame => _frames[_currentFrameIndex - 1].IsLastFrame;
 }
