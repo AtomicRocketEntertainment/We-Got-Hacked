@@ -4,5 +4,6 @@ public class Day_One_EmailFirstChoiceResponse_Tiago : IEmailStateHandler
     {
         EventManager.SpawnEmail(EmailType.SPAM);
         EventManager.SpawnEmail(EmailType.NEWS);
+        context.ChangeSoftwareState(HistoryPartState.Part_Two);
     }
 }

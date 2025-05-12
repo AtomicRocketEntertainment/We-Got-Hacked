@@ -78,7 +78,9 @@ public class Ticket
             _objectives[_currentObjective].ShouldShow = true;
 
 
-        if(_currentObjective > _objectives.Count)
+        if(_currentObjective >= _objectives.Count)
             _currentObjective = _objectives.Count;
     }
+
+    public bool IsCompleted => _currentObjective == _objectives.Count && _objectives[_currentObjective - 1].IsCompleted;
 }

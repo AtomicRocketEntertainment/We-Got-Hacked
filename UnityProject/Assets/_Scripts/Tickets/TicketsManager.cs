@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -6,10 +7,11 @@ using UnityEngine.UI;
 public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 {
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _sendTicketBtn;
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _completeTicket;   
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _newTicketBtn;
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _currentTicketBtn;
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _doneTicketBtn;
-    [BoxGroup("UI Dependencies")] [SerializeField] private Button _playbookBtn;   
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _playbookBtn;  
 
     [BoxGroup("Other Dependencies")] [SerializeField] private SO_TicketList _listOfTickets;
 
@@ -50,6 +52,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     {
 
         _stateHandlers = new();
+        _completeTicket.interactable = false;
 
         IStateSetup setup = _currentCharacter switch
         {
@@ -68,6 +71,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         if(!_screens.ContainsKey(_doneTicketBtn)) _screens.Add(_doneTicketBtn, _doneTicketCanvas);
         if(!_screens.ContainsKey(_playbookBtn)) _screens.Add(_playbookBtn, _playbooksCanvas);
 
+        _completeTicket.onClick.AddListener(EndDay);
         _sendTicketBtn.onClick.AddListener(TrySendTicket);
         _newTicketBtn.onClick.AddListener(() => OpenScreen(_newTicketBtn));
         _currentTicketBtn.onClick.AddListener(() => OpenScreen(_currentTicketBtn));
@@ -82,17 +86,26 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private void UpdateTicketProgress()
     {
         _correctTicket.ObjectiveCompleted();
+
+        if(_correctTicket.IsCompleted)
+            _completeTicket.interactable = true;
     }
 
     void OnDisable()
     {
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
         EventManager.OnCompletedTicketObjective -= UpdateTicketProgress;
+        _completeTicket.onClick.RemoveListener(EndDay);
         _sendTicketBtn.onClick.RemoveListener(TrySendTicket);
         _newTicketBtn.onClick.RemoveAllListeners();
         _currentTicketBtn.onClick.RemoveAllListeners();
         _doneTicketBtn.onClick.RemoveAllListeners();
         _playbookBtn.onClick.RemoveAllListeners();
+    }
+
+    private void EndDay()
+    {
+        EventManager.ShowStoryBoard();
     }
 
     private void OpenScreen(Button button)

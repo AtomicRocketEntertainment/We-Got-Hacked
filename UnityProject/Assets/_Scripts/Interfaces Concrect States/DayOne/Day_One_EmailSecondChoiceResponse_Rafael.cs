@@ -4,5 +4,6 @@ public class Day_One_EmailSecondChoiceResponse_Rafael : IEmailStateHandler
     {
         EventManager.SpawnEmail(EmailType.SPAM);
         EventManager.SpawnEmail(EmailType.NEWS);
+        EventManager.TicketObjectiveCompleted();
     }
 }

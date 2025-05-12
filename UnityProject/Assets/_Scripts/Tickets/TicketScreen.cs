@@ -188,10 +188,12 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     private void CheckObjectivesPanel(Ticket currentTicket, int index)
     {
+        int needToShowNext = currentTicket.IsCompleted ? 0 : 1; //if ticket is completed, we dont add the next. We going to get miss reference otherwise
+
         for(int i = _objectivesActive.Count - 1; i >= 0; i--) 
             Destroy(_objectivesActive[i]);
 
-        for(int i = 0; i < index + 1; i++)
+        for(int i = 0; i < index + needToShowNext; i++)
         {
             GameObject obj = SpawnObjective();
             _objectivesActive.Add(obj);
