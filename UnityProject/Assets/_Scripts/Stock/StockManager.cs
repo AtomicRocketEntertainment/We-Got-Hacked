@@ -35,7 +35,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         for(int i = 0; i < _companys.Count; i++)
         {
             ShowGraph(_companys[i].Values, _companys[i].Color, i);
-            _companyImages[i].color = _companys[i].Color;
+            _companyImages[i].sprite = _companys[i].Icon;
             _companyNames[i].text = _companys[i].CompanyName;
         }
     }
