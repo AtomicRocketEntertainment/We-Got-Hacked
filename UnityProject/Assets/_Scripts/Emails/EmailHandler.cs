@@ -169,6 +169,9 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         _homeEmailCanvas.gameObject.SetActive(false);
         _emailCanvas.gameObject.SetActive(true);
 
+        var scroll = _emailCanvas.gameObject.GetComponentInChildren<ScrollRect>();
+        scroll.verticalNormalizedPosition = 1f;
+
         if(_emailsInstanciados.TryGetValue(email, out Email instance))
         {
             _currentEmailOpen = instance;

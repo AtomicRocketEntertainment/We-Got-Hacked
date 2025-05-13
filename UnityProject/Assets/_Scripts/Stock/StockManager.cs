@@ -63,6 +63,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         newPoint.TryGetComponent(out Image image);
         newPoint.TryGetComponent(out RectTransform rect);
         
+        image.maskable = false;
         image.sprite = _stockPoint;
         image.color = companyColor;
         rect.anchoredPosition = anchoredPosition;
@@ -147,6 +148,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         Vector2 direction = (dotPositionA - dotPositionB).normalized;
         float distance = Vector2.Distance(dotPositionA, dotPositionB);
 
+        image.maskable = false;
         image.color = companyColor;
         rect.sizeDelta = new Vector2(distance, 2.5f);
         rect.anchorMin = new Vector2(0, 0);
