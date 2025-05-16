@@ -161,10 +161,12 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
     private void CorrectChoice()
     {
         Debug.Log("Stock Manager ouviu uma escolha correta");
+        EventManager.NotifyBrowser();
     }
 
     private void WrongChoice()
     {
+        EventManager.NotifyBrowser();
         Debug.Log("Stock Manager ouviu uma escolha errada");
     }
 

@@ -8,7 +8,7 @@ public class SiteTabsManager : MonoBehaviour
     [SerializeField] List<SO_Software> _softwares;
     [SerializeField] List<Button> _buttons;
     [SerializeField] private GridObjectActiveHandler _btnToOpen;
-    
+
 
     private Dictionary<Button, SiteInfoHolder> _softwareHandler = new Dictionary<Button, SiteInfoHolder>();
     private MonitorManager _monitor;
@@ -22,7 +22,7 @@ public class SiteTabsManager : MonoBehaviour
         _monitor = monitor;
         EventManager.OnLinkIsClicked += ActiveSite;
 
-        for(int i = 0; i < _buttons.Count; i++)
+        for (int i = 0; i < _buttons.Count; i++)
         {
             int index = i;
             _buttons[index].onClick.AddListener(() => OpenSite(_buttons[index]));
@@ -30,9 +30,9 @@ public class SiteTabsManager : MonoBehaviour
             _softwareHandler.Add(_buttons[i], new SiteInfoHolder(_softwares[i], newScreen));
             newScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
             closecanvas?.CloseCanvas();
-            
 
-            if(newScreen.TryGetComponent(out EmailHandler emailHandler))
+
+            if (newScreen.TryGetComponent(out EmailHandler emailHandler))
             {
                 emailHandler.OpenCanvas();
                 _lastSite = newScreen;
@@ -45,23 +45,23 @@ public class SiteTabsManager : MonoBehaviour
         _softwareHandler.TryGetValue(button, out SiteInfoHolder newScreen);
         newScreen.InstanciedScreen.TryGetComponent(out INeedOpenCanvas openCanvas);
 
-        
-        foreach(SiteInfoHolder screen in _softwareHandler.Values)
+
+        foreach (SiteInfoHolder screen in _softwareHandler.Values)
         {
             screen.InstanciedScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
             closecanvas?.CloseCanvas();
         }
-        
-        if(newScreen != null)
+
+        if (newScreen != null)
         {
             openCanvas.OpenCanvas();
             _monitor.ClosePrograms();
-        } 
+        }
     }
 
     public void OpenLastSite()
     {
-        if(_lastSite == null) return;
+        if (_lastSite == null) return;
 
         _lastSite.TryGetComponent(out INeedOpenCanvas openCanvas);
         openCanvas.OpenCanvas();
@@ -69,18 +69,18 @@ public class SiteTabsManager : MonoBehaviour
 
     public void ActiveSite(string siteName)
     {
-        if(siteName != _siteUrl || siteName == _n2Day1Pdf) return;
-        
+        if (siteName != _siteUrl || siteName == _n2Day1Pdf) return;
+
         _btnToOpen.Active();
     }
 
     public void CloseSites()
     {
-        foreach(SiteInfoHolder screen in _softwareHandler.Values)
+        foreach (SiteInfoHolder screen in _softwareHandler.Values)
         {
-            if(screen.InstanciedScreen.transform.GetChild(0).gameObject.activeSelf)
+            if (screen.InstanciedScreen.transform.GetChild(0).gameObject.activeSelf)
                 _lastSite = screen.InstanciedScreen;
-                
+
             screen.InstanciedScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
             closecanvas?.CloseCanvas();
         }
@@ -89,7 +89,7 @@ public class SiteTabsManager : MonoBehaviour
     public void CloseSiteBar()
     {
         EventManager.OnLinkIsClicked -= ActiveSite;
-        foreach(Button button in _softwareHandler.Keys)
+        foreach (Button button in _softwareHandler.Keys)
             button.onClick.RemoveAllListeners();
     }
 }

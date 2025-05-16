@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
+public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, INotificator
 {
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _sendTicketBtn;
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _completeTicket;   
@@ -44,13 +43,11 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     private bool _ticketCreatedWrongOneTime = false;
     private Ticket _correctTicket;
-    private Button _lastButtonClicked;
 
     private Dictionary<Button, GameObject> _screens = new Dictionary<Button, GameObject>();
 
     private void Start()
     {
-
         _stateHandlers = new();
         _completeTicket.interactable = false;
 
@@ -64,7 +61,6 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         setup?.RegisterStates(_stateHandlers);
 
         _correctTicket = new Ticket(_correctTicketSO);
-        _lastButtonClicked = null;
 
         if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
         if(!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
@@ -80,14 +76,16 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
         EventManager.OnCompletedTicketObjective += UpdateTicketProgress;
-        OpenScreen(_newTicketBtn);
     }
 
     private void UpdateTicketProgress()
     {
         _correctTicket.ObjectiveCompleted();
 
-        if(_correctTicket.IsCompleted)
+        if (!_mainCanvas.activeSelf)
+            NotifyBar();
+
+        if (_correctTicket.IsCompleted)
             _completeTicket.interactable = true;
     }
 
@@ -114,7 +112,6 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         {
             if(screen.Key == button)
             {
-                _lastButtonClicked = button;
                 GameObject screenObj = screen.Value;
                 screenObj.TryGetComponent(out TicketScreen ticketUpdater);
                 ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _listOfTickets, _correctTicket, _currentState);
@@ -140,14 +137,17 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private void UpdateState(string emailIndex)
     {
 
-        if(emailIndex == _emailLoreToOpen)
+        if (emailIndex == _emailLoreToOpen)
             _currentState = SoftwareState.FirstTimeOpened;
-        else if(emailIndex == _unlockSendN1 || emailIndex == _unlockSendN2)
+        else if (emailIndex == _unlockSendN1 || emailIndex == _unlockSendN2)
         {
             _currentState = SoftwareState.FullAccess;
             _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
             ticketUpdater.UpdateInfos(ScreenType.NewTicket, _listOfTickets, _correctTicket, _currentState);
         }
+
+        if (emailIndex == "Lore 5") //not very good, we need to change this later
+            NotifyBar();            
     }
 
     private void TrySendTicket()
@@ -198,12 +198,14 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     public void OpenCanvas()
     {
         HandleCurrentState();
-        OpenScreen(_lastButtonClicked);
         _mainCanvas.SetActive(true);
     }
 
     public void CloseCanvas()
     {
+        foreach (var screen in _screens)
+            screen.Value.SetActive(false);
+
         _mainCanvas.SetActive(false);
     }
 
@@ -215,5 +217,10 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     public void ChangeSoftwareState(SoftwareState state)
     {
         _currentState = state;
+    }
+
+    public void NotifyBar()
+    {
+        EventManager.NotifyBar(this.gameObject);
     }
 }

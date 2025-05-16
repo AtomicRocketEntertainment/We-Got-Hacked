@@ -34,6 +34,8 @@ public static class EventManager
     public static event Action OnWrongChoice;
     public static event Action OnCloseResponseScreen;
     public static event Action<string> OnPlayerNeedToThink;
+    public static event Action<GameObject> OnNotifyNeeded;
+    public static event Action OnNotifyBrowser;
     
     //Lore related
     public static event Action OnFirstTimeSoftwareOpen;
@@ -358,6 +360,30 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnPlayerNeedToThink event.");
+        }
+    }
+
+    public static void NotifyBar(GameObject obj)
+    {
+        if (OnNotifyNeeded != null)
+        {
+            OnNotifyNeeded(obj);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnNotifyNeeded event.");
+        }
+    }
+
+    public static void NotifyBrowser()
+    {
+        if (OnNotifyBrowser != null)
+        {
+            OnNotifyBrowser();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnNotifyBrowser event.");
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class ToolBarManager : MonoBehaviour
 
     public void Init(MonitorManager monitor)
     {
+        EventManager.OnNotifyNeeded += UpdateBarNotification;
         _monitorReference = monitor;
         for(int i = 0; i < _softwareButtons.Count; i++)
         {
@@ -45,8 +47,24 @@ public class ToolBarManager : MonoBehaviour
 
     public void CloseToolBar()
     {
-        foreach(Button button in _softwareHandler.Keys)
+        foreach (Button button in _softwareHandler.Keys)
             button.onClick.RemoveAllListeners();
+            
+        EventManager.OnNotifyNeeded -= UpdateBarNotification;
+    }
+
+    private void UpdateBarNotification(GameObject obj)
+    {
+        foreach (var pair in _softwareHandler)
+        {
+            if (pair.Value == obj)
+            {
+                GameObject correspondingButton = pair.Key.gameObject;
+                correspondingButton.TryGetComponent(out NotifyButtonFeedback feedback);
+                feedback.ShowFeedback(correspondingButton);
+                break;
+            }
+        }
     }
 
     public void ClosePrograms()

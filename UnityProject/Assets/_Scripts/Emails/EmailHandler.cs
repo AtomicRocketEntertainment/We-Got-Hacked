@@ -156,6 +156,9 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
         if (!_emailsInstanciados.ContainsKey(instanceEmail))
             _emailsInstanciados.Add(instanceEmail, email);
+
+        if (!_mainCanvas.activeSelf)
+            EventManager.NotifyBrowser();
     }
 
     private void UpdateLoreMechanics()

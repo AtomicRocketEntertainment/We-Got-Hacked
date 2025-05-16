@@ -11,6 +11,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     [BoxGroup("Screens")] [SerializeField] private GameObject _blockedCanvas;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertPopupScreen;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _awaintingAlertScreen;
 
     [HorizontalLine(color: EColor.Yellow)]
     [BoxGroup("Alert")] [SerializeField] private RectTransform _alertRect;
@@ -61,6 +62,11 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     {
         if(_currentTicket >= _tickets.Count) return;
 
+        if(!_mainCanvas.activeSelf)
+            EventManager.NotifyBar(this.gameObject);
+
+        _awaintingAlertScreen.SetActive(false);
+        
         Ticket ticket = new Ticket(_tickets[_currentTicket]);
 
         GameObject instanceTicket = Instantiate(_alertPrefab, Vector3.zero, Quaternion.identity);
