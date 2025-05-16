@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, INotificator
@@ -45,6 +46,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     private Ticket _correctTicket;
 
     private Dictionary<Button, GameObject> _screens = new Dictionary<Button, GameObject>();
+    private Button _lastClickedBtn;
 
     private void Start()
     {
@@ -62,10 +64,11 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
         _correctTicket = new Ticket(_correctTicketSO);
 
-        if(!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
-        if(!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
+        if (!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
+        if (!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
         //if(!_screens.ContainsKey(_doneTicketBtn)) _screens.Add(_doneTicketBtn, _doneTicketCanvas);
-        if(!_screens.ContainsKey(_playbookBtn)) _screens.Add(_playbookBtn, _playbooksCanvas);
+        if (!_screens.ContainsKey(_playbookBtn)) _screens.Add(_playbookBtn, _playbooksCanvas);
+        _lastClickedBtn = _newTicketBtn;
 
         _completeTicket.onClick.AddListener(EndDay);
         _sendTicketBtn.onClick.AddListener(TrySendTicket);
@@ -110,15 +113,20 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     {
         foreach(var screen in _screens)
         {
-            if(screen.Key == button)
+            if (screen.Key == button)
             {
                 GameObject screenObj = screen.Value;
                 screenObj.TryGetComponent(out TicketScreen ticketUpdater);
                 ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _listOfTickets, _correctTicket, _currentState);
+                _lastClickedBtn = button;
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(button.gameObject);
                 screenObj.SetActive(true);
             }
             else
+            {
                 screen.Value.SetActive(false);
+            }
         }
     }
 
@@ -198,6 +206,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     public void OpenCanvas()
     {
         HandleCurrentState();
+        OpenScreen(_lastClickedBtn);
         _mainCanvas.SetActive(true);
     }
 

@@ -1,40 +1,33 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class NotifyButtonFeedback : MonoBehaviour, IFeedback
+public class NotifyButtonFeedback : MonoBehaviour, IFeedback, IPointerClickHandler
 {
     [SerializeField] private GameObject notificationObj;
+    [SerializeField] private GameObject _clickedObj;
 
     public void ShowFeedback(GameObject obj)
     {
         notificationObj.SetActive(true);
-
-        Image img = notificationObj.GetComponent<Image>();
-
-        Color startColor = img.color;
-        startColor.a = 1f;
-        img.color = startColor;
-
-        LeanTween.cancel(notificationObj);
-
-        LeanTween.alpha(notificationObj.GetComponent<RectTransform>(), 0f, 0.4f)
-            .setEaseInOutSine()
-            .setLoopPingPong();
     }
 
     public void HideFeedback(GameObject obj)
     {
-        StopBlinking();
+        notificationObj.SetActive(false);
     }
 
     public void HideFeedback()
     {
-        StopBlinking();
+        notificationObj.SetActive(false);
     }
 
-    private void StopBlinking()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        LeanTween.cancel(notificationObj);
-        notificationObj.SetActive(false);
+        _clickedObj.SetActive(true);
+    }
+
+    public void HideClickFeedback()
+    {
+        _clickedObj.SetActive(false);
     }
 }
