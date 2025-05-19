@@ -1,33 +1,34 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class NotifyButtonFeedback : MonoBehaviour, IFeedback, IPointerClickHandler
 {
-    [SerializeField] private GameObject notificationObj;
-    [SerializeField] private GameObject _clickedObj;
+    [SerializeField] private Image notificationObj;
+    [SerializeField] private Image _clickedObj;
 
     public void ShowFeedback(GameObject obj)
     {
-        notificationObj.SetActive(true);
+        notificationObj.enabled = true;
     }
 
     public void HideFeedback(GameObject obj)
     {
-        notificationObj.SetActive(false);
+        notificationObj.enabled = false;
     }
 
     public void HideFeedback()
     {
-        notificationObj.SetActive(false);
+        notificationObj.enabled = false;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _clickedObj.SetActive(true);
+        _clickedObj.enabled = true;
     }
 
     public void HideClickFeedback()
     {
-        _clickedObj.SetActive(false);
+        _clickedObj.enabled = false;
     }
 }

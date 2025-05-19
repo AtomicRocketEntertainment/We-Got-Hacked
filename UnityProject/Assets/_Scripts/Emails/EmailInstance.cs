@@ -24,9 +24,10 @@ public class EmailInstance : MonoBehaviour
 
     public void UpdateInfos(EmailSender sender, string title, string contentSmall, bool startOpen)
     {
+        string clean = contentSmall.Replace("\r", " ").Replace("\n", " ");
         _sender.text = sender.Name;
         _title.text = title;
-        _contentSmall.text = contentSmall;
+        _contentSmall.text = clean;
 
         if(startOpen)
         {
