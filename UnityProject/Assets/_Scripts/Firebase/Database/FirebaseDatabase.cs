@@ -14,5 +14,14 @@ namespace _Scripts.Firebase.Database
         /// <param name="fallback"> Name of the method to call when the operation was unsuccessful. Method must have signature: void Method(string output). Will return a serialized FirebaseError object </param>
         [DllImport("__Internal")]
         public static extern void GetJSON(string path, string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
+        public static extern void FetchPlayerData(string pathwithid, string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
+        public static extern void CreatePlayerDataIfNotExists(string pathwithid, string jsonData, string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
+        public static extern void UpdatePlayerData(string pathwithid, string jsonData, string objectName, string callback, string fallback);
     }
 }

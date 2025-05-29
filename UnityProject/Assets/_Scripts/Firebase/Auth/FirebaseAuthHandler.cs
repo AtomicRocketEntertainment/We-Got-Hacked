@@ -4,9 +4,25 @@ using _Scripts.Firebase.Auth;
 
 public class FirebaseAuthHandler : MonoBehaviour
 {
-    public TMP_InputField emailInputField;
-    public TMP_InputField passwordInputField;
-    public TextMeshProUGUI outputText;
+    [SerializeField] private TMP_InputField nameInputField;
+    [SerializeField] private TMP_InputField emailInputField;
+    [SerializeField] private TMP_InputField passwordInputField;
+    [SerializeField] private TextMeshProUGUI _callbackText;
+    private FirebaseUser _currentUser;
+    public string CurrentUserId => _currentUser.uid;
+
+    public static FirebaseAuthHandler Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+
+        _currentUser = null;
+        DontDestroyOnLoad(this.gameObject);
+    } 
 
     private void Start()
     {
@@ -15,38 +31,47 @@ public class FirebaseAuthHandler : MonoBehaviour
             DisplayError("The code is not running on a WebGL build; as such, the Javascript functions will not be recognized.");
             return;
         }
-        
-        FirebaseAuth.OnAuthStateChanged(gameObject.name, "DisplayUserInfo", "DisplayInfo");
     }
 
-    public void CreateUserWithEmailAndPassword() => 
-        FirebaseAuth.CreateUserWithEmailAndPassword(emailInputField.text, passwordInputField.text, gameObject.name, "DisplayInfo", "DisplayErrorObject");
-
-    public void SignInWithEmailAndPassword() => 
-        FirebaseAuth.SignInWithEmailAndPassword(emailInputField.text, passwordInputField.text, gameObject.name, "DisplayInfo", "DisplayErrorObject");
-
-    public void SignInWithGoogle() => 
-        FirebaseAuth.SignInWithGoogle(gameObject.name, "DisplayInfo", "DisplayErrorObject");
-
-
-    public void DisplayUserInfo(string user)
+    public void CreateUserWithEmailAndPassword()
     {
-        FirebaseUser parsedUser = JsonUtility.FromJson<FirebaseUser>(user);
-        DisplayData($"Email: {parsedUser.email}, UserId: {parsedUser.uid}, EmailVerified: {parsedUser.isEmailVerified}");
+
+        FirebaseAuth.CreateUserWithEmailAndPassword(emailInputField.text, passwordInputField.text, gameObject.name, nameof(CreateAuthPlayer), nameof(DisplayErrorObject));
     }
 
-    public void DisplayData(string data)
+    public void SignInWithEmailAndPassword()
     {
-        outputText.color = outputText.color == Color.green ? Color.blue : Color.green;
-        outputText.text = data;
-        Debug.Log(data);
+
+        FirebaseAuth.SignInWithEmailAndPassword(emailInputField.text, passwordInputField.text, gameObject.name, nameof(UpdateUserStatus), nameof(DisplayErrorObject));
+    }
+
+    public void SignOut()
+    {
+
+        FirebaseAuth.OnUserSignOut(gameObject.name, nameof(DisplayInfo));
+    }
+
+    public void LogUser(string user)
+    {
+        _currentUser = JsonUtility.FromJson<FirebaseUser>(user);
+        FirebaseDatabaseHandler.Instance.FetchPlayer(_currentUser.uid);
+    }
+
+    public void CreateAuthPlayer(string user)
+    {
+        _currentUser = JsonUtility.FromJson<FirebaseUser>(user);
+        FirebaseDatabaseHandler.Instance.CreateDatabaseInfo(_currentUser.uid, nameInputField.text);
+    }
+
+    private void UpdateUserStatus(string user)
+    {
+        FirebaseAuth.OnAuthStateChanged(gameObject.name, nameof(LogUser), nameof(DisplayInfo));
     }
 
     public void DisplayInfo(string info)
     {
-        outputText.color = Color.white;
-        outputText.text = info;
-        Debug.Log(info);
+        _callbackText.color = Color.white;
+        _callbackText.text = info;
     }
 
     public void DisplayErrorObject(string error)
@@ -64,9 +89,8 @@ public class FirebaseAuthHandler : MonoBehaviour
 
     public void DisplayError(string error)
     {
-        outputText.color = Color.red;
-        outputText.text = error;
-        Debug.LogError(error);
+        _callbackText.color = Color.red;
+        _callbackText.text = error;
     }
 }
 
@@ -75,7 +99,6 @@ public class FirebaseUser
 {
     public string email;
     public string uid;
-    public bool isEmailVerified;
 }
 
 [System.Serializable]
