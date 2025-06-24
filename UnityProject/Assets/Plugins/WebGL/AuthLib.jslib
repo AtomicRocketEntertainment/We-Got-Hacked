@@ -26,17 +26,16 @@ mergeInto(LibraryManager.library, {
         var parsedCallback = UTF8ToString(callback);
         var parsedFallback = UTF8ToString(fallback);
 
-        try {
-
-            window.firebaseAuth.signInWithEmailAndPassword(window.firebaseAuth.auth, parsedEmail, parsedPassword).then(function (userCredential) {
+        window.firebaseAuth.setPersistence(window.firebaseAuth.auth, window.firebaseAuth.browserSessionPersistence)
+            .then(function () {
+                return window.firebaseAuth.signInWithEmailAndPassword(window.firebaseAuth.auth, parsedEmail, parsedPassword);
+            })
+            .then(function (userCredential) {
                 window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(userCredential.user));
-            }).catch(function (error) {
+            })
+            .catch(function (error) {
                 window.unityInstance.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
             });
-
-        } catch (error) {
-            window.unityInstance.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
-        }
     },
 
     OnAuthStateChanged: function (objectName, onUserSignedIn, onUserSignedOut) {

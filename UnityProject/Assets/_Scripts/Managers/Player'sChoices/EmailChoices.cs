@@ -59,11 +59,12 @@ public class EmailChoices : MonoBehaviour, IEmailContext
         {
             int index = response; //necessário guardar um valor fixo pra usar na lambda.
             EmailResponse responseInfos = _currentEmailToRespond.Responses[index];
+            string textToPopulateBtn = _currentEmailToRespond.Responses[index].TextOption;
             _responsesBtn[index].onClick.RemoveAllListeners();
-            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos.IsCorrectAnswer, responseInfos.EmailText, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText));
+            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos.IsCorrectAnswer, responseInfos.EmailText, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText, textToPopulateBtn));
 
-            TextMeshProUGUI btnText = _responsesBtn[response].GetComponentInChildren<TextMeshProUGUI>();
-            if(btnText) btnText.text = _currentEmailToRespond.Responses[response].TextOption;
+            TextMeshProUGUI btnText = _responsesBtn[index].GetComponentInChildren<TextMeshProUGUI>();
+            if(btnText) btnText.text = textToPopulateBtn;
            
         }
         
@@ -77,8 +78,11 @@ public class EmailChoices : MonoBehaviour, IEmailContext
         ReturnChoices(false);
     }
 
-    private void RespondEmail(bool isCorrectAnswer, string emailResponseText, string confirmFeedback, string wrongFeedbackQuestionText)
+    private void RespondEmail(bool isCorrectAnswer, string emailResponseText, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
     {
+        PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentEmailToRespond.QuestionText, answerText, isCorrectAnswer);
+        EventManager.AnswerToSaveIsMaded(answerToSave);
+
         _firstResponseEmailChoices.SetActive(false);
         _responseQuestion.text = confirmFeedback;
         _confirmResponse.SetActive(true);
@@ -95,9 +99,9 @@ public class EmailChoices : MonoBehaviour, IEmailContext
     private void CorrectFeedbackChoices()
     {
         if(_isResponse)
-            EventManager.EmailIsAnswered();
+            EventManager.EmailIsAnswered(_currentEmailToRespond.Index);
         else
-            EventManager.EmailIsWriten();
+            EventManager.EmailIsWriten(_currentEmailToRespond.Index);
 
         EventManager.CorrectChoice();
         ResponseFeedbackUpdate();

@@ -4,6 +4,12 @@ using UnityEngine.EventSystems;
 public class HooverFeedback : MonoBehaviour, IFeedback, IPointerEnterHandler, IPointerExitHandler
 {
 
+   private void OnDisable()
+   {
+      this.gameObject.TryGetComponent(out RectTransform rect);
+      rect.localScale = Vector3.one;
+   }
+
    public void OnPointerEnter(PointerEventData eventData)
    {
       ShowFeedback(this.gameObject);

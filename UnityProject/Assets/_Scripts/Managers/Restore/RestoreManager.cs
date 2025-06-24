@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class RestoreManager : MonoBehaviour, INeedOpenCanvas
 {
@@ -54,8 +55,11 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
         EventManager.OnOpenBackup += ShowConfirmBackup;
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
         EventManager.OnGenericResponseIsMaded += UpdateState;
+        EventManager.OnEmailIsAnswered += UpdateState;
+        EventManager.OnEmailIsWriten += UpdateState;
+
         
-        foreach(var key in _restoreScreens)
+        foreach (var key in _restoreScreens)
             key.Key.onClick.AddListener(() => OpenScreen(key.Key));
     }
 
@@ -80,9 +84,11 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     {
         EventManager.OnSiteIsOff -= ChangeState;
         EventManager.OnOpenLog -= ShowCmd;
-        EventManager.OnOpenBackup += ShowConfirmBackup;
+        EventManager.OnOpenBackup -= ShowConfirmBackup;
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
         EventManager.OnGenericResponseIsMaded -= UpdateState;
+        EventManager.OnEmailIsAnswered -= UpdateState;
+        EventManager.OnEmailIsWriten -= UpdateState;
 
         _confirmBackupBtn.onClick.RemoveAllListeners();
         
@@ -104,7 +110,6 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
         if(backup.IsCorrect && _currentState == RestoreState.Backuper)
         {
             EventManager.CorrectChoice();
-            EventManager.TicketObjectiveCompleted();
             EventManager.SpawnEmail(EmailType.LORE);
         }
         else
@@ -169,14 +174,21 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if(emailIndex == "Lore 11" || emailIndex == "Lore 15")
+        if(emailIndex == "Lore 11")
         {
             _currentState = RestoreState.OnOff;
             UpdateTurnToggles(true);
         }
 
-        if(emailIndex == "Lore 14")
-            _currentState = RestoreState.Backuper;
+        if (emailIndex == "Lore 15")
+        {
+            _currentState = RestoreState.OnOff;
+            EventManager.TicketObjectiveCompleted();
+            UpdateTurnToggles(true);
+        }
+
+        if (emailIndex == "Lore 13")
+                _currentState = RestoreState.Backuper;
 
         if(emailIndex == "Response 1")
             _currentState = RestoreState.None;

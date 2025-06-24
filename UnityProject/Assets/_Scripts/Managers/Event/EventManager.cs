@@ -9,13 +9,13 @@ public static class EventManager
     public static event Action<GameObject> OnOpenEmail;
     public static event Action OnTryWriteEmail;
     public static event Action<Email> OnWriteEmail;
-    public static event Action OnEmailIsWriten;
+    public static event Action<string> OnEmailIsWriten;
     public static event Action<string> OnLinkIsClicked;
     public static event Action<string> OnChangeEmailContentText;
     public static event Action<Email, bool> OnEmailResponseNeeded;
     public static event Action<EmailType> OnSpawnEmail;
-    public static event Action<SO_Email, bool, bool> OnCreateEspecificEmail;    
-    public static event Action OnEmailIsAnswered;
+    public static event Action<SO_Email, bool, bool> OnCreateEspecificEmail;
+    public static event Action<string> OnEmailIsAnswered;
     public static event Action OnReturnEmailContent;
 
     //Alert related
@@ -36,7 +36,7 @@ public static class EventManager
     public static event Action<string> OnPlayerNeedToThink;
     public static event Action<GameObject> OnNotifyNeeded;
     public static event Action OnNotifyBrowser;
-    
+
     //Lore related
     public static event Action OnFirstTimeSoftwareOpen;
     public static event Action OnCompletedTicketObjective;
@@ -49,6 +49,13 @@ public static class EventManager
     //Question Related
     public static event Action OnGenericResponseNeeded;
     public static event Action<string> OnGenericResponseIsMaded;
+
+    //Persistence Data and Firebase Related
+    public static event Action<PlayerDataAnswer> OnAnswerToSaveIsMaded;
+    public static event Action<string> OnPlayerCreated;
+    public static event Action<string> OnPlayerLoggedIn;
+    public static event Action<string> OnAuthError;
+    public static event Action<string> OnDatabaseEror;
 
 
     public static void BlockPlayerWriteEmail()
@@ -87,11 +94,11 @@ public static class EventManager
         }
     }
 
-    public static void EmailIsWriten()
+    public static void EmailIsWriten(string emailIndex)
     {
         if (OnEmailIsWriten != null)
         {
-            OnEmailIsWriten();
+            OnEmailIsWriten(emailIndex);
         }
         else
         {
@@ -171,11 +178,11 @@ public static class EventManager
         }
     }
 
-    public static void EmailIsAnswered()
+    public static void EmailIsAnswered(string emailIndex)
     {
         if (OnEmailIsAnswered != null)
         {
-            OnEmailIsAnswered();
+            OnEmailIsAnswered(emailIndex);
         }
         else
         {
@@ -420,6 +427,66 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnGenericResponseIsMaded event.");
+        }
+    }
+
+    public static void AnswerToSaveIsMaded(PlayerDataAnswer answer)
+    {
+        if (OnAnswerToSaveIsMaded != null)
+        {
+            OnAnswerToSaveIsMaded(answer);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnAnswerToSaveIsMaded event.");
+        }
+    }
+
+    public static void PlayerAreCreated(string feedbackMessage)
+    {
+        if (OnPlayerCreated != null)
+        {
+            OnPlayerCreated(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerCreated event.");
+        }
+    }
+
+    public static void PlayerLoggedIn(string feedbackMessage)
+    {
+        if (OnPlayerLoggedIn != null)
+        {
+            OnPlayerLoggedIn(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerLoggedIn event.");
+        }
+    }
+
+    public static void AuthError(string feedbackMessage)
+    {
+        if (OnAuthError != null)
+        {
+            OnAuthError(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnAuthError event.");
+        }
+    }
+    
+    public static void DatabaseError(string feedbackMessage)
+    {
+        if (OnDatabaseEror != null)
+        {
+            OnDatabaseEror(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnDatabaseEror event.");
         }
     }
 }

@@ -209,7 +209,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         _currentEmailOpen = null;
     }
 
-    private void EmailIsAnswered()
+    private void EmailIsAnswered(string emailIndex)
     {
         _currentEmailOpen.AnswerEmail();
         CloseEmail();

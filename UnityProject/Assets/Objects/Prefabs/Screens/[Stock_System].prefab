@@ -775,6 +775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526789589253367610}
   - component: {fileID: 221426676907697282}
+  - component: {fileID: -8549386100451947097}
   m_Layer: 0
   m_Name: '[Stock_System]'
   m_TagString: Untagged
@@ -821,6 +822,7 @@ MonoBehaviour:
   - {fileID: 8122013075948475652}
   - {fileID: 5781851058078495986}
   - {fileID: 2863206281916362330}
+  _stockCalculation: {fileID: -8549386100451947097}
   _graphContainer: {fileID: 3508951882746262603}
   _yLabelTemplate: {fileID: 1345204498726665650}
   _yDashTemplate: {fileID: 681699023978203569}
@@ -839,6 +841,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c77504d0baca9b845a6d7add6dc524a2, type: 2}
   - {fileID: 11400000, guid: 6def2f5ecfd57884cb0a048b78db4202, type: 2}
   - {fileID: 11400000, guid: 1b2445dbd9119484db5ad1eb0e57a075, type: 2}
+--- !u!114 &-8549386100451947097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781385718734080904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427d69425f9b2884f87bfab2bba37ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rangeDownOtherCompany: 5
+  _rangeUpOtherCompany: 6
 --- !u!1 &1789456299793435106
 GameObject:
   m_ObjectHideFlags: 0

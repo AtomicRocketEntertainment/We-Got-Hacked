@@ -48,7 +48,7 @@ public class ChoicesManager : MonoBehaviour
         _currentGenericResponse++;
     }
 
-    private void UpdateEmailToWrite()
+    private void UpdateEmailToWrite(string emailIndex)
     {
         _currentEmailToWrite++;
     }
