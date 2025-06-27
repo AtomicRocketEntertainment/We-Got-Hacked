@@ -13,13 +13,15 @@ public class CutsceneFrame : MonoBehaviour
     {
         IsLastFrame = isLastFrame;
         _image.sprite = sprite;
-        _text = text;
         _image.color = new Color(1, 1, 1, 0);
+        _text = text;
     }
 
     public void ShowFrame()
     {
-        _textGui.text = _text;
+        if(_text != "")
+            _textGui.text = _text;
+
         LeanTween.alpha(_image.rectTransform, 1f, 0.5f);
     }
     
