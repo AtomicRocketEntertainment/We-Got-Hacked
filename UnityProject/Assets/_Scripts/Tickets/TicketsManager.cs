@@ -35,8 +35,8 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
 
 
-    private const string _onTryCreateTicket = "Não preciso fazer isso agora.";
-    private const string _onTryCreateEmptyTicket = "Preciso preencher todas as informações.";
+    private const string TRY_CREATE_TICKET = "Não preciso fazer isso agora.";
+    private const string TRY_CREATE_EMPTY_TICKET = "Preciso preencher todas as informações.";
 
     
     [SerializeField] private SoftwareState _currentState = SoftwareState.Blocked;
@@ -162,7 +162,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     {
         if(_currentState != SoftwareState.FullAccess)
         {
-            EventManager.MakePlayerThink(_onTryCreateTicket);
+            EventManager.MakePlayerThink(TRY_CREATE_TICKET);
             return;
         }
 
@@ -170,7 +170,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
         if(!ticket.AllInfoAreSelected())
         {
-            EventManager.MakePlayerThink(_onTryCreateEmptyTicket);
+            EventManager.MakePlayerThink(TRY_CREATE_EMPTY_TICKET);
             return;
         }
 

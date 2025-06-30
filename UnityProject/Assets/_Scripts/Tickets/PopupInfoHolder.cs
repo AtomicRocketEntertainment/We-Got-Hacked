@@ -16,11 +16,11 @@ public class PopupInfoHolder : MonoBehaviour
 
     private readonly Dictionary<string, Vector2> _locationDictionary = new()
     {
-        { "America do Sul", new Vector2(-85f, -30f) },
-        { "America do Norte", new Vector2(-160f, 55f) },
-        { "Africa", new Vector2(0f, 0f) },
-        { "Europa", new Vector2(25f, 60f) },
-        { "Asia", new Vector2(105f, 60f) }
+        { "Brasil", new Vector2(-85f, -30f) },
+        { "Bolivia", new Vector2(-110f, -40f) },
+        { "Estados Unidos", new Vector2(-150f, 40f) },
+        { "Canada", new Vector2(-175f, 70f) },
+        { "Itália", new Vector2(-2f, 40f) }
     };
 
 
@@ -34,9 +34,9 @@ public class PopupInfoHolder : MonoBehaviour
         _icon.sprite = icon;
         _alertColor.color = alertRisk;
         
-        string continent = location.Split('-')[0].Trim();
+        string country = location.Split('-')[1].Trim();
 
-        if (_locationDictionary.TryGetValue(continent, out Vector2 position))
+        if (_locationDictionary.TryGetValue(country, out Vector2 position))
             _locationPoint.anchoredPosition = position;
     }
 }
