@@ -14,8 +14,6 @@ public class OnOffLoggerToggle : MonoBehaviour, IPointerClickHandler
     private bool _canInteractive = false;
     private const float Xon = -2f;
     private const float Xoff = -28f;
-    private const string WRONG_SITE_TO_SHUTDOWN = "Pensando melhor, acho que não é este site que devo desligar.";
-    private const string WRONG_MOMENT_TO_SHUTDOWN = "Droga! Esse não era o momento de fazer isso.";
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -28,9 +26,9 @@ public class OnOffLoggerToggle : MonoBehaviour, IPointerClickHandler
         }
 
         if(_canInteractive)
-            EventManager.MakePlayerThink(WRONG_SITE_TO_SHUTDOWN);
+            EventManager.MakePlayerThink(ThoughtKey.ShutdownWrongSite);
         else
-            EventManager.MakePlayerThink(WRONG_MOMENT_TO_SHUTDOWN);
+            EventManager.MakePlayerThink(ThoughtKey.WrongTimeShutdownSite);
 
         EventManager.WrongChoice();
     }

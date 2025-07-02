@@ -33,7 +33,7 @@ public static class EventManager
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
     public static event Action OnCloseResponseScreen;
-    public static event Action<string> OnPlayerNeedToThink;
+    public static event Action<ThoughtKey> OnPlayerNeedToThink;
     public static event Action<GameObject> OnNotifyNeeded;
     public static event Action OnNotifyBrowser;
 
@@ -358,7 +358,7 @@ public static class EventManager
         }
     }
 
-    public static void MakePlayerThink(string quote)
+    public static void MakePlayerThink(ThoughtKey quote)
     {
         if (OnPlayerNeedToThink != null)
         {

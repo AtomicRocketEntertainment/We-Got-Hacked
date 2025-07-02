@@ -31,8 +31,6 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private GameObject _currentScreenPopUp;
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private GameObject _objectivePrefab;
 
-    private readonly string CANT_OPEN_POPUP = "Ainda não tenho ticket para verificar";
-
     private List<GameObject> _objectivesActive = new List<GameObject>();
     private List<GameObject> _playbookScreens => new List<GameObject> 
     {
@@ -183,7 +181,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         if(_canOpenPopUp)
             _currentScreenPopUp.SetActive(true);
         else
-            EventManager.MakePlayerThink(CANT_OPEN_POPUP);
+            EventManager.MakePlayerThink(ThoughtKey.WrongTimeOpenTicket);
     }
 
     private void CheckObjectivesPanel(Ticket currentTicket, int index)

@@ -32,9 +32,6 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     private RestoreState _currentState = RestoreState.None;
     private Dictionary<Button, GameObject> _restoreScreens;
     
-    private const string WRONG_BACKUP = "Hm acho que devo analisar melhor qual backup restaurar.";
-    private const string ITS_NOT_TIME_FOR_THIS = "Droga! Esse não era o momento de fazer isso.";
-    
     void Awake()
     {
         _restoreScreens = new Dictionary<Button, GameObject> 
@@ -117,9 +114,9 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
             EventManager.WrongChoice();
 
             if(_currentState == RestoreState.Backuper)
-                EventManager.MakePlayerThink(WRONG_BACKUP);
+                EventManager.MakePlayerThink(ThoughtKey.WrongBackup);
             else
-                EventManager.MakePlayerThink(ITS_NOT_TIME_FOR_THIS);
+                EventManager.MakePlayerThink(ThoughtKey.WrongTimeBackup);
         }
 
         _confirmBackupScreen.SetActive(false);

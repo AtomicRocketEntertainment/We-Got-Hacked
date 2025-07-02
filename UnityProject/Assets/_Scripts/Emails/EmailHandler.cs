@@ -269,7 +269,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         if(_writeEmailState == WriteEmailState.CanWrite)
             EventManager.TryWriteEmail();
         else
-            EventManager.MakePlayerThink(PLAYER_CANT_WRITE_EMAIL);
+            EventManager.MakePlayerThink(ThoughtKey.WrongTimeToWriteEmail);
     }
 }
 

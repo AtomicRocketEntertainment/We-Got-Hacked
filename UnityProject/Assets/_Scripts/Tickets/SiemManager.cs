@@ -21,7 +21,6 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     [SerializeField] private SoftwareState _currentState = SoftwareState.Blocked;
     [SerializeField] private Character _currentCharacter = Character.None;
-    private const string SHOULD_NOT_OPEN_LOWLEVEL_ALERT = "Acho que eu não deveria perder tempo com tickets de menor risco.";
 
     
     private const string _emailLoreToOpen = "Lore 1"; 
@@ -86,7 +85,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private void OpenAlert(Ticket alert, Color ticketColor)
     {
         if (alert.RiskLevel != _ticketMaxLevel)
-            EventManager.MakePlayerThink(SHOULD_NOT_OPEN_LOWLEVEL_ALERT);
+            EventManager.MakePlayerThink(ThoughtKey.WrongAlertOpen);
 
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
         holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.DateDay, alert.DateHour, alert.Location, alert.Dispositive.Icon, ticketColor);

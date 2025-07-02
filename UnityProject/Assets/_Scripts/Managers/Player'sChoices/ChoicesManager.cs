@@ -11,6 +11,8 @@ public class ChoicesManager : MonoBehaviour
     [BoxGroup("Email")] [SerializeField] private List<SO_Email> _emailsToWrite;
 
     [BoxGroup("Responses Dependencies")] [SerializeField] private List<SO_GenericResponse> _genericResponses;
+    [SerializeField] private CharacterThoughtsManager _characterThoughtsManager;
+
 
     private const string PLAYER_DONT_HAVE_EMAIL_TO_WRITE = "Não tenho nada para escrever";
     private int _currentEmailToWrite;
@@ -57,7 +59,7 @@ public class ChoicesManager : MonoBehaviour
     {
         if(_currentEmailToWrite == _emailsToWrite.Count)
         {
-            ShowThink(PLAYER_DONT_HAVE_EMAIL_TO_WRITE);
+            ShowThink(ThoughtKey.WrongTimeToWriteEmail);
             return;
         }
 
@@ -80,15 +82,17 @@ public class ChoicesManager : MonoBehaviour
         genericManager.OpenResponse(_genericResponses[_currentGenericResponse]);
     }
 
-    private void ShowThink(string obj)
+    private void ShowThink(ThoughtKey key)
     {
+        string thought = _characterThoughtsManager.GetThought(key);
+
         _thinkScreen.SetActive(true);
         _thinkScreen.TryGetComponent(out Thinking thinking);
-        thinking.UpdateThinking(obj);
+        thinking.UpdateThinking(thought);
 
-        if(_closeCrt != null)
+        if (_closeCrt != null)
             StopCoroutine(_closeCrt);
-            
+
         _closeCrt = StartCoroutine(CloseScreen(_thinkScreen));
     }
 
