@@ -13,6 +13,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
 
     [Header("Company Infos")]
     [SerializeField] private Image[] _companyImages;
+    [SerializeField] private Image[] _companyColors;
     [SerializeField] private TextMeshProUGUI[] _companyNames;
 
 
@@ -52,6 +53,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
             {
                 ShowGraph(stockValues, companyMeta.Color);
                 _companyImages[companyIndex].sprite = companyMeta.Icon;
+                _companyColors[companyIndex].color = companyMeta.Color;
                 _companyNames[companyIndex].text = companyName;
                 companyIndex++;
             }
@@ -69,7 +71,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         EventManager.OnWrongChoice += WrongChoice;
 
         for(int i = 0; i < _news.Length; i++)
-            _news[i].UpdateNewsInfo(_newsSos[i].Image, _newsSos[i].Header, _newsSos[i].Content);
+            _news[i].UpdateNewsInfo(_newsSos[i].Header, _newsSos[i].Content);
     }
 
     private void OnDisable()
