@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
@@ -9,30 +8,30 @@ using UnityEngine.UI;
 public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 {
     [SerializeField] private ScreenType _screenType;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _playbookDp;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _idDp;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _ipODp;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _ipDDp;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _geolocationDp;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _typeDp;
-    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private TMP_Dropdown _dateDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _playbookDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _idDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _ipODp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _ipDDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _geolocationDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _typeDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _dateDp;
 
-    [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private ToggleGroup _RisktoggleGroup;
-    [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private Transform _SitetoggleGroup;
+    [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private ToggleGroup _RisktoggleGroup;
+    [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private Transform _SitetoggleGroup;
 
-    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _blockedCanvas;
-    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _pichacaoScreen;
-    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _phishingScreen;
-    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _ransowareScreen;
-    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))] [SerializeField] private GameObject _dataLeakScreen;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _blockedCanvas;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _pichacaoScreen;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _phishingScreen;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _ransowareScreen;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _dataLeakScreen;
 
-    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private Transform _objectiveList;
-    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private Button _showCurrentInfoBtn;
-    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private GameObject _currentScreenPopUp;
-    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))] [SerializeField] private GameObject _objectivePrefab;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private Transform _objectiveList;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private Button _showCurrentInfoBtn;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private GameObject _currentScreenPopUp;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private GameObject _objectivePrefab;
 
     private List<GameObject> _objectivesActive = new List<GameObject>();
-    private List<GameObject> _playbookScreens => new List<GameObject> 
+    private List<GameObject> _playbookScreens => new List<GameObject>
     {
         _pichacaoScreen,
         _phishingScreen,
@@ -76,14 +75,14 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp?.onValueChanged.RemoveListener(UpdateDateSelected);
     }
 
-    private void UpdatePlaybookSelected(int value) 
-    { 
+    private void UpdatePlaybookSelected(int value)
+    {
         _playbookSelect = _playbookDp.options[value].text;
 
-        foreach(GameObject screen in _playbookScreens)
+        foreach (GameObject screen in _playbookScreens)
             screen.SetActive(false);
 
-        if (value > 0 && value <= _playbookScreens.Count) 
+        if (value > 0 && value <= _playbookScreens.Count)
             _playbookScreens[value - 1].SetActive(true);
     }
     private void UpdateIdSelected(int value) { _idSelect = _idDp.options[value].text; }
@@ -96,16 +95,20 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     public void UpdateInfos(ScreenType typeScreen, SO_TicketList ticketList, Ticket currentTicket, SoftwareState softwareState)
     {
-        switch(typeScreen)
+        switch (typeScreen)
         {
-            case ScreenType.NewTicket: UpdateNewTicket(ticketList, softwareState);
-            break;
-            case ScreenType.CurrentTicket: UpdateCurrentTicket(currentTicket);
-            break;
-            case ScreenType.TicketDone: UpdateDoneTicket();
-            break;
-            case ScreenType.Playbook: UpdatePlaybook();
-            break;
+            case ScreenType.NewTicket:
+                UpdateNewTicket(ticketList, softwareState);
+                break;
+            case ScreenType.CurrentTicket:
+                UpdateCurrentTicket(currentTicket);
+                break;
+            case ScreenType.TicketDone:
+                UpdateDoneTicket();
+                break;
+            case ScreenType.Playbook:
+                UpdatePlaybook();
+                break;
         }
     }
 
@@ -118,18 +121,18 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _geolocationDp.ClearOptions();
         _typeDp.ClearOptions();
         _dateDp.ClearOptions();
-        
-        List<string> playBookOptions = new List<string> 
-        { 
+
+        List<string> playBookOptions = new List<string>
+        {
             _playbookSelect,
             PlaybookType.Pichacao.ToString(),
             PlaybookType.Phishing.ToString(),
             PlaybookType.Ransomware.ToString(),
             PlaybookType.DataLeak.ToString()
         };
-        
-        if(softwareState != SoftwareState.FullAccess) return;
-        
+
+        if (softwareState != SoftwareState.FullAccess) return;
+
         List<string> idOptions = new List<string> { _idSelect };
         List<string> ipOOptions = new List<string> { _ipOSelect };
         List<string> ipDOptions = new List<string> { _ipDSelect };
@@ -137,20 +140,27 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         List<string> typeOptions = new List<string> { _typeSelect };
         List<string> dateOptions = new List<string> { _dateSelect };
 
-        foreach(SO_Ticket ticket in ticketList.Tickets)
+        foreach (SO_Ticket ticket in ticketList.Tickets)
         {
             idOptions.Add(ticket.ID);
             ipOOptions.Add(ticket.IPOrigem);
             ipDOptions.Add(ticket.IPDestiny);
-            
-            if(!typeOptions.Contains(ticket.Location))
+
+            if (!typeOptions.Contains(ticket.Location))
                 geolocationOptions.Add(ticket.Location);
-            
-            if(!typeOptions.Contains(ticket.Dispositive.Type.ToString()))
+
+            if (!typeOptions.Contains(ticket.Dispositive.Type.ToString()))
                 typeOptions.Add(ticket.Dispositive.Type.ToString());
-            
+
             dateOptions.Add($"{ticket.DateDay} - {ticket.DateHour}");
         }
+
+        IListExtensions.Shuffle(idOptions);
+        IListExtensions.Shuffle(ipOOptions);
+        IListExtensions.Shuffle(ipDOptions);
+        IListExtensions.Shuffle(geolocationOptions);
+        IListExtensions.Shuffle(typeOptions);
+        IListExtensions.Shuffle(dateOptions);
 
         _playbookDp.AddOptions(playBookOptions);
         _idDp.AddOptions(idOptions);
@@ -164,7 +174,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateCurrentTicket(Ticket currentTicket)
     {
         int completedObjectives = currentTicket.GetObjectivesCompletedQuantity();
-        if(completedObjectives == 0) 
+        if (completedObjectives == 0)
         {
             _canOpenPopUp = false;
             return;
@@ -178,7 +188,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     }
     private void ShowCurrentPopUp()
     {
-        if(_canOpenPopUp)
+        if (_canOpenPopUp)
             _currentScreenPopUp.SetActive(true);
         else
             EventManager.MakePlayerThink(ThoughtKey.WrongTimeOpenTicket);
@@ -188,10 +198,10 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     {
         int needToShowNext = currentTicket.IsCompleted ? 0 : 1; //if ticket is completed, we dont add the next. We going to get miss reference otherwise
 
-        for(int i = _objectivesActive.Count - 1; i >= 0; i--) 
+        for (int i = _objectivesActive.Count - 1; i >= 0; i--)
             Destroy(_objectivesActive[i]);
 
-        for(int i = 0; i < index + needToShowNext; i++)
+        for (int i = 0; i < index + needToShowNext; i++)
         {
             GameObject obj = SpawnObjective();
             _objectivesActive.Add(obj);
@@ -264,7 +274,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         List<SiteType> selectedSites = new List<SiteType>();
 
         Toggle selectedRiskToggle = _RisktoggleGroup.ActiveToggles().FirstOrDefault();
-        
+
         if (selectedRiskToggle != null)
         {
             selectedRiskToggle.TryGetComponent(out ImRiskHolder riskLevel);
@@ -277,7 +287,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
         bool isCorrectSiteSelected = selectedSites.Count == 1 && selectedSites[0] == ticket.Site;
 
-        return 
+        return
             selectedPlaybook == ticket.Playbook.ToString() &&
             selectedId == ticket.ID &&
             selectedIpO == ticket.IPOrigem &&
@@ -306,7 +316,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _geolocationDp.ClearOptions();
         _typeDp.ClearOptions();
         _dateDp.ClearOptions();
-        
+
         foreach (var toggle in _RisktoggleGroup.GetComponentsInChildren<Toggle>())
             toggle.isOn = false;
 
@@ -333,6 +343,21 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
         return selected;
     }
+}
 
-
+//Get at Unity discussion forum
+public static class IListExtensions {
+	/// <summary>
+	/// Shuffles the element order of the specified list.
+	/// </summary>
+	public static void Shuffle<T>(this IList<T> ts) {
+		var count = ts.Count;
+		var last = count - 1;
+		for (var i = 1; i < last; ++i) {
+			var r = Random.Range(i, count);
+			var tmp = ts[i];
+			ts[i] = ts[r];
+			ts[r] = tmp;
+		}
+	}
 }
