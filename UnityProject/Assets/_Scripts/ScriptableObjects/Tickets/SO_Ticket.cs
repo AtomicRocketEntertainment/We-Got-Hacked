@@ -65,7 +65,7 @@ public enum PlaybookType
 
 public enum DispositiveType
 {
-    MobileAndroid, MobileIOS, DesktopLinux, DesktopWindows, DesktopApple
+    WindowsServer, Linux, OpenBSD, FreeBSD
 }
 
 [System.Serializable]
