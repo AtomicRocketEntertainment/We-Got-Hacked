@@ -94,7 +94,7 @@ public class MenuManager : MonoBehaviour
 
     private void FeedbackPlayerCreated(string feedbackMessage)
     {
-        _feedbackText.text = $"<color=green>{feedbackMessage}</color>";
+        _feedbackText.text = $"<color=green>Usuário criado com sucesso. Obrigado por jogar. :)</color>";
         _createParent.SetActive(false);
         _playBtnParent.SetActive(true);
     }
@@ -113,6 +113,7 @@ public class MenuManager : MonoBehaviour
             case "Firebase: Error (auth/invalid-credential).": _feedbackText.text = $"<color=red>Email ou senha não existem.</color>"; break;
             case "Firebase: Error (auth/missing-password).": _feedbackText.text = $"<color=red>Senha incorreta.</color>"; break;
             case "Firebase: Error (auth/invalid-email).": _feedbackText.text = $"<color=red>Este email não é válido.</color>"; break;
+            case "Firebase: Error (auth/email-already-in-use).": _feedbackText.text = $"<color=red>Este usuário já está cadastrado.</color>"; break;
             case "Firebase: Password should be at least 6 characters (auth/weak-password).": _feedbackText.text = $"<color=red>A senha precisa ter pelo menos 6 characteres.</color>"; break;
             default: _feedbackText.text = $"<color=red>{feedback}</color>"; break;
         }
