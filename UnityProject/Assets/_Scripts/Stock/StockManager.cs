@@ -182,9 +182,9 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
 
     private void CorrectChoice()
     {
+        _stockCalculation.Calculate(_playerCompany, isCorrectChoice: true);
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();
-        _stockCalculation.Calculate(_playerCompany, isCorrectChoice: true);
         UpdateStockGraph();
         EventManager.NotifyBrowser();
         PersistanceDataManager.Instance?.SaveGame();
@@ -192,9 +192,9 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
 
     private void WrongChoice()
     {
+        _stockCalculation.Calculate(_playerCompany, isCorrectChoice: false);
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();
-        _stockCalculation.Calculate(_playerCompany, isCorrectChoice: false);
         UpdateStockGraph();
         EventManager.NotifyBrowser();
         PersistanceDataManager.Instance?.SaveGame();
