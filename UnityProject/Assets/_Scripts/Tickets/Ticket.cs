@@ -16,6 +16,7 @@ public class Ticket
     private SiteType _site;
     private List<TicketObjectives> _objectives;
     private List<TicketLog> _logs;
+    private string _siemLog;
     private int _currentObjective;
 
     public PlaybookType Playbook => _playbook;
@@ -30,6 +31,7 @@ public class Ticket
     public SiteType Site => _site;
     public List<TicketObjectives> Objectives => _objectives;
     public List<TicketLog> Logs => _logs;
+    public string SiemLog => _siemLog;
 
     public Ticket(SO_Ticket infos)
     {
@@ -46,13 +48,14 @@ public class Ticket
 
         _objectives = new List<TicketObjectives>();
         _logs = infos.Loggs;
+        _siemLog = infos.SiemLog;
 
         foreach (var obj in infos.Objectives)
             _objectives.Add(obj.Clone());
-        
+
         _currentObjective = GetObjectivesCompletedQuantity();
-        
-        if(_objectives.Count > 0)
+
+        if (_objectives.Count > 0)
             _objectives[_currentObjective].ShouldShow = true;
     }
 

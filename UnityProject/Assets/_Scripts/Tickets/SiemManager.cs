@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 {
@@ -11,10 +12,13 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     [BoxGroup("Screens")] [SerializeField] private GameObject _blockedCanvas;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _alertPopupScreen;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _logPopupScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _awaintingAlertScreen;
 
     [HorizontalLine(color: EColor.Yellow)]
     [BoxGroup("Alert")] [SerializeField] private RectTransform _alertRect;
+    [BoxGroup("Alert")][SerializeField] private Button _openLogBtn;
+
 
     [HorizontalLine(color: EColor.Black)]
     [BoxGroup("Prefabs")] [SerializeField] private GameObject _alertPrefab;
@@ -25,6 +29,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     
     private const string _emailLoreToOpen = "Lore 1"; 
     private const string _emailLoreToSpawnAlerts = "Lore 4";
+    private const string _emailLoreToSpawnAlertsDayTwo = "Lore 1 Day 2";
     private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
     private List<Ticket> _instanceTickets = new List<Ticket>();
     private int _currentTicket = 0;
@@ -45,12 +50,15 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         };
 
         setup?.RegisterStates(_stateHandlers);
+
+        _openLogBtn.onClick.AddListener(FirstTimeOpenedLog);
         EventManager.OnAlertIsOpen += OpenAlert;
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
     }
 
     void OnDisable()
     {
+        _openLogBtn.onClick.RemoveListener(FirstTimeOpenedLog);
         EventManager.OnAlertIsOpen -= OpenAlert;
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
 
@@ -89,9 +97,10 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
         holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.DateDay, alert.DateHour, alert.Location, alert.Dispositive.Icon, ticketColor);
-        _alertPopupScreen.SetActive(true);
 
-        
+        _logPopupScreen.TryGetComponent(out SiemLogInfoHolder logHolder);
+        logHolder.UpdateLog(alert.SiemLog);
+        _alertPopupScreen.SetActive(true);  
     }
 
     private void HandleCurrentState()
@@ -108,16 +117,27 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     private void UpdateState(string emailIndex)
     {
-        switch(emailIndex)
+        switch (emailIndex)
         {
             case _emailLoreToOpen:
                 _currentState = SoftwareState.FirstTimeOpened;
                 break;
             case _emailLoreToSpawnAlerts:
-                for(int i = 0; i < 5; i++)
+                for (int i = 0; i < 5; i++)
                     SpawnAlert();
                 break;
-  
+            case _emailLoreToSpawnAlertsDayTwo:
+                SpawnAlert();
+            break;
+        }
+    }
+
+    private void FirstTimeOpenedLog()
+    {
+        if (_currentCharacter == Character.Tiago_Day_Two && _currentState == SoftwareState.FirstTimeOpened)
+        {
+            EventManager.SpawnEmail(EmailType.LORE);
+            ChangeSoftwareState(SoftwareState.FullAccess);
         }
     }
 

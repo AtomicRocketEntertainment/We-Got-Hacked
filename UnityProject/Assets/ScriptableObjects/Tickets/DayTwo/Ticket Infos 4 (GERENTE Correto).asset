@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588ff6714f62cf43becad5903b98e6d, type: 3}
+  m_Name: Ticket Infos 4 (GERENTE Correto)
+  m_EditorClassIdentifier: 
+  Playbook: 2
+  ID: 9553
+  IPOrigem: 110.211.201.27
+  IPDestiny: 63.203.19.36
+  Location: America do Sul - Brasil
+  Dispositive:
+    Type: 1
+    Icon: {fileID: 21300000, guid: 134411abc7f19434e95a8faf1897da7d, type: 3}
+  DateDay: 21/05/2022
+  DateHour: 22:31:58
+  RiskLevel: 5
+  Loggs:
+  - IsCorrect: 0
+    Log: 201.89.121.33 [20/Mai/2022:23:24:32 -0300] "GET /login HTTP/1.1" 201 "https://sustentabilidade.petrocais.com.br"
+      "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0"
+  - IsCorrect: 1
+    Log: 239.6.255.10 [20/Mai/2022:23:27:46 -0300] "PUT /home.html HTTP/1.1" 200
+      "https://sustentabilidade.petrocais.com.br" "Mozilla/5.0 (X11; Linux x86_64;
+      rv:109.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+  SiemLog: 'Date: 2025-05-30 10:12:14 User: DOMAIN\jdoe Action: File Modified Path:
+    C:\Users\jdoe\Documents\important_project.docx Original Hash: 8ACCF21C0B... New
+    Hash: 3F7A9E2E4F... Note: File hash changed significantly, entropy increased  
+    Date: 2025-05-30 10:12:15 User: DOMAIN\jdoe Action: File Renamed Old Path: C:\Users\jdoe\Documents\important_project.docx
+    New Path: C:\Users\jdoe\Documents\important_project.docx.locked   Date: 2025-05-30
+    10:12:18 User: DOMAIN\jdoe Action: New File Created Path: C:\Users\jdoe\Documents\READ_ME_TO_DECRYPT.txt
+    Content Snippet: "All your files have been encrypted..."'
+  Objectives:
+  - Name: Identificar qual pagina(s) ou plataforma sofreu o ataque, e criar ticket
+      sobre.
+    Text: Identificar qual pagina(s) ou plataforma sofreu o ataque, e criar ticket
+      sobre.
+    IsCompleted: 1
+    ShouldShow: 1
+  - Name: Notificar restante da equipe sobre o ticket criado do ataque.
+    Text: Notificar restante da equipe sobre o ticket criado do ataque.
+    IsCompleted: 1
+    ShouldShow: 1
+  - Name: Notificar o cliente sobre o ataque.
+    Text: Notificar o cliente sobre o ataque.
+    IsCompleted: 0
+    ShouldShow: 0
+  - Name: Retirar site do cliente do ar
+    Text: Retirar site do cliente do ar
+    IsCompleted: 0
+    ShouldShow: 0
+  - Name: Revisar vulnerabilidades de logs no servidor atacado
+    Text: Revisar vulnerabilidades de logs no servidor atacado
+    IsCompleted: 0
+    ShouldShow: 0
+  - Name: "Indicar corre\xE7\xE3o para a vulnerabilidade"
+    Text: "Indicar corre\xE7\xE3o para a vulnerabilidade"
+    IsCompleted: 0
+    ShouldShow: 0
+  - Name: "Restaurar backup do site pr\xE9-ataque"
+    Text: "Restaurar backup do site pr\xE9-ataque"
+    IsCompleted: 0
+    ShouldShow: 0
+  - Name: Restaurar site no ar.
+    Text: Restaurar site no ar.
+    IsCompleted: 0
+    ShouldShow: 0
+  CorrectSite: 0

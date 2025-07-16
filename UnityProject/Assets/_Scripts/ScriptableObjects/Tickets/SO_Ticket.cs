@@ -15,6 +15,7 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Commum Infos")] public string DateHour;
     [BoxGroup("Commum Infos")] public int RiskLevel;
     [BoxGroup("Commum Infos")] public List<TicketLog> Loggs;
+    [BoxGroup("Commum Infos")] public string SiemLog;
     public List<TicketObjectives> Objectives;
     
     [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))] [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
@@ -41,6 +42,16 @@ public class SO_Ticket : ScriptableObject
         part3 = Random.Range(1, 255);
         part4 = Random.Range(1, 255);
         IPDestiny = $"{part1}.{part2}.{part3}.{part4}";
+    }
+
+    [ContextMenu("Gerar Hora random")]
+    private void GenerateRandomHour()
+    {
+        int hour = Random.Range(21, 24);
+        int minute = Random.Range(00, 60);
+        int seconds = Random.Range(00, 60);
+
+        DateHour = $"{hour:D2}:{minute:D2}:{seconds:D2}";
     }
 
     void OnValidate()
@@ -104,5 +115,5 @@ public class TicketLog
 
 public enum Character
 {
-    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One
+    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One, Tiago_Day_Two, Raquel_Day_Two, Rafael_Day_Two
 }
