@@ -48,5 +48,6 @@ public enum ThoughtKey
     ShutdownWrongSite,
     WrongTimeShutdownSite,
     WrongBackup,
-    WrongTimeBackup
+    WrongTimeBackup,
+    WrongIPOnRemotinik
 }

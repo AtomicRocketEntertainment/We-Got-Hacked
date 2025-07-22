@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Ticket Infos", menuName ="Scriptable Objcts/Objects Info/Ticket Info")]
+[CreateAssetMenu(fileName = "Ticket Infos", menuName = "Scriptable Objcts/Objects Info/Ticket Info")]
 public class SO_Ticket : ScriptableObject
 {
     [BoxGroup("Commum Infos")] public PlaybookType Playbook;
@@ -16,9 +16,12 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Commum Infos")] public int RiskLevel;
     [BoxGroup("Commum Infos")] public List<TicketLog> Loggs;
     [BoxGroup("Commum Infos")] public string SiemLog;
+    [BoxGroup("Commum Infos")] public RemotopiaUserLogin RemotopiaUser;
+
     public List<TicketObjectives> Objectives;
-    
-    [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))] [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
+
+    [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))][Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
+
 
 
 
@@ -56,17 +59,16 @@ public class SO_Ticket : ScriptableObject
 
     void OnValidate()
     {
-        if(RiskLevel > 5 || RiskLevel < 1)
+        if (RiskLevel > 5 || RiskLevel < 1)
         {
             Debug.LogWarning("Risco não pode ser menor que 1 e maior que 5.");
             RiskLevel = Random.Range(1, 6);
         }
     }
 
-    private bool IsPichacao()
-    {
-        return Playbook == PlaybookType.Pichacao;
-    }
+    private bool IsPichacao() => Playbook == PlaybookType.Pichacao;
+    private bool IsRansomware() => Playbook == PlaybookType.Ransomware;
+
 }
 
 public enum PlaybookType

@@ -43,8 +43,12 @@ public static class EventManager
     public static event Action<string> OnEventEmailHandlerIsOpen;
     public static event Action<int> OnTimerIsComplete;
 
-    //WebsiteRelated
+    //Website Related
     public static event Action<string> OnWebsiteLinkerIsOpen;
+
+    //Remotopia Related
+    public static event Action OnUserEnterRemotopia;
+    public static event Action OnUserQuitRemotopia;
 
     //Question Related
     public static event Action OnGenericResponseNeeded;
@@ -403,6 +407,30 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnWebsiteLinkerIsOpen event.");
+        }
+    }
+
+    public static void LoginRemotopia()
+    {
+        if (OnUserEnterRemotopia != null)
+        {
+            OnUserEnterRemotopia();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnUserEnterRemotopia event.");
+        }
+    }
+
+    public static void QuitRemotopia()
+    {
+        if (OnUserQuitRemotopia != null)
+        {
+            OnUserQuitRemotopia();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnUserQuitRemotopia event.");
         }
     }
 

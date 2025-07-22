@@ -37,7 +37,6 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private int _currentLoreSended;
     private int _currentHackingSended;
 
-    private const string PLAYER_CANT_WRITE_EMAIL = "Ainda não tenho o que escrever";
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
 
 
