@@ -11,6 +11,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     [BoxGroup("Screens")][SerializeField] private GameObject _currentAccessedScreen;
     [BoxGroup("Screens")][SerializeField] private GameObject _txtScreen;
     [BoxGroup("Screens")][SerializeField] private GameObject _lockedScreen;
+    [BoxGroup("Screens")][SerializeField] private GameObject _userDisconectedScreen;
     [BoxGroup("Screens")][SerializeField] private GameObject _quitPopup;
 
     [BoxGroup("Current txt displayed")][SerializeField] private TextMeshProUGUI _fileTxtText;
@@ -24,6 +25,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     [BoxGroup("Login Dependencies")][SerializeField] private Button _conectBtn;
 
     [BoxGroup("Quit popup")][SerializeField] private Button _confirmQuiting;
+    [BoxGroup("Quit popup")][SerializeField] private Button _confirmDisconected;
 
 
     [BoxGroup("Instantiate Dependencies Documents")][SerializeField] private Transform _mainDocumentParent;
@@ -40,14 +42,15 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private Dictionary<int, GameObject> _buttonsSpawned;
     private List<GameObject> _sideButtons; //needed to keep training to update later
 
-    private readonly string _emailLore3Day2 = "Lore 3 Day 2";
+    private readonly string _emailLore6Day2 = "Lore 6 Day 2";
+    private readonly string _emailLore2Day2 = "Lore 2 Day 2";
 
     private void Awake()
     {
         _selectedCorrectUser = false;
         _buttonsSpawned = new Dictionary<int, GameObject>();
         _sideButtons = new List<GameObject>();
-        CreateUsersToLogin();
+        _dropDownLogin.ClearOptions();
     }
 
     void OnEnable()
@@ -55,6 +58,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         EventManager.OnEventEmailHandlerIsOpen += CheckUpdates;
         _dropDownLogin.onValueChanged.AddListener(ChangeLoginUser);
         _confirmQuiting.onClick.AddListener(QuitUser);
+        _confirmDisconected.onClick.AddListener(ConfirmDisconection);
         _conectBtn.onClick.AddListener(TryLogin);
     }
 
@@ -63,22 +67,33 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         EventManager.OnEventEmailHandlerIsOpen -= CheckUpdates;
         _dropDownLogin.onValueChanged.RemoveListener(ChangeLoginUser);
         _confirmQuiting.onClick.RemoveListener(QuitUser);
+        _confirmDisconected.onClick.RemoveListener(ConfirmDisconection);
         _conectBtn.onClick.RemoveListener(TryLogin);
     }
 
     private void CheckUpdates(string emailIndex)
     {
-        if (emailIndex == _emailLore3Day2)
+        if (emailIndex == _emailLore2Day2)
+            _currentState = SoftwareState.FullAccess;
+
+        if (emailIndex == _emailLore6Day2)
+        {
+            _currentState = SoftwareState.FullAccess;
             _currentUser = CurrentRemotopiaUser.Remotopia_Server_Day_Two;
+        }
     }
 
     private void CreateUsersToLogin()
     {
+        if (_currentState == SoftwareState.Blocked)
+            return;
+
         _dropDownLogin.ClearOptions();
         List<string> loginOptions = new List<string> { "" }; //first selected
 
+
         foreach (SO_Ticket ticket in _listOfTickets[(int)_currentUser].Tickets)
-            loginOptions.Add(ticket.IPDestiny);
+                loginOptions.Add(ticket.IPDestiny);
 
         _dropDownLogin.AddOptions(loginOptions);
     }
@@ -142,8 +157,17 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
             if (button.IsFolder())
             {
-                btnMain.onClick.AddListener(() => FolderClicked(button.FolderButtons));
-                btnSide.onClick.AddListener(() => FolderClicked(button.FolderButtons));
+                if (_currentUser == CurrentRemotopiaUser.Remotopia_Raquel_Day_Two)
+                {
+                    btnMain.onClick.AddListener(ManagerTestWasClicked);
+                    btnSide.onClick.AddListener(ManagerTestWasClicked);
+                }
+                else
+                {
+                    btnMain.onClick.AddListener(() => FolderClicked(button.FolderButtons));
+                    btnSide.onClick.AddListener(() => FolderClicked(button.FolderButtons));
+                }
+
 
                 foreach (SO_DocumentButton newButton in button.FolderButtons)
                 {
@@ -161,10 +185,29 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             }
             else //Is archive, either txt or locked one
             {
-                btnMain.onClick.AddListener(() => ArchiveClicked(button.Type, button.Text, button.Name));
-                btnSide.onClick.AddListener(() => ArchiveClicked(button.Type, button.Text, button.Name));
+                if (_currentUser == CurrentRemotopiaUser.Remotopia_Raquel_Day_Two)
+                {
+                    btnMain.onClick.AddListener(ManagerTestWasClicked);
+                    btnSide.onClick.AddListener(ManagerTestWasClicked);
+                }
+                else
+                {
+                    btnMain.onClick.AddListener(() => ArchiveClicked(button.Type, button.Text, button.Name));
+                    btnSide.onClick.AddListener(() => ArchiveClicked(button.Type, button.Text, button.Name));
+                }
             }
         }
+    }
+
+    private void ManagerTestWasClicked()
+    {
+        _userDisconectedScreen.SetActive(true);
+    }
+
+    private void ConfirmDisconection()
+    {
+        EventManager.SpawnEmail(EmailType.LORE);
+        QuitUser();
     }
 
     private void FolderClicked(List<SO_DocumentButton> listButtons)
@@ -201,6 +244,8 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     private void QuitUser()
     {
+        _currentState = SoftwareState.Blocked;
+
         foreach (var kvp in _buttonsSpawned)
             Destroy(kvp.Value);
 
@@ -208,6 +253,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             Destroy(sideButton);
 
         _accessScreen.SetActive(true);
+        _userDisconectedScreen.SetActive(false);
         _currentAccessedScreen.SetActive(false);
         _txtScreen.SetActive(false);
         _lockedScreen.SetActive(false);
@@ -223,6 +269,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     public void OpenCanvas()
     {
         _mainCanvas.SetActive(true);
+        CreateUsersToLogin();
     }
 
     public void CloseCanvas()
