@@ -241,7 +241,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
                 break;
         }
     }
-    
+
 
     private void QuitUser()
     {
@@ -263,6 +263,9 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         _lockedScreen.SetActive(false);
         _quitPopup.SetActive(false);
         EventManager.QuitRemotopia();
+
+        if (_currentUser == CurrentRemotopiaUser.Remotopia_Server_Day_Two)
+            EventManager.SpawnEmail(EmailType.LORE);
     }
 
     public void ChangeSoftwareState(SoftwareState state)

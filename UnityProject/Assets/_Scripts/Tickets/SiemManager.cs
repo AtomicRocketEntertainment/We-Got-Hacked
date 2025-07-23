@@ -137,6 +137,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
                 break;
             case _emailLore3Day2:
                 ClearListOfAlerts();
+                ChangeSoftwareState(SoftwareState.FullAccess);
                 for (int i = 0; i < 3; i++)
                     SpawnAlert();
                 break;
@@ -149,8 +150,11 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         {
             EventManager.SpawnEmail(EmailType.LORE);
             EventManager.SpawnEmail(EmailType.SPAM);
-            ChangeSoftwareState(SoftwareState.FullAccess);
+            ChangeSoftwareState(SoftwareState.Empty);
         }
+
+        if (_currentCharacter == Character.Tiago_Day_Two && _currentState == SoftwareState.FullAccess)
+            EventManager.SpawnEmail(EmailType.LORE);
     }
 
     private void ClearListOfAlerts()

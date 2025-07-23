@@ -40,11 +40,14 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private readonly string _lore9DayOne = "Lore 9";
     private readonly string _lore12DayOne = "Lore 12";
     private readonly string _lore4DayTwo = "Lore 4 Day 2";
+    private readonly string _lore5DayTwo = "Lore 5 Day 2";
     
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
+    
+    //listen to email lore 05 and spawn emails for day two.
 
 
-    private void OnEnable() 
+    private void OnEnable()
     {
         _currentSpamSended = _currentNewsSended = _currentLoreSended = _currentHackingSended = 0;
         _writeEmailBtn.onClick.AddListener(TryWriteEmail);
@@ -59,7 +62,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnReturnEmailContent += ReturnEmailContent;
         EventManager.OnTimerIsComplete += CheckToSpawn;
 
-        foreach(SO_Email email in _firstEmails) 
+        foreach (SO_Email email in _firstEmails)
             CreateSpecificEmail(email, false, true);
 
     }
@@ -80,10 +83,16 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if(emailIndex == _lore9DayOne || emailIndex == _lore12DayOne || emailIndex == _lore4DayTwo)
+        if (emailIndex == _lore9DayOne || emailIndex == _lore12DayOne || emailIndex == _lore4DayTwo)
             _writeEmailState = WriteEmailState.CanWrite;
         else
             _writeEmailState = WriteEmailState.CantWrite;
+
+        if (emailIndex == _lore5DayTwo)
+        {
+            CreateEmail(EmailType.LORE);
+            CreateEmail(EmailType.SPAM);
+        }
     }
 
     private void BlockEmailWrite()
