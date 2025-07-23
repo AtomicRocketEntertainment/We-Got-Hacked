@@ -48,6 +48,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private void Awake()
     {
         _selectedCorrectUser = false;
+        _conectBtn.interactable = false;
         _buttonsSpawned = new Dictionary<int, GameObject>();
         _sideButtons = new List<GameObject>();
         _dropDownLogin.ClearOptions();
@@ -245,6 +246,9 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private void QuitUser()
     {
         _currentState = SoftwareState.Blocked;
+        _selectedCorrectUser = false;
+        _conectBtn.interactable = false;
+        _dropDownLogin.ClearOptions();
 
         foreach (var kvp in _buttonsSpawned)
             Destroy(kvp.Value);

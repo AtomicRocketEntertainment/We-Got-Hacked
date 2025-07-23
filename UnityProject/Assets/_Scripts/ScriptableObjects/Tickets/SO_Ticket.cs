@@ -10,7 +10,8 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Commum Infos")] public string IPOrigem;
     [BoxGroup("Commum Infos")] public string IPDestiny;
     [BoxGroup("Commum Infos")] public string Location;
-    [BoxGroup("Commum Infos")] public DispostiveInfos Dispositive;
+    [BoxGroup("Commum Infos")] public ImpactedDevice DeviceAttacked;
+    [BoxGroup("Commum Infos")] public AlertOrigin Origin;
     [BoxGroup("Commum Infos")] public string DateDay;
     [BoxGroup("Commum Infos")] public string DateHour;
     [BoxGroup("Commum Infos")] public int RiskLevel;
@@ -76,17 +77,16 @@ public enum PlaybookType
     Pichacao, Phishing, Ransomware, DataLeak
 }
 
-public enum DispositiveType
+public enum ImpactedDevice
 {
     WindowsServer, Linux, OpenBSD, FreeBSD
 }
 
-[System.Serializable]
-public struct DispostiveInfos
+public enum AlertOrigin
 {
-    public DispositiveType Type;
-    public Sprite Icon;
+    Firewall, EDR, IDS, WAF
 }
+
 
 [System.Serializable]
 public class TicketObjectives

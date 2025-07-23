@@ -14,7 +14,6 @@ public class ChoicesManager : MonoBehaviour
     [SerializeField] private CharacterThoughtsManager _characterThoughtsManager;
 
 
-    private const string PLAYER_DONT_HAVE_EMAIL_TO_WRITE = "Não tenho nada para escrever";
     private int _currentEmailToWrite;
     private int _currentGenericResponse;
     private Coroutine _closeCrt;

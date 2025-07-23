@@ -9,8 +9,9 @@ public class PopupInfoHolder : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ipO;
     [SerializeField] private TextMeshProUGUI _ipD;
     [SerializeField] private TextMeshProUGUI _timestamp;
+    [SerializeField] private TextMeshProUGUI _dispositive;
+    [SerializeField] private TextMeshProUGUI _origin;
     [SerializeField] private TextMeshProUGUI _location;
-    [SerializeField] private Image _icon;
     [SerializeField] private Image _alertColor;
     [SerializeField] private RectTransform _locationPoint;
 
@@ -24,14 +25,15 @@ public class PopupInfoHolder : MonoBehaviour
     };
 
 
-    public void UpdateInfos(string id, string ipO, string ipD, string day, string hour, string location, Sprite icon, Color alertRisk)
+    public void UpdateInfos(string id, string ipO, string ipD, string dispositive, string origin, string day, string hour, string location, Color alertRisk)
     {
         _id.text = $"ID Alert:{id}";
         _ipO.text = ipO;
         _ipD.text = ipD;
+        _dispositive.text = dispositive;
+        _origin.text = origin;
         _timestamp.text = $"{day} - {hour}";
         _location.text = location;
-        _icon.sprite = icon;
         _alertColor.color = alertRisk;
         
         string country = location.Split('-')[1].Trim();

@@ -9,7 +9,8 @@ public class Ticket
     private string _iPOrigem;
     private string _iPDestiny;
     private string _location;
-    private DispostiveInfos _dispositive;
+    private ImpactedDevice _deviceAttacked;
+    private AlertOrigin _origin;
     private string _dateDay;
     private string _dateHour;
     private int _riskLevel;
@@ -24,7 +25,8 @@ public class Ticket
     public string IPOrigem => _iPOrigem;
     public string IPDestiny => _iPDestiny;
     public string Location => _location;
-    public DispostiveInfos Dispositive => _dispositive;
+    public ImpactedDevice Dispositive => _deviceAttacked;
+    public AlertOrigin Origin => _origin;
     public string DateDay => _dateDay;
     public string DateHour => _dateHour;
     public int RiskLevel => _riskLevel;
@@ -40,7 +42,8 @@ public class Ticket
         _iPOrigem = infos.IPOrigem;
         _iPDestiny = infos.IPDestiny;
         _location = infos.Location;
-        _dispositive = infos.Dispositive;
+        _deviceAttacked = infos.DeviceAttacked;
+        _origin = infos.Origin;
         _dateDay = infos.DateDay;
         _dateHour = infos.DateHour;
         _riskLevel = infos.RiskLevel;

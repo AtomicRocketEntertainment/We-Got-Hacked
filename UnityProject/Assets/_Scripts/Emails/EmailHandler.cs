@@ -37,6 +37,10 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private int _currentLoreSended;
     private int _currentHackingSended;
 
+    private readonly string _lore9DayOne = "Lore 9";
+    private readonly string _lore12DayOne = "Lore 12";
+    private readonly string _lore4DayTwo = "Lore 4 Day 2";
+    
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
 
 
@@ -76,7 +80,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if(emailIndex == "Lore 9" || emailIndex == "Lore 12")
+        if(emailIndex == _lore9DayOne || emailIndex == _lore12DayOne || emailIndex == _lore4DayTwo)
             _writeEmailState = WriteEmailState.CanWrite;
         else
             _writeEmailState = WriteEmailState.CantWrite;

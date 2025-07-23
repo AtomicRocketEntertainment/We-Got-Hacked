@@ -8,30 +8,33 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     [SerializeField] private List<SO_Ticket> _tickets;
 
     [HorizontalLine(color: EColor.Green)]
-    [BoxGroup("Screens")] [SerializeField] private GameObject _mainCanvas;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _blockedCanvas;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _alertScreen;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _alertPopupScreen;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _logPopupScreen;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _awaintingAlertScreen;
+    [BoxGroup("Screens")][SerializeField] private GameObject _mainCanvas;
+    [BoxGroup("Screens")][SerializeField] private GameObject _blockedCanvas;
+    [BoxGroup("Screens")][SerializeField] private GameObject _alertScreen;
+    [BoxGroup("Screens")][SerializeField] private GameObject _alertPopupScreen;
+    [BoxGroup("Screens")][SerializeField] private GameObject _logPopupScreen;
+    [BoxGroup("Screens")][SerializeField] private GameObject _awaintingAlertScreen;
 
     [HorizontalLine(color: EColor.Yellow)]
-    [BoxGroup("Alert")] [SerializeField] private RectTransform _alertRect;
+    [BoxGroup("Alert")][SerializeField] private RectTransform _alertRect;
     [BoxGroup("Alert")][SerializeField] private Button _openLogBtn;
 
 
     [HorizontalLine(color: EColor.Black)]
-    [BoxGroup("Prefabs")] [SerializeField] private GameObject _alertPrefab;
+    [BoxGroup("Prefabs")][SerializeField] private GameObject _alertPrefab;
 
     [SerializeField] private SoftwareState _currentState = SoftwareState.Blocked;
     [SerializeField] private Character _currentCharacter = Character.None;
 
-    
-    private const string _emailLoreToOpen = "Lore 1"; 
+
+    private const string _emailLoreToOpen = "Lore 1";
     private const string _emailLoreToSpawnAlerts = "Lore 4";
     private const string _emailLoreToSpawnAlertsDayTwo = "Lore 1 Day 2";
+    private const string _emailLore3Day2 = "Lore 3 Day 2";
+
     private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
     private List<Ticket> _instanceTickets = new List<Ticket>();
+    private List<GameObject> _instanceObjTickets = new List<GameObject>();
     private int _currentTicket = 0;
     private int _ticketMaxLevel = 5;
 
@@ -67,13 +70,13 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     [ContextMenu("Spawn Alert")]
     public void SpawnAlert()
     {
-        if(_currentTicket >= _tickets.Count) return;
+        if (_currentTicket >= _tickets.Count) return;
 
-        if(!_mainCanvas.activeSelf)
+        if (!_mainCanvas.activeSelf)
             EventManager.NotifyBar(this.gameObject);
 
         _awaintingAlertScreen.SetActive(false);
-        
+
         Ticket ticket = new Ticket(_tickets[_currentTicket]);
 
         GameObject instanceTicket = Instantiate(_alertPrefab, Vector3.zero, Quaternion.identity);
@@ -81,12 +84,15 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         instanceTicket.transform.localScale = new Vector3(1, 1, 1);
         instanceTicket.name = ticket.ID;
 
-        if(instanceTicket.TryGetComponent(out AlertInstance instance))
+        if (instanceTicket.TryGetComponent(out AlertInstance instance))
             instance.Init(ticket);
 
-        if(!_instanceTickets.Contains(ticket))
+        if (!_instanceTickets.Contains(ticket))
             _instanceTickets.Add(ticket);
-        
+
+        if (!_instanceObjTickets.Contains(instanceTicket))
+            _instanceObjTickets.Add(instanceTicket);
+
         _currentTicket++;
     }
 
@@ -96,11 +102,11 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             EventManager.MakePlayerThink(ThoughtKey.WrongAlertOpen);
 
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
-        holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.DateDay, alert.DateHour, alert.Location, alert.Dispositive.Icon, ticketColor);
+        holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.Dispositive.ToString(), alert.Origin.ToString(), alert.DateDay, alert.DateHour, alert.Location, ticketColor);
 
         _logPopupScreen.TryGetComponent(out SiemLogInfoHolder logHolder);
         logHolder.UpdateLog(alert.SiemLog);
-        _alertPopupScreen.SetActive(true);  
+        _alertPopupScreen.SetActive(true);
     }
 
     private void HandleCurrentState()
@@ -128,7 +134,12 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
                 break;
             case _emailLoreToSpawnAlertsDayTwo:
                 SpawnAlert();
-            break;
+                break;
+            case _emailLore3Day2:
+                ClearListOfAlerts();
+                for (int i = 0; i < 3; i++)
+                    SpawnAlert();
+                break;
         }
     }
 
@@ -137,8 +148,17 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         if (_currentCharacter == Character.Tiago_Day_Two && _currentState == SoftwareState.FirstTimeOpened)
         {
             EventManager.SpawnEmail(EmailType.LORE);
+            EventManager.SpawnEmail(EmailType.SPAM);
             ChangeSoftwareState(SoftwareState.FullAccess);
         }
+    }
+
+    private void ClearListOfAlerts()
+    {
+        _instanceTickets.Clear();
+
+        foreach (GameObject obj in _instanceObjTickets)
+            Destroy(obj);
     }
 
     public void OpenCanvas()
@@ -163,3 +183,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     }
 }
 
+public enum LogState
+{
+
+}
