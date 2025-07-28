@@ -5,5 +5,8 @@ public class Day_Two_WriteStateSetup_Tiago : IEmailStateSetup
     public void RegisterStates(Dictionary<(Character, HistoryPartState), IEmailStateHandler> stateHandlers)
     {
         stateHandlers.Add((Character.Tiago_Day_Two, HistoryPartState.Part_One), new Day_Two_FirstWrite_Tiago());
+        stateHandlers.Add((Character.Tiago_Day_Two, HistoryPartState.Part_Two), new Day_Two_SecondWrite_Tiago());
+        stateHandlers.Add((Character.Tiago_Day_Two, HistoryPartState.Part_Three), new Day_Two_ThirdWrite_Tiago());
+    
     }
 }

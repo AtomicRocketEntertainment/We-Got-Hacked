@@ -30,8 +30,6 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
 
     [BoxGroup("Emails to send - Pichacao Lore")][SerializeField] private SO_Ticket _correctTicketSO;
-    [BoxGroup("Emails to send - Pichacao Lore")][SerializeField] private SO_Email _firstWrongEmailToSend;
-    [BoxGroup("Emails to send - Pichacao Lore")][SerializeField] private SO_Email _ticketAdjusteEmailToSend;
 
     private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
 
@@ -181,6 +179,12 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
         
         if(ticket.CheckInfo(_correctTicket) && _ticketCreatedWrongOneTime)
         {
+            if (_currentCharacter == Character.Tiago_Day_Two)
+            {
+                EventManager.ShowStoryBoard();
+                return;   
+            }
+
             EventManager.CreateEspecificEmail(PointEmailKey.CorrectTicketAfterWrongCreated);
             UpdateTicketProgress();
             ticket.ResetNewTicketInfos();
@@ -191,6 +195,12 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
         
         if(ticket.CheckInfo(_correctTicket) && !_ticketCreatedWrongOneTime)
         {
+            if (_currentCharacter == Character.Tiago_Day_Two)
+            {
+                EventManager.ShowStoryBoard();
+                return;   
+            }
+
             EventManager.SpawnEmail(EmailType.LORE);
             UpdateTicketProgress();
             ticket.ResetNewTicketInfos();

@@ -36,6 +36,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
         IEmailStateSetup responseSetup = _currentCharacter switch
         {
             Character.Tiago_Day_One => new Day_One_ResponseStateSetup_Tiago(),
+            Character.Tiago_Day_Two => new Day_Two_ResponseStateSetup_Tiago(),
             _ => null
         };
 
@@ -44,6 +45,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
             Character.Tiago_Day_One => new Day_One_WriteStateSetup_Tiago(),
             Character.Raquel_Day_One => new Day_One_WriteStateSetup_Raquel(),
             Character.Rafael_Day_One => new Day_One_WriteStateSetup_Rafael(),
+            Character.Tiago_Day_Two => new Day_Two_WriteStateSetup_Tiago(),
             _ => null
         };
 
