@@ -1,6 +1,9 @@
 
 public interface IEmailContext
 {
-    void ChangeSoftwareState(HistoryPartState state);
+    void ChangeWriteState(HistoryPartState state);
+    void ChangeResponseState(HistoryPartState state);
+    void CheckApkSideStory(PointEmailKey sideEmailKey);
+
 }
 

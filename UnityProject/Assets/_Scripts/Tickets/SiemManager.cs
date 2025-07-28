@@ -49,6 +49,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         IStateSetup setup = _currentCharacter switch
         {
             Character.Tiago_Day_One => new TiagoSiemDayOneStateSetup(),
+            Character.Tiago_Day_Two => new TiagoSiemDayTwoStateSetup(),
             _ => null
         };
 
@@ -137,8 +138,8 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
                 break;
             case _emailLore3Day2:
                 ClearListOfAlerts();
-                ChangeSoftwareState(SoftwareState.FullAccess);
-                for (int i = 0; i < 3; i++)
+                ChangeSoftwareState(SoftwareState.Empty);
+                for (int i = 0; i < 4; i++)
                     SpawnAlert();
                 break;
         }
@@ -150,11 +151,8 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         {
             EventManager.SpawnEmail(EmailType.LORE);
             EventManager.SpawnEmail(EmailType.SPAM);
-            ChangeSoftwareState(SoftwareState.Empty);
+            ChangeSoftwareState(SoftwareState.Opened);
         }
-
-        if (_currentCharacter == Character.Tiago_Day_Two && _currentState == SoftwareState.FullAccess)
-            EventManager.SpawnEmail(EmailType.LORE);
     }
 
     private void ClearListOfAlerts()

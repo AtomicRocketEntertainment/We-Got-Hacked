@@ -9,9 +9,9 @@ public class ChoicesManager : MonoBehaviour
     [BoxGroup("Screens")] [SerializeField] private GameObject _genericScreen;
     [BoxGroup("Screens")] [SerializeField] private GameObject _thinkScreen;
     [BoxGroup("Email")] [SerializeField] private List<SO_Email> _emailsToWrite;
-
     [BoxGroup("Responses Dependencies")] [SerializeField] private List<SO_GenericResponse> _genericResponses;
     [SerializeField] private CharacterThoughtsManager _characterThoughtsManager;
+    [SerializeField] private PointEmailManager _pointEmailManager;
 
 
     private int _currentEmailToWrite;
@@ -30,6 +30,7 @@ public class ChoicesManager : MonoBehaviour
         EventManager.OnPlayerNeedToThink += ShowThink;
         EventManager.OnCloseResponseScreen += CloseResponse;
         EventManager.OnGenericResponseIsMaded += UpdateGenericResponse;
+        EventManager.OnCreateEspecificEmail += GetAndGenerateSpecificEmail;
     }
 
 
@@ -42,6 +43,7 @@ public class ChoicesManager : MonoBehaviour
         EventManager.OnPlayerNeedToThink -= ShowThink;
         EventManager.OnCloseResponseScreen -= CloseResponse;
         EventManager.OnGenericResponseIsMaded -= UpdateGenericResponse;
+        EventManager.OnCreateEspecificEmail -= GetAndGenerateSpecificEmail;
     }
 
     private void UpdateGenericResponse(string index)
@@ -95,9 +97,16 @@ public class ChoicesManager : MonoBehaviour
         _closeCrt = StartCoroutine(CloseScreen(_thinkScreen));
     }
 
+    private void GetAndGenerateSpecificEmail(PointEmailKey key)
+    {
+        PointEmailEntry emailEntry = _pointEmailManager.GetEmail(key);
+
+        EventManager.SpawnSpecificEmail(emailEntry);
+    }
+
     private IEnumerator CloseScreen(GameObject screen)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         screen.SetActive(false);
     }
 

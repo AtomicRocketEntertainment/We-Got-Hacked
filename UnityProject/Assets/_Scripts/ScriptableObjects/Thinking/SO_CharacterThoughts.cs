@@ -49,5 +49,6 @@ public enum ThoughtKey
     WrongTimeShutdownSite,
     WrongBackup,
     WrongTimeBackup,
-    WrongIPOnRemotinik
+    WrongIPOnRemotinik,
+    SendMessageToPks
 }

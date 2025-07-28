@@ -135,7 +135,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             PlaybookType.Pichacao.ToString(),
             PlaybookType.Phishing.ToString(),
             PlaybookType.Ransomware.ToString(),
-            PlaybookType.DataLeak.ToString()
+            PlaybookType.VazamentoDeDados.ToString()
         };
 
         if (softwareState != SoftwareState.FullAccess) return;

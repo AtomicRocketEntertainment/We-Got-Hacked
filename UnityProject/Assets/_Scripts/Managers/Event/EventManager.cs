@@ -5,7 +5,9 @@ using UnityEngine;
 public static class EventManager
 {
     //Email Related
-    public static event Action OnPlayerCantWriteEmail;
+    public static event Action OnDisablePlayerWriteEmail;
+    public static event Action OnEnablePlayerWriteEmail;
+    public static event Action OnPlayerCanWriteEmail;
     public static event Action<GameObject> OnOpenEmail;
     public static event Action OnTryWriteEmail;
     public static event Action<Email> OnWriteEmail;
@@ -14,7 +16,8 @@ public static class EventManager
     public static event Action<string> OnChangeEmailContentText;
     public static event Action<Email, bool> OnEmailResponseNeeded;
     public static event Action<EmailType> OnSpawnEmail;
-    public static event Action<SO_Email, bool, bool> OnCreateEspecificEmail;
+    public static event Action<PointEmailKey> OnCreateEspecificEmail;
+    public static event Action<PointEmailEntry> OnSpawnSpecificEmail;
     public static event Action<string> OnEmailIsAnswered;
     public static event Action OnReturnEmailContent;
 
@@ -62,15 +65,27 @@ public static class EventManager
     public static event Action<string> OnDatabaseEror;
 
 
-    public static void BlockPlayerWriteEmail()
+    public static void DisablePlayerWriteEmail()
     {
-        if (OnPlayerCantWriteEmail != null)
+        if (OnDisablePlayerWriteEmail != null)
         {
-            OnPlayerCantWriteEmail();
+            OnDisablePlayerWriteEmail();
         }
         else
         {
-            Debug.LogWarning("No listeners for OnPlayerCantWriteEmail event.");
+            Debug.LogWarning("No listeners for OnDisablePlayerWriteEmail event.");
+        }
+    }
+
+    public static void EnablePlayerWriteEmail()
+    {
+        if (OnEnablePlayerWriteEmail != null)
+        {
+            OnEnablePlayerWriteEmail();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnEnablePlayerWriteEmail event.");
         }
     }
 
@@ -170,15 +185,27 @@ public static class EventManager
         }
     }
 
-    public static void CreateEspecificEmail(SO_Email email, bool shouldAdvaneHistory, bool spawnOnTime)
+    public static void CreateEspecificEmail(PointEmailKey emailKey)
     {
         if (OnCreateEspecificEmail != null)
         {
-            OnCreateEspecificEmail(email, shouldAdvaneHistory, spawnOnTime);
+            OnCreateEspecificEmail(emailKey);
         }
         else
         {
             Debug.LogWarning("No listeners for OnCreateEspecificEmail event.");
+        }
+    }
+
+    public static void SpawnSpecificEmail(PointEmailEntry emailKey)
+    {
+        if (OnSpawnSpecificEmail != null)
+        {
+            OnSpawnSpecificEmail(emailKey);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnSpawnSpecificEmail event.");
         }
     }
 

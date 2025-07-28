@@ -6,35 +6,36 @@ using UnityEngine.UI;
 
 public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, INotificator
 {
-    [BoxGroup("UI Dependencies")] [SerializeField] private Button _sendTicketBtn;
-    [BoxGroup("UI Dependencies")] [SerializeField] private Button _completeTicket;   
-    [BoxGroup("UI Dependencies")] [SerializeField] private Button _newTicketBtn;
-    [BoxGroup("UI Dependencies")] [SerializeField] private Button _currentTicketBtn;
+    [BoxGroup("UI Dependencies")][SerializeField] private Button _sendTicketBtn;
+    [BoxGroup("UI Dependencies")][SerializeField] private Button _completeTicket;
+    [BoxGroup("UI Dependencies")][SerializeField] private Button _newTicketBtn;
+    [BoxGroup("UI Dependencies")][SerializeField] private Button _currentTicketBtn;
     //[BoxGroup("UI Dependencies")] [SerializeField] private Button _doneTicketBtn;
-    [BoxGroup("UI Dependencies")] [SerializeField] private Button _playbookBtn;  
+    [BoxGroup("UI Dependencies")][SerializeField] private Button _playbookBtn;
 
-    [BoxGroup("Other Dependencies")] [SerializeField] private SO_TicketList _listOfTickets;
+    [BoxGroup("Other Dependencies")][SerializeField] private SO_TicketList _listOfTickets;
 
 
-    [BoxGroup("Screens")] [SerializeField] private GameObject _blockedCanvas;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _mainCanvas;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _newTicketCanvas;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _currentTicketCanvas;
+    [BoxGroup("Screens")][SerializeField] private GameObject _blockedCanvas;
+    [BoxGroup("Screens")][SerializeField] private GameObject _mainCanvas;
+    [BoxGroup("Screens")][SerializeField] private GameObject _newTicketCanvas;
+    [BoxGroup("Screens")][SerializeField] private GameObject _currentTicketCanvas;
     //[BoxGroup("Screens")] [SerializeField] private GameObject _doneTicketCanvas;
-    [BoxGroup("Screens")] [SerializeField] private GameObject _playbooksCanvas;
-    
-    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _emailLoreToOpen = "Lore 2";  
-    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _unlockSendN1 = "Lore 4";
-    [BoxGroup("Lore to Update State")] [SerializeField] private readonly string _unlockSendN2 = "Lore 9";
+    [BoxGroup("Screens")][SerializeField] private GameObject _playbooksCanvas;
+
+    [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore2Day1 = "Lore 2";
+    [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore4Day1 = "Lore 4";
+    [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore9Day1 = "Lore 9";
+    [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore8Day2 = "Lore 8 Day 2";
 
 
-    [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Ticket _correctTicketSO;
-    [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _firstWrongEmailToSend;
-    [BoxGroup("Emails to send - Pichacao Lore")] [SerializeField] private SO_Email _ticketAdjusteEmailToSend;
+    [BoxGroup("Emails to send - Pichacao Lore")][SerializeField] private SO_Ticket _correctTicketSO;
+    [BoxGroup("Emails to send - Pichacao Lore")][SerializeField] private SO_Email _firstWrongEmailToSend;
+    [BoxGroup("Emails to send - Pichacao Lore")][SerializeField] private SO_Email _ticketAdjusteEmailToSend;
 
     private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
 
-    
+
     [SerializeField] private SoftwareState _currentState = SoftwareState.Blocked;
     [SerializeField] private Character _currentCharacter = Character.None;
 
@@ -107,7 +108,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
     private void OpenScreen(Button button)
     {
-        foreach(var screen in _screens)
+        foreach (var screen in _screens)
         {
             if (screen.Key == button)
             {
@@ -141,9 +142,9 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     private void UpdateState(string emailIndex)
     {
 
-        if (emailIndex == _emailLoreToOpen)
+        if (emailIndex == _lore2Day1)
             _currentState = SoftwareState.FirstTimeOpened;
-        else if (emailIndex == _unlockSendN1 || emailIndex == _unlockSendN2)
+        else if (emailIndex == _lore4Day1 || emailIndex == _lore9Day1 || emailIndex == _lore8Day2)
         {
             _currentState = SoftwareState.FullAccess;
             _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
@@ -172,7 +173,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
         if(!ticket.CheckInfo(_correctTicket))
         {
-            EventManager.CreateEspecificEmail(_firstWrongEmailToSend, shouldAdvaneHistory: false, spawnOnTime: false);
+            EventManager.CreateEspecificEmail(PointEmailKey.OneTimeWrongTicketCreated);
             _ticketCreatedWrongOneTime = true;
             EventManager.WrongChoice();
             return;
@@ -180,7 +181,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
         
         if(ticket.CheckInfo(_correctTicket) && _ticketCreatedWrongOneTime)
         {
-            EventManager.CreateEspecificEmail(_ticketAdjusteEmailToSend, shouldAdvaneHistory: true, spawnOnTime: false);
+            EventManager.CreateEspecificEmail(PointEmailKey.CorrectTicketAfterWrongCreated);
             UpdateTicketProgress();
             ticket.ResetNewTicketInfos();
             EventManager.CorrectChoice();

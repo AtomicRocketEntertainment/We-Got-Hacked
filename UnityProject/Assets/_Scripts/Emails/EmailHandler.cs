@@ -40,21 +40,18 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private readonly string _lore9DayOne = "Lore 9";
     private readonly string _lore12DayOne = "Lore 12";
     private readonly string _lore4DayTwo = "Lore 4 Day 2";
-    private readonly string _lore5DayTwo = "Lore 5 Day 2";
     
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
-    
-    //listen to email lore 05 and spawn emails for day two.
-
 
     private void OnEnable()
     {
         _currentSpamSended = _currentNewsSended = _currentLoreSended = _currentHackingSended = 0;
         _writeEmailBtn.onClick.AddListener(TryWriteEmail);
-        EventManager.OnPlayerCantWriteEmail += BlockEmailWrite;
+        EventManager.OnDisablePlayerWriteEmail += DisableEmailWrite;
+        EventManager.OnEnablePlayerWriteEmail += EnableEmailWrite;
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
         EventManager.OnSpawnEmail += CreateEmail;
-        EventManager.OnCreateEspecificEmail += CreateSpecificEmail;
+        EventManager.OnSpawnSpecificEmail += SpawnSpecificEmail;
         EventManager.OnOpenEmail += OpenEmail;
         EventManager.OnWriteEmail += TryWriteEmail;
         EventManager.OnChangeEmailContentText += ChangeContentEmail;
@@ -69,11 +66,12 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     void OnDisable()
     {
         _writeEmailBtn.onClick.RemoveListener(TryWriteEmail);
-        EventManager.OnPlayerCantWriteEmail -= BlockEmailWrite;
+        EventManager.OnDisablePlayerWriteEmail -= DisableEmailWrite;
+        EventManager.OnEnablePlayerWriteEmail -= EnableEmailWrite;
         EventManager.OnWriteEmail -= TryWriteEmail;
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
         EventManager.OnSpawnEmail -= CreateEmail;
-        EventManager.OnCreateEspecificEmail -= CreateSpecificEmail;
+        EventManager.OnSpawnSpecificEmail -= SpawnSpecificEmail;
         EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
@@ -87,18 +85,11 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
             _writeEmailState = WriteEmailState.CanWrite;
         else
             _writeEmailState = WriteEmailState.CantWrite;
-
-        if (emailIndex == _lore5DayTwo)
-        {
-            CreateEmail(EmailType.LORE);
-            CreateEmail(EmailType.SPAM);
-        }
     }
 
-    private void BlockEmailWrite()
-    {
-        _writeEmailState = WriteEmailState.CantWrite;
-    }
+    private void DisableEmailWrite() => _writeEmailState = WriteEmailState.CantWrite;
+    private void EnableEmailWrite() => _writeEmailState = WriteEmailState.CanWrite;
+
 
     private void CreateEmail(EmailType emailType)
     {
@@ -135,7 +126,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
                 }
                 break;
         }
-        
+
         if (email == null) return;
 
         StartCoroutine(SpawnEmail(email, Random.Range(2, 6)));
@@ -151,6 +142,22 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         
         int seconds = spawnOnTime ? 0 : Random.Range(2, 6);
         Email email = new Email(emailToCreate);
+        StartCoroutine(SpawnEmail(email, seconds));
+    }
+
+    private void SpawnSpecificEmail(PointEmailEntry emailToCreate)
+    {
+        Debug.Log("Chegou o email " + emailToCreate.email);
+        Debug.Log("Status do shouldAdvance " + emailToCreate.ShouldAdvanceHistory);
+        if (emailToCreate.ShouldAdvanceHistory)
+        {
+            _currentLoreSended++;
+            UpdateLoreMechanics();
+        }
+        
+        int seconds = emailToCreate.SpawnOnTime ? 0 : Random.Range(2, 6);
+        Email email = new Email(emailToCreate.email);
+        Debug.Log("Instancia do email: " + email.Title);
         StartCoroutine(SpawnEmail(email, seconds));
     }
 

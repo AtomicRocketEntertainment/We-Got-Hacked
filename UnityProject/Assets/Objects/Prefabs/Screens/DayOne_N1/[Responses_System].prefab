@@ -475,7 +475,8 @@ MonoBehaviour:
   - {fileID: 6881733063164602611}
   - {fileID: 4725930340004328949}
   _responseQuestion: {fileID: 3588667977623171794}
-  _currentState: 0
+  _currentResponseState: 0
+  _currentWriteState: 0
   _currentCharacter: 0
 --- !u!1 &840495308285007067
 GameObject:
@@ -2641,6 +2642,7 @@ GameObject:
   - component: {fileID: 3180885058075534001}
   - component: {fileID: 1099965683294723319}
   - component: {fileID: -2913445424925133846}
+  - component: {fileID: 7834874094579070611}
   m_Layer: 0
   m_Name: '[Responses_System]'
   m_TagString: Untagged
@@ -2683,6 +2685,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b7b93349ccfc13d4dab56c454ef53b36, type: 2}
   _genericResponses: []
   _characterThoughtsManager: {fileID: -2913445424925133846}
+  _pointEmailManager: {fileID: 7834874094579070611}
 --- !u!114 &-2913445424925133846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2696,6 +2699,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterThoughts: {fileID: 11400000, guid: fc4877b9457be9a47af51aef79dfa9cc, type: 2}
+--- !u!114 &7834874094579070611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865921419889208027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5dfb1bf8945f24884b81aad72d7cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _emailMap: {fileID: 11400000, guid: db081a4ce6546cc419f58c3bbc851130, type: 2}
 --- !u!1 &5162526901898797299
 GameObject:
   m_ObjectHideFlags: 0
