@@ -10,7 +10,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     [BoxGroup("UI Dependencies")][SerializeField] private Button _completeTicket;
     [BoxGroup("UI Dependencies")][SerializeField] private Button _newTicketBtn;
     [BoxGroup("UI Dependencies")][SerializeField] private Button _currentTicketBtn;
-    //[BoxGroup("UI Dependencies")] [SerializeField] private Button _doneTicketBtn;
+    [BoxGroup("UI Dependencies")] [SerializeField] private Button _doneTicketBtn;
     [BoxGroup("UI Dependencies")][SerializeField] private Button _playbookBtn;
 
     [BoxGroup("Other Dependencies")][SerializeField] private SO_TicketList _listOfTickets;
@@ -20,7 +20,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     [BoxGroup("Screens")][SerializeField] private GameObject _mainCanvas;
     [BoxGroup("Screens")][SerializeField] private GameObject _newTicketCanvas;
     [BoxGroup("Screens")][SerializeField] private GameObject _currentTicketCanvas;
-    //[BoxGroup("Screens")] [SerializeField] private GameObject _doneTicketCanvas;
+    [BoxGroup("Screens")] [SerializeField] private GameObject _doneTicketCanvas;
     [BoxGroup("Screens")][SerializeField] private GameObject _playbooksCanvas;
 
     [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore2Day1 = "Lore 2";
@@ -61,15 +61,18 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
         if (!_screens.ContainsKey(_newTicketBtn)) _screens.Add(_newTicketBtn, _newTicketCanvas);
         if (!_screens.ContainsKey(_currentTicketBtn)) _screens.Add(_currentTicketBtn, _currentTicketCanvas);
-        //if(!_screens.ContainsKey(_doneTicketBtn)) _screens.Add(_doneTicketBtn, _doneTicketCanvas);
+        if(!_screens.ContainsKey(_doneTicketBtn)) _screens.Add(_doneTicketBtn, _doneTicketCanvas);
         if (!_screens.ContainsKey(_playbookBtn)) _screens.Add(_playbookBtn, _playbooksCanvas);
+
         _lastClickedBtn = _newTicketBtn;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_lastClickedBtn.gameObject);
 
         _completeTicket.onClick.AddListener(EndDay);
         _sendTicketBtn.onClick.AddListener(TrySendTicket);
         _newTicketBtn.onClick.AddListener(() => OpenScreen(_newTicketBtn));
         _currentTicketBtn.onClick.AddListener(() => OpenScreen(_currentTicketBtn));
-        //_doneTicketBtn.onClick.AddListener(() => OpenScreen(_doneTicketBtn));
+        _doneTicketBtn.onClick.AddListener(() => OpenScreen(_doneTicketBtn));
         _playbookBtn.onClick.AddListener(() => OpenScreen(_playbookBtn));
 
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
@@ -95,7 +98,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
         _sendTicketBtn.onClick.RemoveListener(TrySendTicket);
         _newTicketBtn.onClick.RemoveAllListeners();
         _currentTicketBtn.onClick.RemoveAllListeners();
-        //_doneTicketBtn.onClick.RemoveAllListeners();
+        _doneTicketBtn.onClick.RemoveAllListeners();
         _playbookBtn.onClick.RemoveAllListeners();
     }
 
