@@ -40,6 +40,8 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private readonly string _lore9DayOne = "Lore 9";
     private readonly string _lore12DayOne = "Lore 12";
     private readonly string _lore4DayTwo = "Lore 4 Day 2";
+    private readonly string _lore8DayTwo = "Lore 8 Day 2";
+    private readonly string _loreA04 = "Lore A04";
     
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
 
@@ -81,10 +83,13 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if (emailIndex == _lore9DayOne || emailIndex == _lore12DayOne || emailIndex == _lore4DayTwo)
-            _writeEmailState = WriteEmailState.CanWrite;
-        else
-            _writeEmailState = WriteEmailState.CantWrite;
+        if(emailIndex == _lore8DayTwo)
+            return;
+
+        if (emailIndex == _lore9DayOne || emailIndex == _lore12DayOne || emailIndex == _lore4DayTwo || emailIndex == _loreA04)
+                _writeEmailState = WriteEmailState.CanWrite;
+            else
+                _writeEmailState = WriteEmailState.CantWrite;
     }
 
     private void DisableEmailWrite() => _writeEmailState = WriteEmailState.CantWrite;
@@ -147,8 +152,6 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void SpawnSpecificEmail(PointEmailEntry emailToCreate)
     {
-        Debug.Log("Chegou o email " + emailToCreate.email);
-        Debug.Log("Status do shouldAdvance " + emailToCreate.ShouldAdvanceHistory);
         if (emailToCreate.ShouldAdvanceHistory)
         {
             _currentLoreSended++;
@@ -157,7 +160,6 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         
         int seconds = emailToCreate.SpawnOnTime ? 0 : Random.Range(2, 6);
         Email email = new Email(emailToCreate.email);
-        Debug.Log("Instancia do email: " + email.Title);
         StartCoroutine(SpawnEmail(email, seconds));
     }
 

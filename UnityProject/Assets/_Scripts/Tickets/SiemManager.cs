@@ -49,23 +49,21 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         IStateSetup setup = _currentCharacter switch
         {
             Character.Tiago_Day_One => new TiagoSiemDayOneStateSetup(),
-            Character.Tiago_Day_Two => new TiagoSiemDayTwoStateSetup(),
             _ => null
         };
 
         setup?.RegisterStates(_stateHandlers);
 
-        _openLogBtn.onClick.AddListener(FirstTimeOpenedLog);
+        _openLogBtn.onClick.AddListener(OpenLog);
         EventManager.OnAlertIsOpen += OpenAlert;
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
     }
 
     void OnDisable()
     {
-        _openLogBtn.onClick.RemoveListener(FirstTimeOpenedLog);
+        _openLogBtn.onClick.RemoveListener(OpenLog);
         EventManager.OnAlertIsOpen -= OpenAlert;
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
-
     }
 
     [ContextMenu("Spawn Alert")]
@@ -145,13 +143,19 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         }
     }
 
-    private void FirstTimeOpenedLog()
+    private void OpenLog()
     {
         if (_currentCharacter == Character.Tiago_Day_Two && _currentState == SoftwareState.FirstTimeOpened)
         {
             EventManager.SpawnEmail(EmailType.LORE);
             EventManager.SpawnEmail(EmailType.SPAM);
             ChangeSoftwareState(SoftwareState.Opened);
+        }
+
+        if (_currentCharacter == Character.Tiago_Day_Two && _currentState == SoftwareState.Empty)
+        {
+            EventManager.SpawnEmail(EmailType.LORE);
+            ChangeSoftwareState(SoftwareState.FullAccess);
         }
     }
 

@@ -182,11 +182,17 @@ public class EmailChoices : MonoBehaviour, IEmailContext
     public void CheckApkSideStory(PointEmailKey sideEmailKey)
     {
         if (_currentEmailToRespond.Index == _lore7Day2)
+        {
             EventManager.SpawnEmail(EmailType.LORE);
+            EventManager.SpawnEmail(EmailType.NEWS);
+
+            if(_currentResponseState == HistoryPartState.Part_Two) //Enable player write for apks even if continue with the normal history line.
+                EventManager.EnablePlayerWriteEmail(); 
+        }
         else
         {
             EventManager.CreateEspecificEmail(sideEmailKey);
-            ChangeResponseState(_currentResponseState++);
+            ChangeResponseState(++_currentResponseState);
         }
     }
 
