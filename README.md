@@ -65,16 +65,13 @@ Equipe
 -------
 | Funcionario        | Função               |
 |-------------|-------------------------|
+| [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D e 3D |
+| [Igor Flores](https://www.linkedin.com/in/igorflores96/) | Desenvolvedor |
+| [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | Roteirista |
 | [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Coordenador Acadêmico |
 | [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | Coordenador de Desenvolvimento |
 | [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) | Analista de Segurança |
-
-| Funcionario        | Função               |
-|-------------|-------------------------|
-| [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D |
-| [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | Artista 3D e Roteirista |
-| [Igor Flores](https://www.linkedin.com/in/igorflores96/) | Desenvolvedor |
-| [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer |
+| [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer e Producer |
 
 Instruções de Gameplay
 -------
