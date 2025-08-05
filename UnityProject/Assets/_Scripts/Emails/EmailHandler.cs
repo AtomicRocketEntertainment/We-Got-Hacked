@@ -21,11 +21,11 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Canvases")] [SerializeField] private Transform _homeEmailCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _emailCanvas;
 
-    [BoxGroup("Opened Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailTitle;
-    [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderName;
-    [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
-    [BoxGroup("Opened Content")] [SerializeField] private TextMeshProUGUI _emailContent;
-    [BoxGroup("Opened Content")] [SerializeField] private Image _senderProfilePicture;
+    [BoxGroup("Email to Read Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailTitle;
+    [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _senderName;
+    [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
+    [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _emailContent;
+    [BoxGroup("Email to Read Content")] [SerializeField] private Image _senderProfilePicture;
 
     [BoxGroup("Prefabs"), HorizontalLine(color: EColor.Yellow)] [SerializeField] private GameObject _emailPrefab;
     [SerializeField] private Button _writeEmailBtn;

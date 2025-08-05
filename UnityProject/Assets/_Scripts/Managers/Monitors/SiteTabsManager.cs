@@ -27,7 +27,7 @@ public class SiteTabsManager : MonoBehaviour
             int index = i;
             _buttons[index].onClick.AddListener(() => OpenSite(_buttons[index]));
             GameObject newScreen = Instantiate(_softwares[i].Prefab, Vector3.zero, Quaternion.identity);
-            _softwareHandler.Add(_buttons[i], new SiteInfoHolder(_softwares[i], newScreen));
+            _softwareHandler.Add(_buttons[index], new SiteInfoHolder(_softwares[index], newScreen));
             newScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
             closecanvas?.CloseCanvas();
 
