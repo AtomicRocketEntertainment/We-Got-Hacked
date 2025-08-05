@@ -29,7 +29,10 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private Transform _objectiveList;
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private Button _showCurrentInfoBtn;
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private GameObject _currentScreenPopUp;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private GameObject _mainCurrentObjectiveScreen;
+    [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private GameObject _noCurrentTicketScreen;
     [BoxGroup("Current Ticket Componentes"), ShowIf(nameof(CurrentTicketEditorChecker))][SerializeField] private GameObject _objectivePrefab;
+
 
     private List<GameObject> _objectivesActive = new List<GameObject>();
     private List<GameObject> _playbookScreens => new List<GameObject>
@@ -39,6 +42,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _ransowareScreen,
         _dataLeakScreen
     };
+
+    private readonly int _maxObjectiveWithoutScale = 6;
+    private readonly float _scaleGapForObjective = -50f;
 
     private string _playbookSelect = "";
     private string _idSelect = "";
@@ -188,6 +194,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateCurrentTicket(Ticket currentTicket)
     {
         int completedObjectives = currentTicket.GetObjectivesCompletedQuantity();
+        bool shouldShowObjectives = completedObjectives > 0;
+        CheckCurrentTicketStatus(shouldShowObjectives);
+
         if (completedObjectives == 0)
         {
             _canOpenPopUp = false;
@@ -200,6 +209,13 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
         CheckObjectivesPanel(currentTicket, completedObjectives);
     }
+
+    private void CheckCurrentTicketStatus(bool hasCurrentTicket)
+    {
+        _mainCurrentObjectiveScreen.SetActive(hasCurrentTicket);
+        _noCurrentTicketScreen.SetActive(!hasCurrentTicket);
+    }
+
     private void ShowCurrentPopUp()
     {
         if (_canOpenPopUp)
@@ -208,19 +224,31 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             EventManager.MakePlayerThink(ThoughtKey.WrongTimeOpenTicket);
     }
 
-    private void CheckObjectivesPanel(Ticket currentTicket, int index)
+    private void CheckObjectivesPanel(Ticket currentTicket, int completedObjectives)
     {
         int needToShowNext = currentTicket.IsCompleted ? 0 : 1; //if ticket is completed, we dont add the next. We going to get miss reference otherwise
 
         for (int i = _objectivesActive.Count - 1; i >= 0; i--)
             Destroy(_objectivesActive[i]);
 
-        for (int i = 0; i < index + needToShowNext; i++)
+        for (int i = 0; i < completedObjectives + needToShowNext; i++)
         {
             GameObject obj = SpawnObjective();
             _objectivesActive.Add(obj);
             UpdateObjective(obj, currentTicket, i);
         }
+
+        ScaleObjectiveScreen(completedObjectives);
+    }
+
+    private void ScaleObjectiveScreen(int objectiveQuantity)
+    {
+        int extraObjective = objectiveQuantity - _maxObjectiveWithoutScale;
+        if (extraObjective <= 0) return;
+
+        _mainCurrentObjectiveScreen.TryGetComponent(out RectTransform rect);
+        float newBottom = rect.offsetMin.y - (extraObjective * _scaleGapForObjective);
+        rect.offsetMin = new Vector2(rect.offsetMin.x, newBottom);
     }
 
     private GameObject SpawnObjective()
