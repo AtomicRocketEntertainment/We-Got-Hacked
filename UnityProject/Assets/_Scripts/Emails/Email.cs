@@ -8,6 +8,7 @@ public class Email
     private bool _startOpen;
     private EmailType _type;
     private EmailSender _sender;
+    private EmailReceiver _receiver;
     private EventDispatcher _disptacherInfo;
     private string _title;
     private string _content;
@@ -24,6 +25,7 @@ public class Email
         _startOpen = emailInfo.StartOpen;
         _type = emailInfo.Type;
         _sender = emailInfo.Sender;
+        _receiver = emailInfo.Receiver;
         _disptacherInfo = emailInfo.DispatcherInfo;
         _title = emailInfo.Title;
         _content = emailInfo.Content;
@@ -58,6 +60,7 @@ public class Email
     public EmailType Type => _type;
     public bool StartOpen => _startOpen;
     public EmailSender Sender => _sender;
+    public EmailReceiver Receiver => _receiver;
     public EventDispatcher DisptacherInfo => _disptacherInfo;
     public string Title => _title;
     public string Content => _content;

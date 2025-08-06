@@ -19,13 +19,18 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     [HorizontalLine(color: EColor.Red)]
     [BoxGroup("Canvases")] [SerializeField] private GameObject _mainCanvas;
     [BoxGroup("Canvases")] [SerializeField] private Transform _homeEmailCanvas;
-    [BoxGroup("Canvases")] [SerializeField] private Transform _emailCanvas;
+    [BoxGroup("Canvases")] [SerializeField] private Transform _readingEmailCanvas;
+    [BoxGroup("Canvases")] [SerializeField] private Transform _writingEmailCanvas;
 
     [BoxGroup("Email to Read Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailTitle;
     [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _senderName;
     [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
     [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _emailContent;
     [BoxGroup("Email to Read Content")] [SerializeField] private Image _senderProfilePicture;
+
+    [BoxGroup("Email to Write Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailWriteTitle;
+    [BoxGroup("Email to Write Content")] [SerializeField] private TextMeshProUGUI _receiverEmail;
+    [BoxGroup("Email to Write Content")] [SerializeField] private TextMeshProUGUI _emailWriteContent;
 
     [BoxGroup("Prefabs"), HorizontalLine(color: EColor.Yellow)] [SerializeField] private GameObject _emailPrefab;
     [SerializeField] private Button _writeEmailBtn;
@@ -57,6 +62,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnOpenEmail += OpenEmail;
         EventManager.OnWriteEmail += TryWriteEmail;
         EventManager.OnChangeEmailContentText += ChangeContentEmail;
+        EventManager.OnChangeEmailReceiver += ChangeWritingReceiver;
         EventManager.OnEmailIsAnswered += EmailIsAnswered;
         EventManager.OnReturnEmailContent += ReturnEmailContent;
         EventManager.OnTimerIsComplete += CheckToSpawn;
@@ -76,6 +82,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnSpawnSpecificEmail -= SpawnSpecificEmail;
         EventManager.OnOpenEmail -= OpenEmail;
         EventManager.OnChangeEmailContentText -= ChangeContentEmail;
+        EventManager.OnChangeEmailReceiver -= ChangeWritingReceiver;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
         EventManager.OnReturnEmailContent -= ReturnEmailContent;
         EventManager.OnTimerIsComplete -= CheckToSpawn;
@@ -191,9 +198,9 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     public void OpenEmail(GameObject email)
     {
         _homeEmailCanvas.gameObject.SetActive(false);
-        _emailCanvas.gameObject.SetActive(true);
+        _readingEmailCanvas.gameObject.SetActive(true);
 
-        var scroll = _emailCanvas.gameObject.GetComponentInChildren<ScrollRect>();
+        var scroll = _readingEmailCanvas.gameObject.GetComponentInChildren<ScrollRect>();
         scroll.verticalNormalizedPosition = 1f;
 
         if(_emailsInstanciados.TryGetValue(email, out Email instance))
@@ -212,21 +219,19 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     public void TryWriteEmail(Email email)
     {
         _homeEmailCanvas.gameObject.SetActive(false);
-        _emailCanvas.gameObject.SetActive(true);
+        _writingEmailCanvas.gameObject.SetActive(true);
 
         _currentEmailOpen = email;
-        _emailTitle.text = email.Title;
-        _emailContent.text = email.Content;
-        _senderName.text = email.Sender.Name;
-        _senderEmail.text = email.Sender.Email;
-        _senderProfilePicture.sprite = email.Sender.Profile;
+        _emailWriteTitle.text = email.Title;
+        _emailWriteContent.text = email.Content;
+        _receiverEmail.text = email.Receiver.Email;
     }
 
     public void CloseEmail()
     {
         EventManager.CloseResponseScreen();
         _homeEmailCanvas.gameObject.SetActive(true);
-        _emailCanvas.gameObject.SetActive(false);
+        _readingEmailCanvas.gameObject.SetActive(false);
         _currentEmailOpen = null;
     }
 
@@ -239,11 +244,19 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private void ChangeContentEmail(string newEmailText)
     {
         _emailContent.text = newEmailText;
+        _emailWriteContent.text = newEmailText;
     }
 
     private void ReturnEmailContent()
     {
         _emailContent.text = _currentEmailOpen.Content;
+        _emailWriteContent.text = _currentEmailOpen.Content;
+        _receiverEmail.text = _currentEmailOpen.Receiver.Email;
+    }
+
+    private void ChangeWritingReceiver(string newReceiver)
+    {
+        _receiverEmail.text = newReceiver;
     }
 
     public void OpenCanvas()

@@ -14,6 +14,7 @@ public static class EventManager
     public static event Action<string> OnEmailIsWriten;
     public static event Action<string> OnLinkIsClicked;
     public static event Action<string> OnChangeEmailContentText;
+    public static event Action<string> OnChangeEmailReceiver;
     public static event Action<Email, bool> OnEmailResponseNeeded;
     public static event Action<EmailType> OnSpawnEmail;
     public static event Action<PointEmailKey> OnCreateEspecificEmail;
@@ -158,6 +159,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnChangeEmailContentText event.");
+        }
+    }
+
+    public static void ChangeEmailReceiver(string newReceiver)
+    {
+        if (OnChangeEmailReceiver != null)
+        {
+            OnChangeEmailReceiver(newReceiver);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnChangeEmailReceiver event.");
         }
     }
 

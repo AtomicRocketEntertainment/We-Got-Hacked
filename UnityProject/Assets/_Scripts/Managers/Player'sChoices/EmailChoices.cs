@@ -75,7 +75,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
             EmailResponse responseInfos = _currentEmailToRespond.Responses[index];
             string textToPopulateBtn = _currentEmailToRespond.Responses[index].TextOption;
             _responsesBtn[index].onClick.RemoveAllListeners();
-            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos.IsCorrectAnswer, responseInfos.EmailText, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText, textToPopulateBtn));
+            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText, textToPopulateBtn));
 
             TextMeshProUGUI btnText = _responsesBtn[index].GetComponentInChildren<TextMeshProUGUI>();
             if (btnText) btnText.text = textToPopulateBtn;
@@ -92,19 +92,22 @@ public class EmailChoices : MonoBehaviour, IEmailContext
         ReturnChoices(false);
     }
 
-    private void RespondEmail(bool isCorrectAnswer, string emailResponseText, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
+    private void RespondEmail(EmailResponse responseInfos, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
     {
-        PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentEmailToRespond.QuestionText, answerText, isCorrectAnswer);
+        PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentEmailToRespond.QuestionText, answerText, responseInfos.IsCorrectAnswer);
         EventManager.AnswerToSaveIsMaded(answerToSave);
 
         _firstResponseEmailChoices.SetActive(false);
         _responseQuestion.text = confirmFeedback;
         _confirmResponse.SetActive(true);
-        EventManager.ChangeEmailTextContent(emailResponseText);
+        EventManager.ChangeEmailTextContent(responseInfos.EmailText);
+
+        if(responseInfos.HasSpecificReceiver)
+            EventManager.ChangeEmailReceiver(responseInfos.NewReceiver);
 
         _confirmResponseEmailBtn.onClick.RemoveAllListeners();
 
-        if (isCorrectAnswer)
+        if (responseInfos.IsCorrectAnswer)
             _confirmResponseEmailBtn.onClick.AddListener(CorrectFeedbackChoices);
         else
             _confirmResponseEmailBtn.onClick.AddListener(() => WrongFeedbackChoices(wrongFeedbackQuestionText));
