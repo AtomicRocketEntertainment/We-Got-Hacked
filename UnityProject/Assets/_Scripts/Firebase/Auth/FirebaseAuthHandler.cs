@@ -1,72 +1,83 @@
-using TMPro;
 using UnityEngine;
 using _Scripts.Firebase.Auth;
 
 public class FirebaseAuthHandler : MonoBehaviour
 {
-    public TMP_InputField emailInputField;
-    public TMP_InputField passwordInputField;
-    public TextMeshProUGUI outputText;
+    private FirebaseUser _currentUser;
+    private string _userNameHandler;
+    public string CurrentUserId => _currentUser.uid;
+
+    public static FirebaseAuthHandler Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+
+        _currentUser = null;
+        _userNameHandler = "";
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void Start()
     {
         if (Application.platform != RuntimePlatform.WebGLPlayer)
         {
-            DisplayError("The code is not running on a WebGL build; as such, the Javascript functions will not be recognized.");
+            EventManager.AuthError("The code is not running on a WebGL build; as such, the Javascript functions will not be recognized.");
             return;
         }
-        
-        FirebaseAuth.OnAuthStateChanged(gameObject.name, "DisplayUserInfo", "DisplayInfo");
     }
 
-    public void CreateUserWithEmailAndPassword() => 
-        FirebaseAuth.CreateUserWithEmailAndPassword(emailInputField.text, passwordInputField.text, gameObject.name, "DisplayInfo", "DisplayErrorObject");
-
-    public void SignInWithEmailAndPassword() => 
-        FirebaseAuth.SignInWithEmailAndPassword(emailInputField.text, passwordInputField.text, gameObject.name, "DisplayInfo", "DisplayErrorObject");
-
-    public void SignInWithGoogle() => 
-        FirebaseAuth.SignInWithGoogle(gameObject.name, "DisplayInfo", "DisplayErrorObject");
-
-
-    public void DisplayUserInfo(string user)
+    public void CreateUserWithEmailAndPassword(string email, string password, string playerName)
     {
-        FirebaseUser parsedUser = JsonUtility.FromJson<FirebaseUser>(user);
-        DisplayData($"Email: {parsedUser.email}, UserId: {parsedUser.uid}, EmailVerified: {parsedUser.isEmailVerified}");
+        _userNameHandler = playerName;
+        FirebaseAuth.CreateUserWithEmailAndPassword(email, password, gameObject.name, nameof(CreateAuthPlayer), nameof(DisplayErrorObject));
     }
 
-    public void DisplayData(string data)
+    public void SignInWithEmailAndPassword(string email, string password)
     {
-        outputText.color = outputText.color == Color.green ? Color.blue : Color.green;
-        outputText.text = data;
-        Debug.Log(data);
+        FirebaseAuth.SignInWithEmailAndPassword(email, password, gameObject.name, nameof(UpdateUserStatus), nameof(DisplayErrorObject));
     }
 
-    public void DisplayInfo(string info)
+    public void SignOut()
     {
-        outputText.color = Color.white;
-        outputText.text = info;
-        Debug.Log(info);
+        _currentUser = null;
+        FirebaseAuth.OnUserSignOut(gameObject.name, nameof(NotifyError));
+    }
+
+    public void LogUser(string user)
+    {
+        _currentUser = JsonUtility.FromJson<FirebaseUser>(user);
+        FirebaseDatabaseHandler.Instance.FetchPlayer(_currentUser.uid);
+    }
+
+    public void CreateAuthPlayer(string user)
+    {
+        _currentUser = JsonUtility.FromJson<FirebaseUser>(user);
+        FirebaseDatabaseHandler.Instance.CreateDatabaseInfo(_currentUser.uid, _userNameHandler);
+    }
+
+    private void UpdateUserStatus(string user)
+    {
+        FirebaseAuth.OnAuthStateChanged(gameObject.name, nameof(LogUser), nameof(NotifyError));
+    }
+
+    public void NotifyError(string info)
+    {
+        EventManager.AuthError(info);
     }
 
     public void DisplayErrorObject(string error)
     {
         FirebaseError parsedError = JsonUtility.FromJson<FirebaseError>(error);
+
         if (parsedError != null)
         {
-            DisplayError(parsedError.message);
+            EventManager.AuthError(parsedError.message);
         }
-        else
-        {
-            DisplayError("Failed to parse error data.");
-        }
-    }
 
-    public void DisplayError(string error)
-    {
-        outputText.color = Color.red;
-        outputText.text = error;
-        Debug.LogError(error);
     }
 }
 
@@ -75,7 +86,6 @@ public class FirebaseUser
 {
     public string email;
     public string uid;
-    public bool isEmailVerified;
 }
 
 [System.Serializable]

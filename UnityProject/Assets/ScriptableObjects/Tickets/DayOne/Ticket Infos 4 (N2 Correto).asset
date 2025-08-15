@@ -14,70 +14,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Playbook: 0
   ID: 7493
-  IPOrigem: 177.199.164.224
-  IPDestiny: 119.70.56.130
-  Location: "Europa - Fran\xE7a"
-  Dispositive:
-    Type: 0
-    Icon: {fileID: 21300000, guid: b9ab1834048df934a8ac19538acb9653, type: 3}
-  DateDay: 12/12/2022
-  DateHour: 12:12
+  IPOrigem: 229.6.165.23
+  IPDestiny: 209.7.095.11
+  Location: America do Sul - Brasil
+  DeviceAttacked: 1
+  Origin: 3
+  DateDay: 20/05/2022
+  DateHour: 23:27:46
   RiskLevel: 5
-  CorrectSite: 0
   Loggs:
-  - 189.6.255.10 [24/Mar/2025:10:32:45 -0300] "PUT /home.html HTTP/1.1" 200 "https://sustentabilidade.petrocais.com.br"
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
-    Chrome/91.0.4472.124 Safari/537.36"
-  - 200.147.97.8 [24/Mar/2025:10:32:45 -0300] "PUT /home.html HTTP/1.1" 200 "https://sustentabilidade.petrocais.com.br"
-    "Android/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
-    Chrome/91.0.4472.124 Safari/537.36"
-  Backups:
   - IsCorrect: 0
-    Date: 20/05/2022
-    Hour: 11:30
+    Log: 201.89.121.33 [20/Mai/2022:23:24:32 -0300] "GET /login HTTP/1.1" 201 "https://sustentabilidade.petrocais.com.br"
+      "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0"
   - IsCorrect: 1
-    Date: 20/05/2022
-    Hour: 11:20
-  - IsCorrect: 0
-    Date: 20/05/2022
-    Hour: 11:10
-  - IsCorrect: 0
-    Date: 20/05/2022
-    Hour: 11:00
-  - IsCorrect: 0
-    Date: 20/05/2022
-    Hour: 10:50
+    Log: 239.6.255.10 [20/Mai/2022:23:27:46 -0300] "PUT /home.html HTTP/1.1" 200
+      "https://sustentabilidade.petrocais.com.br" "Mozilla/5.0 (X11; Linux x86_64;
+      rv:109.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+  SiemLog: 
+  RemotopiaUser:
+    Name: 
+    Sprite: {fileID: 0}
+    IsCorrectUser: 0
   Objectives:
-  - Name: Identificando o Ataque
+  - Name: Identificar qual pagina(s) ou plataforma sofreu o ataque, e criar ticket
+      sobre.
     Text: Identificar qual pagina(s) ou plataforma sofreu o ataque, e criar ticket
       sobre.
     IsCompleted: 1
     ShouldShow: 1
-  - Name: Notificando o Ataque
-    Text: Notificar restante da equipe sobre o ataque.
+  - Name: Notificar restante da equipe sobre o ticket criado do ataque.
+    Text: Notificar restante da equipe sobre o ticket criado do ataque.
     IsCompleted: 1
     ShouldShow: 1
-  - Name: Notificando o Ataque II
+  - Name: Notificar o cliente sobre o ataque.
     Text: Notificar o cliente sobre o ataque.
     IsCompleted: 1
     ShouldShow: 1
-  - Name: Agindo contra o Ataque
+  - Name: Retirar site do cliente do ar
     Text: Retirar site do cliente do ar
     IsCompleted: 0
     ShouldShow: 0
-  - Name: Agindo contra o Ataque II
+  - Name: Revisar vulnerabilidades de logs no servidor atacado
     Text: Revisar vulnerabilidades de logs no servidor atacado
     IsCompleted: 0
     ShouldShow: 0
-  - Name: Controle de Danos
-    Text: "Indicar corre\xE7\xE3o para a vulner\uFEFFabilidade"
+  - Name: "Indicar corre\xE7\xE3o para a vulnerabilidade"
+    Text: "Indicar corre\xE7\xE3o para a vulnerabilidade"
     IsCompleted: 0
     ShouldShow: 0
-  - Name: Controle de Danos II
-    Text: "Restaurar b\uFEFFackup do site pr\xE9-ataque"
+  - Name: "Restaurar backup do site pr\xE9-ataque"
+    Text: "Restaurar backup do site pr\xE9-ataque"
     IsCompleted: 0
     ShouldShow: 0
-  - Name: Controle e Danos III
+  - Name: Restaurar site no ar.
     Text: Restaurar site no ar.
     IsCompleted: 0
     ShouldShow: 0
+  CorrectSite: 0

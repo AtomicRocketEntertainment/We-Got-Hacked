@@ -5,17 +5,21 @@ using UnityEngine;
 public static class EventManager
 {
     //Email Related
-    public static event Action OnPlayerCantWriteEmail;
+    public static event Action OnDisablePlayerWriteEmail;
+    public static event Action OnEnablePlayerWriteEmail;
+    public static event Action OnPlayerCanWriteEmail;
     public static event Action<GameObject> OnOpenEmail;
     public static event Action OnTryWriteEmail;
     public static event Action<Email> OnWriteEmail;
-    public static event Action OnEmailIsWriten;
+    public static event Action<string> OnEmailIsWriten;
     public static event Action<string> OnLinkIsClicked;
     public static event Action<string> OnChangeEmailContentText;
+    public static event Action<string> OnChangeEmailReceiver;
     public static event Action<Email, bool> OnEmailResponseNeeded;
     public static event Action<EmailType> OnSpawnEmail;
-    public static event Action<SO_Email, bool> OnCreateEspecificEmail;    
-    public static event Action OnEmailIsAnswered;
+    public static event Action<PointEmailKey> OnCreateEspecificEmail;
+    public static event Action<PointEmailEntry> OnSpawnSpecificEmail;
+    public static event Action<string> OnEmailIsAnswered;
     public static event Action OnReturnEmailContent;
 
     //Alert related
@@ -28,33 +32,61 @@ public static class EventManager
 
 
     //Global Gaming Mechanic
+    public static event Action OnEndStoryBoard;
+    public static event Action OnStoryBoardNeeded;
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
     public static event Action OnCloseResponseScreen;
-    public static event Action<string> OnPlayerNeedToThink;
-    
+    public static event Action<ThoughtKey> OnPlayerNeedToThink;
+    public static event Action<GameObject> OnNotifyNeeded;
+    public static event Action OnNotifyBrowser;
+
     //Lore related
     public static event Action OnFirstTimeSoftwareOpen;
     public static event Action OnCompletedTicketObjective;
     public static event Action<string> OnEventEmailHandlerIsOpen;
     public static event Action<int> OnTimerIsComplete;
 
-    //WebsiteRelated
+    //Website Related
     public static event Action<string> OnWebsiteLinkerIsOpen;
 
+    //Remotopia Related
+    public static event Action OnUserEnterRemotopia;
+    public static event Action OnUserQuitRemotopia;
+
     //Question Related
-    public static event Action<SO_GenericResponse> OnGenericResponseNeeded;
+    public static event Action OnGenericResponseNeeded;
+    public static event Action<string> OnGenericResponseIsMaded;
+
+    //Persistence Data and Firebase Related
+    public static event Action<PlayerDataAnswer> OnAnswerToSaveIsMaded;
+    public static event Action<string> OnPlayerCreated;
+    public static event Action<string> OnPlayerLoggedIn;
+    public static event Action<string> OnAuthError;
+    public static event Action<string> OnDatabaseEror;
 
 
-    public static void BlockPlayerWriteEmail()
+    public static void DisablePlayerWriteEmail()
     {
-        if (OnPlayerCantWriteEmail != null)
+        if (OnDisablePlayerWriteEmail != null)
         {
-            OnPlayerCantWriteEmail();
+            OnDisablePlayerWriteEmail();
         }
         else
         {
-            Debug.LogWarning("No listeners for OnPlayerCantWriteEmail event.");
+            Debug.LogWarning("No listeners for OnDisablePlayerWriteEmail event.");
+        }
+    }
+
+    public static void EnablePlayerWriteEmail()
+    {
+        if (OnEnablePlayerWriteEmail != null)
+        {
+            OnEnablePlayerWriteEmail();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnEnablePlayerWriteEmail event.");
         }
     }
 
@@ -82,11 +114,11 @@ public static class EventManager
         }
     }
 
-    public static void EmailIsWriten()
+    public static void EmailIsWriten(string emailIndex)
     {
         if (OnEmailIsWriten != null)
         {
-            OnEmailIsWriten();
+            OnEmailIsWriten(emailIndex);
         }
         else
         {
@@ -130,6 +162,18 @@ public static class EventManager
         }
     }
 
+    public static void ChangeEmailReceiver(string newReceiver)
+    {
+        if (OnChangeEmailReceiver != null)
+        {
+            OnChangeEmailReceiver(newReceiver);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnChangeEmailReceiver event.");
+        }
+    }
+
     public static void OpenEmailResponse(Email email, bool isResponse)
     {
         if (OnEmailResponseNeeded != null)
@@ -154,11 +198,11 @@ public static class EventManager
         }
     }
 
-    public static void CreateEspecificEmail(SO_Email email, bool shouldAdvaneHistory)
+    public static void CreateEspecificEmail(PointEmailKey emailKey)
     {
         if (OnCreateEspecificEmail != null)
         {
-            OnCreateEspecificEmail(email, shouldAdvaneHistory);
+            OnCreateEspecificEmail(emailKey);
         }
         else
         {
@@ -166,11 +210,23 @@ public static class EventManager
         }
     }
 
-    public static void EmailIsAnswered()
+    public static void SpawnSpecificEmail(PointEmailEntry emailKey)
+    {
+        if (OnSpawnSpecificEmail != null)
+        {
+            OnSpawnSpecificEmail(emailKey);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnSpawnSpecificEmail event.");
+        }
+    }
+
+    public static void EmailIsAnswered(string emailIndex)
     {
         if (OnEmailIsAnswered != null)
         {
-            OnEmailIsAnswered();
+            OnEmailIsAnswered(emailIndex);
         }
         else
         {
@@ -187,6 +243,30 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnReturnEmailContent event.");
+        }
+    }
+
+    public static void StoryBoardIsEnded()
+    {
+        if (OnEndStoryBoard != null)
+        {
+            OnEndStoryBoard();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnEndStoryBoard event.");
+        }
+    }
+
+    public static void ShowStoryBoard()
+    {
+        if (OnStoryBoardNeeded != null)
+        {
+            OnStoryBoardNeeded();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnStoryBoardNeeded event.");
         }
     }
 
@@ -322,7 +402,7 @@ public static class EventManager
         }
     }
 
-    public static void MakePlayerThink(string quote)
+    public static void MakePlayerThink(ThoughtKey quote)
     {
         if (OnPlayerNeedToThink != null)
         {
@@ -331,6 +411,30 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnPlayerNeedToThink event.");
+        }
+    }
+
+    public static void NotifyBar(GameObject obj)
+    {
+        if (OnNotifyNeeded != null)
+        {
+            OnNotifyNeeded(obj);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnNotifyNeeded event.");
+        }
+    }
+
+    public static void NotifyBrowser()
+    {
+        if (OnNotifyBrowser != null)
+        {
+            OnNotifyBrowser();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnNotifyBrowser event.");
         }
     }
 
@@ -346,15 +450,111 @@ public static class EventManager
         }
     }
 
-    public static void OpenGenericResponse(SO_GenericResponse response)
+    public static void LoginRemotopia()
+    {
+        if (OnUserEnterRemotopia != null)
+        {
+            OnUserEnterRemotopia();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnUserEnterRemotopia event.");
+        }
+    }
+
+    public static void QuitRemotopia()
+    {
+        if (OnUserQuitRemotopia != null)
+        {
+            OnUserQuitRemotopia();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnUserQuitRemotopia event.");
+        }
+    }
+
+    public static void OpenGenericResponse()
     {
         if (OnGenericResponseNeeded != null)
         {
-            OnGenericResponseNeeded(response);
+            OnGenericResponseNeeded();
         }
         else
         {
             Debug.LogWarning("No listeners for OnGenericResponseNeeded event.");
+        }
+    }
+
+    public static void GenericResponseIsMade(string index)
+    {
+        if (OnGenericResponseIsMaded != null)
+        {
+            OnGenericResponseIsMaded(index);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnGenericResponseIsMaded event.");
+        }
+    }
+
+    public static void AnswerToSaveIsMaded(PlayerDataAnswer answer)
+    {
+        if (OnAnswerToSaveIsMaded != null)
+        {
+            OnAnswerToSaveIsMaded(answer);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnAnswerToSaveIsMaded event.");
+        }
+    }
+
+    public static void PlayerAreCreated(string feedbackMessage)
+    {
+        if (OnPlayerCreated != null)
+        {
+            OnPlayerCreated(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerCreated event.");
+        }
+    }
+
+    public static void PlayerLoggedIn(string feedbackMessage)
+    {
+        if (OnPlayerLoggedIn != null)
+        {
+            OnPlayerLoggedIn(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerLoggedIn event.");
+        }
+    }
+
+    public static void AuthError(string feedbackMessage)
+    {
+        if (OnAuthError != null)
+        {
+            OnAuthError(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnAuthError event.");
+        }
+    }
+    
+    public static void DatabaseError(string feedbackMessage)
+    {
+        if (OnDatabaseEror != null)
+        {
+            OnDatabaseEror(feedbackMessage);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnDatabaseEror event.");
         }
     }
 }

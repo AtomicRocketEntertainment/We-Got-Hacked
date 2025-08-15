@@ -18,7 +18,15 @@ public class MonitorManager : MonoBehaviour
         _toolsManager.Init(this);
 
         EventManager.OnWebsiteLinkerIsOpen += UpdateWebSite;
+        EventManager.OnNotifyBrowser += ShowBrowserNotification;
         _browserButton.onClick.AddListener(OpenSite);
+    }
+
+    private void ShowBrowserNotification()
+    {
+        GameObject btn = _browserButton.gameObject;
+        btn.TryGetComponent(out NotifyButtonFeedback feedback);
+        feedback.ShowFeedback(btn);
     }
 
     void OnDisable()
@@ -26,6 +34,7 @@ public class MonitorManager : MonoBehaviour
         _toolsManager.CloseToolBar();
         _siteManager.CloseSiteBar();
         EventManager.OnWebsiteLinkerIsOpen -= UpdateWebSite;
+        EventManager.OnNotifyBrowser -= ShowBrowserNotification;
         _browserButton.onClick.RemoveListener(OpenSite);
     }
 

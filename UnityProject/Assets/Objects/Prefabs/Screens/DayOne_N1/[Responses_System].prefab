@@ -475,6 +475,9 @@ MonoBehaviour:
   - {fileID: 6881733063164602611}
   - {fileID: 4725930340004328949}
   _responseQuestion: {fileID: 3588667977623171794}
+  _currentResponseState: 0
+  _currentWriteState: 0
+  _currentCharacter: 0
 --- !u!1 &840495308285007067
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +790,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2116235760145718800
 CanvasRenderer:
@@ -817,7 +820,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tiago: O que ser\xE1 que respondo para a Raquel?"
+  m_text: "Rafael: \"Se eu pudesse viajar no tempo, como naquele filme do cientista
+    idoso com um carro, talvez essa seria a resposta certa... Mas n\xE3o \xE9 o caso,
+    preciso identificar o momento exato em que tudo estava intacto.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -850,7 +855,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2636,6 +2641,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3180885058075534001}
   - component: {fileID: 1099965683294723319}
+  - component: {fileID: -2913445424925133846}
+  - component: {fileID: 7834874094579070611}
   m_Layer: 0
   m_Name: '[Responses_System]'
   m_TagString: Untagged
@@ -2676,6 +2683,35 @@ MonoBehaviour:
   _thinkScreen: {fileID: 5162526901898797299}
   _emailsToWrite:
   - {fileID: 11400000, guid: b7b93349ccfc13d4dab56c454ef53b36, type: 2}
+  _genericResponses: []
+  _characterThoughtsManager: {fileID: -2913445424925133846}
+  _pointEmailManager: {fileID: 7834874094579070611}
+--- !u!114 &-2913445424925133846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865921419889208027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6815c5688280793459b3afeb318db9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterThoughts: {fileID: 11400000, guid: fc4877b9457be9a47af51aef79dfa9cc, type: 2}
+--- !u!114 &7834874094579070611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865921419889208027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5dfb1bf8945f24884b81aad72d7cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _emailMap: {fileID: 11400000, guid: db081a4ce6546cc419f58c3bbc851130, type: 2}
 --- !u!1 &5162526901898797299
 GameObject:
   m_ObjectHideFlags: 0
@@ -4130,7 +4166,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 65}
-  m_SizeDelta: {x: -1340.0004, y: 40}
+  m_SizeDelta: {x: -1100, y: 55}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &8709909186459801504
 GameObject:

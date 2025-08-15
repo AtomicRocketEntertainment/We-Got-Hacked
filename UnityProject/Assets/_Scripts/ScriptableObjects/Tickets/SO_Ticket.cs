@@ -2,22 +2,27 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Ticket Infos", menuName ="Scriptable Objcts/Objects Info/Ticket Info")]
+[CreateAssetMenu(fileName = "Ticket Infos", menuName = "Scriptable Objcts/Objects Info/Ticket Info")]
 public class SO_Ticket : ScriptableObject
 {
-    [BoxGroup("Commum Infos")] public PlaybookType Playbook;
-    [BoxGroup("Commum Infos")] public string ID;
-    [BoxGroup("Commum Infos")] public string IPOrigem;
-    [BoxGroup("Commum Infos")] public string IPDestiny;
-    [BoxGroup("Commum Infos")] public string Location;
-    [BoxGroup("Commum Infos")] public DispostiveInfos Dispositive;
-    [BoxGroup("Commum Infos")] public string DateDay;
-    [BoxGroup("Commum Infos")] public string DateHour;
-    [BoxGroup("Commum Infos")] public int RiskLevel;
-    [BoxGroup("Commum Infos")] public List<TicketLog> Loggs;
+    [BoxGroup("Tick Task and siemtinel's infos")] public PlaybookType Playbook;
+    [BoxGroup("Tick Task and siemtinel's infos")] public string ID;
+    [BoxGroup("Tick Task and siemtinel's infos")] public string IPOrigem;
+    [BoxGroup("Tick Task and siemtinel's infos")] public string IPDestiny;
+    [BoxGroup("Tick Task and siemtinel's infos")] public string Location;
+    [BoxGroup("Tick Task and siemtinel's infos")] public ImpactedDevice DeviceAttacked;
+    [BoxGroup("Tick Task and siemtinel's infos")] public AlertOrigin Origin;
+    [BoxGroup("Tick Task and siemtinel's infos")] public string DateDay;
+    [BoxGroup("Tick Task and siemtinel's infos")] public string DateHour;
+    [BoxGroup("Tick Task and siemtinel's infos")] public int RiskLevel;
+    [BoxGroup("Siemtinel's infos")] public string SiemLog;
+    [BoxGroup("Desconex's infos")] public List<TicketLog> Loggs;
+    [BoxGroup("Remotopia's infos")] public RemotopiaUserLogin RemotopiaUser;
+
     public List<TicketObjectives> Objectives;
-    
-    [BoxGroup("Pichação Infos"), ShowIf(nameof(IsPichacao))] [Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
+
+    [BoxGroup("Phishing Infos"), ShowIf(nameof(IsPichacao))][Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
+
 
 
 
@@ -43,37 +48,67 @@ public class SO_Ticket : ScriptableObject
         IPDestiny = $"{part1}.{part2}.{part3}.{part4}";
     }
 
+    [ContextMenu("Gerar Hora random")]
+    private void GenerateRandomHour()
+    {
+        int hour = Random.Range(21, 24);
+        int minute = Random.Range(00, 60);
+        int seconds = Random.Range(00, 60);
+
+        DateHour = $"{hour:D2}:{minute:D2}:{seconds:D2}";
+    }
+
     void OnValidate()
     {
-        if(RiskLevel > 5 || RiskLevel < 1)
+        if (RiskLevel > 5 || RiskLevel < 1)
         {
             Debug.LogWarning("Risco não pode ser menor que 1 e maior que 5.");
             RiskLevel = Random.Range(1, 6);
         }
+
+
+        switch (Playbook)
+        {
+            case PlaybookType.Pichacao:
+                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
+                Origin = AlertOrigin.WAF;
+                break;
+            case PlaybookType.Ransomware:
+                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
+                Origin = AlertOrigin.EDR;
+                break;
+            case PlaybookType.VazamentoDeDados:
+                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
+                Debug.Log("Ainda sem definido para vazamento de dados");
+                //Origin = AlertOrigin.WAF;
+                break;
+            case PlaybookType.Phishing:
+                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
+                Origin = AlertOrigin.Antiphishing;
+                break;
+        }
     }
 
-    private bool IsPichacao()
-    {
-        return Playbook == PlaybookType.Pichacao;
-    }
+    private bool IsPichacao() => Playbook == PlaybookType.Pichacao;
+    private bool IsRansomware() => Playbook == PlaybookType.Ransomware;
+
 }
 
 public enum PlaybookType
 {
-    Pichacao, Phishing, Ransomware, DataLeak
+    Pichacao, Phishing, Ransomware, VazamentoDeDados
 }
 
-public enum DispositiveType
+public enum ImpactedDevice
 {
-    MobileAndroid, MobileIOS, DesktopLinux, DesktopWindows, DesktopApple
+    WindowsServer, Linux, OpenBSD, FreeBSD
 }
 
-[System.Serializable]
-public struct DispostiveInfos
+public enum AlertOrigin
 {
-    public DispositiveType Type;
-    public Sprite Icon;
+    Firewall, EDR, IDS, WAF, Antiphishing
 }
+
 
 [System.Serializable]
 public class TicketObjectives
@@ -104,5 +139,5 @@ public class TicketLog
 
 public enum Character
 {
-    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One, Eduardo
+    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One, Tiago_Day_Two, Raquel_Day_Two, Rafael_Day_Two
 }

@@ -4,27 +4,56 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EmailChoices : MonoBehaviour
+public class EmailChoices : MonoBehaviour, IEmailContext
 {
-    [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Screens") ] [SerializeField] private GameObject _responseContainer;
-    [BoxGroup("Response")] [SerializeField] private GameObject _firstResponseEmailChoices;
-    [BoxGroup("Response")] [SerializeField] private GameObject _wrongfeedbackScreen;
-    [BoxGroup("Response")] [SerializeField] private GameObject _confirmResponse;
-    [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Buttons")] [SerializeField] private Button _confirmResponseEmailBtn;
-    [BoxGroup("Response")] [SerializeField] private Button _rewriteResponseEmailBtn;
-    [BoxGroup("Response")] [SerializeField] private Button _confirmWrongFeedbackBtn;
-    [BoxGroup("Response")] [SerializeField] private List<Button> _responsesBtn;
-    [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
+    [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Screens")][SerializeField] private GameObject _responseContainer;
+    [BoxGroup("Response")][SerializeField] private GameObject _firstResponseEmailChoices;
+    [BoxGroup("Response")][SerializeField] private GameObject _wrongfeedbackScreen;
+    [BoxGroup("Response")][SerializeField] private GameObject _confirmResponse;
+    [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Buttons")][SerializeField] private Button _confirmResponseEmailBtn;
+    [BoxGroup("Response")][SerializeField] private Button _rewriteResponseEmailBtn;
+    [BoxGroup("Response")][SerializeField] private Button _confirmWrongFeedbackBtn;
+    [BoxGroup("Response")][SerializeField] private List<Button> _responsesBtn;
+    [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")][SerializeField] private TextMeshProUGUI _responseQuestion;
 
-    private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
+    [SerializeField] private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
+    [SerializeField] private HistoryPartState _currentWriteState = HistoryPartState.Part_One;
+    [SerializeField] private Character _currentCharacter = Character.None;
+
+
+    private Dictionary<(Character, HistoryPartState), IEmailStateHandler> _responseStateHandlers;
+    private Dictionary<(Character, HistoryPartState), IEmailStateHandler> _writeStateHandlers;
     private Email _currentEmailToRespond = null;
     private bool _isResponse = false;
 
+    private readonly string _lore7Day2 = "Lore 7 Day 2";
+
     private void OnEnable()
     {
+        _responseStateHandlers = new();
+        _writeStateHandlers = new();
+
+        IEmailStateSetup responseSetup = _currentCharacter switch
+        {
+            Character.Tiago_Day_One => new Day_One_ResponseStateSetup_Tiago(),
+            Character.Tiago_Day_Two => new Day_Two_ResponseStateSetup_Tiago(),
+            _ => null
+        };
+
+        IEmailStateSetup writeSetup = _currentCharacter switch
+        {
+            Character.Tiago_Day_One => new Day_One_WriteStateSetup_Tiago(),
+            Character.Raquel_Day_One => new Day_One_WriteStateSetup_Raquel(),
+            Character.Rafael_Day_One => new Day_One_WriteStateSetup_Rafael(),
+            Character.Tiago_Day_Two => new Day_Two_WriteStateSetup_Tiago(),
+            _ => null
+        };
+
+        responseSetup?.RegisterStates(_responseStateHandlers);
+        writeSetup?.RegisterStates(_writeStateHandlers);
         _rewriteResponseEmailBtn.onClick.AddListener(ReturnChoiceWithUpdate);
         _confirmWrongFeedbackBtn.onClick.AddListener(ReturnChoiceWithUpdate);
-    } 
+    }
 
     private void OnDisable()
     {
@@ -34,24 +63,25 @@ public class EmailChoices : MonoBehaviour
 
     public void OpenResponse(Email email, bool isResponse)
     {
-        if(email == null) return;
+        if (email == null) return;
 
         _currentEmailToRespond = email;
         _isResponse = isResponse;
         _responseQuestion.text = _currentEmailToRespond.QuestionText;
 
-        for(int response = 0; response < _currentEmailToRespond.Responses.Count; response++)
+        for (int response = 0; response < _currentEmailToRespond.Responses.Count; response++)
         {
             int index = response; //necessário guardar um valor fixo pra usar na lambda.
             EmailResponse responseInfos = _currentEmailToRespond.Responses[index];
+            string textToPopulateBtn = _currentEmailToRespond.Responses[index].TextOption;
             _responsesBtn[index].onClick.RemoveAllListeners();
-            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos.IsCorrectAnswer, responseInfos.EmailText, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText));
+            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText, textToPopulateBtn));
 
-            TextMeshProUGUI btnText = _responsesBtn[response].GetComponentInChildren<TextMeshProUGUI>();
-            if(btnText) btnText.text = _currentEmailToRespond.Responses[response].TextOption;
-           
+            TextMeshProUGUI btnText = _responsesBtn[index].GetComponentInChildren<TextMeshProUGUI>();
+            if (btnText) btnText.text = textToPopulateBtn;
+
         }
-        
+
         _confirmResponse.SetActive(false);
         _responseContainer.SetActive(true);
         _firstResponseEmailChoices.SetActive(true);
@@ -62,16 +92,22 @@ public class EmailChoices : MonoBehaviour
         ReturnChoices(false);
     }
 
-    private void RespondEmail(bool isCorrectAnswer, string emailResponseText, string confirmFeedback, string wrongFeedbackQuestionText)
+    private void RespondEmail(EmailResponse responseInfos, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
     {
+        PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentEmailToRespond.QuestionText, answerText, responseInfos.IsCorrectAnswer);
+        EventManager.AnswerToSaveIsMaded(answerToSave);
+
         _firstResponseEmailChoices.SetActive(false);
         _responseQuestion.text = confirmFeedback;
         _confirmResponse.SetActive(true);
-        EventManager.ChangeEmailTextContent(emailResponseText);
+        EventManager.ChangeEmailTextContent(responseInfos.EmailText);
+
+        if(responseInfos.HasSpecificReceiver)
+            EventManager.ChangeEmailReceiver(responseInfos.NewReceiver);
 
         _confirmResponseEmailBtn.onClick.RemoveAllListeners();
 
-        if(isCorrectAnswer) 
+        if (responseInfos.IsCorrectAnswer)
             _confirmResponseEmailBtn.onClick.AddListener(CorrectFeedbackChoices);
         else
             _confirmResponseEmailBtn.onClick.AddListener(() => WrongFeedbackChoices(wrongFeedbackQuestionText));
@@ -79,13 +115,18 @@ public class EmailChoices : MonoBehaviour
 
     private void CorrectFeedbackChoices()
     {
-        if(_isResponse)
-            EventManager.EmailIsAnswered();
+        if (_isResponse)
+        {
+            EventManager.EmailIsAnswered(_currentEmailToRespond.Index);
+            ResponseFeedbackUpdate();
+        }
         else
-            EventManager.EmailIsWriten();
+        {
+            EventManager.EmailIsWriten(_currentEmailToRespond.Index);
+            WriteFeedbackUpdate();
+        }
 
         EventManager.CorrectChoice();
-        ResponseFeedbackUpdate();
         ReturnChoices(false);
         gameObject.SetActive(false);
     }
@@ -105,7 +146,7 @@ public class EmailChoices : MonoBehaviour
 
     private void ReturnChoices(bool shouldUpdateContent)
     {
-        if(shouldUpdateContent) EventManager.ReturnEmailContent();
+        if (shouldUpdateContent) EventManager.ReturnEmailContent();
 
         _confirmResponse.SetActive(false);
         _wrongfeedbackScreen.SetActive(false);
@@ -114,29 +155,62 @@ public class EmailChoices : MonoBehaviour
 
     private void ResponseFeedbackUpdate()
     {
-        EventManager.BlockPlayerWriteEmail();
-        
-        switch(_currentResponseState)
+        EventManager.DisablePlayerWriteEmail();
+
+        if (_responseStateHandlers.TryGetValue((_currentCharacter, _currentResponseState), out var handler))
         {
-            case HistoryPartState.Part_One:
-                EventManager.SpawnEmail(EmailType.SPAM);
-                EventManager.SpawnEmail(EmailType.NEWS);
-                break;
-            case HistoryPartState.Part_Two:
-                EventManager.SpawnEmail(EmailType.SPAM);
-                EventManager.SpawnEmail(EmailType.NEWS);
-                break;
-            case HistoryPartState.Part_Three:
-                break;
+            handler.Handle(this);
         }
-
-
-        _currentResponseState++;
+        else
+        {
+            Debug.LogWarning("Nenhum handler para este estado/personagem.");
+        }
     }
 
+    private void WriteFeedbackUpdate()
+    {
+        EventManager.DisablePlayerWriteEmail();
+
+        if (_writeStateHandlers.TryGetValue((_currentCharacter, _currentWriteState), out var handler))
+        {
+            handler.Handle(this);
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum handler para este estado/personagem.");
+        }
+    }
+
+    // Here we need to check the correct fluxogram of side storys in the future
+    public void CheckApkSideStory(PointEmailKey sideEmailKey)
+    {
+        if (_currentEmailToRespond.Index == _lore7Day2)
+        {
+            EventManager.SpawnEmail(EmailType.LORE);
+            EventManager.SpawnEmail(EmailType.NEWS);
+
+            if(_currentResponseState == HistoryPartState.Part_Two) //Enable player write for apks even if continue with the normal history line.
+                EventManager.EnablePlayerWriteEmail(); 
+        }
+        else
+        {
+            EventManager.CreateEspecificEmail(sideEmailKey);
+            ChangeResponseState(++_currentResponseState);
+        }
+    }
+
+    public void ChangeResponseState(HistoryPartState state)
+    {
+        _currentResponseState = state;
+    }
+    
+    public void ChangeWriteState(HistoryPartState state)
+    {
+        _currentWriteState = state;
+    }
 }
 
 public enum HistoryPartState
 {
-    Part_One, Part_Two, Part_Three
+    Part_One, Part_Two, Part_Three, Part_Four
 }

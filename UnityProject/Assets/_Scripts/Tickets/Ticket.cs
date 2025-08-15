@@ -9,13 +9,15 @@ public class Ticket
     private string _iPOrigem;
     private string _iPDestiny;
     private string _location;
-    private DispostiveInfos _dispositive;
+    private ImpactedDevice _deviceAttacked;
+    private AlertOrigin _origin;
     private string _dateDay;
     private string _dateHour;
     private int _riskLevel;
     private SiteType _site;
     private List<TicketObjectives> _objectives;
     private List<TicketLog> _logs;
+    private string _siemLog;
     private int _currentObjective;
 
     public PlaybookType Playbook => _playbook;
@@ -23,13 +25,15 @@ public class Ticket
     public string IPOrigem => _iPOrigem;
     public string IPDestiny => _iPDestiny;
     public string Location => _location;
-    public DispostiveInfos Dispositive => _dispositive;
+    public ImpactedDevice Dispositive => _deviceAttacked;
+    public AlertOrigin Origin => _origin;
     public string DateDay => _dateDay;
     public string DateHour => _dateHour;
     public int RiskLevel => _riskLevel;
     public SiteType Site => _site;
     public List<TicketObjectives> Objectives => _objectives;
     public List<TicketLog> Logs => _logs;
+    public string SiemLog => _siemLog;
 
     public Ticket(SO_Ticket infos)
     {
@@ -38,7 +42,8 @@ public class Ticket
         _iPOrigem = infos.IPOrigem;
         _iPDestiny = infos.IPDestiny;
         _location = infos.Location;
-        _dispositive = infos.Dispositive;
+        _deviceAttacked = infos.DeviceAttacked;
+        _origin = infos.Origin;
         _dateDay = infos.DateDay;
         _dateHour = infos.DateHour;
         _riskLevel = infos.RiskLevel;
@@ -46,13 +51,14 @@ public class Ticket
 
         _objectives = new List<TicketObjectives>();
         _logs = infos.Loggs;
+        _siemLog = infos.SiemLog;
 
         foreach (var obj in infos.Objectives)
             _objectives.Add(obj.Clone());
-        
+
         _currentObjective = GetObjectivesCompletedQuantity();
-        
-        if(_objectives.Count > 0)
+
+        if (_objectives.Count > 0)
             _objectives[_currentObjective].ShouldShow = true;
     }
 
@@ -78,7 +84,9 @@ public class Ticket
             _objectives[_currentObjective].ShouldShow = true;
 
 
-        if(_currentObjective > _objectives.Count)
+        if(_currentObjective >= _objectives.Count)
             _currentObjective = _objectives.Count;
     }
+
+    public bool IsCompleted => _currentObjective == _objectives.Count && _objectives[_currentObjective - 1].IsCompleted;
 }

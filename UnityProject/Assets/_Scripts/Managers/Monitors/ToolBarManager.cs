@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +7,20 @@ public class ToolBarManager : MonoBehaviour
 {
     [SerializeField] List<SO_Software> _softwares;
     [SerializeField] List<Button> _softwareButtons;
+    [SerializeField] GameObject _toolBarScreen;
 
     private Dictionary<Button, GameObject> _softwareHandler = new Dictionary<Button, GameObject>();
     private MonitorManager _monitorReference;
 
     public void Init(MonitorManager monitor)
     {
+        EventManager.OnNotifyNeeded += UpdateBarNotification;
+        EventManager.OnUserEnterRemotopia += HideToolBar;
+        EventManager.OnUserQuitRemotopia += ShowToolBar;
+
         _monitorReference = monitor;
-        for(int i = 0; i < _softwareButtons.Count; i++)
+
+        for (int i = 0; i < _softwareButtons.Count; i++)
         {
             int index = i;
             _softwareButtons[index].onClick.AddListener(() => OpenScreen(_softwareButtons[index]));
@@ -23,6 +30,16 @@ public class ToolBarManager : MonoBehaviour
             newScreen.TryGetComponent(out INeedOpenCanvas closecanvas);
             closecanvas?.CloseCanvas();
         }
+    }
+
+    private void ShowToolBar()
+    {
+        _toolBarScreen.SetActive(true);
+    }
+
+    private void HideToolBar()
+    {
+        _toolBarScreen.SetActive(false);
     }
 
     private void OpenScreen(Button button)
@@ -45,8 +62,26 @@ public class ToolBarManager : MonoBehaviour
 
     public void CloseToolBar()
     {
-        foreach(Button button in _softwareHandler.Keys)
+        foreach (Button button in _softwareHandler.Keys)
             button.onClick.RemoveAllListeners();
+
+        EventManager.OnNotifyNeeded -= UpdateBarNotification;
+        EventManager.OnUserEnterRemotopia -= HideToolBar;
+        EventManager.OnUserQuitRemotopia -= ShowToolBar;
+    }
+
+    private void UpdateBarNotification(GameObject obj)
+    {
+        foreach (var pair in _softwareHandler)
+        {
+            if (pair.Value == obj)
+            {
+                GameObject correspondingButton = pair.Key.gameObject;
+                correspondingButton.TryGetComponent(out NotifyButtonFeedback feedback);
+                feedback.ShowFeedback(correspondingButton);
+                break;
+            }
+        }
     }
 
     public void ClosePrograms()

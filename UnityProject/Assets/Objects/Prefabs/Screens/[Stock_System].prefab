@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -192,14 +192,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9accc0399af98af44a9d891ddccb9d69, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 7557464647159797122}
   - component: {fileID: 2382693454161829708}
   m_Layer: 0
-  m_Name: Spr_CompanyTwoColor
+  m_Name: Spr_CompanyTwoLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,7 +515,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 340, y: 5}
-  m_SizeDelta: {x: 18, y: 18}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7557464647159797122
 CanvasRenderer:
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -620,8 +620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Dark Gold lidera investimentos e aposta na BritaCoin como nova pot\xEAncia
-    financeira</b>"
+  m_text: "<b>A CapyPlastic investe em urina de capivara para produzir pl\xE1stico</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -775,6 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526789589253367610}
   - component: {fileID: 221426676907697282}
+  - component: {fileID: -8549386100451947097}
   m_Layer: 0
   m_Name: '[Stock_System]'
   m_TagString: Untagged
@@ -817,10 +817,15 @@ MonoBehaviour:
   - {fileID: 8461299658376731164}
   - {fileID: 2382693454161829708}
   - {fileID: 1995551218791751098}
+  _companyColors:
+  - {fileID: 2622418805779226858}
+  - {fileID: 831777233302771820}
+  - {fileID: 2400954121844248138}
   _companyNames:
   - {fileID: 8122013075948475652}
   - {fileID: 5781851058078495986}
   - {fileID: 2863206281916362330}
+  _stockCalculation: {fileID: -8549386100451947097}
   _graphContainer: {fileID: 3508951882746262603}
   _yLabelTemplate: {fileID: 1345204498726665650}
   _yDashTemplate: {fileID: 681699023978203569}
@@ -839,6 +844,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c77504d0baca9b845a6d7add6dc524a2, type: 2}
   - {fileID: 11400000, guid: 6def2f5ecfd57884cb0a048b78db4202, type: 2}
   - {fileID: 11400000, guid: 1b2445dbd9119484db5ad1eb0e57a075, type: 2}
+--- !u!114 &-8549386100451947097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781385718734080904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427d69425f9b2884f87bfab2bba37ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rangeDownOtherCompany: 5
+  _rangeUpOtherCompany: 6
 --- !u!1 &1789456299793435106
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,14 +955,89 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a74358fa7f16217489a9c0a8fca48d97, type: 3}
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2566764492363598489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3657834778862562935}
+  - component: {fileID: 2716552094257109073}
+  - component: {fileID: 831777233302771820}
+  m_Layer: 0
+  m_Name: Spr_CompanyTwoColor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3657834778862562935
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566764492363598489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758719708954348109}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 315, y: 5}
+  m_SizeDelta: {x: 9, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2716552094257109073
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566764492363598489}
+  m_CullTransparentMesh: 1
+--- !u!114 &831777233302771820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566764492363598489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 66d797639ef13bc4585c144d41e7caca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1018,12 +1112,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A partir do pr\xF3ximo m\xEAs, as empresas listadas na Dark Gold Stock
-    Exchange poder\xE3o apresentar informa\xE7\xF5es financeiras de maneira mais
-    enxuta e customizada, priorizando dados relevantes ao investidor e \xE0s estrat\xE9gias
-    de mercado. A medida reduz burocracias excessivas e garante maior autonomia \xE0s
-    companhias na forma como divulgam seus resultados, refor\xE7ando a liberdade
-    empresarial em um ambiente competitivo e din\xE2mico."
+  m_text: "A petrol\xEDfera FossilDrops desembolsou R$ 600 milh\xF5es de d\xF3lares
+    para adquirir f\xF3sseis raros de dinossauros em territ\xF3rio europeu, alegando
+    que seriam usados em pesquisas para desenvolver combust\xEDveis sint\xE9ticos
+    baseados em compostos extra\xEDdos desses esp\xE9cimes. Por\xE9m, a compra virou
+    esc\xE2ndalo ap\xF3s relatos de que v\xE1rios exemplares teriam ca\xEDdo e se
+    quebrado durante transporte e manuseio nas instala\xE7\xF5es da empresa, levando
+    paleontologistas indignados a invadir unidades da petrol\xEDfera em protesto
+    e acus\xE1-la de privatizar, al\xE9m de danificar, patrim\xF4nio cient\xEDfico
+    em nome do lucro."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1126,7 +1223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -390}
+  m_AnchoredPosition: {x: 0, y: -385}
   m_SizeDelta: {x: 0, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &3710085387694986712
@@ -1190,7 +1287,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1315,7 +1412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bda4be14afddde46aff29943e3d843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 2003058696423273952}
   _header: {fileID: 7574942335368107589}
   _content: {fileID: 2598540397338095419}
 --- !u!1 &4647640122103233077
@@ -1330,7 +1426,7 @@ GameObject:
   - component: {fileID: 2559428174431366474}
   - component: {fileID: 1995551218791751098}
   m_Layer: 0
-  m_Name: Spr_CompanyThrereColor
+  m_Name: Spr_CompanyThrereLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1353,7 +1449,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 530, y: 5}
-  m_SizeDelta: {x: 18, y: 18}
+  m_SizeDelta: {x: 30, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2559428174431366474
 CanvasRenderer:
@@ -1379,7 +1475,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1416,23 +1512,26 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4693082439839512525}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8153568986692647424}
   - {fileID: 4061639761912928380}
+  - {fileID: 6455504331777928264}
   - {fileID: 8885623647261707245}
   - {fileID: 4623565544046910953}
+  - {fileID: 3657834778862562935}
   - {fileID: 3509742571737885091}
   - {fileID: 2540216634881491628}
+  - {fileID: 3990517048460086843}
   - {fileID: 4949890744311979401}
-  m_Father: {fileID: 3554751790914352567}
+  m_Father: {fileID: 2736626147522981459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 320}
+  m_AnchoredPosition: {x: 0, y: 450}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4819966946048846624
@@ -1500,8 +1599,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Dark Gold lan\xE7a app que permite investidores comprarem suas pr\xF3prias
-    micro petrol\xEDferas</b>"
+  m_text: "<b>PetroCais amplia o transporte de petr\xF3leo atrav\xE9s da compra de
+    diversos cais pelo Brasil</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1598,6 +1697,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9172622827129506731}
+  - {fileID: 1088971378687657605}
+  - {fileID: 758719708954348109}
   - {fileID: 6211587867052717927}
   - {fileID: 2447234861540512057}
   - {fileID: 8330805857615877607}
@@ -1605,8 +1707,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -156.19022}
-  m_SizeDelta: {x: 0, y: 312.38043}
+  m_AnchoredPosition: {x: 0, y: -200.00037}
+  m_SizeDelta: {x: 0, y: 399.99927}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5636493314533226872
 GameObject:
@@ -1744,7 +1846,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1819,7 +1921,7 @@ MonoBehaviour:
   m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1894,12 +1996,87 @@ MonoBehaviour:
   m_Color: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 0.49803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 2
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5844514906220556193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3990517048460086843}
+  - component: {fileID: 7608207892325207856}
+  - component: {fileID: 2400954121844248138}
+  m_Layer: 0
+  m_Name: Spr_CompanyThreeColor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3990517048460086843
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844514906220556193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758719708954348109}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 505, y: 5}
+  m_SizeDelta: {x: 9, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7608207892325207856
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844514906220556193}
+  m_CullTransparentMesh: 1
+--- !u!114 &2400954121844248138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844514906220556193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 66d797639ef13bc4585c144d41e7caca, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1931,17 +2108,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6089752140953429443}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3508951882746262603}
-  m_Father: {fileID: 3554751790914352567}
+  m_Father: {fileID: 2736626147522981459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -25}
+  m_AnchoredPosition: {x: -2, y: 100}
   m_SizeDelta: {x: 1650, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6124448103907948931
@@ -2009,12 +2186,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A Dark Gold Stock Exchange apresentou o Darkold, aplicativo inovador que
-    permite ao usu\xE1rio investir e administrar pequenas empresas petrol\xEDferas
-    com apenas um clique \u2014 inclusive aquelas j\xE1 em opera\xE7\xE3o ou sob
-    controle de outros investidores. A proposta promete expandir imp\xE9rios particulares
-    no setor energ\xE9tico, oferecendo ferramentas estrat\xE9gicas para facilitar
-    aquisi\xE7\xF5es e fortalecer monop\xF3lios regionais de forma pr\xE1tica e segura."
+  m_text: "Essa semana, PetroCais concluiu a compra de m\xFAltiplos cais estrat\xE9gicos
+    ao longo da costa brasileira, investindo cerca de R$ 400 milh\xF5es com o objetivo
+    de expandir sua rede log\xEDstica e fortalecer o transporte e armazenamento de
+    petr\xF3leo em diversas regi\xF5es. Contudo, a iniciativa enfrenta obst\xE1culos
+    burocr\xE1ticos e ambientais. Algumas autoridades locais questionam licenciamento
+    das \xE1reas, e comunidades vizinhas expressam preocupa\xE7\xE3o com impactos
+    socioambientais decorrentes da instala\xE7\xE3o de terminais e dutos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2219,7 +2397,7 @@ MonoBehaviour:
   m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2298,8 +2476,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Novo regulamento torna divulga\xE7\xE3o financeira mais flex\xEDvel
-    e estrat\xE9gica na Dark Gold</b>"
+  m_text: "<b>FossilDrops investe em f\xF3sseis de dinossauros que acabam caindo
+    e se quebrando</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2391,7 +2569,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6634090706283335280}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2399,11 +2577,11 @@ RectTransform:
   - {fileID: 548206662350491509}
   - {fileID: 5898377394641407917}
   - {fileID: 2529717457836753455}
-  m_Father: {fileID: 3554751790914352567}
+  m_Father: {fileID: 2736626147522981459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -111}
+  m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 0, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6662367229366294026
@@ -2440,8 +2618,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8878861717493227611
 CanvasRenderer:
@@ -2467,7 +2645,7 @@ MonoBehaviour:
   m_Color: {r: 0.227451, g: 0.24313727, b: 0.32156864, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2533,7 +2711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bda4be14afddde46aff29943e3d843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 5784895396765116616}
   _header: {fileID: 7310471807563495200}
   _content: {fileID: 523977386319065285}
 --- !u!1 &6981274564837070288
@@ -2548,7 +2725,7 @@ GameObject:
   - component: {fileID: 9060277229977166737}
   - component: {fileID: 8461299658376731164}
   m_Layer: 0
-  m_Name: Spr_CompanyOneColor
+  m_Name: Spr_CompanyOneLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2571,7 +2748,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 150, y: 5}
-  m_SizeDelta: {x: 18, y: 18}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9060277229977166737
 CanvasRenderer:
@@ -2597,11 +2774,11 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8389cf203dcdc274f8d14246e1c94580, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2669,14 +2846,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b5aa9ef2600085c42b284a3aaadddf4e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2718,13 +2895,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7953128183783439465}
   - {fileID: 3309557090821994733}
   m_Father: {fileID: 3554751790914352567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -360}
-  m_SizeDelta: {x: 0, y: 350}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &967981487211288541
 CanvasRenderer:
@@ -2783,7 +2961,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 3309557090821994733}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -2859,7 +3037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bda4be14afddde46aff29943e3d843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 2730311964771568879}
   _header: {fileID: 6289125017653432818}
   _content: {fileID: 5133924202245487567}
 --- !u!1 &7738254322214220261
@@ -2923,7 +3100,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3028,10 +3205,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7953128183783439465}
-  - {fileID: 9172622827129506731}
-  - {fileID: 1088971378687657605}
-  - {fileID: 758719708954348109}
   - {fileID: 3045489763042609450}
   m_Father: {fileID: 8526789589253367610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3116,6 +3289,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _link: dark-gold-stock-exchange.com/
+--- !u!1 &7780573030860940929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6455504331777928264}
+  - component: {fileID: 1725188428744110765}
+  - component: {fileID: 2622418805779226858}
+  m_Layer: 0
+  m_Name: Spr_CompanyOneColor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6455504331777928264
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780573030860940929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758719708954348109}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 125, y: 5}
+  m_SizeDelta: {x: 9, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1725188428744110765
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780573030860940929}
+  m_CullTransparentMesh: 1
+--- !u!114 &2622418805779226858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780573030860940929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 66d797639ef13bc4585c144d41e7caca, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7855833144866099068
 GameObject:
   m_ObjectHideFlags: 0
@@ -3177,7 +3425,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3350,17 +3598,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8090941791660025960}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3554751790914352567}
+  m_Father: {fileID: 3045489763042609450}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.000061035156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2383626231369837135
 CanvasRenderer:
@@ -3386,7 +3634,7 @@ MonoBehaviour:
   m_Color: {r: 0.07450981, g: 0.07450981, b: 0.07450981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3463,7 +3711,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3555,12 +3803,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mostrando vis\xE3o estrat\xE9gica e confian\xE7a no potencial digital
-    da Am\xE9rica Latina, a Dark Gold Stock Exchange oficializou um investimento
-    de R$ 4 bilh\xF5es na BritaCoin, a nova criptomoeda brasileira. A iniciativa
-    visa impulsionar o mercado cripto nacional e ampliar o uso da moeda em transa\xE7\xF5es
-    energ\xE9ticas, mercados emergentes e regi\xF5es de baixa regulamenta\xE7\xE3o,
-    onde flexibilidade e agilidade financeira s\xE3o altamente valorizadas."
+  m_text: "Na \xFAltima quinta-feira, a petrol\xEDfera CapyPlastic, conhecida por
+    sua atua\xE7\xE3o no setor de pl\xE1sticos, investiu cerca de R$ 350 milh\xF5es
+    em \xE1reas de preserva\xE7\xE3o ambiental com o objetivo de utilizar urina de
+    capivara como mat\xE9ria-prima na produ\xE7\xE3o de pl\xE1sticos biodegrad\xE1veis.
+    A empresa alega que o composto possui propriedades qu\xEDmicas inovadoras, capazes
+    de reduzir a depend\xEAncia do petr\xF3leo. No entanto, moradores pr\xF3ximos
+    \xE0 ind\xFAstria relatam n\xE1useas frequentes e outros sintomas causados pelo
+    forte odor dos tanques onde o l\xEDquidos \xE9 armazenado em grandes volumes."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3665,7 +3915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 70, y: -55}
+  m_AnchoredPosition: {x: 70, y: -831}
   m_SizeDelta: {x: -140, y: -110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896072483019849701
@@ -3753,7 +4003,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3860,7 +4110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -55}
+  m_AnchoredPosition: {x: 0, y: -830}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3155050147338543567

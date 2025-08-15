@@ -15,6 +15,8 @@ public class GenericChoices : MonoBehaviour
     [BoxGroup("Response")] [SerializeField] private Button _confirmWrongFeedbackBtn;
     [BoxGroup("Response")] [SerializeField] private List<Button> _responsesBtn;
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
+
+
     
     private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
     private SO_GenericResponse _currentResponse = null;
@@ -34,20 +36,19 @@ public class GenericChoices : MonoBehaviour
     public void OpenResponse(SO_GenericResponse choices)
     {
         if(choices == null) return;
-        
+
         _currentResponse = choices;
         _responseQuestion.text = _currentResponse.QuestionText;
 
-        for(int response = 0; response < _currentResponse.Responses.Count; response++)
+        for (int response = 0; response < _currentResponse.Responses.Count; response++)
         {
             int index = response; //necessário guardar um valor fixo pra usar na lambda.
             GenericResponse responseInfos = _currentResponse.Responses[index];
             _responsesBtn[index].onClick.RemoveAllListeners();
-            _responsesBtn[index].onClick.AddListener(() => RespondQuestion(responseInfos.IsCorrectAnswer, _currentResponse.ConfirmQuestionText, _currentResponse.WrongFeedbackQuestionText));
+            _responsesBtn[index].onClick.AddListener(() => RespondQuestion(responseInfos.IsCorrectAnswer, _currentResponse.ConfirmQuestionText, _currentResponse.WrongFeedbackQuestionText, _currentResponse.Responses[index].TextOption));
 
-            TextMeshProUGUI btnText = _responsesBtn[response].GetComponentInChildren<TextMeshProUGUI>();
-            if(btnText) btnText.text = _currentResponse.Responses[response].TextOption;
-           
+            TextMeshProUGUI btnText = _responsesBtn[index].GetComponentInChildren<TextMeshProUGUI>();
+            if (btnText) btnText.text = _currentResponse.Responses[index].TextOption;
         }
         
         _confirmResponse.SetActive(false);
@@ -60,8 +61,11 @@ public class GenericChoices : MonoBehaviour
         ReturnChoices();
     }
 
-    private void RespondQuestion(bool isCorrectAnswer, string confirmFeedback, string wrongFeedbackQuestionText)
+    private void RespondQuestion(bool isCorrectAnswer, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
     {
+        PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentResponse.QuestionText, answerText, isCorrectAnswer);
+        EventManager.AnswerToSaveIsMaded(answerToSave);
+
         _firstResponseEmailChoices.SetActive(false);
         _responseQuestion.text = confirmFeedback;
         _confirmResponse.SetActive(true);
@@ -77,6 +81,7 @@ public class GenericChoices : MonoBehaviour
     private void CorrectFeedbackChoices()
     {
         EventManager.CorrectChoice();
+        EventManager.GenericResponseIsMade(_currentResponse.Index);
         ResponseFeedbackUpdate();
         ReturnChoices();
         gameObject.SetActive(false);

@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class RestoreManager : MonoBehaviour, INeedOpenCanvas
 {
@@ -28,13 +29,8 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Spawn Dependencies")] [SerializeField] private GameObject _loggerPrefab;
     [BoxGroup("Spawn Dependencies")] [SerializeField] private GameObject _backupPrefab;
 
-    [BoxGroup("Responses Dependencies")] [SerializeField] private SO_GenericResponse _loggerResponse;
-
     private RestoreState _currentState = RestoreState.None;
     private Dictionary<Button, GameObject> _restoreScreens;
-    
-    private const string WRONG_BACKUP = "Hm acho que devo analisar melhor qual backup restaurar.";
-    private const string ITS_NOT_TIME_FOR_THIS = "Droga! Esse não era o momento de fazer isso.";
     
     void Awake()
     {
@@ -55,8 +51,12 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
         EventManager.OnOpenLog += ShowCmd;
         EventManager.OnOpenBackup += ShowConfirmBackup;
         EventManager.OnEventEmailHandlerIsOpen += UpdateState;
+        EventManager.OnGenericResponseIsMaded += UpdateState;
+        EventManager.OnEmailIsAnswered += UpdateState;
+        EventManager.OnEmailIsWriten += UpdateState;
+
         
-        foreach(var key in _restoreScreens)
+        foreach (var key in _restoreScreens)
             key.Key.onClick.AddListener(() => OpenScreen(key.Key));
     }
 
@@ -81,8 +81,11 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     {
         EventManager.OnSiteIsOff -= ChangeState;
         EventManager.OnOpenLog -= ShowCmd;
-        EventManager.OnOpenBackup += ShowConfirmBackup;
+        EventManager.OnOpenBackup -= ShowConfirmBackup;
         EventManager.OnEventEmailHandlerIsOpen -= UpdateState;
+        EventManager.OnGenericResponseIsMaded -= UpdateState;
+        EventManager.OnEmailIsAnswered -= UpdateState;
+        EventManager.OnEmailIsWriten -= UpdateState;
 
         _confirmBackupBtn.onClick.RemoveAllListeners();
         
@@ -104,7 +107,6 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
         if(backup.IsCorrect && _currentState == RestoreState.Backuper)
         {
             EventManager.CorrectChoice();
-            EventManager.TicketObjectiveCompleted();
             EventManager.SpawnEmail(EmailType.LORE);
         }
         else
@@ -112,9 +114,9 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
             EventManager.WrongChoice();
 
             if(_currentState == RestoreState.Backuper)
-                EventManager.MakePlayerThink(WRONG_BACKUP);
+                EventManager.MakePlayerThink(ThoughtKey.WrongBackup);
             else
-                EventManager.MakePlayerThink(ITS_NOT_TIME_FOR_THIS);
+                EventManager.MakePlayerThink(ThoughtKey.WrongTimeBackup);
         }
 
         _confirmBackupScreen.SetActive(false);
@@ -130,7 +132,7 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
             _cmdLoggerText.text += $"{log.Log}\n\n";
             
             if(log.IsCorrect && _currentState == RestoreState.Logger)
-                EventManager.OpenGenericResponse(_loggerResponse);
+                EventManager.OpenGenericResponse();
         }
     }
 
@@ -169,14 +171,24 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if(emailIndex == "Lore 11" || emailIndex == "Lore 15")
+        if(emailIndex == "Lore 11")
         {
             _currentState = RestoreState.OnOff;
             UpdateTurnToggles(true);
         }
 
-        if(emailIndex == "Lore 14")
-            _currentState = RestoreState.Backuper;
+        if (emailIndex == "Lore 15")
+        {
+            _currentState = RestoreState.OnOff;
+            EventManager.TicketObjectiveCompleted();
+            UpdateTurnToggles(true);
+        }
+
+        if (emailIndex == "Lore 13")
+                _currentState = RestoreState.Backuper;
+
+        if(emailIndex == "Response 1")
+            _currentState = RestoreState.None;
     }
 
     private void UpdateTurnToggles(bool status)
@@ -193,6 +205,14 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas
     public void CloseCanvas()
     {
         _mainCanvas.SetActive(false);
+    }
+
+    public void CloseCMD()
+    {
+        _cmdScreen.SetActive(false);
+        
+        if(_currentState == RestoreState.Logger)
+            EventManager.CloseResponseScreen();
     }
 }
 

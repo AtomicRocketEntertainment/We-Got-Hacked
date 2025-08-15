@@ -11,6 +11,7 @@ public class SO_Email : ScriptableObject
     [BoxGroup("Common Infos")] public bool StartOpen;
     [BoxGroup("Common Infos")] public EmailType Type;
     [BoxGroup("Common Infos")] public EmailSender Sender;
+    [BoxGroup("Common Infos")] public EmailReceiver Receiver;
     [BoxGroup("Common Infos"), ResizableTextArea] public string Title;
     [BoxGroup("Common Infos"), ResizableTextArea] public string Content; 
     [BoxGroup("Response Area")] public bool HasResponse;
@@ -54,9 +55,18 @@ public struct EmailSender
 }
 
 [Serializable]
+public struct EmailReceiver
+{
+    public string Name;
+    public string Email;
+}
+
+[Serializable]
 public struct EmailResponse
 {
     [ResizableTextArea] public string TextOption;
     [ResizableTextArea] public string EmailText;
+    [AllowNesting, ResizableTextArea, ShowIf(nameof(HasSpecificReceiver))] public string NewReceiver;
+    public bool HasSpecificReceiver;
     public bool IsCorrectAnswer;
 }

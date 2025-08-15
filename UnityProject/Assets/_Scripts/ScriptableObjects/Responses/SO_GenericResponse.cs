@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="Generic Response", menuName ="Scriptable Objcts/Response/Generic Response")]
 public class SO_GenericResponse : ScriptableObject
 {
+    [BoxGroup("Response Area"), ResizableTextArea] public string Index;
     [BoxGroup("Response Area"), ResizableTextArea] public string QuestionText;
     [BoxGroup("Response Area"), ResizableTextArea] public string ConfirmQuestionText;
     [BoxGroup("Response Area"), ResizableTextArea] public string WrongFeedbackQuestionText;
