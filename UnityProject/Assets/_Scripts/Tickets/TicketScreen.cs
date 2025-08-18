@@ -16,11 +16,15 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _deviceType;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _originType;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _dateDp;
+    [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private ToggleGroup _RisktoggleGroup;
 
-    [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private ToggleGroup _RisktoggleGroup;
     [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private Transform _SitetoggleGroup;
 
+    [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _ransomwareName;
+    [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _criptoWallet;
+
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _blockedCanvas;
+    [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _emptyPlaybookScreen;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _pichacaoScreen;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _phishingScreen;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _ransowareScreen;
@@ -37,6 +41,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private List<GameObject> _objectivesActive = new List<GameObject>();
     private List<GameObject> _playbookScreens => new List<GameObject>
     {
+        _emptyPlaybookScreen,
         _pichacaoScreen,
         _phishingScreen,
         _ransowareScreen,
@@ -92,8 +97,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         foreach (GameObject screen in _playbookScreens)
             screen.SetActive(false);
 
-        if (value > 0 && value <= _playbookScreens.Count)
-            _playbookScreens[value - 1].SetActive(true);
+        if (value >= 0 && value <= _playbookScreens.Count)
+            _playbookScreens[value].SetActive(true);
     }
     private void UpdateIdSelected(int value) { _idSelect = _idDp.options[value].text; }
     private void UpdateIpOSelected(int value) { _ipOSelect = _ipODp.options[value].text; }

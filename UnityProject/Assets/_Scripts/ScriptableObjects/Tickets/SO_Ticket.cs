@@ -15,14 +15,19 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Tick Task and siemtinel's infos")] public string DateDay;
     [BoxGroup("Tick Task and siemtinel's infos")] public string DateHour;
     [BoxGroup("Tick Task and siemtinel's infos")] public int RiskLevel;
+
     [BoxGroup("Siemtinel's infos")] public string SiemLog;
+
     [BoxGroup("Desconex's infos")] public List<TicketLog> Loggs;
+
     [BoxGroup("Remotopia's infos")] public RemotopiaUserLogin RemotopiaUser;
 
-    public List<TicketObjectives> Objectives;
-
     [BoxGroup("Phishing Infos"), ShowIf(nameof(IsPichacao))][Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
+    [BoxGroup("Ransomware Infos"), ShowIf(nameof(IsRansomware))][Tooltip("Type of Ransomware")] public string RansomwareName;
+    [BoxGroup("Ransomware Infos"), ShowIf(nameof(IsRansomware))][Tooltip("Cripto wallet code")] public string CriptoWallet;
 
+
+    public List<TicketObjectives> Objectives;
 
 
 
