@@ -21,7 +21,7 @@ public class TicketInfoPopUpScreen : MonoBehaviour
         _ipOrigin.text = $"IP Origem: {ticket.IPOrigem}";
         _ipDestiny.text = $"IP Destino: {ticket.IPDestiny}";
         _localization.text = $"Geolocalização: {ticket.Location}";
-        _dispositive.text = $"Dispositivo: {ticket.Dispositive}";
+        _dispositive.text = $"Dispositivo: {ticket.DeviceAttacked}";
         _date.text = $"Data: {ticket.DateDay} - {ticket.DateHour}";
         _risk.text = $"Risco: {ticket.RiskLevel}";
         _site.text = $"Website: {webSite}";

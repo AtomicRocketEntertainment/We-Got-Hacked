@@ -15,6 +15,8 @@ public class Ticket
     private string _dateHour;
     private int _riskLevel;
     private SiteType _site;
+    private string _ransomwareName;
+    private string _criptoWallet;
     private List<TicketObjectives> _objectives;
     private List<TicketLog> _logs;
     private string _siemLog;
@@ -25,12 +27,14 @@ public class Ticket
     public string IPOrigem => _iPOrigem;
     public string IPDestiny => _iPDestiny;
     public string Location => _location;
-    public ImpactedDevice Dispositive => _deviceAttacked;
+    public ImpactedDevice DeviceAttacked => _deviceAttacked;
     public AlertOrigin Origin => _origin;
     public string DateDay => _dateDay;
     public string DateHour => _dateHour;
     public int RiskLevel => _riskLevel;
     public SiteType Site => _site;
+    public string RansomwareName => _ransomwareName;
+    public string CriptoWallet => _criptoWallet;
     public List<TicketObjectives> Objectives => _objectives;
     public List<TicketLog> Logs => _logs;
     public string SiemLog => _siemLog;
@@ -48,6 +52,8 @@ public class Ticket
         _dateHour = infos.DateHour;
         _riskLevel = infos.RiskLevel;
         _site = infos.CorrectSite;
+        _ransomwareName = infos.RansomwareName;
+        _criptoWallet = infos.CriptoWallet;
 
         _objectives = new List<TicketObjectives>();
         _logs = infos.Loggs;

@@ -188,6 +188,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
                 return;   
             }
 
+            //Tiago Day One
             EventManager.CreateEspecificEmail(PointEmailKey.CorrectTicketAfterWrongCreated);
             UpdateTicketProgress();
             ticket.ResetNewTicketInfos();

@@ -232,6 +232,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.CloseResponseScreen();
         _homeEmailCanvas.gameObject.SetActive(true);
         _readingEmailCanvas.gameObject.SetActive(false);
+        _writingEmailCanvas.gameObject.SetActive(false);
         _currentEmailOpen = null;
     }
 

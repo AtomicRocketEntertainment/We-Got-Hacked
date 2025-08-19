@@ -59,6 +59,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private string _deviceSelect = "";
     private string _originSelect = "";
     private string _dateSelect = "";
+    private string _ransomwareSelect = "";
+    private string _walletSelect = "";
     private bool _canOpenPopUp = false;
 
     public ScreenType CurrentType => _screenType;
@@ -74,6 +76,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType?.onValueChanged.AddListener(UpdateDeviceSelected);
         _originType?.onValueChanged.AddListener(UpdateOriginSelected);
         _dateDp?.onValueChanged.AddListener(UpdateDateSelected);
+        _ransomwareName?.onValueChanged.AddListener(UpdateRansomwareSelected);
+        _criptoWallet?.onValueChanged.AddListener(UpdateWalletSelected);
+
     }
 
 
@@ -88,6 +93,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType?.onValueChanged.RemoveListener(UpdateDeviceSelected);
         _originType?.onValueChanged.RemoveListener(UpdateOriginSelected);
         _dateDp?.onValueChanged.RemoveListener(UpdateDateSelected);
+        _ransomwareName?.onValueChanged.RemoveListener(UpdateRansomwareSelected);
+        _criptoWallet?.onValueChanged.RemoveListener(UpdateWalletSelected);
     }
 
     private void UpdatePlaybookSelected(int value)
@@ -106,8 +113,10 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateLocationSelected(int value) { _geolocationSelect = _geolocationDp.options[value].text; }
     private void UpdateDeviceSelected(int value) { _deviceSelect = _deviceType.options[value].text; }
     private void UpdateOriginSelected(int value) { _originSelect = _originType.options[value].text; }
-
     private void UpdateDateSelected(int value) { _dateSelect = _dateDp.options[value].text; }
+    private void UpdateRansomwareSelected(int value) { _ransomwareSelect = _ransomwareName.options[value].text; }
+    private void UpdateWalletSelected(int value) { _walletSelect = _criptoWallet.options[value].text; }
+
 
 
     public void UpdateInfos(ScreenType typeScreen, SO_TicketList ticketList, Ticket currentTicket, SoftwareState softwareState)
@@ -139,14 +148,16 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType.ClearOptions();
         _originType.ClearOptions();
         _dateDp.ClearOptions();
+        _ransomwareName.ClearOptions();
+        _criptoWallet.ClearOptions();
 
         List<string> playBookOptions = new List<string>
         {
             _playbookSelect,
-            PlaybookType.Pichacao.ToString(),
-            PlaybookType.Phishing.ToString(),
-            PlaybookType.Ransomware.ToString(),
-            PlaybookType.VazamentoDeDados.ToString()
+            nameof(PlaybookType.Pichacao),
+            nameof(PlaybookType.Phishing),
+            nameof(PlaybookType.Ransomware),
+            nameof(PlaybookType.VazamentoDeDados)
         };
 
         if (softwareState != SoftwareState.FullAccess) return;
@@ -158,6 +169,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         List<string> deviceOptions = new List<string> { _deviceSelect };
         List<string> originOptions = new List<string> { _originSelect };
         List<string> dateOptions = new List<string> { _dateSelect };
+        List<string> ransomwareOptions = new List<string> { _ransomwareSelect };
+        List<string> criptWalletOptions = new List<string> { _walletSelect };
+
 
         foreach (SO_Ticket ticket in ticketList.Tickets)
         {
@@ -170,10 +184,16 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
             if (!deviceOptions.Contains(ticket.DeviceAttacked.ToString()))
                 deviceOptions.Add(ticket.DeviceAttacked.ToString());
-                
-                
+
+
             if (!originOptions.Contains(ticket.Origin.ToString()))
                 originOptions.Add(ticket.Origin.ToString());
+
+            if (!ransomwareOptions.Contains(ticket.RansomwareName))
+                ransomwareOptions.Add(ticket.RansomwareName);
+
+            if (!criptWalletOptions.Contains(ticket.CriptoWallet))
+                criptWalletOptions.Add(ticket.CriptoWallet);
 
             dateOptions.Add($"{ticket.DateDay} - {ticket.DateHour}");
         }
@@ -194,6 +214,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType.AddOptions(deviceOptions);
         _originType.AddOptions(originOptions);
         _dateDp.AddOptions(dateOptions);
+        _ransomwareName.AddOptions(ransomwareOptions);
+        _criptoWallet.AddOptions(criptWalletOptions);
     }
 
     private void UpdateCurrentTicket(Ticket currentTicket)
@@ -294,22 +316,71 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     public bool AllInfoAreSelected()
     {
-        bool riskToggle = _RisktoggleGroup.ActiveToggles().Any();
-        bool siteToggle = GetSelectedToggles().Count > 0;
+        return CheckSelectedInfos();
+    }
 
-        return _playbookSelect != "" &&
+    public bool CheckInfo(Ticket ticket)
+    {
+        if (ticket.Playbook.ToString() != _playbookSelect) return false;
+
+        bool isCommonInfoCorrect = VerifyCommonInfos(ticket);
+        bool isPlaybookCorrect = VerifyPlaybookInfos((PlaybookType)_playbookDp.value - 1 , ticket);//first selected is the index 0
+
+        return isCommonInfoCorrect && isPlaybookCorrect;
+    }
+
+    private bool CheckSelectedInfos()
+    {
+        if (_playbookDp.value == 0)  return false;
+
+        bool isPlaybookInfoSelected = PlaybookInfosAreSelected((PlaybookType)_playbookDp.value - 1); //first selected is the index 0
+
+        return isPlaybookInfoSelected &&
             _idSelect != "" &&
             _ipOSelect != "" &&
             _ipDSelect != "" &&
             _geolocationSelect != "" &&
             _deviceSelect != "" &&
             _originSelect != "" &&
-            _dateSelect != "" &&
-            riskToggle &&
-            siteToggle;
+            _dateSelect != "";
     }
 
-    public bool CheckInfo(Ticket ticket)
+    private bool PlaybookInfosAreSelected(PlaybookType playbook)
+    {
+        bool areSelected = false;
+
+        switch (playbook)
+        {
+            case PlaybookType.Pichacao:
+                areSelected = GetPichacaoSiteSelected().Count > 0;
+                break;
+            case PlaybookType.Ransomware:
+                areSelected = _ransomwareSelect != "" && _walletSelect != "";
+                break;
+        }
+
+        return areSelected;
+    }
+
+
+    private bool VerifyPlaybookInfos(PlaybookType playbook, Ticket ticket)
+    {
+        bool isCorrect = false;
+
+        switch (playbook)
+        {
+            case PlaybookType.Pichacao:
+                isCorrect = VerifyPichacao(ticket.Site);
+                break;
+            case PlaybookType.Ransomware:
+                isCorrect = VerifyRansomware(ticket.RansomwareName, ticket.CriptoWallet);
+                break;
+        }
+
+        return isCorrect;
+    }
+
+    private bool VerifyCommonInfos(Ticket ticket)
     {
         string selectedId = _idDp.options[_idDp.value].text;
         string selectedIpD = _ipDDp.options[_ipDDp.value].text;
@@ -318,9 +389,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         string selectedDevice = _deviceType.options[_deviceType.value].text;
         string selectedOrigin = _originType.options[_originType.value].text;
         string selectedDate = _dateDp.options[_dateDp.value].text;
-        string selectedPlaybook = _playbookDp.options[_playbookDp.value].text;
         int selectedRisk = 0;
-        List<SiteType> selectedSites = new List<SiteType>();
 
         Toggle selectedRiskToggle = _RisktoggleGroup.ActiveToggles().FirstOrDefault();
 
@@ -330,23 +399,39 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             selectedRisk = riskLevel.RiskLevel;
         }
 
-        foreach (var toggle in GetSelectedToggles())
+        return
+        selectedId == ticket.ID &&
+        selectedIpO == ticket.IPOrigem &&
+        selectedIpD == ticket.IPDestiny &&
+        selectedLocation == ticket.Location &&
+        selectedDevice == ticket.DeviceAttacked.ToString() &&
+        selectedOrigin == ticket.Origin.ToString() &&
+        selectedDate == $"{ticket.DateDay} - {ticket.DateHour}" &&
+        selectedRisk == ticket.RiskLevel;
+    }
+
+    private bool VerifyPichacao(SiteType site)
+    {
+        List<SiteType> selectedSites = new List<SiteType>();
+
+        foreach (var toggle in GetPichacaoSiteSelected())
             if (toggle.TryGetComponent(out ImSiteHolder siteHolder))
                 selectedSites.Add(siteHolder.Site);
 
-        bool isCorrectSiteSelected = selectedSites.Count == 1 && selectedSites[0] == ticket.Site;
+        bool isCorrectSiteSelected = selectedSites.Count == 1 && selectedSites[0] == site;
 
-        return
-            selectedPlaybook == ticket.Playbook.ToString() &&
-            selectedId == ticket.ID &&
-            selectedIpO == ticket.IPOrigem &&
-            selectedIpD == ticket.IPDestiny &&
-            selectedLocation == ticket.Location &&
-            selectedDevice == ticket.Dispositive.ToString() &&
-            selectedOrigin == ticket.Origin.ToString() &&
-            selectedDate == $"{ticket.DateDay} - {ticket.DateHour}" &&
-            selectedRisk == ticket.RiskLevel &&
-            isCorrectSiteSelected;
+        return isCorrectSiteSelected;
+    }
+
+    private bool VerifyRansomware(string ransomware, string wallet)
+    {
+        string selectedName = _ransomwareName.options[_ransomwareName.value].text;
+        string selectedWallet = _criptoWallet.options[_criptoWallet.value].text;
+
+
+        bool isCorrect = selectedName == ransomware && selectedWallet == wallet;
+
+        return isCorrect;
     }
 
     public void ResetNewTicketInfos()
@@ -368,6 +453,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType.ClearOptions();
         _originType.ClearOptions();
         _dateDp.ClearOptions();
+        _ransomwareName.ClearOptions();
+        _criptoWallet.ClearOptions();
 
         foreach (var toggle in _RisktoggleGroup.GetComponentsInChildren<Toggle>())
             toggle.isOn = false;
@@ -380,7 +467,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         }
     }
 
-    public List<Toggle> GetSelectedToggles()
+    public List<Toggle> GetPichacaoSiteSelected()
     {
         List<Toggle> selected = new List<Toggle>();
 
@@ -388,9 +475,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         {
             Toggle toggle = child.GetComponent<Toggle>();
             if (toggle != null && toggle.isOn)
-            {
                 selected.Add(toggle);
-            }
         }
 
         return selected;
