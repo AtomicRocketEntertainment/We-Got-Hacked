@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 15
   StartOpen: 0
+  IsEmailToWrite: 0
+  Receiver:
+    Name: 
+    Email: 
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: bbb0edf9f0899dd4e85fb6107f9968bd, type: 3}
+    Profile: {fileID: 21300000, guid: 79b047d60ced5ac45a1d0aaaac00396e, type: 3}
     Name: Gustavo Ribeiro
     Email: gustavo.ribeiro.tec@petrocais.com
   Title: Site da PetroCais Restaurado
@@ -43,6 +47,8 @@ MonoBehaviour:
       restaurar a seguran\xE7a da infraestrutura.\n\nCom isso, selamos novamente
       os port\xF5es e ficamos protegidos do inimigo.\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael
       Martins</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
   - TextOption: "Eu n\xE3o tenho inimigos, ningu\xE9m tem."
     EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nMuitos chamam de inimigos aqueles que
@@ -55,6 +61,8 @@ MonoBehaviour:
       restauramos mais que um site, mas refor\xE7amos um princ\xEDpio: n\xE3o seremos
       pegos de surpresa, mas tamb\xE9m n\xE3o deixaremos a surpresa nos pegar.</b></mark>\"\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael
       Martins</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   - TextOption: Vulnerabilidade C.A.F.E-KB-0011
     EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nEncontramos o ponto fraco. A brecha usada
@@ -65,6 +73,8 @@ MonoBehaviour:
       desativa a execu\xE7\xE3o remota n\xE3o autorizada e fortalece os filtros de
       upload.\n\nCom isso, selamos essa entrada e impedimos novos ataques dos inimigos.\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael
       Martins</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 1
   DispatcherInfo:

@@ -14,13 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 3 Day 2
   StartOpen: 0
+  IsEmailToWrite: 0
+  Receiver:
+    Name: 
+    Email: 
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: de6be606d9185cc498ffdc8d15dd9a98, type: 3}
+    Profile: {fileID: 21300000, guid: 686d8fd053b0bc44783d8244809bd5f3, type: 3}
     Name: Raquel Oliveira
     Email: raquel.oliveira.gercyber@cafesoc.com
-  Title: EMAIL 3 DE LORE DO DIA 02
-  Content: EMAIL 03 DE LORE DO DIA 02
+  Title: O Teste foi um Sucesso!
+  Content: "<b>Tiago,</b>\n\nAgrade\xE7o por ter realizado o primeiro teste com o
+    Remotinik. Conforme observamos, a ferramenta funcionou de forma eficaz e est\xE1vel
+    no acesso remoto ao meu terminal.\n\nEspero que n\xE3o tenha acessado \xE1reas
+    confidenciais que n\xE3o estavam no escopo de teste...\n\n<b>O uso desse software
+    se mostrar\xE1 bastante valioso, especialmente na identifica\xE7\xE3o e resolu\xE7\xE3o
+    de falhas diretamente nas m\xE1quinas dos usu\xE1rios.</b>\n\nContinue se familiarizando
+    com a interface e aproveite esse recurso como parte do seu desenvolvimento t\xE9cnico
+    dentro da equipe.\n\nMantenha o foco.\n\n<b>Raquel Oliveira</b>\n<b>Gerente de
+    Cyberseguran\xE7a \u2013 C.A.F.E</b>"
   HasResponse: 0
   QuestionText: "O que ser\xE1 que responde para a Raquel?"
   ConfirmQuestionText: 
@@ -43,6 +55,8 @@ MonoBehaviour:
       positivos sejam encaminhados ao Rafael para resolu\xE7\xE3o.\n\nNosso trabalho
       exige aten\xE7\xE3o e responsabilidade.\n\nMantenha o foco.\n\nRaquel Oliveira\nGerente
       de Ciberseguran\xE7a \u2013 C.A.F.E"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   - TextOption: Resposta 2
     EmailText: "\n\n\nOl\xE1,\n\nRespondendo esse email com o texto da resposta certa.\n\nAbra\xE7os.\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo
@@ -60,6 +74,8 @@ MonoBehaviour:
       ao N2 para resolu\xE7\xE3o.\n\nNosso trabalho exige aten\xE7\xE3o e responsabilidade.
       Se precisar de algo, me comunique diretamente.\n\nRaquel Oliveira\nGerente
       de Cyberseguran\xE7a \u2013 S.A.F.E"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
   - TextOption: Resposta 3
     EmailText: "\n\n\nOl\xE1,\n\nRespondendo esse email com o texto da resposta 3.\n\nAbra\xE7os.\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo
@@ -77,6 +93,8 @@ MonoBehaviour:
       ao N2 para resolu\xE7\xE3o.\n\nNosso trabalho exige aten\xE7\xE3o e responsabilidade.
       Se precisar de algo, me comunique diretamente.\n\nRaquel Oliveira\nGerente
       de Cyberseguran\xE7a \u2013 S.A.F.E"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 1
   DispatcherInfo:

@@ -61,7 +61,8 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnSpawnSpecificEmail += SpawnSpecificEmail;
         EventManager.OnOpenEmail += OpenEmail;
         EventManager.OnWriteEmail += TryWriteEmail;
-        EventManager.OnChangeEmailContentText += ChangeContentEmail;
+        EventManager.OnChangeEmailTitle += ChangeEmailTitle;
+        EventManager.OnChangeEmailContent += ChangeEmailContent;
         EventManager.OnChangeEmailReceiver += ChangeWritingReceiver;
         EventManager.OnEmailIsAnswered += EmailIsAnswered;
         EventManager.OnReturnEmailContent += ReturnEmailContent;
@@ -81,7 +82,8 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         EventManager.OnSpawnEmail -= CreateEmail;
         EventManager.OnSpawnSpecificEmail -= SpawnSpecificEmail;
         EventManager.OnOpenEmail -= OpenEmail;
-        EventManager.OnChangeEmailContentText -= ChangeContentEmail;
+        EventManager.OnChangeEmailTitle -= ChangeEmailTitle;
+        EventManager.OnChangeEmailContent -= ChangeEmailContent;
         EventManager.OnChangeEmailReceiver -= ChangeWritingReceiver;
         EventManager.OnEmailIsAnswered -= EmailIsAnswered;
         EventManager.OnReturnEmailContent -= ReturnEmailContent;
@@ -242,10 +244,15 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         CloseEmail();
     }
 
-    private void ChangeContentEmail(string newEmailText)
+    private void ChangeEmailContent(string newEmailText)
     {
         _emailContent.text = newEmailText;
         _emailWriteContent.text = newEmailText;
+    }
+
+    private void ChangeEmailTitle(string newTitle)
+    {
+        _emailWriteTitle.text = newTitle;
     }
 
     private void ReturnEmailContent()
@@ -253,6 +260,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         _emailContent.text = _currentEmailOpen.Content;
         _emailWriteContent.text = _currentEmailOpen.Content;
         _receiverEmail.text = _currentEmailOpen.Receiver.Email;
+        _emailWriteTitle.text = _currentEmailOpen.Title;
     }
 
     private void ChangeWritingReceiver(string newReceiver)

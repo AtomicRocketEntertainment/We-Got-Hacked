@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 8
   StartOpen: 0
-  Type: 2
-  Sender:
-    Profile: {fileID: 21300000, guid: de6be606d9185cc498ffdc8d15dd9a98, type: 3}
-    Name: Raquel Oliveira
-    Email: raquel.oliveira.gercyber@cafesoc.com
+  IsEmailToWrite: 1
   Receiver:
     Name: 
     Email: 
-  Title: "Notifica\xE7\xE3o de Incidente"
+  Type: 2
+  Sender:
+    Profile: {fileID: 21300000, guid: 686d8fd053b0bc44783d8244809bd5f3, type: 3}
+    Name: Raquel Oliveira
+    Email: raquel.oliveira.gercyber@cafesoc.com
+  Title: Nova Mensagem
   Content: 
   HasResponse: 1
   QuestionText: "Qual dos respons\xE1veis deve ser notificado acerca da ocorr\xEAncia
@@ -33,6 +34,7 @@ MonoBehaviour:
     mais atrasos. Preciso ajustar isso, pois est\xE1 inadequado."
   Responses:
   - TextOption: Notificar Enzo Kaiser
+    EmailTitle: Notificar Enzo Kaiser
     EmailText: "<b>Prezado Sr. Enzo Kaiser,</b>\n\nBoa noite. Meu nome \xE9 Raquel
       Oliveira, sou a Gerente de Cyberseguran\xE7a da C.A.F.E. Embora ainda n\xE3o
       tenhamos sido apresentados, considerei prudente contat\xE1-lo diretamente devido
@@ -53,6 +55,7 @@ MonoBehaviour:
     HasSpecificReceiver: 1
     IsCorrectAnswer: 0
   - TextOption: Notificar Gustavo Ribeiro
+    EmailTitle: Notificar Gustavo Ribeiro
     EmailText: "<b>Prezado Sr. Gustavo Ribeiro,</b>\n\nBoa noite. Meu nome \xE9 Raquel
       Oliveira, sou a Gerente de Cyberseguran\xE7a da C.A.F.E. Embora ainda n\xE3o
       tenhamos sido apresentados, fui informada de que o senhor \xE9 o respons\xE1vel
@@ -73,6 +76,7 @@ MonoBehaviour:
     HasSpecificReceiver: 1
     IsCorrectAnswer: 1
   - TextOption: Notificar Geovane Geratti
+    EmailTitle: Notificar Geovane Geratti
     EmailText: "<b>Prezado Sr. Geovane Geratti,</b>\n\nBoa noite. Meu nome \xE9 Raquel
       Oliveira, sou a Gerente de Cyberseguran\xE7a da C.A.F.E., respons\xE1vel pela
       prote\xE7\xE3o digital da PetroCais.\n\nComo sei que o senhor tamb\xE9m atua

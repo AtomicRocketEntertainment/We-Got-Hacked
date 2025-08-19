@@ -75,7 +75,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
             EmailResponse responseInfos = _currentEmailToRespond.Responses[index];
             string textToPopulateBtn = _currentEmailToRespond.Responses[index].TextOption;
             _responsesBtn[index].onClick.RemoveAllListeners();
-            _responsesBtn[index].onClick.AddListener(() => RespondEmail(responseInfos, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText, textToPopulateBtn));
+            _responsesBtn[index].onClick.AddListener(() => RespondEmail(email.IsEmailToWrite, responseInfos, _currentEmailToRespond.ConfirmQuestionText, _currentEmailToRespond.WrongFeedbackQuestionText, textToPopulateBtn));
 
             TextMeshProUGUI btnText = _responsesBtn[index].GetComponentInChildren<TextMeshProUGUI>();
             if (btnText) btnText.text = textToPopulateBtn;
@@ -92,7 +92,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
         ReturnChoices(false);
     }
 
-    private void RespondEmail(EmailResponse responseInfos, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
+    private void RespondEmail(bool isWrite, EmailResponse responseInfos, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
     {
         PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentEmailToRespond.QuestionText, answerText, responseInfos.IsCorrectAnswer);
         EventManager.AnswerToSaveIsMaded(answerToSave);
@@ -100,10 +100,14 @@ public class EmailChoices : MonoBehaviour, IEmailContext
         _firstResponseEmailChoices.SetActive(false);
         _responseQuestion.text = confirmFeedback;
         _confirmResponse.SetActive(true);
+
         EventManager.ChangeEmailTextContent(responseInfos.EmailText);
 
-        if(responseInfos.HasSpecificReceiver)
-            EventManager.ChangeEmailReceiver(responseInfos.NewReceiver);
+        if (isWrite)
+            EventManager.ChangeEmailTextTitle(responseInfos.EmailTitle);
+
+        if (responseInfos.HasSpecificReceiver)
+                EventManager.ChangeEmailReceiver(responseInfos.NewReceiver);
 
         _confirmResponseEmailBtn.onClick.RemoveAllListeners();
 

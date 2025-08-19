@@ -14,13 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 4 Day 2
   StartOpen: 0
+  IsEmailToWrite: 0
+  Receiver:
+    Name: 
+    Email: 
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: de6be606d9185cc498ffdc8d15dd9a98, type: 3}
+    Profile: {fileID: 21300000, guid: 686d8fd053b0bc44783d8244809bd5f3, type: 3}
     Name: Raquel Oliveira
     Email: raquel.oliveira.gercyber@cafesoc.com
-  Title: EMAIL 4 DE LORE DO DIA 02
-  Content: EMAIL 04 DE LORE DO DIA 02
+  Title: Suspeita de Ransomware
+  Content: "<b>Tiago,</b>\n\nObservei os \xFAltimos alarmes disparados no SIEMtinel,
+    e posso confirmar que n\xE3o se tratam de eventos de teste. Os padr\xF5es detectados
+    sugerem atividade suspeita compat\xEDvel com um poss\xEDvel ataque de ransomware
+    em um dos servidores da rede da PetroCais.\n\n<b>Neste momento, concentre-se
+    exclusivamente no alerta de N\xEDvel 5, que exige aten\xE7\xE3o imediata. O alerta
+    de N\xEDvel 4 deve ser verificado apenas ap\xF3s a resolu\xE7\xE3o do N\xEDvel
+    5, para evitar a dispers\xE3o de esfor\xE7os.</b>\n\nAvisos de a\xE7\xF5es imediatas:\n-
+    O servidor identificado foi isolado da rede como medida de conten\xE7\xE3o preventiva.\n-
+    Um ticket de investiga\xE7\xE3o foi aberto. Rafael est\xE1 conduzindo a an\xE1lise
+    t\xE9cnica aprofundada.\n- Caso tenha acessado recentemente esse terminal, comunique-se
+    imediatamente por e-mail.\n- Refor\xE7o que qualquer acesso remoto deve ocorrer
+    exclusivamente por meio do software RemoteNik e com ticket formalmente registrado.\n\n<b>Solicito
+    que entre em contato com o representante t\xE9cnico da PetroCais, Gustavo Ribeiro,
+    e pe\xE7a autoriza\xE7\xE3o formal para acesso ao servidor potencialmente comprometido.
+    Essa etapa \xE9 imprescind\xEDvel para que possamos prosseguir com a investiga\xE7\xE3o
+    de maneira adequada.</b>\L\nManteremos todos atualizados conforme o progresso
+    da investiga\xE7\xE3o.\n\nMantenha o foco.\n\n<b>Raquel Oliveira</b>\n<b>Gerente
+    de Cyberseguran\xE7a \u2013 C.A.F.E</b>"
   HasResponse: 0
   QuestionText: "O que ser\xE1 que responde para a Raquel?"
   ConfirmQuestionText: 
@@ -43,6 +64,8 @@ MonoBehaviour:
       positivos sejam encaminhados ao Rafael para resolu\xE7\xE3o.\n\nNosso trabalho
       exige aten\xE7\xE3o e responsabilidade.\n\nMantenha o foco.\n\nRaquel Oliveira\nGerente
       de Ciberseguran\xE7a \u2013 C.A.F.E"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   - TextOption: Resposta 2
     EmailText: "\n\n\nOl\xE1,\n\nRespondendo esse email com o texto da resposta certa.\n\nAbra\xE7os.\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo
@@ -60,6 +83,8 @@ MonoBehaviour:
       ao N2 para resolu\xE7\xE3o.\n\nNosso trabalho exige aten\xE7\xE3o e responsabilidade.
       Se precisar de algo, me comunique diretamente.\n\nRaquel Oliveira\nGerente
       de Cyberseguran\xE7a \u2013 S.A.F.E"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
   - TextOption: Resposta 3
     EmailText: "\n\n\nOl\xE1,\n\nRespondendo esse email com o texto da resposta 3.\n\nAbra\xE7os.\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo
@@ -77,6 +102,8 @@ MonoBehaviour:
       ao N2 para resolu\xE7\xE3o.\n\nNosso trabalho exige aten\xE7\xE3o e responsabilidade.
       Se precisar de algo, me comunique diretamente.\n\nRaquel Oliveira\nGerente
       de Cyberseguran\xE7a \u2013 S.A.F.E"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 1
   DispatcherInfo:

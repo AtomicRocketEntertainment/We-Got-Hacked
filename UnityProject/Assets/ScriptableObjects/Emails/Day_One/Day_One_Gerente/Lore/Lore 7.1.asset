@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 7
   StartOpen: 0
+  IsEmailToWrite: 0
+  Receiver:
+    Name: 
+    Email: 
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: fda9bcf56e7b4174e957a3dcc5edb42c, type: 3}
+    Profile: {fileID: 21300000, guid: 81c44dbdac0648642abab38fcbb20b8d, type: 3}
     Name: Gerente de RH | C.A.F.E.
     Email: rebeca.hernandes.rh@cafesoc.com
   Title: A Maravilhosa Lista de Contatos!
@@ -30,35 +34,44 @@ MonoBehaviour:
     dar aquela for\xE7a sempre que precisar informar, pedir algo ou quando quiser
     fofocar com algu\xE9m, hehe! <sprite index=\"978\">\n\nSe precisar de qualquer
     coisa, estarei \xE0 disposi\xE7\xE3o para ajudar! <sprite index=\"404\">\n\n<b>Com
-    carinho,</b>\L<b>Rebeca Hernandes</b>\n<b>Gerente de RH - C.A.F.E.</b>"
+    carinho,</b>\n<b>Rebeca Hernandes</b>\n<b>Gerente de RH - C.A.F.E.</b>"
   HasResponse: 0
   QuestionText: Sobre o que eu devo escrever mesmo?
   ConfirmQuestionText: 
   WrongFeedbackQuestionText: 
   Responses:
   - TextOption: Avisar sobre o site pichado
+    EmailTitle: 
     EmailText: "Ol\xE1, Raquel! Tudo certo?\n\nDeu ruim! Um dos sites da PetroCais
       foi pichado! \U0001F628 Pelo que vi, parece ser coisa de um grupo de ativistas
       doidos chamados de PetroKillers. \U0001F480\n\nSendo sincero, n\xE3o fa\xE7o
       ideia do que fazer. Preciso de ajuda pra resolver isso, os clientes n\xE3o
       podem ver o site desse jeito!\n\nAguardo retorno! \U0001F642\u200D\u2195\uFE0F\n\nAtt,
       Tiago"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   - TextOption: Avisar sobre o Ticket
+    EmailTitle: 
     EmailText: "Fala, time! Tudo certo?\n\nOs boatos eram verdadeiros! Alguns hackers
       malditos chamados PetroKillers realmente invadiram o site da PetroCais e zoaram
       tudo! \U0001F621\n\nTodos as informa\xE7\xF5es do ataque j\xE1 est\xE3o direitinho
       l\xE1 no ticket que criei. Agora contamos com o Rafa pra terminar o servi\xE7o
       e resolver esse problema.\n\nSe algu\xE9m precisar de mais informa\xE7\xF5es,
       s\xF3 dar um toque! \U0001F609\n\nAtt, Tiago"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
   - TextOption: "Avisar sobre a M\xE1quina de Caf\xE9 Quebrada"
+    EmailTitle: 
     EmailText: "Ol\xE1, Central! Tudo certo?\n\nTemos um problema s\xE9rio! Uma das
       m\xE1quinas de caf\xE9 deu pau. Eu t\xF4 tendo que ir at\xE9 a sala ao lado
       pra encher a minha caneca! \u2615\n\nJ\xE1 tentei tirar da tomada e colocar
       de novo, resetar e at\xE9 bater na m\xE1quina algumas vezes, mas nada funcionou.
       N\xE3o posso ficar sem caf\xE9, vou acabar pegando no sono! Preciso que resolvam
       isso, por favor. \U0001F979\n\nAguardo refor\xE7os! \U0001F691\n\nAtt, Tiago"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 0
   DispatcherInfo:

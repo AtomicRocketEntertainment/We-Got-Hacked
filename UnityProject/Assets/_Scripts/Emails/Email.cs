@@ -6,6 +6,7 @@ public class Email
 {
     private string _index;
     private bool _startOpen;
+    private bool _isEmailToWrite;
     private EmailType _type;
     private EmailSender _sender;
     private EmailReceiver _receiver;
@@ -23,6 +24,7 @@ public class Email
     {
         _index = emailInfo.Index;
         _startOpen = emailInfo.StartOpen;
+        _isEmailToWrite = emailInfo.IsEmailToWrite;
         _type = emailInfo.Type;
         _sender = emailInfo.Sender;
         _receiver = emailInfo.Receiver;
@@ -59,6 +61,7 @@ public class Email
     public string Index => _index;
     public EmailType Type => _type;
     public bool StartOpen => _startOpen;
+    public bool IsEmailToWrite => _isEmailToWrite;
     public EmailSender Sender => _sender;
     public EmailReceiver Receiver => _receiver;
     public EventDispatcher DisptacherInfo => _disptacherInfo;

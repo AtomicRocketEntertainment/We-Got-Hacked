@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 13
   StartOpen: 0
+  IsEmailToWrite: 0
+  Receiver:
+    Name: 
+    Email: 
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: 89a5eea2cea0a2547912c4fd4f0e14a3, type: 3}
+    Profile: {fileID: 21300000, guid: 9954022b95caf504b97bf84c996f1685, type: 3}
     Name: Rafael Martins
     Email: rafael.martins.n2@cafesoc.com
   Title: "Atualiza\xE7\xE3o e Solicita\xE7\xE3o de Autoriza\xE7\xE3o"
@@ -40,6 +44,8 @@ MonoBehaviour:
       restaurar a seguran\xE7a da infraestrutura.\r\n\r\nCom isso, selamos novamente
       os port\xF5es e ficamos protegidos do inimigo.\r\n\r\nAvante!\r\n\r\n<b>Atenciosamente,</b>\r\n<b>Rafael
       Martins</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
   - TextOption: "Eu n\xE3o tenho inimigos, ningu\xE9m tem."
     EmailText: "<b>Ol\xE1, Gustavo,</b>\r\n\r\nMuitos chamam de inimigos aqueles
@@ -52,6 +58,8 @@ MonoBehaviour:
       restauramos mais que um site, mas refor\xE7amos um princ\xEDpio: n\xE3o seremos
       pegos de surpresa, mas tamb\xE9m n\xE3o deixaremos a surpresa nos pegar.</b>\r\n\r\nAvante!\r\n\r\n<b>Atenciosamente,</b>\r\n<b>Rafael
       Martins</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   - TextOption: Vulnerabilidade C.A.F.E-KB-0011
     EmailText: "<b>Ol\xE1, Gustavo,</b>\r\n\r\nEncontramos o ponto fraco. A brecha
@@ -62,6 +70,8 @@ MonoBehaviour:
       desativa a execu\xE7\xE3o remota n\xE3o autorizada e fortalece os filtros de
       upload.\r\n\r\nCom isso, selamos essa entrada e impedimos novos ataques dos
       inimigos.\r\n\r\nAvante!\r\n\r\n<b>Atenciosamente,</b>\r\n<b>Rafael Martins</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 0
   DispatcherInfo:

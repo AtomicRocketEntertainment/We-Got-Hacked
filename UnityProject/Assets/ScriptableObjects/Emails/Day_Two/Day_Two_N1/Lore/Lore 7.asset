@@ -14,52 +14,72 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 7 Day 2
   StartOpen: 0
+  IsEmailToWrite: 0
+  Receiver:
+    Name: 
+    Email: 
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: 23a89a2cc200834428901852d33e85f0, type: 3}
-    Name: Tiago Monteiro
-    Email: tiago.monteiro.n1@cafesoc.com
-  Title: LORE 7 DIA 2
-  Content: LORE 7 DIA 2
+    Profile: {fileID: 21300000, guid: 686d8fd053b0bc44783d8244809bd5f3, type: 3}
+    Name: Raquel Oliveira
+    Email: raquel.oliveira.gercyber@cafesoc.com
+  Title: "Precisa-se de Confirma\xE7\xE3o"
+  Content: "<b>Tiago,</b>\n\nVou direto ao ponto.\n\n<b>Gostaria de saber se voc\xEA
+    conseguiu identificar com precis\xE3o o problema que causou o bloqueio dos arquivos
+    no servidor da PetroCais. Solicito que confirme se, de fato, estamos lidando
+    com um ataque de ransomware.</b>\n\nAguardo seu retorno o quanto antes.\n\nMantenha
+    o foco.\n\n<b>Raquel Oliveira</b>\n<b>Gerente de Cyberseguran\xE7a \u2013 C.A.F.E</b>"
   HasResponse: 1
-  QuestionText: Sobre o que eu devo escrever mesmo?
-  ConfirmQuestionText: "Hmm, ser\xE1 que \xE9 isso que eu devo enviar? N\xE3o posso
-    vacilar no primeiro dia..."
+  QuestionText: O que devo responder pra Raquel?
+  ConfirmQuestionText: "Hmm, ser\xE1 que \xE9 isso mesmo que tenho que perguntar?
+    N\xE3o quero parecer um idiota..."
   WrongFeedbackQuestionText: "Nossa, n\xE3o! Isso n\xE3o t\xE1 certo... J\xE1 perdi
     muito tempo, preciso arrumar isso r\xE1pido!"
   Responses:
-  - TextOption: Avisar sobre o site pichado
-    EmailText: "<b>Ol\xE1, Raquel! Tudo certo?</b>\r\n\r\nFiz uma verifica\xE7\xE3o
-      no site da PetroCais e\u2026 deu ruim! <sprite index=\"747\">\r\n\r\n<b>Uma
-      das p\xE1ginas foi pichada, com todos os textos alterados pra ferrar com a
-      reputa\xE7\xE3o da empresa.</b>\r\n\r\nAl\xE9m disso, deixaram uma mensagem
-      ecol\xF3gica e extremista assinada por um grupo hacker chamado PetroKillers.
-      <sprite index=\"1093\">\r\n\r\nPreciso de ajuda pra resolver isso, os clientes
-      n\xE3o podem ver o site desse jeito!\r\n\r\nAguardo retorno! <sprite index=\"406\">\r\n\r\n<b>Att,
+  - TextOption: "\xC9 um ransom!"
+    EmailText: "<b>Ol\xE1, Raquel! Tudo certo?</b>\n\nTe falar que as not\xEDcias
+      n\xE3o s\xE3o muito boas. Parece que esses tais de PetroKillers n\xE3o querem
+      largar o osso! <sprite index=\"\">\n\nForam eles mesmo que bloquearam o acesso
+      ao servidor da PetroCais e trancaram todos os arquivos. <sprite index=\"\">\n\nEles
+      dizem que pegaram todo tipo de dado... Pode ser blefe, mas se for verdade,
+      tem coisa ali que pode acabar com a reputa\xE7\xE3o da empresa. Al\xE9m de
+      ter outras que eu preferia nem saber que existia... <sprite index=\"\">\n\nDeram
+      3 dias pra PetroCais pagar 100 milh\xF5es em BCs ou todos os dados v\xE3o ir
+      de comes. Amea\xE7aram vazar tudo na m\xEDdia tamb\xE9m, n\xE3o posso mentir,
+      fiquei meio apavorado... <sprite index=\"\">\n\n<b>Ent\xE3o, s\xF3 pra concluir,
+      foi realmente um ransomware que trancou tudo, temos que dar um jeito nisso.
+      <sprite index=\"\"></b>\n\n\xC9 isso, valeu! <sprite index=\"\">\n\n<b>Att,
       Tiago</b>"
-    IsCorrectAnswer: 0
-  - TextOption: Avisar sobre o novo ticket criado
-    EmailText: "<b>Fala, time! Tudo certo?</b>\r\n\r\nOs boatos eram verdadeiros!
-      Alguns hackers malditos chamados PetroKillers realmente invadiram o site da
-      PetroCais e zoaram tudo! <sprite index=\"1098\">\r\n\r\n<b>Todos as informa\xE7\xF5es
-      do ataque j\xE1 est\xE3o direitinho l\xE1 no ticket que criei. Agora contamos
-      com o Rafa pra terminar o servi\xE7o e resolver esse problema.</b>\r\n\r\nSe
-      algu\xE9m precisar de mais informa\xE7\xF5es, s\xF3 dar um toque! <sprite index=\"984\">\r\n\r\n<b>Att,
-      Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
-  - TextOption: "Avisar a equipe sobre o novo anime que t\xF4 viciado"
-    EmailText: "<b>Fala, time! Tudo certo?</b>\n\n<b>Voc\xEAs n\xE3o v\xE3o acreditar
-      no anime que saiu nessa temporada! \xC9 sobre um universit\xE1rio que acha
-      um pingente m\xE1gico que faz a geladeira dele virar uma mulher muito fofa!
-      \u2744\uFE0F</b>\n\nO nome \xE9 \"Porque Minha Geladeira Tinha Que Ser T\xE3o
-      Fofa?\" e \xE9 um dos melhores animes de romance que j\xE1 vi! \U0001F929\n\nCome\xE7a
-      com o protagonista achando um colar estranho em um templo abandonado. Ele pega
-      achando que vale alguma coisa e resolve levar pra casa. S\xF3 que, do nada,
-      a geladeira dele come\xE7a a brilhar com luz azul e P\xC1! \u2728 Ela vira
-      uma garota com roupinha de inverno, que vomita umas comidas congeladas e t\xE1
-      sempre com frio. A rela\xE7\xE3o deles \xE9 com\xE9dia pura! \U0001F606\n\nCaramba...
-      Eu me sinto um otaku esquisito falando desse jeito. Mas juro que vale a pena
-      assistir! \U0001F605\n\nValeu pela aten\xE7\xE3o! \U0001F609\n\n<b>Att, Tiago</b>"
+  - TextOption: "N\xE3o achei nada de estranho."
+    EmailText: "<b>Ol\xE1, Raquel! Tudo certo?</b>\n\nN\xE3o achei nada de estranho
+      no servidor...\n\n<b>N\xE3o fa\xE7o ideia de qual pode ser o problema, mas
+      posso dar mais uma olhada se precisar.<sprite index=\"\"></b>\n\n\xC9 isso,
+      valeu! <sprite index=\"\">\n\n<b>Att, Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  - TextOption: "N\xE3o sei o que \xE9, mas..."
+    EmailText: "<b>Ol\xE1, Raquel! Tudo certo?</b>\n\nN\xE3o sei sobre o ransom,
+      mas vim falar de um jogasso! <sprite index=\"446\">\n\n\xC9 o novo lan\xE7amento
+      da Nintch\xEAndo, baseado em um dos jogos cl\xE1ssicos deles. Se chama Super
+      Gald\xE9rio Brothers. Eu curti demais! <sprite index=\"655\">\n\nA hist\xF3ria
+      \xE9 bem simples, dois irm\xE3os do interior do RS entram por algum motivo
+      em um mundo m\xE1gico que \xE9 tipo um campo aberto gigante com orqu\xEDdeas
+      e cavalos falantes. <sprite index=\"\U0001F434\">\n\nS\xE3o dois personagens
+      principais, M\xE1rcio \xE9 mais baixo, usa roupa vermelha e pode tomar um chimarr\xE3o
+      m\xE1gico que deixa ele indestrut\xEDvel por alguns minutos. J\xE1 o Lu\xEDs
+      \xE9 o alto com roupa verde, ele usa um relho dourado pra atacar, que \xE9
+      tipo um chicote que faz os inimigos virarem moedas! <sprite index=\"\U0001FA99\">\n\n<b>As
+      mec\xE2nicas s\xE3o incr\xEDveis, os gr\xE1ficos lindos e o jogo me enche de
+      nostalgia! Mas o pre\xE7o \xE9 uma paulada... custou quase um rim. Ent\xE3o
+      eu recomendo s\xF3 se tiver com grana sobrando mesmo. <sprite index=\"\">\n\nN\xE3o
+      sei se \xE9 sua vibe, mas fica a dica, Raquel! Valeu! <sprite index=\"1134\">\n\n<b>Att,
+      Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 0
   DispatcherInfo:

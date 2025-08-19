@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore 6
   StartOpen: 0
+  IsEmailToWrite: 1
+  Receiver:
+    Name: Equipe C.A.F.E.
+    Email: equipecafe@cafesoc.com
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: 23a89a2cc200834428901852d33e85f0, type: 3}
+    Profile: {fileID: 21300000, guid: 02c94e0ece12f214eaaf341331334225, type: 3}
     Name: Tiago Monteiro
     Email: tiago.monteiro.n1@cafesoc.com
-  Title: "Notifica\xE7\xE3o sobre o Ticket Criado"
+  Title: Nova Mensagem
   Content: 
   HasResponse: 1
   QuestionText: Sobre o que eu devo escrever mesmo?
@@ -29,7 +33,8 @@ MonoBehaviour:
     muito tempo, preciso arrumar isso r\xE1pido!"
   Responses:
   - TextOption: Avisar sobre o site pichado
-    EmailText: "<b>Ol\xE1, Raquel! Tudo certo?</b>\r\n\r\nFiz uma verifica\xE7\xE3o
+    EmailTitle: "Notifica\xE7\xE3o sobre o Site Pichado"
+    EmailText: "<b>Ol\xE1, Time! Tudo certo?</b>\r\n\r\nFiz uma verifica\xE7\xE3o
       no site da PetroCais e\u2026 deu ruim! <sprite index=\"747\">\r\n\r\n<b>Uma
       das p\xE1ginas foi pichada, com todos os textos alterados pra ferrar com a
       reputa\xE7\xE3o da empresa.</b>\r\n\r\nAl\xE9m disso, deixaram uma mensagem
@@ -37,8 +42,11 @@ MonoBehaviour:
       <sprite index=\"1093\">\r\n\r\nPreciso de ajuda pra resolver isso, os clientes
       n\xE3o podem ver o site desse jeito!\r\n\r\nAguardo retorno! <sprite index=\"406\">\r\n\r\n<b>Att,
       Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   - TextOption: Avisar sobre o novo ticket criado
+    EmailTitle: "Notifica\xE7\xE3o sobre o Ticket Criado"
     EmailText: "<b>Fala, time! Tudo certo?</b>\r\n\r\nOs boatos eram verdadeiros!
       Alguns hackers malditos chamados PetroKillers realmente invadiram o site da
       PetroCais e zoaram tudo! <sprite index=\"1098\">\r\n\r\n<b>Todos as informa\xE7\xF5es
@@ -46,8 +54,11 @@ MonoBehaviour:
       com o Rafa pra terminar o servi\xE7o e resolver esse problema.</b>\r\n\r\nSe
       algu\xE9m precisar de mais informa\xE7\xF5es, s\xF3 dar um toque! <sprite index=\"984\">\r\n\r\n<b>Att,
       Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
   - TextOption: "Avisar a equipe sobre o novo anime que t\xF4 viciado"
+    EmailTitle: "Notifica\xE7\xE3o sobre um Anime Incr\xEDvel"
     EmailText: "<b>Fala, time! Tudo certo?</b>\n\n<b>Voc\xEAs n\xE3o v\xE3o acreditar
       no anime que saiu nessa temporada! \xC9 sobre um universit\xE1rio que acha
       um pingente m\xE1gico que faz a geladeira dele virar uma mulher muito fofa!
@@ -60,6 +71,8 @@ MonoBehaviour:
       sempre com frio. A rela\xE7\xE3o deles \xE9 com\xE9dia pura! \U0001F606\n\nCaramba...
       Eu me sinto um otaku esquisito falando desse jeito. Mas juro que vale a pena
       assistir! \U0001F605\n\nValeu pela aten\xE7\xE3o! \U0001F609\n\n<b>Att, Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 0
   DispatcherInfo:
