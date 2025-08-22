@@ -14,69 +14,91 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: Lore A05
   StartOpen: 0
+  IsEmailToWrite: 1
+  Receiver:
+    Name: Raquel Garcia Hent
+    Email: raquel.g.hent@cafesoc.com
   Type: 2
   Sender:
-    Profile: {fileID: 21300000, guid: de6be606d9185cc498ffdc8d15dd9a98, type: 3}
-    Name: Lore A05
-    Email: Lore A05
-  Title: EMAIL DE ESCRITA DO TIAGO PARA A RAQUEL
-  Content: EMAIL DE ESCRITA DO TIAGO PARA A RAQUEL
-  HasResponse: 0
-  QuestionText: "O que ser\xE1 que responde para a Raquel?"
-  ConfirmQuestionText: 
+    Profile: {fileID: 21300000, guid: 02c94e0ece12f214eaaf341331334225, type: 3}
+    Name: Tiago Nogueira Vatto
+    Email: Tiago Nogueira Vatto
+  Title: Primeiramente, Foi Mal...
+  Content: "<b>Oi\xEA, Raquel...</b>\n\nEu sei que provavelmente n\xE3o era pra eu
+    ter feito isso sem avisar, e j\xE1 pe\xE7o desculpa logo de cara.\n\n<b>Mas\u2026
+    eu acabei enviando uma mensagem pros PetroKillers <sprite index=\"1374\"></b>\n\nFoi
+    no impulso, queria entender o que eles queriam. Uma das l\xEDderes, chamada Kelly
+    Peters, me respondeu. E, bom\u2026 a gente acabou conversando bastante.\n\nN\xE3o
+    mandei nenhuma informa\xE7\xE3o importante sobre mim, a C.A.F.E. ou mesmo da
+    PetroCais. Pode ficar tranquila quanto a isso! Mas, ainda assim, sei que ter
+    feito isso sozinho n\xE3o foi a coisa mais genial que j\xE1 fiz... <sprite index=\"707\">\n\n<b>Descobri
+    bastante sobre eles, desde rachaduras internas, conflitos de ideias e outros
+    problemas que rolam entre os membros da PK. Se quiser dar uma olhada, t\xF4 te
+    mandando em anexo todas as conversas que tive com a Kelly.</b>\n\nSe eu passei
+    dos limites ou compliquei as coisas, eu aceito as consequ\xEAncias. S\xF3 tava
+    tentando fazer alguma diferen\xE7a.\n\nDesculpa de novo <sprite index=\"588\">\n\n<b>Att,
+    Tiago</b>"
+  HasResponse: 1
+  QuestionText: Bom, vamos falar com a Raquel
+  ConfirmQuestionText: "Acho que \xE9 isso mesmo."
   WrongFeedbackQuestionText: 
   Responses:
-  - TextOption: Resposta 1
-    EmailText: "\n\n\nOl\xE1,\n\nRespondendo esse email com o texto da resposta 1.\n\nAbra\xE7os.\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo
-      ao SOC da C.A.F.E (Cybersecurity and Assurance For Enterprises). Nosso trabalho
-      exige agilidade e precis\xE3o, ent\xE3o vou direto ao ponto.\n\nComo voc\xEA
-      sabe, meu nome \xE9 Raquel Oliveira, sou a gerente de Cyberseguran\xE7a e respons\xE1vel
-      por coordenar a equipe que atuar\xE1 na prote\xE7\xE3o da PetroCais. Trabalhamos
-      juntos por uma semana anteriormente no treinamento e agora o seu trabalho come\xE7a
-      de verdade. Voc\xEA ter\xE1 um papel fundamental na defesa contra amea\xE7as
-      cibern\xE9ticas.\n\nFico feliz em informar que seu acesso ao SIEMtinel, nossa
-      plataforma de monitoramento e resposta a incidentes, j\xE1 est\xE1 desbloqueado.\n\nLembre-se
-      de que essa plataforma \xE9 individual e sigilosa. N\xE3o compartilhe suas
-      credenciais.\n\nNossa miss\xE3o \xE9 garantir a seguran\xE7a das opera\xE7\xF5es
-      da PetroCais, lidando com tentativas de invas\xE3o e riscos constantes. Seu
-      papel \xE9 identificar e filtrar os alertas, garantindo que apenas os verdadeiros
-      positivos sejam encaminhados ao Rafael para resolu\xE7\xE3o.\n\nNosso trabalho
-      exige aten\xE7\xE3o e responsabilidade.\n\nMantenha o foco.\n\nRaquel Oliveira\nGerente
-      de Ciberseguran\xE7a \u2013 C.A.F.E"
+  - TextOption: Primeiramente, Foi Mal...
+    EmailTitle: Primeiramente, Foi Mal...
+    EmailText: "<b>Oi\xEA, Raquel...</b>\n\nEu sei que provavelmente n\xE3o era pra
+      eu ter feito isso sem avisar, e j\xE1 pe\xE7o desculpa logo de cara.\n\n<b>Mas\u2026
+      eu acabei enviando uma mensagem pros PetroKillers <sprite index=\"1374\"></b>\n\nFoi
+      no impulso, queria entender o que eles queriam. Uma das l\xEDderes, chamada
+      Kelly Peters, me respondeu. E, bom\u2026 a gente acabou conversando bastante.\n\nN\xE3o
+      mandei nenhuma informa\xE7\xE3o importante sobre mim, a C.A.F.E. ou mesmo da
+      PetroCais. Pode ficar tranquila quanto a isso! Mas, ainda assim, sei que ter
+      feito isso sozinho n\xE3o foi a coisa mais genial que j\xE1 fiz... <sprite
+      index=\"707\">\n\n<b>Descobri bastante sobre eles, desde rachaduras internas,
+      conflitos de ideias e outros problemas que rolam entre os membros da PK. Se
+      quiser dar uma olhada, t\xF4 te mandando em anexo todas as conversas que tive
+      com a Kelly.</b>\n\nSe eu passei dos limites ou compliquei as coisas, eu aceito
+      as consequ\xEAncias. S\xF3 tava tentando fazer alguma diferen\xE7a.\n\nDesculpa
+      de novo <sprite index=\"588\">\n\n<b>Att, Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
-  - TextOption: Resposta 2
-    EmailText: "\n\n\nOl\xE1,\n\nRespondendo esse email com o texto da resposta certa.\n\nAbra\xE7os.\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo
-      ao SOC da S.A.F.E (Security and Assurance for Enterprises). Nosso trabalho
-      exige agilidade e precis\xE3o, ent\xE3o vou direto ao ponto.\n\nMeu nome \xE9
-      Raquel Oliveira, sou a gerente de Cyberseguran\xE7a e respons\xE1vel por coordenar
-      a equipe que atuar\xE1 na prote\xE7\xE3o da PetroCorp. Vou liderar esse novo
-      time, e voc\xEA, junto com os demais analistas, ter\xE1 um papel fundamental
-      na defesa contra amea\xE7as cibern\xE9ticas.\n\nAqui est\xE1 sua chave de acesso
-      ao AlarmGroove, nossa plataforma de monitoramento e resposta a incidentes:\n\nAG-91X5-K7P3-LD82\n\n\u26A0
-      Essa chave \xE9 individual e sigilosa. N\xE3o compartilhe.\n\nNossa miss\xE3o
-      \xE9 garantir a seguran\xE7a das opera\xE7\xF5es da PetroCorp, lidando com
-      tentativas de invas\xE3o e riscos constantes. Seu papel \xE9 identificar e
-      filtrar os alertas, garantindo que apenas os verdadeiros positivos sejam encaminhados
-      ao N2 para resolu\xE7\xE3o.\n\nNosso trabalho exige aten\xE7\xE3o e responsabilidade.
-      Se precisar de algo, me comunique diretamente.\n\nRaquel Oliveira\nGerente
-      de Cyberseguran\xE7a \u2013 S.A.F.E"
+  - TextOption: Primeiramente, Foi Mal...
+    EmailTitle: Primeiramente, Foi Mal...
+    EmailText: "<b>Oi\xEA, Raquel...</b>\n\nEu sei que provavelmente n\xE3o era pra
+      eu ter feito isso sem avisar, e j\xE1 pe\xE7o desculpa logo de cara.\n\n<b>Mas\u2026
+      eu acabei enviando uma mensagem pros PetroKillers <sprite index=\"1374\"></b>\n\nFoi
+      no impulso, queria entender o que eles queriam. Uma das l\xEDderes, chamada
+      Kelly Peters, me respondeu. E, bom\u2026 a gente acabou conversando bastante.\n\nN\xE3o
+      mandei nenhuma informa\xE7\xE3o importante sobre mim, a C.A.F.E. ou mesmo da
+      PetroCais. Pode ficar tranquila quanto a isso! Mas, ainda assim, sei que ter
+      feito isso sozinho n\xE3o foi a coisa mais genial que j\xE1 fiz... <sprite
+      index=\"707\">\n\n<b>Descobri bastante sobre eles, desde rachaduras internas,
+      conflitos de ideias e outros problemas que rolam entre os membros da PK. Se
+      quiser dar uma olhada, t\xF4 te mandando em anexo todas as conversas que tive
+      com a Kelly.</b>\n\nSe eu passei dos limites ou compliquei as coisas, eu aceito
+      as consequ\xEAncias. S\xF3 tava tentando fazer alguma diferen\xE7a.\n\nDesculpa
+      de novo <sprite index=\"588\">\n\n<b>Att, Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 1
-  - TextOption: Resposta 3
-    EmailText: "\n\n\nOl\xE1,\n\nRespondendo esse email com o texto da resposta 3.\n\nAbra\xE7os.\n\n\n--------------------------------------------\nTiago,\n\nBem-vindo
-      ao SOC da S.A.F.E (Security and Assurance for Enterprises). Nosso trabalho
-      exige agilidade e precis\xE3o, ent\xE3o vou direto ao ponto.\n\nMeu nome \xE9
-      Raquel Oliveira, sou a gerente de Cyberseguran\xE7a e respons\xE1vel por coordenar
-      a equipe que atuar\xE1 na prote\xE7\xE3o da PetroCorp. Vou liderar esse novo
-      time, e voc\xEA, junto com os demais analistas, ter\xE1 um papel fundamental
-      na defesa contra amea\xE7as cibern\xE9ticas.\n\nAqui est\xE1 sua chave de acesso
-      ao AlarmGroove, nossa plataforma de monitoramento e resposta a incidentes:\n\nAG-91X5-K7P3-LD82\n\n\u26A0
-      Essa chave \xE9 individual e sigilosa. N\xE3o compartilhe.\n\nNossa miss\xE3o
-      \xE9 garantir a seguran\xE7a das opera\xE7\xF5es da PetroCorp, lidando com
-      tentativas de invas\xE3o e riscos constantes. Seu papel \xE9 identificar e
-      filtrar os alertas, garantindo que apenas os verdadeiros positivos sejam encaminhados
-      ao N2 para resolu\xE7\xE3o.\n\nNosso trabalho exige aten\xE7\xE3o e responsabilidade.
-      Se precisar de algo, me comunique diretamente.\n\nRaquel Oliveira\nGerente
-      de Cyberseguran\xE7a \u2013 S.A.F.E"
+  - TextOption: Primeiramente, Foi Mal...
+    EmailTitle: Primeiramente, Foi Mal...
+    EmailText: "<b>Oi\xEA, Raquel...</b>\n\nEu sei que provavelmente n\xE3o era pra
+      eu ter feito isso sem avisar, e j\xE1 pe\xE7o desculpa logo de cara.\n\n<b>Mas\u2026
+      eu acabei enviando uma mensagem pros PetroKillers <sprite index=\"1374\"></b>\n\nFoi
+      no impulso, queria entender o que eles queriam. Uma das l\xEDderes, chamada
+      Kelly Peters, me respondeu. E, bom\u2026 a gente acabou conversando bastante.\n\nN\xE3o
+      mandei nenhuma informa\xE7\xE3o importante sobre mim, a C.A.F.E. ou mesmo da
+      PetroCais. Pode ficar tranquila quanto a isso! Mas, ainda assim, sei que ter
+      feito isso sozinho n\xE3o foi a coisa mais genial que j\xE1 fiz... <sprite
+      index=\"707\">\n\n<b>Descobri bastante sobre eles, desde rachaduras internas,
+      conflitos de ideias e outros problemas que rolam entre os membros da PK. Se
+      quiser dar uma olhada, t\xF4 te mandando em anexo todas as conversas que tive
+      com a Kelly.</b>\n\nSe eu passei dos limites ou compliquei as coisas, eu aceito
+      as consequ\xEAncias. S\xF3 tava tentando fazer alguma diferen\xE7a.\n\nDesculpa
+      de novo <sprite index=\"588\">\n\n<b>Att, Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   HasEventToSend: 0
   DispatcherInfo:
