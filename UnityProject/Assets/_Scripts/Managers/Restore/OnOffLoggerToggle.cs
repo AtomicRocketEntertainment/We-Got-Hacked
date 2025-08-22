@@ -1,14 +1,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 public class OnOffLoggerToggle : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private bool _correctSite;
-    [SerializeField] private Color _onColor;
-    [SerializeField] private Color _offColor;
-    [SerializeField] private GameObject _circle;
-    [SerializeField] private Image _background;
+    [BoxGroup("Colors of Components"), SerializeField] private Color _circleOnColor;
+    [BoxGroup("Colors of Components"), SerializeField] private Color _circleOffColor;
+    [BoxGroup("Colors of Components"), SerializeField] private Color _headerOnColor;
+    [BoxGroup("Colors of Components"), SerializeField] private Color _headerOffColor;
+    [BoxGroup("Colors of Components"), SerializeField] private Color _backgroundOnColor;
+    [BoxGroup("Colors of Components"), SerializeField] private Color _backgroundOffColor;
+    [BoxGroup("Objects"), SerializeField] private GameObject _circle;
+    [BoxGroup("Objects"), SerializeField] private Image _circleBackground;
+    [BoxGroup("Objects"), SerializeField] private Image _headerBackground;
+    [BoxGroup("Objects"), SerializeField] private Image _componentBackground;
+
 
     private bool _active = true;
     private bool _canInteractive = false;
@@ -40,9 +48,9 @@ public class OnOffLoggerToggle : MonoBehaviour, IPointerClickHandler
         LeanTween.cancel(_circle);
         _active = !_active;
         float goTo = _active ? Xon : Xoff;
-        Color color = _active ? _onColor : _offColor;
+        Color color = _active ? _circleOnColor : _circleOffColor;
 
-        _background.color = color;
+        _circleBackground.color = color;
         LeanTween.moveLocalX(_circle, goTo, 0.2f).setEase(LeanTweenType.easeOutQuad);
     }
 
