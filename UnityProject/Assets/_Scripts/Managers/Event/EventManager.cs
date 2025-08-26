@@ -51,9 +51,9 @@ public static class EventManager
     //Website Related
     public static event Action<string> OnWebsiteLinkerIsOpen;
 
-    //Remotopia Related
-    public static event Action OnUserEnterRemotopia;
-    public static event Action OnUserQuitRemotopia;
+    //Toolbar Related
+    public static event Action OnDisableToolbar;
+    public static event Action OnEnableToolbar;
 
     //Question Related
     public static event Action OnGenericResponseNeeded;
@@ -463,27 +463,27 @@ public static class EventManager
         }
     }
 
-    public static void LoginRemotopia()
+    public static void DisableToolbar()
     {
-        if (OnUserEnterRemotopia != null)
+        if (OnDisableToolbar != null)
         {
-            OnUserEnterRemotopia();
+            OnDisableToolbar();
         }
         else
         {
-            Debug.LogWarning("No listeners for OnUserEnterRemotopia event.");
+            Debug.LogWarning("No listeners for OnDisableToolbar event.");
         }
     }
 
-    public static void QuitRemotopia()
+    public static void EnableToolbar()
     {
-        if (OnUserQuitRemotopia != null)
+        if (OnEnableToolbar != null)
         {
-            OnUserQuitRemotopia();
+            OnEnableToolbar();
         }
         else
         {
-            Debug.LogWarning("No listeners for OnUserQuitRemotopia event.");
+            Debug.LogWarning("No listeners for OnEnableToolbar event.");
         }
     }
 

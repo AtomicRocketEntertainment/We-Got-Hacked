@@ -133,7 +133,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             return;
         }
 
-        EventManager.LoginRemotopia();
+        EventManager.DisableToolbar();
         PrepareButtons();
         _accessScreen.SetActive(false);
         _currentAccessedScreen.SetActive(true);
@@ -256,7 +256,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             EventManager.SpawnEmail(EmailType.LORE);
         }
 
-        EventManager.QuitRemotopia();
+        EventManager.EnableToolbar();
     }
 
     private void ResetToInitialSetting()

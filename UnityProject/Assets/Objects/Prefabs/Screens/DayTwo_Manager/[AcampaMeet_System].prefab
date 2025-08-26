@@ -1251,6 +1251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512226996102766347}
+  - component: {fileID: 2322522466389535978}
   m_Layer: 0
   m_Name: '[AcampaMeet_System]'
   m_TagString: Untagged
@@ -1274,6 +1275,69 @@ Transform:
   - {fileID: 4745561540364271974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2322522466389535978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438951244814683016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e444c484c187b041bde4ea24a95e3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCanvas: {fileID: 3253468327956084455}
+  _startScreen: {fileID: 1550187524695673408}
+  _awaitingScreen: {fileID: 4199159796821732532}
+  _streamingScreen: {fileID: 7487474703089119938}
+  _startMeetingButton: {fileID: 1550447434916084915}
+  _awaitingContainer: {fileID: 1388333075039926705}
+  _streamingContainer: {fileID: 1677724581056837505}
+  _streamingImage: {fileID: 8848536803069923676}
+  _awaitingPrefab: {fileID: 1879523642529841138, guid: be69e7ec4e97fca46a5c6d95e53a7769,
+    type: 3}
+  _streamingPrefab: {fileID: 2936331063029467664, guid: 2fb51b1c047d5b7448ca3d6e9ec8c035,
+    type: 3}
+  _speakerTimeline:
+  - Raquel Garcia Hent
+  - Raquel Garcia Hent
+  - Raquel Garcia Hent
+  - "Gustavo Teodoro In\xE1cio"
+  - "Gustavo Teodoro In\xE1cio"
+  - Raquel Garcia Hent
+  - "Andr\xE9 Wogat"
+  - Rafael Medina Oliveira
+  - "Andr\xE9 Wogat"
+  - Rafael Medina Oliveira
+  - "Andr\xE9 Wogat"
+  - Rafael Medina Oliveira
+  - Raquel Garcia Hent
+  - "Thayn\xE1 Portalupi Avoss"
+  - Raquel Garcia Hent
+  - "Thayn\xE1 Portalupi Avoss"
+  - "Gustavo Teodoro In\xE1cio"
+  - "Andr\xE9 Wogat"
+  - "Thayn\xE1 Portalupi Avoss"
+  - "Andr\xE9 Wogat"
+  - Raquel Garcia Hent
+  - "Thayn\xE1 Portalupi Avoss"
+  - "Andr\xE9 Wogat"
+  - "Gustavo Teodoro In\xE1cio"
+  - Raquel Garcia Hent
+  - Rafael Medina Oliveira
+  _meetingPersons:
+  - {fileID: 11400000, guid: 4a0f1ad3f05d73b4b918d4973c28a09f, type: 2}
+  - {fileID: 11400000, guid: 37e4213e620c10643ba2983f6bf53cb5, type: 2}
+  - {fileID: 11400000, guid: 876b36d714751164f92f5258a4c90d26, type: 2}
+  - {fileID: 11400000, guid: 8f593ab603e19ac4d918bee6eaf8ad62, type: 2}
+  - {fileID: 11400000, guid: b683d70cb775ff7409e01ba4791bc8a9, type: 2}
+  _meetingPersonLines:
+  - lines: []
+  - lines: []
+  - lines: []
+  - lines: []
+  - lines: []
 --- !u!1 &3585387179408811289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,7 +2396,7 @@ GameObject:
   - component: {fileID: 6325378375648570116}
   - component: {fileID: 8848536803069923676}
   m_Layer: 0
-  m_Name: Spr_Background
+  m_Name: Spr_Stream_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

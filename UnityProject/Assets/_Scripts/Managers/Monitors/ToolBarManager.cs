@@ -15,8 +15,8 @@ public class ToolBarManager : MonoBehaviour
     public void Init(MonitorManager monitor)
     {
         EventManager.OnNotifyNeeded += UpdateBarNotification;
-        EventManager.OnUserEnterRemotopia += HideToolBar;
-        EventManager.OnUserQuitRemotopia += ShowToolBar;
+        EventManager.OnDisableToolbar += HideToolBar;
+        EventManager.OnEnableToolbar += ShowToolBar;
 
         _monitorReference = monitor;
 
@@ -66,8 +66,8 @@ public class ToolBarManager : MonoBehaviour
             button.onClick.RemoveAllListeners();
 
         EventManager.OnNotifyNeeded -= UpdateBarNotification;
-        EventManager.OnUserEnterRemotopia -= HideToolBar;
-        EventManager.OnUserQuitRemotopia -= ShowToolBar;
+        EventManager.OnDisableToolbar -= HideToolBar;
+        EventManager.OnEnableToolbar -= ShowToolBar;
     }
 
     private void UpdateBarNotification(GameObject obj)

@@ -239,7 +239,8 @@ MonoBehaviour:
   - {fileID: 6881733063164602611}
   - {fileID: 4725930340004328949}
   _responseQuestion: {fileID: 3588667977623171794}
-  _currentState: 0
+  _currentResponseState: 0
+  _currentWriteState: 0
   _currentCharacter: 0
 --- !u!1 &1380006341282778006
 GameObject:
@@ -1535,6 +1536,8 @@ MonoBehaviour:
   _emailsToWrite:
   - {fileID: 11400000, guid: 203652bb0b7b93f4a8009fb78775d66e, type: 2}
   _genericResponses: []
+  _characterThoughtsManager: {fileID: 0}
+  _pointEmailManager: {fileID: 0}
 --- !u!1 &5162526901898797299
 GameObject:
   m_ObjectHideFlags: 0
