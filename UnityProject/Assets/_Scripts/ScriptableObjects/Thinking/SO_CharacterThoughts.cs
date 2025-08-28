@@ -50,5 +50,6 @@ public enum ThoughtKey
     WrongBackup,
     WrongTimeBackup,
     WrongIPOnRemotinik,
-    SendMessageToPks
+    SendMessageToPks,
+    ShouldStartTheMeeting
 }

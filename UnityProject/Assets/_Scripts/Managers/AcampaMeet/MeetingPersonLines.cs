@@ -1,12 +1,20 @@
+using UnityEngine;
+
 [System.Serializable]
 public class MeetingPersonLines
 {
     private int _currentLine = 0;
-    public Line[] lines;
+    public Line[] Lines;
+
+    public MeetingPersonLines(Line[] lines)
+    {
+        this.Lines = lines;
+        _currentLine = 0;
+    }
 
     public Line GetCurrentLine()
     {
-        Line currentLine = lines[_currentLine++];
+        Line currentLine = Lines[_currentLine++];
         return currentLine;
     }
 }
@@ -14,7 +22,7 @@ public class MeetingPersonLines
 [System.Serializable]
 public struct Line
 {
-    public string Text;
+    [TextArea(5, 20)] public string Text;
     public bool IsLineToAnswer;
     public bool ShouldUpdateStream;
 }

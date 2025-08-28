@@ -151,6 +151,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _ransomwareName.ClearOptions();
         _criptoWallet.ClearOptions();
 
+        if (softwareState != SoftwareState.FullAccess) return;
+
         List<string> playBookOptions = new List<string>
         {
             _playbookSelect,
@@ -160,7 +162,6 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             nameof(PlaybookType.VazamentoDeDados)
         };
 
-        if (softwareState != SoftwareState.FullAccess) return;
 
         List<string> idOptions = new List<string> { _idSelect };
         List<string> ipOOptions = new List<string> { _ipOSelect };
@@ -321,21 +322,38 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     public bool CheckInfo(Ticket ticket)
     {
-        if (ticket.Playbook.ToString() != _playbookSelect) return false;
+        Debug.Log($"[CheckInfo] Entrou na função. Ticket: ID={ticket.ID}, Playbook={ticket.Playbook}, IPOrigem={ticket.IPOrigem}, IPDestiny={ticket.IPDestiny}");
+
+        Debug.Log($"[CheckInfo] Comparando Playbook selecionado '{_playbookSelect}' com Ticket.Playbook '{ticket.Playbook}'");
+        if (ticket.Playbook.ToString() != _playbookSelect) 
+        {
+            Debug.Log("[CheckInfo] Falhou: Playbook selecionado é diferente do ticket, retornando FALSE.");
+            return false;
+        }
 
         bool isCommonInfoCorrect = VerifyCommonInfos(ticket);
-        bool isPlaybookCorrect = VerifyPlaybookInfos((PlaybookType)_playbookDp.value - 1 , ticket);//first selected is the index 0
+        Debug.Log($"[CheckInfo] Resultado de VerifyCommonInfos: {isCommonInfoCorrect}");
+
+        bool isPlaybookCorrect = VerifyPlaybookInfos(_playbookSelect, ticket);
+        Debug.Log($"[CheckInfo] Resultado de VerifyPlaybookInfos: {isPlaybookCorrect}");
 
         return isCommonInfoCorrect && isPlaybookCorrect;
     }
 
     private bool CheckSelectedInfos()
     {
-        if (_playbookDp.value == 0)  return false;
+        Debug.Log("[CheckSelectedInfos] Entrou na função.");
+        Debug.Log($"[CheckSelectedInfos] _playbookDp.value: {_playbookDp.value}");
+        if (_playbookSelect == "")
+        {
+            Debug.Log("[CheckSelectedInfos] Playbook não selecionado, retornando FALSE.");
+            return false;
+        }
 
-        bool isPlaybookInfoSelected = PlaybookInfosAreSelected((PlaybookType)_playbookDp.value - 1); //first selected is the index 0
+        bool isPlaybookInfoSelected = PlaybookInfosAreSelected(_playbookSelect);
+        Debug.Log($"[CheckSelectedInfos] PlaybookInfosAreSelected: {isPlaybookInfoSelected}");
 
-        return isPlaybookInfoSelected &&
+        bool allSelected = isPlaybookInfoSelected &&
             _idSelect != "" &&
             _ipOSelect != "" &&
             _ipDSelect != "" &&
@@ -343,45 +361,64 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             _deviceSelect != "" &&
             _originSelect != "" &&
             _dateSelect != "";
+
+        Debug.Log($"[CheckSelectedInfos] Resultado final: {allSelected}");
+        return allSelected;
     }
 
-    private bool PlaybookInfosAreSelected(PlaybookType playbook)
+    private bool PlaybookInfosAreSelected(string playbook)
     {
+        Debug.Log($"[PlaybookInfosAreSelected] Entrou na função. Playbook: {playbook}");
         bool areSelected = false;
 
         switch (playbook)
         {
-            case PlaybookType.Pichacao:
-                areSelected = GetPichacaoSiteSelected().Count > 0;
+            case nameof(PlaybookType.Pichacao):
+                int pichacaoCount = GetPichacaoSiteSelected().Count;
+                Debug.Log($"[PlaybookInfosAreSelected] Pichacao sites selecionados: {pichacaoCount}");
+                areSelected = pichacaoCount > 0;
                 break;
-            case PlaybookType.Ransomware:
+            case nameof(PlaybookType.Ransomware):
+                Debug.Log($"[PlaybookInfosAreSelected] Ransomware selecionado: {_ransomwareSelect}, Wallet selecionado: {_walletSelect}");
                 areSelected = _ransomwareSelect != "" && _walletSelect != "";
+                break;
+            default:
+                Debug.Log("[PlaybookInfosAreSelected] Nenhuma verificação especial para esse playbook.");
                 break;
         }
 
+        Debug.Log($"[PlaybookInfosAreSelected] Resultado final: {areSelected}");
         return areSelected;
     }
 
-
-    private bool VerifyPlaybookInfos(PlaybookType playbook, Ticket ticket)
+    private bool VerifyPlaybookInfos(string playbook, Ticket ticket)
     {
+        Debug.Log($"[VerifyPlaybookInfos] Entrou na função. Playbook: {playbook}, Ticket: ID={ticket.ID}");
         bool isCorrect = false;
 
         switch (playbook)
         {
-            case PlaybookType.Pichacao:
+            case nameof(PlaybookType.Pichacao):
+                Debug.Log($"[VerifyPlaybookInfos] Verificando Pichacao. Ticket.Site={ticket.Site}");
                 isCorrect = VerifyPichacao(ticket.Site);
                 break;
-            case PlaybookType.Ransomware:
+            case nameof(PlaybookType.Ransomware):
+                Debug.Log($"[VerifyPlaybookInfos] Verificando Ransomware. Ticket.Ransomware={ticket.RansomwareName}, Wallet={ticket.CriptoWallet}");
                 isCorrect = VerifyRansomware(ticket.RansomwareName, ticket.CriptoWallet);
+                break;
+            default:
+                Debug.Log("[VerifyPlaybookInfos] Playbook sem verificações específicas.");
                 break;
         }
 
+        Debug.Log($"[VerifyPlaybookInfos] Resultado final: {isCorrect}");
         return isCorrect;
     }
 
     private bool VerifyCommonInfos(Ticket ticket)
     {
+        Debug.Log($"[VerifyCommonInfos] Entrou na função. Ticket ID={ticket.ID}");
+
         string selectedId = _idDp.options[_idDp.value].text;
         string selectedIpD = _ipDDp.options[_ipDDp.value].text;
         string selectedIpO = _ipODp.options[_ipODp.value].text;
@@ -389,48 +426,70 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         string selectedDevice = _deviceType.options[_deviceType.value].text;
         string selectedOrigin = _originType.options[_originType.value].text;
         string selectedDate = _dateDp.options[_dateDp.value].text;
-        int selectedRisk = 0;
 
         Toggle selectedRiskToggle = _RisktoggleGroup.ActiveToggles().FirstOrDefault();
-
-        if (selectedRiskToggle != null)
-        {
-            selectedRiskToggle.TryGetComponent(out ImRiskHolder riskLevel);
+        int selectedRisk = 0;
+        if (selectedRiskToggle != null && selectedRiskToggle.TryGetComponent(out ImRiskHolder riskLevel))
             selectedRisk = riskLevel.RiskLevel;
-        }
 
-        return
-        selectedId == ticket.ID &&
-        selectedIpO == ticket.IPOrigem &&
-        selectedIpD == ticket.IPDestiny &&
-        selectedLocation == ticket.Location &&
-        selectedDevice == ticket.DeviceAttacked.ToString() &&
-        selectedOrigin == ticket.Origin.ToString() &&
-        selectedDate == $"{ticket.DateDay} - {ticket.DateHour}" &&
-        selectedRisk == ticket.RiskLevel;
+        Debug.Log($"[VerifyCommonInfos] Comparando cada campo com o ticket:");
+        Debug.Log($"ID: {selectedId} == {ticket.ID}");
+        Debug.Log($"IPOrigem: {selectedIpO} == {ticket.IPOrigem}");
+        Debug.Log($"IPDestiny: {selectedIpD} == {ticket.IPDestiny}");
+        Debug.Log($"Location: {selectedLocation} == {ticket.Location}");
+        Debug.Log($"Device: {selectedDevice} == {ticket.DeviceAttacked}");
+        Debug.Log($"Origin: {selectedOrigin} == {ticket.Origin}");
+        Debug.Log($"Date: {selectedDate} == {ticket.DateDay} - {ticket.DateHour}");
+        Debug.Log($"Risk: {selectedRisk} == {ticket.RiskLevel}");
+
+        bool isCorrect = 
+            selectedId == ticket.ID &&
+            selectedIpO == ticket.IPOrigem &&
+            selectedIpD == ticket.IPDestiny &&
+            selectedLocation == ticket.Location &&
+            selectedDevice == ticket.DeviceAttacked.ToString() &&
+            selectedOrigin == ticket.Origin.ToString() &&
+            selectedDate == $"{ticket.DateDay} - {ticket.DateHour}" &&
+            selectedRisk == ticket.RiskLevel;
+
+        Debug.Log($"[VerifyCommonInfos] Resultado final: {isCorrect}");
+        return isCorrect;
     }
 
     private bool VerifyPichacao(SiteType site)
     {
+        Debug.Log($"[VerifyPichacao] Entrou na função. Site esperado: {site}");
+
         List<SiteType> selectedSites = new List<SiteType>();
 
         foreach (var toggle in GetPichacaoSiteSelected())
+        {
             if (toggle.TryGetComponent(out ImSiteHolder siteHolder))
+            {
                 selectedSites.Add(siteHolder.Site);
+                Debug.Log($"[VerifyPichacao] Site selecionado: {siteHolder.Site}");
+            }
+        }
 
+        Debug.Log($"[VerifyPichacao] Total de sites selecionados: {selectedSites.Count}");
         bool isCorrectSiteSelected = selectedSites.Count == 1 && selectedSites[0] == site;
 
+        Debug.Log($"[VerifyPichacao] Comparação: (Count==1 && Selected[0]==SiteEsperado) => {isCorrectSiteSelected}");
         return isCorrectSiteSelected;
     }
 
     private bool VerifyRansomware(string ransomware, string wallet)
     {
+        Debug.Log($"[VerifyRansomware] Entrou na função. Ransomware esperado: {ransomware}, Wallet esperada: {wallet}");
+
         string selectedName = _ransomwareName.options[_ransomwareName.value].text;
         string selectedWallet = _criptoWallet.options[_criptoWallet.value].text;
 
+        Debug.Log($"[VerifyRansomware] Ransomware selecionado: {selectedName}, Wallet selecionada: {selectedWallet}");
 
         bool isCorrect = selectedName == ransomware && selectedWallet == wallet;
 
+        Debug.Log($"[VerifyRansomware] Comparação: (SelectedName==Esperado && SelectedWallet==Esperada) => {isCorrect}");
         return isCorrect;
     }
 
