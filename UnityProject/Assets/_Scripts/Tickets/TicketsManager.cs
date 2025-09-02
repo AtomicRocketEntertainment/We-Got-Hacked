@@ -14,6 +14,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     [BoxGroup("UI Dependencies")][SerializeField] private Button _playbookBtn;
 
     [BoxGroup("Other Dependencies")][SerializeField] private SO_TicketList _listOfTickets;
+    [BoxGroup("Other Dependencies")][SerializeField] private SO_Ticket _correctTicketSO;
 
 
     [BoxGroup("Screens")][SerializeField] private GameObject _blockedCanvas;
@@ -29,7 +30,6 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore8Day2 = "Lore 8 Day 2";
 
 
-    [BoxGroup("Emails to send - Pichacao Lore")][SerializeField] private SO_Ticket _correctTicketSO;
 
     private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
 

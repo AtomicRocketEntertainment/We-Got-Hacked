@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a170b4e6dec2eb4a82feba9da93e080, type: 3}
+  m_Name: First
+  m_EditorClassIdentifier: 
+  Index: Response 1
+  QuestionText: "Qual seria a resposta mais adequada para lidar com essa quest\xE3o?"
+  ConfirmQuestionText: "Essa \xE9 uma resposta adequada para a situa\xE7\xE3o?"
+  WrongFeedbackQuestionText: "Estou comprometendo o tempo da reuni\xE3o com suposi\xE7\xF5es
+    imprecisas... Preciso retomar o foco."
+  Responses:
+  - TextOption: "Essa decis\xE3o deve vir da PetroCais. A C.A.F.E. n\xE3o se responsabiliza."
+    TextToUpdate: "Essa decis\xE3o cabe \xFAnica e exclusivamente \xE0 PetroCais.
+      A equipe da C.A.F.E. n\xE3o se responsabiliza por isso. A verdade \xE9 que
+      recursos para realizar o pagamento n\xE3o faltam, boa parte sempre acaba nas
+      m\xE3os do Enzo Kaiser de qualquer forma. E essa \xE9 com certeza a solu\xE7\xE3o
+      mais r\xE1pida para conter o impacto."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: "O pagamento do resgate n\xE3o deve ser considerado."
+    TextToUpdate: "A recomenda\xE7\xE3o da C.A.F.E. \xE9 que o resgate n\xE3o seja
+      pago. Efetuar o pagamento poderia n\xE3o apenas incentivar novos ataques como
+      tamb\xE9m expor a empresa a futuras tentativas de extors\xE3o, mesmo que os
+      arquivos sejam liberados. Consideramos mais prudente e seguro prosseguir com
+      o plano de restaura\xE7\xE3o dos servi\xE7os."
+    IsCorrectAnswer: 1
+    HasTextToUpdate: 1
+  - TextOption: Recomendamos que a empresa negocie com o grupo hacktivista.
+    TextToUpdate: "A recomenda\xE7\xE3o da C.A.F.E. \xE9 que consideremos a possibilidade
+      de negocia\xE7\xE3o. Embora n\xE3o seja a abordagem ideal, entendemos que,
+      neste cen\xE1rio, a tentativa de recuperar os arquivos de forma segura e \xE1gil
+      pode ser menos danosa do que prolongar a interrup\xE7\xE3o operacional."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1

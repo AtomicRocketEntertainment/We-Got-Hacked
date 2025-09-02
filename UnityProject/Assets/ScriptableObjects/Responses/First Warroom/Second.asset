@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a170b4e6dec2eb4a82feba9da93e080, type: 3}
+  m_Name: Second
+  m_EditorClassIdentifier: 
+  Index: Response 2
+  QuestionText: "Qual seria a resposta mais adequada para lidar com essa quest\xE3o?"
+  ConfirmQuestionText: "Essa \xE9 uma resposta adequada para a situa\xE7\xE3o?"
+  WrongFeedbackQuestionText: "Estou comprometendo o tempo da reuni\xE3o com suposi\xE7\xF5es
+    imprecisas... Preciso retomar o foco."
+  Responses:
+  - TextOption: "Ainda n\xE3o \xE9 poss\xEDvel afirmar com absoluta certeza."
+    TextToUpdate: "Como mencionado anteriormente, ainda n\xE3o \xE9 poss\xEDvel afirmar
+      com total certeza quem est\xE1 por tr\xE1s do ataque de ransomware. No entanto,
+      devido ao modo de opera\xE7\xE3o e \xE0s assinaturas digitais encontradas,
+      h\xE1 ind\xEDcios de que os respons\xE1veis possam fazer parte do mesmo grupo
+      envolvido no incidente anterior. Trata-se de um coletivo hacktivista conhecido
+      como PetroKillers, cujo principal alvo s\xE3o grandes empresas do setor petrol\xEDfero."
+    IsCorrectAnswer: 1
+    HasTextToUpdate: 1
+  - TextOption: "N\xE3o h\xE1 d\xFAvidas de que os respons\xE1veis s\xE3o os PetroKillers."
+    TextToUpdate: "Com base nas evid\xEAncias t\xE9cnicas obtidas at\xE9 o momento,
+      \xE9 poss\xEDvel afirmar com alto grau de certeza, sem brechas para d\xFAvidas,
+      que o ataque de ransomware foi realizado pelo coletivo hacktivista conhecido
+      como PetroKillers."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: O ataque pode ter sido executado por qualquer grupo hackitivista.
+    TextToUpdate: "Neste momento, n\xE3o h\xE1 ind\xEDcios concretos que permitam
+      identificar a autoria do ataque. Poderia ter sido conduzido por, literalmente,
+      qualquer grupo hacktivista que existe no mundo."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1

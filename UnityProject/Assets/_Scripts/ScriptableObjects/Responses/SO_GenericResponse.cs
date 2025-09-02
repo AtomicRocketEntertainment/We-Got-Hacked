@@ -17,5 +17,7 @@ public class SO_GenericResponse : ScriptableObject
 public class GenericResponse
 {
     [ResizableTextArea] public string TextOption;
+    [ResizableTextArea, ShowIf(nameof(HasTextToUpdate)), Tooltip("This is used only on war room's answers")] public string TextToUpdate; //used exclusive on war room
     public bool IsCorrectAnswer;
+    public bool HasTextToUpdate;
 }

@@ -66,6 +66,10 @@ public static class EventManager
     public static event Action<string> OnAuthError;
     public static event Action<string> OnDatabaseEror;
 
+    //AcampaMeet related
+    public static event Action OnPlayerAnswerWrQuestion;
+    public static event Action<string> OnPlayerSetWrResponse;
+
 
     public static void DisablePlayerWriteEmail()
     {
@@ -558,7 +562,7 @@ public static class EventManager
             Debug.LogWarning("No listeners for OnAuthError event.");
         }
     }
-    
+
     public static void DatabaseError(string feedbackMessage)
     {
         if (OnDatabaseEror != null)
@@ -568,6 +572,30 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnDatabaseEror event.");
+        }
+    }
+
+    public static void PlayerAnswerWrQuestion()
+    {
+        if (OnPlayerAnswerWrQuestion != null)
+        {
+            OnPlayerAnswerWrQuestion();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerAnswerWrQuestion event.");
+        }
+    }
+    
+    public static void SetWrResponse(string response)
+    {
+        if (OnPlayerSetWrResponse != null)
+        {
+            OnPlayerSetWrResponse(response);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerSetWrResponse event.");
         }
     }
 }

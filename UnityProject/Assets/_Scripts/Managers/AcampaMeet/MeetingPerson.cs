@@ -22,7 +22,9 @@ public class MeetingPerson
     public void StartTalking()
     {
         Line line = _lines.GetCurrentLine();
+        UpCard();
         _personCardInstance.OpenMicAndTalk(line.Text);
+        _lines.AvanceLine();
     }
 
     public void StopTalkin()
@@ -30,5 +32,34 @@ public class MeetingPerson
         _personCardInstance.CloseMic();
     }
 
+    private void ShowWrResponse(string text)
+    {
+        UpCard();
+        _personCardInstance.OpenMicAndTalk(text);
+    }
+
+    private void UpCard() => _personCardInstance.GetTransform().SetAsFirstSibling();
+
+    public bool IsLineToAnswer()
+    {
+        Line line = _lines.GetCurrentLine();
+        return line.IsLineToAnswer;
+    }
+
+    public bool ShouldUpdateStream()
+    {
+        Line line = _lines.GetCurrentLine();
+        return line.ShouldUpdateStream;
+
+    }
+
+    public Sprite GetSpriteToShow()
+    {
+        Line line = _lines.GetCurrentLine();
+        return line.IlustrationToShow;
+    }
+
     public void InjectPersonCard(IMeetingPersonInstance cardOnCall) => _personCardInstance = cardOnCall;
+    public void SubscribeEvents() => EventManager.OnPlayerSetWrResponse += ShowWrResponse;
+    public void UnsubscribeEvents() => EventManager.OnPlayerSetWrResponse -= ShowWrResponse;
 }

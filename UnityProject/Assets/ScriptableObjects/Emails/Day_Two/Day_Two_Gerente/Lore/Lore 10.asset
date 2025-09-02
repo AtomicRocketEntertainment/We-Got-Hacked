@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d03a1bbc822ffa4fa78b3031c5392f1, type: 3}
+  m_Name: Lore 10
+  m_EditorClassIdentifier: 
+  Index: Lore 7
+  StartOpen: 1
+  IsEmailToWrite: 0
+  Receiver:
+    Name: 
+    Email: 
+  Type: 2
+  Sender:
+    Profile: {fileID: 21300000, guid: 81c44dbdac0648642abab38fcbb20b8d, type: 3}
+    Name: Gerente de RH | C.A.F.E.
+    Email: rebeca.hernandes.rh@cafesoc.com
+  Title: Fofoca Quentinha
+  Content: "<b>Uma bel\xEDssima noite para voc\xEA, Raquel!</b>\n\nEspero que esteja
+    super bem! Venho trazer um babado fort\xEDssimo! <sprite index=\"379\">\n\nTalvez
+    voc\xEA j\xE1 tenha visto nas not\xEDcias, mas a PetroCais teve um belo perrengue
+    na hora de abastecer os caminh\xF5es de gasolina hoje. E pelas fofocas que ouvi
+    por a\xED, isso pode ser outro ataque daquele pessoal que voc\xEA me falou ontem...
+    Como era mesmo? Petroquilos? Sei l\xE1. <sprite index=\"232\">\n\n<b>Enfim, vim
+    te avisar porque agora \xE9 contigo. Precisamos resolver isso e sei que voc\xEA
+    vai dar um jeito, j\xE1 que \xE9 a gerente de cyber mais babil\xF4nica que eu
+    conhe\xE7o! A recomenda\xE7\xE3o padr\xE3o seria voc\xEA abrir uma Sala de Guerra,
+    apesar de eu n\xE3o curtir muito esse nome... Me passa uma vibe meio pesada.</b>\n\nPrefiro
+    chamar de \"Sala Onde Resolvemos as Coisas\", mas esse nome n\xE3o pegou t\xE3o
+    bem quanto eu esperava... <sprite index=\"68\">\n\n<b>Sua tarefa agora \xE9 entrar
+    no Acampa Meet, reunir o pessoal do petr\xF3leo e decidir o que voc\xEAs v\xE3o
+    fazer. Acho que vai ser bem tranquilo!</b>\n\nBoa sorte! Arrasa, garota! <sprite
+    index=\"1569\">\n\n<b>Com carinho,</b>\L<b>Rebeca Hernandes</b>\n<b>Gerente de
+    RH - C.A.F.E.</b>"
+  HasResponse: 0
+  QuestionText: Sobre o que eu devo escrever mesmo?
+  ConfirmQuestionText: 
+  WrongFeedbackQuestionText: 
+  Responses:
+  - TextOption: Avisar sobre o site pichado
+    EmailTitle: 
+    EmailText: "Ol\xE1, Raquel! Tudo certo?\n\nDeu ruim! Um dos sites da PetroCais
+      foi pichado! \U0001F628 Pelo que vi, parece ser coisa de um grupo de ativistas
+      doidos chamados de PetroKillers. \U0001F480\n\nSendo sincero, n\xE3o fa\xE7o
+      ideia do que fazer. Preciso de ajuda pra resolver isso, os clientes n\xE3o
+      podem ver o site desse jeito!\n\nAguardo retorno! \U0001F642\u200D\u2195\uFE0F\n\nAtt,
+      Tiago"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  - TextOption: Avisar sobre o Ticket
+    EmailTitle: 
+    EmailText: "Fala, time! Tudo certo?\n\nOs boatos eram verdadeiros! Alguns hackers
+      malditos chamados PetroKillers realmente invadiram o site da PetroCais e zoaram
+      tudo! \U0001F621\n\nTodos as informa\xE7\xF5es do ataque j\xE1 est\xE3o direitinho
+      l\xE1 no ticket que criei. Agora contamos com o Rafa pra terminar o servi\xE7o
+      e resolver esse problema.\n\nSe algu\xE9m precisar de mais informa\xE7\xF5es,
+      s\xF3 dar um toque! \U0001F609\n\nAtt, Tiago"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 1
+  - TextOption: "Avisar sobre a M\xE1quina de Caf\xE9 Quebrada"
+    EmailTitle: 
+    EmailText: "Ol\xE1, Central! Tudo certo?\n\nTemos um problema s\xE9rio! Uma das
+      m\xE1quinas de caf\xE9 deu pau. Eu t\xF4 tendo que ir at\xE9 a sala ao lado
+      pra encher a minha caneca! \u2615\n\nJ\xE1 tentei tirar da tomada e colocar
+      de novo, resetar e at\xE9 bater na m\xE1quina algumas vezes, mas nada funcionou.
+      N\xE3o posso ficar sem caf\xE9, vou acabar pegando no sono! Preciso que resolvam
+      isso, por favor. \U0001F979\n\nAguardo refor\xE7os! \U0001F691\n\nAtt, Tiago"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  HasEventToSend: 0
+  DispatcherInfo:
+    HasEmailEvent: 0
+    HasNormalEvent: 0
+    EmailTypeToCreate: 1
+    EmailEventSended: 0
+    NormalEventSended: 0

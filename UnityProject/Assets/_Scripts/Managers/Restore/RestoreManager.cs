@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using TMPro;
-using System;
-using Unity.VisualScripting;
 
 public class RestoreManager : MonoBehaviour, INeedOpenCanvas
 {

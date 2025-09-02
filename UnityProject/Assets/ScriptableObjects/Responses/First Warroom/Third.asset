@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a170b4e6dec2eb4a82feba9da93e080, type: 3}
+  m_Name: Third
+  m_EditorClassIdentifier: 
+  Index: Response 3
+  QuestionText: "Qual seria a resposta mais adequada para lidar com essa quest\xE3o?"
+  ConfirmQuestionText: "Essa \xE9 uma resposta adequada para a situa\xE7\xE3o?"
+  WrongFeedbackQuestionText: "Estou comprometendo o tempo da reuni\xE3o com suposi\xE7\xF5es
+    imprecisas... Preciso retomar o foco."
+  Responses:
+  - TextOption: "\xC9 prov\xE1vel que o incidente seja identificado pela imprensa
+      em breve."
+    TextToUpdate: "No momento, n\xE3o consideramos necess\xE1ria uma comunica\xE7\xE3o
+      interna formal sobre o incidente. \xC9 prov\xE1vel que, em breve, a imprensa
+      tome conhecimento dos fatos e os veicule nos meios de comunica\xE7\xE3o, principalmente
+      nos conhecidos como \"sites de fofoca\". Diante disso, n\xE3o h\xE1 urg\xEAncia
+      em investir esfor\xE7os nessa frente por ora."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: "A divulga\xE7\xE3o do incidente n\xE3o deve ser realizada agora."
+    TextToUpdate: "Nossa recomenda\xE7\xE3o, neste momento, \xE9 que o incidente
+      n\xE3o seja divulgado publicamente. Uma exposi\xE7\xE3o prematura pode dar
+      margem a interpreta\xE7\xF5es distorcidas, desde teorias da conspira\xE7\xE3o
+      e cr\xEDticas nas redes sociais at\xE9 especialistas apressados prevendo a
+      fal\xEAncia iminente da PetroCais."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: "Uma divulga\xE7\xE3o na m\xEDdia ser\xE1 importante nesse momento."
+    TextToUpdate: "Nossa recomenda\xE7\xE3o \xE9 que o incidente seja tratado com
+      a devida transpar\xEAncia, a fim de evitar hip\xE9rboles ou fal\xE1cias sobre
+      os fatos. A PetroCais, como empresa de capital aberto ligada a uma grande bolsa
+      de valores, n\xE3o deve omitir ocorr\xEAncias dessa natureza. A comunica\xE7\xE3o
+      clara \xE9 tamb\xE9m um componente de seguran\xE7a."
+    IsCorrectAnswer: 1
+    HasTextToUpdate: 1

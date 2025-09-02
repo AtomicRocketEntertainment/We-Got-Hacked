@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 {
-    [SerializeField, BoxGroup("Screens")] private GameObject _mainCanvas;
-    [SerializeField, BoxGroup("Screens")] private GameObject _startScreen;
-    [SerializeField, BoxGroup("Screens")] private GameObject _awaitingScreen;
-    [SerializeField, BoxGroup("Screens")] private GameObject _streamingScreen;
+    [SerializeField, BoxGroup("Screens and General")] private GameObject _mainCanvas;
+    [SerializeField, BoxGroup("Screens and General")] private GameObject _startScreen;
+    [SerializeField, BoxGroup("Screens and General")] private GameObject _awaitingScreen;
+    [SerializeField, BoxGroup("Screens and General")] private GameObject _streamingScreen;
+    [SerializeField, BoxGroup("Screens and General")] private Button _avanceLinesButton;
+
 
     [SerializeField, BoxGroup("Start Screen")] private Button _startMeetingButton;
 
@@ -28,10 +30,13 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private Dictionary<string, MeetingPerson> _peopleAtCall;
     private int _currentSpeaker;
+    private MeetingPerson _lastPerson;
 
     private void Awake()
     {
+        _avanceLinesButton.gameObject.SetActive(false);
         _currentSpeaker = 0;
+        _lastPerson = null;
         _peopleAtCall = new Dictionary<string, MeetingPerson>();
 
         for (int personIndex = 0; personIndex < _meetingPersons.Count; personIndex++)
@@ -46,12 +51,16 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private void OnEnable()
     {
+        EventManager.OnPlayerAnswerWrQuestion += ContinueWr;
         _startMeetingButton.onClick.AddListener(StartMeeting);
+        _avanceLinesButton.onClick.AddListener(AvanceLine);
     }
 
     private void OnDisable()
     {
+        EventManager.OnPlayerAnswerWrQuestion += ContinueWr;
         _startMeetingButton.onClick.RemoveListener(StartMeeting);
+        _avanceLinesButton.onClick.RemoveListener(AvanceLine);
     }
 
     private void StartMeeting()
@@ -65,9 +74,10 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private IEnumerator LoginPeople()
     {
-        //First person starts the meeting, already in the call.
+        //First person starts the meeting, already in the call and responsable to answer the questions
         KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
         SpawnAwainting(firstPerson.Value);
+        firstPerson.Value.SubscribeEvents();
 
         foreach (var key in _peopleAtCall)
         {
@@ -79,6 +89,7 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
                 SpawnAwainting(key.Value);
             }
         }
+
         yield return new WaitForSeconds(2f);
         EventManager.MakePlayerThink(ThoughtKey.ShouldStartTheMeeting);
         yield return new WaitForSeconds(3f);
@@ -89,11 +100,61 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
     {
         _awaitingScreen.SetActive(false);
         _streamingScreen.SetActive(true);
+        MakePeopleTalk();
+
+    }
+
+    private void MakePeopleTalk()
+    {
+
+        if (_currentSpeaker == _speakerTimeline.Count)
+        {
+            EventManager.ShowStoryBoard();
+            return;
+        }
 
         if (_peopleAtCall.TryGetValue(_speakerTimeline[_currentSpeaker], out MeetingPerson person))
         {
+            _lastPerson?.StopTalkin();
+            _lastPerson = person;
+
+            CheckNeedAnswer(person.IsLineToAnswer());
+            CheckStreamUpdate(person.ShouldUpdateStream(), person.GetSpriteToShow());
+
             person.StartTalking();
+            _currentSpeaker++;
         }
+    }
+
+    private void CheckStreamUpdate(bool shouldUpdateStream, Sprite spriteToShow)
+    {
+        if (shouldUpdateStream)
+            _streamingImage.sprite = spriteToShow;
+    }
+
+    private void CheckNeedAnswer(bool isLineToAnswer)
+    {
+        if (isLineToAnswer)
+        {
+            EventManager.OpenGenericResponse();
+            _avanceLinesButton.gameObject.SetActive(false);
+        }
+        else
+            _avanceLinesButton.gameObject.SetActive(true);
+    }
+
+    private void ContinueWr()
+    {
+        KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
+        _lastPerson?.StopTalkin();
+
+        _lastPerson = firstPerson.Value; //Character is now the last talker
+        _avanceLinesButton.gameObject.SetActive(true);
+    }
+
+    private void AvanceLine()
+    {
+        MakePeopleTalk();
     }
 
     private void SpawnAwainting(MeetingPerson person)
@@ -122,4 +183,10 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     public void CloseCanvas() => _mainCanvas.SetActive(false);
     public void OpenCanvas() => _mainCanvas.SetActive(true);
+
+    private void OnDestroy()
+    {
+        KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
+        firstPerson.Value.UnsubscribeEvents();
+    }
 }

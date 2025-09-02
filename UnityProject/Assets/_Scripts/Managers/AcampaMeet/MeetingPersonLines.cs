@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 [System.Serializable]
@@ -14,9 +15,11 @@ public class MeetingPersonLines
 
     public Line GetCurrentLine()
     {
-        Line currentLine = Lines[_currentLine++];
+        Line currentLine = Lines[_currentLine];
         return currentLine;
     }
+
+    public void AvanceLine() => _currentLine++;
 }
 
 [System.Serializable]
@@ -25,4 +28,5 @@ public struct Line
     [TextArea(5, 20)] public string Text;
     public bool IsLineToAnswer;
     public bool ShouldUpdateStream;
+    [ShowIf(nameof(ShouldUpdateStream))] public Sprite IlustrationToShow;
 }

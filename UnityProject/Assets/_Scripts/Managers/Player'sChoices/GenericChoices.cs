@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GenericChoices : MonoBehaviour
+public class GenericChoices : MonoBehaviour, IChoiceContext
 {
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Screens") ] [SerializeField] private GameObject _responseContainer;
     [BoxGroup("Response")] [SerializeField] private GameObject _firstResponseEmailChoices;
@@ -16,13 +16,25 @@ public class GenericChoices : MonoBehaviour
     [BoxGroup("Response")] [SerializeField] private List<Button> _responsesBtn;
     [BoxGroup("Response"), HorizontalLine(color: EColor.Green), Header("Texts")] [SerializeField] private TextMeshProUGUI _responseQuestion;
 
+    [SerializeField, BoxGroup("State Fluxogram")] private HistoryPartState _currentChoiceState = HistoryPartState.Part_One;
+    [SerializeField, BoxGroup("State Fluxogram")] private Character _currentCharacter = Character.None;
 
-    
-    private HistoryPartState _currentResponseState = HistoryPartState.Part_One;
+    private Dictionary<(Character, HistoryPartState), IChoiceStateHandler> _choiceStateHandlers;
     private SO_GenericResponse _currentResponse = null;
 
     private void OnEnable()
     {
+        _choiceStateHandlers = new();
+
+        IChoiceStateSetup choiceSetup = _currentCharacter switch
+        {
+            Character.Rafael_Day_One => new Day_One_ChoiceStateSetup_Rafael(),
+            Character.Raquel_Day_Two => new Day_Two_ChoiceStateSetupe_Raquel(),
+            _ => null
+        };
+
+        choiceSetup?.RegisterStates(_choiceStateHandlers);
+
         _rewriteResponseEmailBtn.onClick.AddListener(ReturnChoices);
         _confirmWrongFeedbackBtn.onClick.AddListener(ReturnChoices);
     } 
@@ -45,7 +57,7 @@ public class GenericChoices : MonoBehaviour
             int index = response; //necessário guardar um valor fixo pra usar na lambda.
             GenericResponse responseInfos = _currentResponse.Responses[index];
             _responsesBtn[index].onClick.RemoveAllListeners();
-            _responsesBtn[index].onClick.AddListener(() => RespondQuestion(responseInfos.IsCorrectAnswer, _currentResponse.ConfirmQuestionText, _currentResponse.WrongFeedbackQuestionText, _currentResponse.Responses[index].TextOption));
+            _responsesBtn[index].onClick.AddListener(() => RespondQuestion(responseInfos, _currentResponse.ConfirmQuestionText, _currentResponse.WrongFeedbackQuestionText, _currentResponse.Responses[index].TextOption));
 
             TextMeshProUGUI btnText = _responsesBtn[index].GetComponentInChildren<TextMeshProUGUI>();
             if (btnText) btnText.text = _currentResponse.Responses[index].TextOption;
@@ -61,9 +73,9 @@ public class GenericChoices : MonoBehaviour
         ReturnChoices();
     }
 
-    private void RespondQuestion(bool isCorrectAnswer, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
+    private void RespondQuestion(GenericResponse responseInfos, string confirmFeedback, string wrongFeedbackQuestionText, string answerText)
     {
-        PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentResponse.QuestionText, answerText, isCorrectAnswer);
+        PlayerDataAnswer answerToSave = new PlayerDataAnswer(_currentResponse.QuestionText, answerText, responseInfos.IsCorrectAnswer);
         EventManager.AnswerToSaveIsMaded(answerToSave);
 
         _firstResponseEmailChoices.SetActive(false);
@@ -72,14 +84,17 @@ public class GenericChoices : MonoBehaviour
 
         _confirmResponseEmailBtn.onClick.RemoveAllListeners();
 
-        if(isCorrectAnswer) 
-            _confirmResponseEmailBtn.onClick.AddListener(CorrectFeedbackChoices);
+        if (responseInfos.IsCorrectAnswer)
+            _confirmResponseEmailBtn.onClick.AddListener(() => CorrectFeedbackChoices(responseInfos));
         else
             _confirmResponseEmailBtn.onClick.AddListener(() => WrongFeedbackChoices(wrongFeedbackQuestionText));
     }
 
-    private void CorrectFeedbackChoices()
+    private void CorrectFeedbackChoices(GenericResponse responseInfos)
     {
+        if(responseInfos.HasTextToUpdate) //used exclusive on War rooms
+            EventManager.SetWrResponse(responseInfos.TextToUpdate);
+
         EventManager.CorrectChoice();
         EventManager.GenericResponseIsMade(_currentResponse.Index);
         ResponseFeedbackUpdate();
@@ -97,19 +112,14 @@ public class GenericChoices : MonoBehaviour
 
     private void ResponseFeedbackUpdate()
     {
-        switch(_currentResponseState)
+        if (_choiceStateHandlers.TryGetValue((_currentCharacter, _currentChoiceState), out var handler))
         {
-            case HistoryPartState.Part_One:
-                EventManager.TicketObjectiveCompleted();
-                EventManager.SpawnEmail(EmailType.LORE);
-                break;
-            case HistoryPartState.Part_Two:
-                break;
-            case HistoryPartState.Part_Three:
-                break;
+            handler.Handle(this);
         }
-
-        _currentResponseState++;
+        else
+        {
+            Debug.LogWarning("Nenhum handler para este estado/personagem.");
+        }
     }
 
     private void ReturnChoices()
@@ -119,4 +129,8 @@ public class GenericChoices : MonoBehaviour
         OpenResponse(_currentResponse);
     }
 
+    public void ChangeChoiceState(HistoryPartState state)
+    {
+        _currentChoiceState = state;
+    }
 }
