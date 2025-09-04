@@ -23,9 +23,8 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Remotopia's infos")] public RemotopiaUserLogin RemotopiaUser;
 
     [BoxGroup("Phishing Infos"), ShowIf(nameof(IsPichacao))][Tooltip("Every ticket is Other site. Just the correct one is Sustentanbilidade")] public SiteType CorrectSite;
-    [BoxGroup("Ransomware Infos"), ShowIf(nameof(IsRansomware))][Tooltip("Type of Ransomware")] public string RansomwareName;
-    [BoxGroup("Ransomware Infos"), ShowIf(nameof(IsRansomware))][Tooltip("Cripto wallet code")] public string CriptoWallet;
 
+    [BoxGroup("Ransomware Infos")] public RansomwareInformations RansomwareInformation;
 
     public List<TicketObjectives> Objectives;
 
@@ -75,20 +74,16 @@ public class SO_Ticket : ScriptableObject
         switch (Playbook)
         {
             case PlaybookType.Pichacao:
-                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
                 Origin = AlertOrigin.WAF;
                 break;
             case PlaybookType.Ransomware:
-                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
                 Origin = AlertOrigin.EDR;
                 break;
             case PlaybookType.VazamentoDeDados:
-                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
                 Debug.Log("Ainda sem definido para vazamento de dados");
                 //Origin = AlertOrigin.WAF;
                 break;
             case PlaybookType.Phishing:
-                Debug.Log("Trocando a origem do alerta para corresponder com o tipo de hackeamento.");
                 Origin = AlertOrigin.Antiphishing;
                 break;
         }
@@ -140,6 +135,14 @@ public class TicketLog
 {
     public bool IsCorrect;
     public string Log;
+}
+
+[System.Serializable]
+public struct RansomwareInformations
+{
+    public string RansomwareName;
+    public string CriptoWallet;
+    public string Hash;
 }
 
 public enum Character

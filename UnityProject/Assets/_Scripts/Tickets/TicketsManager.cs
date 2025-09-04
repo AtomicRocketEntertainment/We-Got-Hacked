@@ -12,6 +12,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     [BoxGroup("UI Dependencies")][SerializeField] private Button _currentTicketBtn;
     [BoxGroup("UI Dependencies")] [SerializeField] private Button _doneTicketBtn;
     [BoxGroup("UI Dependencies")][SerializeField] private Button _playbookBtn;
+    [BoxGroup("UI Dependencies")][SerializeField] private GameObject _currentObjectiveNotifier;
 
     [BoxGroup("Other Dependencies")][SerializeField] private SO_TicketList _listOfTickets;
     [BoxGroup("Other Dependencies")][SerializeField] private SO_Ticket _correctTicketSO;
@@ -52,6 +53,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
         {
             Character.Tiago_Day_One => new TiagoTicketDayOneStateSetup(),
             Character.Rafael_Day_One => new RafaelTicketDayOneStateSetup(),
+            Character.Rafael_Day_Two => new RafaelTicketDayTwoStateSetup(),
             _ => null
         };
 
@@ -82,6 +84,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     private void UpdateTicketProgress()
     {
         _correctTicket.ObjectiveCompleted();
+        _currentObjectiveNotifier.SetActive(true);
 
         if (!_mainCanvas.activeSelf)
             NotifyBar();
@@ -115,7 +118,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
             {
                 GameObject screenObj = screen.Value;
                 screenObj.TryGetComponent(out TicketScreen ticketUpdater);
-                ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _listOfTickets, _correctTicket, _currentState);
+                ticketUpdater.UpdateInfos(ticketUpdater.CurrentType, _listOfTickets, _correctTicket, _currentState, _currentObjectiveNotifier);
                 _lastClickedBtn = button;
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(button.gameObject);
@@ -149,7 +152,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
         {
             _currentState = SoftwareState.FullAccess;
             _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
-            ticketUpdater.UpdateInfos(ScreenType.NewTicket, _listOfTickets, _correctTicket, _currentState);
+            ticketUpdater.UpdateInfos(ScreenType.NewTicket, _listOfTickets, _correctTicket, _currentState, _currentObjectiveNotifier);
         }
 
         if (emailIndex == "Lore 5") //not very good, we need to change this later

@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
-
 public class Ticket
 {
     private PlaybookType _playbook;
@@ -15,8 +12,7 @@ public class Ticket
     private string _dateHour;
     private int _riskLevel;
     private SiteType _site;
-    private string _ransomwareName;
-    private string _criptoWallet;
+    private RansomwareInformations _ransomwareInfos;
     private List<TicketObjectives> _objectives;
     private List<TicketLog> _logs;
     private string _siemLog;
@@ -33,8 +29,7 @@ public class Ticket
     public string DateHour => _dateHour;
     public int RiskLevel => _riskLevel;
     public SiteType Site => _site;
-    public string RansomwareName => _ransomwareName;
-    public string CriptoWallet => _criptoWallet;
+    public RansomwareInformations RansomwareInfos => _ransomwareInfos;
     public List<TicketObjectives> Objectives => _objectives;
     public List<TicketLog> Logs => _logs;
     public string SiemLog => _siemLog;
@@ -52,8 +47,7 @@ public class Ticket
         _dateHour = infos.DateHour;
         _riskLevel = infos.RiskLevel;
         _site = infos.CorrectSite;
-        _ransomwareName = infos.RansomwareName;
-        _criptoWallet = infos.CriptoWallet;
+        _ransomwareInfos = infos.RansomwareInformation;
 
         _objectives = new List<TicketObjectives>();
         _logs = infos.Loggs;

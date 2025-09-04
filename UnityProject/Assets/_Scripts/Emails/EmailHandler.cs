@@ -46,6 +46,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private readonly string _lore12DayOne = "Lore 12";
     private readonly string _lore4DayTwo = "Lore 4 Day 2";
     private readonly string _lore8DayTwo = "Lore 8 Day 2";
+    private readonly string _lore11DayTwo = "Lore 11 Day 2";
     private readonly string _loreA04 = "Lore A04";
     
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
@@ -95,10 +96,10 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         if(emailIndex == _lore8DayTwo)
             return;
 
-        if (emailIndex == _lore9DayOne || emailIndex == _lore12DayOne || emailIndex == _lore4DayTwo || emailIndex == _loreA04)
+        if (emailIndex == _lore9DayOne || emailIndex == _lore12DayOne || emailIndex == _lore4DayTwo || emailIndex == _loreA04 || _lore11DayTwo == emailIndex)
                 _writeEmailState = WriteEmailState.CanWrite;
-            else
-                _writeEmailState = WriteEmailState.CantWrite;
+        else
+            _writeEmailState = WriteEmailState.CantWrite;
     }
 
     private void DisableEmailWrite() => _writeEmailState = WriteEmailState.CantWrite;

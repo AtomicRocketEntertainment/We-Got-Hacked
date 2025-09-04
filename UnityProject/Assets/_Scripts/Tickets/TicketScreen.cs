@@ -119,7 +119,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
 
 
-    public void UpdateInfos(ScreenType typeScreen, SO_TicketList ticketList, Ticket currentTicket, SoftwareState softwareState)
+    public void UpdateInfos(ScreenType typeScreen, SO_TicketList ticketList, Ticket currentTicket, SoftwareState softwareState, GameObject _notifier)
     {
         switch (typeScreen)
         {
@@ -127,6 +127,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
                 UpdateNewTicket(ticketList, softwareState);
                 break;
             case ScreenType.CurrentTicket:
+                _notifier.SetActive(false);
                 UpdateCurrentTicket(currentTicket);
                 break;
             case ScreenType.TicketDone:
@@ -190,11 +191,11 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             if (!originOptions.Contains(ticket.Origin.ToString()))
                 originOptions.Add(ticket.Origin.ToString());
 
-            if (!ransomwareOptions.Contains(ticket.RansomwareName))
-                ransomwareOptions.Add(ticket.RansomwareName);
+            if (!ransomwareOptions.Contains(ticket.RansomwareInformation.RansomwareName))
+                ransomwareOptions.Add(ticket.RansomwareInformation.RansomwareName);
 
-            if (!criptWalletOptions.Contains(ticket.CriptoWallet))
-                criptWalletOptions.Add(ticket.CriptoWallet);
+            if (!criptWalletOptions.Contains(ticket.RansomwareInformation.CriptoWallet))
+                criptWalletOptions.Add(ticket.RansomwareInformation.CriptoWallet);
 
             dateOptions.Add($"{ticket.DateDay} - {ticket.DateHour}");
         }
@@ -403,8 +404,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
                 isCorrect = VerifyPichacao(ticket.Site);
                 break;
             case nameof(PlaybookType.Ransomware):
-                Debug.Log($"[VerifyPlaybookInfos] Verificando Ransomware. Ticket.Ransomware={ticket.RansomwareName}, Wallet={ticket.CriptoWallet}");
-                isCorrect = VerifyRansomware(ticket.RansomwareName, ticket.CriptoWallet);
+                Debug.Log($"[VerifyPlaybookInfos] Verificando Ransomware. Ticket.Ransomware={ticket.RansomwareInfos.RansomwareName}, Wallet={ticket.RansomwareInfos.CriptoWallet}");
+                isCorrect = VerifyRansomware(ticket.RansomwareInfos.RansomwareName, ticket.RansomwareInfos.CriptoWallet);
                 break;
             default:
                 Debug.Log("[VerifyPlaybookInfos] Playbook sem verificações específicas.");
