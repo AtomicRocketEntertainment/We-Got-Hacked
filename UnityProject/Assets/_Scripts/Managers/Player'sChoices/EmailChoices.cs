@@ -46,6 +46,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
             Character.Raquel_Day_One => new Day_One_WriteStateSetup_Raquel(),
             Character.Rafael_Day_One => new Day_One_WriteStateSetup_Rafael(),
             Character.Tiago_Day_Two => new Day_Two_WriteStateSetup_Tiago(),
+            Character.Rafael_Day_Two => new Day_Two_WriteStateSetup_Rafael(),
             _ => null
         };
 

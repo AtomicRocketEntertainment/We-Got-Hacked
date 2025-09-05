@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Day_Two_SecondWrite_Rafael : MonoBehaviour
+public class Day_Two_SecondWrite_Rafael : IEmailStateHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Handle(IEmailContext context)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        EventManager.SpawnEmail(EmailType.NEWS);
+        EventManager.DisablePlayerWriteEmail();
+        context.ChangeWriteState(HistoryPartState.Part_Three);
     }
 }

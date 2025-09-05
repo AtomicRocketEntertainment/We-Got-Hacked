@@ -1,18 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Day_Two_WriteStateSetup_Rafael : MonoBehaviour
+public class Day_Two_WriteStateSetup_Rafael : IEmailStateSetup
 {
-    // Start is called before the first frame update
-    void Start()
+    public void RegisterStates(Dictionary<(Character, HistoryPartState), IEmailStateHandler> stateHandlers)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        stateHandlers.Add((Character.Rafael_Day_Two, HistoryPartState.Part_One), new Day_Two_FirstWrite_Rafael());
+        stateHandlers.Add((Character.Rafael_Day_Two, HistoryPartState.Part_Two), new Day_Two_SecondWrite_Rafael());
+        stateHandlers.Add((Character.Rafael_Day_Two, HistoryPartState.Part_Three), new Day_Two_ThirdWrite_Rafael());
     }
 }
+
