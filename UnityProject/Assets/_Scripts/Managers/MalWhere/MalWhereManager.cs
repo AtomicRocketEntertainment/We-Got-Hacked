@@ -111,8 +111,9 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private void UpdateIpCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
         int randomReports = Random.Range(50, 1000);
+        bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two;
 
-        if (isCorrectTicket)
+        if (isCorrectTicket && isRafaelDayTwoTime)
         {
             _ipText.SetText($"{ticket.IPOrigem} foi encontrando no banco de dados e reportado {randomReports} vezes! Tem 100% de probabilidade de ser malicioso.");
             HandleState();
@@ -124,9 +125,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     private void UpdateHashCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
-        bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two;
-        
-        if (isCorrectTicket && isRafaelDayTwoTime)
+        if (isCorrectTicket)
             HandleState();
 
         _hashText.SetText($"A Hash pesquisada ({ticket.RansomwareInformation.Hash}) é responsável pelo ransomware de nome: {ticket.RansomwareInformation.RansomwareName}");

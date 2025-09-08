@@ -30,6 +30,7 @@ public static class EventManager
     public static event Action<List<TicketLog>> OnOpenLog;
     public static event Action<SiteBackup> OnOpenBackup;
     public static event Action<RestoreState> OnSiteIsOff;
+    public static event Action<RestoreState> OnChangeRestoreState;
 
 
     //Global Gaming Mechanic
@@ -371,6 +372,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnSiteIsOff event.");
+        }
+    }
+
+    public static void ChangeRestoreState(RestoreState state)
+    {
+        if (OnChangeRestoreState != null)
+        {
+            OnChangeRestoreState(state);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnChangeRestoreState event.");
         }
     }
 

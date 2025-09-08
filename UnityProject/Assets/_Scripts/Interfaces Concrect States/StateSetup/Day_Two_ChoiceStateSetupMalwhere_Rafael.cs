@@ -1,6 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class Day_Two_ChoiceStateSetupMalwhere_Rafael : IChoiceStateSetup
 {
