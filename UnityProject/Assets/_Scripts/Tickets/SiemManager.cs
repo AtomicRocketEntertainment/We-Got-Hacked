@@ -99,7 +99,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     private void OpenAlert(Ticket alert, Color ticketColor)
     {
-        if (alert.RiskLevel != _ticketMaxLevel)
+        if (ShouldntOpenLowLevel())
             EventManager.MakePlayerThink(ThoughtKey.WrongAlertOpen);
 
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
@@ -178,6 +178,24 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
         foreach (GameObject obj in _instanceObjTickets)
             Destroy(obj);
+    }
+
+    private bool ShouldntOpenLowLevel()
+    {
+        bool shouldntOpen = false;
+
+        for (int i = 0; i < _tickets.Count; i++)
+        {
+            bool isMaxLevel = _tickets[i].RiskLevel == _ticketMaxLevel;
+
+            if (isMaxLevel)
+            {
+                shouldntOpen = true;
+                break;
+            }
+        }
+
+        return shouldntOpen;
     }
 
     public void OpenCanvas()
