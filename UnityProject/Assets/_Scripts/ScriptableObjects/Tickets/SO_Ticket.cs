@@ -141,8 +141,20 @@ public class TicketLog
 public struct RansomwareInformations
 {
     public string RansomwareName;
+    public string ManufacterNameOne;
+    public string ManufacterNameTwo;
+    public string DomainName;
+    public string Country;
+    public string State;
+    public string City;
+    public string Description;
+    public float Size;
     public string CriptoWallet;
     public string Hash;
+    [Tooltip("Sim ou Nao")] public string IsInTheBank;
+    [Range(0, 100)] public int MaliciousPercentage;
+    public int RelatedTimes;
+    public int LastAnalysis;
 }
 
 public enum Character

@@ -13,13 +13,14 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     [BoxGroup("Main UI Elements"), SerializeField] private TMP_Dropdown _searchingElementsDp;
     [BoxGroup("Main UI Elements"), SerializeField] private Button _trySearchBtn;
+    [BoxGroup("Main UI Elements"), SerializeField] private Sprite _iconCorrect;
+    [BoxGroup("Main UI Elements"), SerializeField] private Sprite _iconIncorrect;
+
 
     [BoxGroup("IP UI Elements"), SerializeField] private Button _backfromIpBtn;
-    [BoxGroup("IP UI Elements"), SerializeField] private TextMeshProUGUI _ipText;
 
 
     [BoxGroup("Hash UI Elements"), SerializeField] private Button _backfromHashBtn;
-    [BoxGroup("Hash UI Elements"), SerializeField] private TextMeshProUGUI _hashText;
 
     [BoxGroup("Infos Dependencies")][SerializeField] private SO_TicketList _ticketList;
     [BoxGroup("Infos Dependencies")][SerializeField] private SO_Ticket _correctTicket;
@@ -110,17 +111,13 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     private void UpdateIpCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
-        int randomReports = Random.Range(50, 1000);
         bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two;
 
-        if (isCorrectTicket && isRafaelDayTwoTime)
-        {
-            _ipText.SetText($"{ticket.IPOrigem} foi encontrando no banco de dados e reportado {randomReports} vezes! Tem 100% de probabilidade de ser malicioso.");
-            HandleState();
-        }
-        else
-            _ipText.SetText("O IP informado não possui denúncias.");
+        _ipCanvas.TryGetComponent(out MalWhereIPUpdater updater);
+        updater?.UpdateIpInfos(ticket.IPOrigem, ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
 
+        if (isCorrectTicket && isRafaelDayTwoTime)
+            HandleState();
     }
 
     private void UpdateHashCanvas(bool isCorrectTicket, SO_Ticket ticket)
@@ -128,13 +125,14 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         if (isCorrectTicket)
             HandleState();
 
-        _hashText.SetText($"A Hash pesquisada ({ticket.RansomwareInformation.Hash}) é responsável pelo ransomware de nome: {ticket.RansomwareInformation.RansomwareName}");
+        _hashCanvas.TryGetComponent(out MalWhereHashUpdater updater);
+        updater?.UpdateHashInfos(ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
     }
 
     private void InitSearchingOptions()
     {
         _searchingElementsDp.ClearOptions();
-        List<string> searchingOptions = new List<string>() { "Pesquisar" };
+        List<string> searchingOptions = new List<string>() { "hash, domínio, endereço IP, DNS ou URL" };
 
         foreach (SO_Ticket ticket in _ticketList.Tickets)
         {
