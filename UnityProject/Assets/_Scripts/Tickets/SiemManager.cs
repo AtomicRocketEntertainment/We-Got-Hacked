@@ -103,7 +103,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             EventManager.MakePlayerThink(ThoughtKey.WrongAlertOpen);
 
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
-        holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.DeviceAttacked.ToString(), alert.Origin.ToString(), alert.DateDay, alert.DateHour, alert.Location, ticketColor);
+        holder.UpdateInfos(alert.ID, alert.IPOrigem, alert.IPDestiny, alert.DeviceAttacked.ToString(), alert.Origin.ToString(), alert.DateDay, alert.DateHour, alert.Location, alert.SiemLogName, ticketColor);
 
         _logPopupScreen.TryGetComponent(out SiemLogInfoHolder logHolder);
         logHolder.UpdateLog(alert.SiemLog);

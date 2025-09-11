@@ -16,6 +16,7 @@ public class Ticket
     private List<TicketObjectives> _objectives;
     private List<TicketLog> _logs;
     private string _siemLog;
+    private string _siemLogName;
     private int _currentObjective;
 
     public PlaybookType Playbook => _playbook;
@@ -33,6 +34,7 @@ public class Ticket
     public List<TicketObjectives> Objectives => _objectives;
     public List<TicketLog> Logs => _logs;
     public string SiemLog => _siemLog;
+    public string SiemLogName => _siemLogName;
 
     public Ticket(SO_Ticket infos)
     {
@@ -52,6 +54,7 @@ public class Ticket
         _objectives = new List<TicketObjectives>();
         _logs = infos.Loggs;
         _siemLog = infos.SiemLog;
+        _siemLogName = infos.SiemLogName;
 
         foreach (var obj in infos.Objectives)
             _objectives.Add(obj.Clone());

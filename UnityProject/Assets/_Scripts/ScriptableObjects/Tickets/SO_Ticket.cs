@@ -16,7 +16,9 @@ public class SO_Ticket : ScriptableObject
     [BoxGroup("Tick Task and siemtinel's infos")] public string DateHour;
     [BoxGroup("Tick Task and siemtinel's infos")] public int RiskLevel;
 
+    [BoxGroup("Siemtinel's infos")] public string SiemLogName;
     [BoxGroup("Siemtinel's infos")] public string SiemLog;
+
 
     [BoxGroup("Desconex's infos")] public List<TicketLog> Loggs;
 
