@@ -99,7 +99,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     private void OpenAlert(Ticket alert, Color ticketColor)
     {
-        if (ShouldntOpenLowLevel())
+        if (ShouldntOpenLowLevel(alert.RiskLevel))
             EventManager.MakePlayerThink(ThoughtKey.WrongAlertOpen);
 
         _alertPopupScreen.TryGetComponent(out PopupInfoHolder holder);
@@ -180,9 +180,10 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             Destroy(obj);
     }
 
-    private bool ShouldntOpenLowLevel()
+    private bool ShouldntOpenLowLevel(int alertLevel)
     {
         bool shouldntOpen = false;
+        bool isLowLevel = alertLevel < 5;
 
         for (int i = 0; i < _tickets.Count; i++)
         {
@@ -195,7 +196,7 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             }
         }
 
-        return shouldntOpen;
+        return shouldntOpen && isLowLevel;
     }
 
     public void OpenCanvas()

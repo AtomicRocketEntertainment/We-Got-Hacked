@@ -20,8 +20,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private Transform _SitetoggleGroup;
 
-    [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _ransomwareName;
     [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _criptoWallet;
+    [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _hashDp;
 
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _blockedCanvas;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _emptyPlaybookScreen;
@@ -59,8 +59,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private string _deviceSelect = "";
     private string _originSelect = "";
     private string _dateSelect = "";
-    private string _ransomwareSelect = "";
     private string _walletSelect = "";
+    private string _hashSelect = "";
     private bool _canOpenPopUp = false;
 
     public ScreenType CurrentType => _screenType;
@@ -76,9 +76,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType?.onValueChanged.AddListener(UpdateDeviceSelected);
         _originType?.onValueChanged.AddListener(UpdateOriginSelected);
         _dateDp?.onValueChanged.AddListener(UpdateDateSelected);
-        _ransomwareName?.onValueChanged.AddListener(UpdateRansomwareSelected);
         _criptoWallet?.onValueChanged.AddListener(UpdateWalletSelected);
-
+        _hashDp?.onValueChanged.AddListener(UpdateHashSelected);
     }
 
 
@@ -93,8 +92,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType?.onValueChanged.RemoveListener(UpdateDeviceSelected);
         _originType?.onValueChanged.RemoveListener(UpdateOriginSelected);
         _dateDp?.onValueChanged.RemoveListener(UpdateDateSelected);
-        _ransomwareName?.onValueChanged.RemoveListener(UpdateRansomwareSelected);
         _criptoWallet?.onValueChanged.RemoveListener(UpdateWalletSelected);
+        _hashDp?.onValueChanged.RemoveListener(UpdateHashSelected);
+
     }
 
     private void UpdatePlaybookSelected(int value)
@@ -114,8 +114,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateDeviceSelected(int value) { _deviceSelect = _deviceType.options[value].text; }
     private void UpdateOriginSelected(int value) { _originSelect = _originType.options[value].text; }
     private void UpdateDateSelected(int value) { _dateSelect = _dateDp.options[value].text; }
-    private void UpdateRansomwareSelected(int value) { _ransomwareSelect = _ransomwareName.options[value].text; }
     private void UpdateWalletSelected(int value) { _walletSelect = _criptoWallet.options[value].text; }
+    private void UpdateHashSelected(int value) { _hashSelect = _hashDp.options[value].text; }
+
 
 
 
@@ -149,8 +150,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType.ClearOptions();
         _originType.ClearOptions();
         _dateDp.ClearOptions();
-        _ransomwareName.ClearOptions();
         _criptoWallet.ClearOptions();
+        _hashDp.ClearOptions();
 
         if (softwareState != SoftwareState.FullAccess) return;
 
@@ -171,8 +172,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         List<string> deviceOptions = new List<string> { _deviceSelect };
         List<string> originOptions = new List<string> { _originSelect };
         List<string> dateOptions = new List<string> { _dateSelect };
-        List<string> ransomwareOptions = new List<string> { _ransomwareSelect };
         List<string> criptWalletOptions = new List<string> { _walletSelect };
+        List<string> hashOptions = new List<string> { _hashSelect };
 
 
         foreach (SO_Ticket ticket in ticketList.Tickets)
@@ -191,11 +192,11 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             if (!originOptions.Contains(ticket.Origin.ToString()))
                 originOptions.Add(ticket.Origin.ToString());
 
-            if (!ransomwareOptions.Contains(ticket.RansomwareInformation.RansomwareName))
-                ransomwareOptions.Add(ticket.RansomwareInformation.RansomwareName);
-
             if (!criptWalletOptions.Contains(ticket.RansomwareInformation.CriptoWallet))
                 criptWalletOptions.Add(ticket.RansomwareInformation.CriptoWallet);
+
+            if (!hashOptions.Contains(ticket.RansomwareInformation.Hash))
+                hashOptions.Add(ticket.RansomwareInformation.Hash);
 
             dateOptions.Add($"{ticket.DateDay} - {ticket.DateHour}");
         }
@@ -216,8 +217,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType.AddOptions(deviceOptions);
         _originType.AddOptions(originOptions);
         _dateDp.AddOptions(dateOptions);
-        _ransomwareName.AddOptions(ransomwareOptions);
         _criptoWallet.AddOptions(criptWalletOptions);
+        _hashDp.AddOptions(hashOptions);
     }
 
     private void UpdateCurrentTicket(Ticket currentTicket)
@@ -380,8 +381,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
                 areSelected = pichacaoCount > 0;
                 break;
             case nameof(PlaybookType.Ransomware):
-                Debug.Log($"[PlaybookInfosAreSelected] Ransomware selecionado: {_ransomwareSelect}, Wallet selecionado: {_walletSelect}");
-                areSelected = _ransomwareSelect != "" && _walletSelect != "";
+                Debug.Log($"[PlaybookInfosAreSelected] Wallet selecionado: {_walletSelect}, Hash selecionado: {_hashSelect}");
+                areSelected = !string.IsNullOrEmpty(_hashSelect) && !string.IsNullOrEmpty(_walletSelect);
                 break;
             default:
                 Debug.Log("[PlaybookInfosAreSelected] Nenhuma verificação especial para esse playbook.");
@@ -405,7 +406,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
                 break;
             case nameof(PlaybookType.Ransomware):
                 Debug.Log($"[VerifyPlaybookInfos] Verificando Ransomware. Ticket.Ransomware={ticket.RansomwareInfos.RansomwareName}, Wallet={ticket.RansomwareInfos.CriptoWallet}");
-                isCorrect = VerifyRansomware(ticket.RansomwareInfos.RansomwareName, ticket.RansomwareInfos.CriptoWallet);
+                isCorrect = VerifyRansomware(ticket.RansomwareInfos.CriptoWallet, ticket.RansomwareInfos.Hash);
                 break;
             default:
                 Debug.Log("[VerifyPlaybookInfos] Playbook sem verificações específicas.");
@@ -479,16 +480,16 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         return isCorrectSiteSelected;
     }
 
-    private bool VerifyRansomware(string ransomware, string wallet)
+    private bool VerifyRansomware(string wallet, string hash)
     {
-        Debug.Log($"[VerifyRansomware] Entrou na função. Ransomware esperado: {ransomware}, Wallet esperada: {wallet}");
+        Debug.Log($"[VerifyRansomware] Entrou na função. Wallet esperada: {wallet}, Hash esperada: {hash}");
 
-        string selectedName = _ransomwareName.options[_ransomwareName.value].text;
         string selectedWallet = _criptoWallet.options[_criptoWallet.value].text;
+        string selectedHash = _hashDp.options[_hashDp.value].text;
 
-        Debug.Log($"[VerifyRansomware] Ransomware selecionado: {selectedName}, Wallet selecionada: {selectedWallet}");
+        Debug.Log($"[VerifyRansomware] Wallet selecionada: {selectedWallet}, Hash selecionada: {selectedHash}");
 
-        bool isCorrect = selectedName == ransomware && selectedWallet == wallet;
+        bool isCorrect = selectedWallet == wallet && selectedHash == hash;
 
         Debug.Log($"[VerifyRansomware] Comparação: (SelectedName==Esperado && SelectedWallet==Esperada) => {isCorrect}");
         return isCorrect;
@@ -513,8 +514,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _deviceType.ClearOptions();
         _originType.ClearOptions();
         _dateDp.ClearOptions();
-        _ransomwareName.ClearOptions();
         _criptoWallet.ClearOptions();
+        _hashDp.ClearOptions();
 
         foreach (var toggle in _RisktoggleGroup.GetComponentsInChildren<Toggle>())
             toggle.isOn = false;
