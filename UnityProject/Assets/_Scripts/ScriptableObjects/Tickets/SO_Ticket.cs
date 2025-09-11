@@ -151,6 +151,7 @@ public struct RansomwareInformations
     public float Size;
     public string CriptoWallet;
     public string Hash;
+    public string Exe;
     [Tooltip("Sim ou Nao")] public string IsInTheBank;
     [Range(0, 100)] public int MaliciousPercentage;
     public int RelatedTimes;

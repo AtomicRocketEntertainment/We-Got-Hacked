@@ -17,11 +17,11 @@ public class MalWhereHashUpdater : MonoBehaviour
     {
         _icon.sprite = icon;
         _hashMainNameField.SetText(infos.Hash);
-        _hashExeNameField.SetText(infos.Hash + ".exe");
+        _hashExeNameField.SetText(infos.Exe);
         _lastAnalysisField.SetText(infos.LastAnalysis + " meses atrás");
         _sizeField.SetText(infos.Size + " KB");
         _aboutRansomwareField.SetText(infos.Description);
-        _manufacturerOneField.SetText("Identificação no fabricante 1: " + infos.ManufacterNameOne);
-        _manufacturerTwoField.SetText("Identificação no fabricante 2: " + infos.ManufacterNameTwo);
+        _manufacturerOneField.SetText("AntiVirótico: " + infos.ManufacterNameOne);
+        _manufacturerTwoField.SetText("Lava Drive: " + infos.ManufacterNameTwo);
     }
 }
