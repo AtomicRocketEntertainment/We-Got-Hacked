@@ -15,6 +15,7 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
 
     [SerializeField, BoxGroup("Start Screen")] private Button _startMeetingButton;
+    [SerializeField, BoxGroup("Start Screen")] private bool _shouldStartAutomatic;
 
     [SerializeField, BoxGroup("Awaiting Screen")] private Transform _awaitingContainer;
 
@@ -37,15 +38,14 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
         _avanceLinesButton.gameObject.SetActive(false);
         _currentSpeaker = 0;
         _lastPerson = null;
-        _peopleAtCall = new Dictionary<string, MeetingPerson>();
+    }
 
-        for (int personIndex = 0; personIndex < _meetingPersons.Count; personIndex++)
+    private void Start()
+    {
+        if (_shouldStartAutomatic)
         {
-            MeetingPerson newPerson = new MeetingPerson(_meetingPersons[personIndex]);
-            SpawnStreaming(newPerson);
-
-            if (!_peopleAtCall.ContainsKey(newPerson.Name))
-                _peopleAtCall.Add(newPerson.Name, newPerson);
+            SpawnPeople();
+            StartStreaming();
         }
     }
 
@@ -66,10 +66,25 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
     private void StartMeeting()
     {
         EventManager.DisableToolbar();
+        SpawnPeople();
         _startScreen.SetActive(false);
         _awaitingScreen.SetActive(true);
 
         StartCoroutine(LoginPeople());
+    }
+
+    private void SpawnPeople()
+    {
+        _peopleAtCall = new Dictionary<string, MeetingPerson>();
+
+        for (int personIndex = 0; personIndex < _meetingPersons.Count; personIndex++)
+        {
+            MeetingPerson newPerson = new MeetingPerson(_meetingPersons[personIndex]);
+            SpawnStreaming(newPerson);
+
+            if (!_peopleAtCall.ContainsKey(newPerson.Name))
+                _peopleAtCall.Add(newPerson.Name, newPerson);
+        }
     }
 
     private IEnumerator LoginPeople()

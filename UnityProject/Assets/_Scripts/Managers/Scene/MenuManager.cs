@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Net.Mail;
-using System;
 
 public class MenuManager : MonoBehaviour
 {
