@@ -150,13 +150,13 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             newSideButton.name = button.Name;
             newMainButton.name = button.Name;
 
-            newMainButton.TryGetComponent(out DocumentButtonInstance instance);
+            DocumentButtonInstance instance = newMainButton.GetComponentInChildren<DocumentButtonInstance>();
             newSideButton.TryGetComponent(out DocumentButtonInstance sideInstance);
-            newMainButton.TryGetComponent(out Button btnMain);
+            Button btnMain = newMainButton.GetComponentInChildren<Button>();
             newSideButton.TryGetComponent(out Button btnSide);
 
-            sideInstance.Init(button);
-            instance.Init(button);
+            sideInstance.Init(button, shouldResize: false);
+            instance.Init(button, shouldResize: true);
 
             _buttonsSpawned[button.Index] = newMainButton;
             _sideButtons.Add(newSideButton);
@@ -179,9 +179,9 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
                 {
                     GameObject archive = Instantiate(_btnMainDocumentprefab, _mainDocumentParent, false);
                     archive.name = button.Name;
-                    archive.TryGetComponent(out DocumentButtonInstance archiveInstance);
-                    archive.TryGetComponent(out Button btnArchive);
-                    archiveInstance.Init(newButton);
+                    DocumentButtonInstance archiveInstance = archive.GetComponentInChildren<DocumentButtonInstance>();
+                    Button btnArchive = archive.GetComponentInChildren<Button>();
+                    archiveInstance.Init(newButton, shouldResize: true);
                     archive.SetActive(false);
 
                     btnArchive.onClick.AddListener(() => ArchiveClicked(newButton.Type, newButton.Text, button.Name));
