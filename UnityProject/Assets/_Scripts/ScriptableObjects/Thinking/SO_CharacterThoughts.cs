@@ -52,5 +52,7 @@ public enum ThoughtKey
     WrongIPOnRemotinik,
     SendMessageToPks,
     ShouldStartTheMeeting,
-    ShouldntSearchOnMalwhere
+    ShouldntSearchOnMalwhere,
+    OpenPDFFirstTime,
+    OpenHackedWebsite
 }

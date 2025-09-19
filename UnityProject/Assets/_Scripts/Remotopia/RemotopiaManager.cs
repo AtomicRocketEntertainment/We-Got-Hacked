@@ -41,12 +41,14 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private bool _selectedCorrectUser;
     private Dictionary<int, GameObject> _buttonsSpawned;
     private List<GameObject> _sideButtons; //needed to keep training to update later
+    private bool _firstTimeOpenTxt;
 
     private readonly string _emailLore6Day2 = "Lore 6 Day 2";
     private readonly string _emailLore2Day2 = "Lore 2 Day 2";
 
     private void Awake()
     {
+        _firstTimeOpenTxt = true;
         _selectedCorrectUser = false;
         _conectBtn.interactable = false;
         _buttonsSpawned = new Dictionary<int, GameObject>();
@@ -232,6 +234,12 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
                 _fileNameText.text = $"{fileName} - Bloco de Notas";
                 _txtScreen.SetActive(true);
                 _lockedScreen.SetActive(false);
+
+                if (_firstTimeOpenTxt)
+                {
+                    _firstTimeOpenTxt = false;
+                    EventManager.MakePlayerThink(ThoughtKey.SendMessageToPks);
+                }
                 break;
 
             case DocType.BLOCKED:
@@ -252,7 +260,6 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
         if (_currentUser == CurrentRemotopiaUser.Remotopia_Server_Day_Two)
         {
             EventManager.EnablePlayerWriteEmail();
-            EventManager.MakePlayerThink(ThoughtKey.SendMessageToPks);
             EventManager.SpawnEmail(EmailType.LORE);
         }
 

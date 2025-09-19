@@ -15,6 +15,13 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
     [SerializeField] private GameObject[] _siteContentScreens;
 
     private Dictionary<Button, GameObject> _screenHandler = new Dictionary<Button, GameObject>();
+    private bool _firstTimeOpenSustentability;
+    private readonly int _sustentabilityIndex = 4;
+
+    private void Awake()
+    {
+        _firstTimeOpenSustentability = true;
+    }
 
     void OnEnable()
     {
@@ -26,11 +33,12 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
 
         for (int i = 0; i < _siteButtons.Length; i++)
         {
+            int index = i;
             if (!_screenHandler.ContainsKey(_siteButtons[i]))
                 _screenHandler.Add(_siteButtons[i], _siteContentScreens[i]);
 
             Button buttonRef = _siteButtons[i]; 
-            buttonRef.onClick.AddListener(() => ActiveButtonScreen(buttonRef));
+            buttonRef.onClick.AddListener(() => ActiveButtonScreen(buttonRef, index));
         }
     }
 
@@ -40,8 +48,14 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
             button.onClick.RemoveAllListeners();
     }
 
-    private void ActiveButtonScreen(Button btn)
+    private void ActiveButtonScreen(Button btn, int index)
     {
+        if (index == _sustentabilityIndex && _firstTimeOpenSustentability) //not the bast way, but works for now.
+        {
+            _firstTimeOpenSustentability = false;
+            EventManager.MakePlayerThink(ThoughtKey.OpenHackedWebsite);
+        }
+            
         foreach (var screen in _siteContentScreens)
             screen.SetActive(false);
 
