@@ -24,23 +24,7 @@ MonoBehaviour:
     Name: Rafael Medina Oliveira
     Email: rafael.medi.o@cafesoc.com
   Title: 
-  Content: "<b>Tiago,</b>\n\nPrimeiramente, lhe desejo uma boa noite. Espero que
-    esteja tudo nos conformes.\n\nA partir desse momento, passaremos a utilizar um
-    recurso do SIEMtinel que n\xE3o foi explorado anteriormente. O campo de Log e
-    HASH.\n\nAcesse o software e verifique um novo alerta que est\xE1 intencionalmente
-    marcado como falso positivo. Este alerta tem fins exclusivamente did\xE1ticos,
-    portanto, nenhuma a\xE7\xE3o pr\xE1tica \xE9 necess\xE1ria neste momento.\n\n<b>Ao
-    abri-lo, direcione sua aten\xE7\xE3o \xE0 se\xE7\xE3o inferior, onde est\xE1
-    localizado o campo HASH. Trata-se de uma assinatura digital \xFAnica associada
-    a arquivos execut\xE1veis, que pode ser extremamente \xFAtil na identifica\xE7\xE3o
-    de padr\xF5es recorrentes e elementos potencialmente maliciosos.</b>\n\n<b>Al\xE9m
-    disso, confira o bot\xE3o de Log dispon\xEDvel no alerta em quest\xE3o. Voc\xEA
-    notar\xE1 que alguns arquivos presentes nos registros exibem a extens\xE3o \u201C.locked\u201D.
-    Essa nomenclatura \xE9 um indicativo recorrente em ataques de ransomware, sugerindo
-    que os arquivos foram criptografados.</b>\n\nO objetivo desta orienta\xE7\xE3o
-    \xE9 ampliar sua familiaridade com sinais de comportamento malicioso, mesmo que
-    nem sempre eles estejam vis\xEDveis na superf\xEDcie.\n\nMantenha o foco.\n\n<b>Raquel
-    Oliveira</b>\nGerente de Cyberseguran\xE7a \u2013 C.A.F.E."
+  Content: 
   HasResponse: 1
   QuestionText: Qual a melhor forma de descrever o meu achado?
   ConfirmQuestionText: "\xC9 realmente isso que quero falar pro lorde das tecnologias?"
@@ -48,8 +32,8 @@ MonoBehaviour:
     artefato raro, e n\xE3o posso me dar ao luxo de desperdi\xE7\xE1-lo mais uma
     vez."
   Responses:
-  - TextOption: "Encontrei a lend\xE1ria corre\xE7\xE3o!"
-    EmailTitle: "Encontrei a Lend\xE1ria Corre\xE7\xE3o!"
+  - TextOption: RemoteAccess-2021-107.
+    EmailTitle: Enfraquecidos... Mas Sempre Em Frente
     EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nComo voc\xEA j\xE1 sabe, estou na linha
       de frente da batalha contra o ataque de ransomware que amea\xE7a nossas defesas.\n\nDescobri
       que o nome da praga usada pelos inimigos \xE9 Cryptonizer. Esse nome me chamou
@@ -58,54 +42,44 @@ MonoBehaviour:
       como a pedra rouba a for\xE7a da hero\xEDna, deixando-a vulner\xE1vel e...
       bem, como se estivesse gripada mesmo, esse ransomware drenou as energias vitais
       do servidor da PetroCais.\n\n<b>Mas n\xE3o existe crime perfeito. Em um pergaminho
-      digital, encontrei a l\xE2mina que pode cortar o mal pela raiz. O patch de
-      corre\xE7\xE3o RemoteAccess-2021-107!</b>\n\nAgora, Gustavo, a responsabilidade
+      digital, encontrei a po\xE7\xE3o de cura que ir\xE1 desinfetar o mal pela raiz.
+      O patch de corre\xE7\xE3o RemoteAccess-2021-107!</b>\n\nAgora, Gustavo, a responsabilidade
       est\xE1 em suas m\xE3os. Conduza as pr\xF3ximas a\xE7\xF5es com coragem e estrat\xE9gia
       e fa\xE7a com que a fortaleza de petr\xF3leo permane\xE7a de p\xE9.\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael
       Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 1
-  - TextOption: Encontrei a maldita praga!
-    EmailTitle: Encontrei a Maldita Praga!
+  - TextOption: FileServer-2021-00105
+    EmailTitle: Destruindo as Trancas
     EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nComo voc\xEA j\xE1 sabe, estou na linha
       de frente da batalha contra o ataque de ransomware que amea\xE7a nossas defesas.\n\nDescobri
-      que o nome da praga usada pelos inimigos \xE9 Cryptonizer. Esse nome me chamou
-      aten\xE7\xE3o, pois parece muito relacionado a Griptonita, o cristal que enfraquece
-      a Mulher Maravi nos quadrinhos. E, como suspeitei, a analogia \xE9 perfeita!\n\nAssim
-      como a pedra rouba a for\xE7a da hero\xEDna, deixando-a vulner\xE1vel e...
-      bem, como se estivesse gripada mesmo, esse ransomware drenou as energias vitais
-      do servidor da PetroCais.\n\n<b>Mas n\xE3o existe crime perfeito. Em meu cora\xE7\xE3o
-      eu sei que existe algum artefato por a\xED que ir\xE1 acabar com esse mal pela
-      raiz!</b>\n\n<b>Cabe a voc\xEA, Gustavo, pesquisar nas profundezas da rede,
-      decifrar os sinais e encontrar essa corre\xE7\xE3o. Apenas um guardi\xE3o atento
-      e determinado pode recuperar a for\xE7a dessa fortaleza de petr\xF3leo!</b>\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael
-      Medi. Oliveira</b>"
+      que o nome da praga usada pelos inimigos \xE9 LockBit. O nome \xE9 curioso,
+      pois evoca a ideia de um cadeado que aprisiona tudo que toca. Antes mesmo de
+      criptografar os dados, o LockBit j\xE1 rouba informa\xE7\xF5es vitais, pressionando
+      suas v\xEDtimas a cederem ao resgate. Uma t\xE1tica de dupla extors\xE3o que
+      n\xE3o deixa espa\xE7o para erros.\n\n<b>Mas nenhum cadeado fica trancado para
+      sempre. Em nossos arquivos de defesa, encontrei a chave que pode libertar nossa
+      fortaleza digital! O patch de corre\xE7\xE3o FileServer-2021-00105!</b>\n\nAgora,
+      Gustavo, a responsabilidade est\xE1 em suas m\xE3os. Conduza as pr\xF3ximas
+      a\xE7\xF5es com coragem e estrat\xE9gia e fa\xE7a com que a fortaleza de petr\xF3leo
+      permane\xE7a de p\xE9.\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael Medi.
+      Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
-    IsCorrectAnswer: 1
-  - TextOption: "Encontrei uma lembran\xE7a..."
-    EmailTitle: Cryptonizer... Me Faz Recordar...
-    EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nDescobri que o nome da praga usada pelos
-      inimigos pra lan\xE7ar o ransomware \xE9 Cryptonizer. Esse nome me chamou aten\xE7\xE3o,
-      pois parece muito relacionado a Griptonita, o cristal que enfraquece a Mulher
-      Maravi nos quadrinhos.\n\nE isso me fez recordar que do \xFAltimo filme dela...
-      O universo cinematogr\xE1fico Maravi antes era vibrante e inovador, agora parece
-      focado em gerar renda.\n\nNos quadrinhos, ela era uma guerreira destemida,
-      com uma alma dourada. Ajudava os necessitados, caminhava entre mortais, refletia
-      sobre a complexa estrutura da sociedade moderna. Mas, nesse novo longa, tudo
-      isso foi arruinado\u2026\n\n<b>Transformaram a Mulher Maravi em uma personagem
-      qualquer, com frases de efeito horr\xEDveis. Seu traje verde e amarelo, antes
-      reluzente nas m\xE3os de ilustradores habilidosos, virou um uniforme emborrachado
-      tosco, com efeitos visuais de jogos mobile. Ela, que era o cora\xE7\xE3o da
-      equipe, o pilar do equil\xEDbrio, agora \xE9 apenas uma lutadora gen\xE9rica,
-      carregando um passado tr\xE1gico inventado por engravatados.</b>\n\nMinha alma
-      sofreu ao assistir essa atrocidade. Preferia ter assistido a biografia de um
-      jogador de futebol brasileiro famoso. N\xE3o sei se a culpa \xE9 dos roteiristas,
-      do est\xFAdio ou de todo mundo junto. S\xF3 sei que o encanto se perdeu!\n\nMas
-      e voc\xEA? Acredita que ainda h\xE1 caldo a tirar desta fonte, ou ela secou
-      de vez? Anseio por saber sua opini\xE3o.\n\n<b>Atenciosamente,</b>\n<b>Rafael
-      Martins</b>"
+    IsCorrectAnswer: 0
+  - TextOption: RAT-2021-110
+    EmailTitle: O Exterminador de Minhocas
+    EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nComo voc\xEA j\xE1 sabe, estou na linha
+      de frente da batalha contra o ataque de ransomware que amea\xE7a nossas defesas.\n\nDescobri
+      que o nome da praga usada pelos inimigos \xE9 o XWorm. Ele geralmente se espalha
+      por e-mails de phishing contendo anexos maliciosos que desencadeiam scripts
+      PowerShell, baixando e executando o payload final. Uma cadeia letal de ataques
+      digitais, cuidadosamente orquestrada.\n\n<b>Mas n\xE3o existe sistema invenc\xEDvel.
+      Nosso arsenal aponta o patch que pode destruir essa maldita minhoca! O RAT-2021-110!</b>\n\nAgora,
+      contamos com voc\xEA para conduzir as pr\xF3ximas a\xE7\xF5es e assegurar que
+      nossa fortaleza permane\xE7a de p\xE9.\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael
+      Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 0
