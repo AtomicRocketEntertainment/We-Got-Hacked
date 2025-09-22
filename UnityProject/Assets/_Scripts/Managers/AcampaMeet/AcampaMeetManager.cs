@@ -27,7 +27,8 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
 
     [SerializeField] private List<SO_MeetingPerson> _meetingPersons = new List<SO_MeetingPerson>();
-    [SerializeField] private List<string> _speakerTimeline = new List<string>();
+    [SerializeField] private List<SO_MeetingPerson> _speakerTimelineSO = new List<SO_MeetingPerson>();
+
 
     private Dictionary<string, MeetingPerson> _peopleAtCall;
     private int _currentSpeaker;
@@ -122,13 +123,13 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
     private void MakePeopleTalk()
     {
 
-        if (_currentSpeaker == _speakerTimeline.Count)
+        if (_currentSpeaker == _speakerTimelineSO.Count)
         {
             EventManager.ShowStoryBoard();
             return;
         }
 
-        if (_peopleAtCall.TryGetValue(_speakerTimeline[_currentSpeaker], out MeetingPerson person))
+        if (_peopleAtCall.TryGetValue(_speakerTimelineSO[_currentSpeaker].Name, out MeetingPerson person))
         {
             _lastPerson?.StopTalkin();
             _lastPerson = person;
