@@ -17,7 +17,7 @@ public class AlertInstance : MonoBehaviour, IPointerClickHandler
     {
         _currentHolder = infos;
         _idText.text = _currentHolder.ID;
-        _riskLevel.text = $"{_currentHolder.RiskLevel}\nrisco";
+        _riskLevel.text = $"<line-height=130%><size=120m>{_currentHolder.RiskLevel}</size>\nrisco</line-height>";
 
         _riskBg.color = _riskColors[_currentHolder.RiskLevel - 1];
     }

@@ -31,7 +31,6 @@ public class SiemManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private const string _emailLoreToSpawnAlerts = "Lore 4";
     private const string _emailLoreToSpawnAlertsDayTwo = "Lore 1 Day 2";
     private const string _emailLore3Day2 = "Lore 3 Day 2";
-    private const string _emailLore15Day2 = "Lore 15 Day 2";
 
     private Dictionary<(Character, SoftwareState), ISoftwareStateHandler> _stateHandlers;
     private List<Ticket> _instanceTickets = new List<Ticket>();
