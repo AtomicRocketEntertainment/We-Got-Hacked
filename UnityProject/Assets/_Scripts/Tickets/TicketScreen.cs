@@ -48,7 +48,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dataLeakScreen
     };
 
-    private readonly int _maxObjectiveWithoutScale = 4;
+    private readonly int _maxObjectiveWithoutScale = 5;
     private readonly float _scaleGapForObjective = -50f;
 
     private string _playbookSelect = "";
@@ -277,7 +277,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         if (extraObjective <= 0) return;
 
         _mainCurrentObjectiveScreen.TryGetComponent(out RectTransform rect);
-        float newBottom = rect.offsetMin.y - (extraObjective * _scaleGapForObjective);
+        float newBottom = rect.offsetMin.y + (extraObjective * _scaleGapForObjective);
         rect.offsetMin = new Vector2(rect.offsetMin.x, newBottom);
     }
 
