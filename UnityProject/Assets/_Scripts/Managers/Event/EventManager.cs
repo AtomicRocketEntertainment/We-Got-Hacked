@@ -7,7 +7,6 @@ public static class EventManager
     //Email Related
     public static event Action OnDisablePlayerWriteEmail;
     public static event Action OnEnablePlayerWriteEmail;
-    public static event Action OnPlayerCanWriteEmail;
     public static event Action<GameObject> OnOpenEmail;
     public static event Action OnTryWriteEmail;
     public static event Action<Email> OnWriteEmail;

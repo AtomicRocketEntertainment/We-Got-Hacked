@@ -162,5 +162,5 @@ public struct RansomwareInformations
 
 public enum Character
 {
-    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One, Tiago_Day_Two, Raquel_Day_Two, Rafael_Day_Two
+    None, Tiago_Day_One, Raquel_Day_One, Rafael_Day_One, Tiago_Day_Two, Raquel_Day_Two, Rafael_Day_Two, Tiago_Day_Three, Raquel_Day_Three, Rafael_Day_Three, Eduardo_Day_Three
 }
