@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d03a1bbc822ffa4fa78b3031c5392f1, type: 3}
+  m_Name: Lore 5
+  m_EditorClassIdentifier: 
+  Index: Lore 3 Day 3
+  StartOpen: 0
+  IsEmailToWrite: 1
+  Receiver:
+    Name: Raquel Garcia Hent
+    Email: raquel.g.hent@cafesoc.com
+  Type: 2
+  Sender:
+    Profile: {fileID: 21300000, guid: 02c94e0ece12f214eaaf341331334225, type: 3}
+    Name: Tiago Nogueira Vatto
+    Email: tiago.no.vatto@cafesoc.com
+  Title: 
+  Content: 
+  HasResponse: 1
+  QuestionText: "Tenho que falar sobre o qu\xEA pra Raquel?"
+  ConfirmQuestionText: "T\xE1 certo isso? N\xE3o quero parecer um tonto."
+  WrongFeedbackQuestionText: "Nossa, n\xE3o! Isso n\xE3o t\xE1 certo... J\xE1 perdi
+    muito tempo, preciso arrumar isso r\xE1pido!"
+  Responses:
+  - TextOption: Deixa baixo...
+    EmailTitle: "Deixa pra Amanh\xE3"
+    EmailText: "<b>Ol\xE1, Raquel! Tudo certo?</b>\n\nSinceramente, eu n\xE3o t\xF4
+      afim de resolver isso hoje...<sprite index=\"908\">\n\n<b>\xC9 que acabou de
+      lan\xE7ar um epis\xF3dio novo de JobNote, aquele anime onde o cara escreve
+      o nome de algu\xE9m no livro e a pessoa tem que trabalhar. \xC9 bem maneiro!
+      <sprite index=\"1174\"></b>\n\nSe tiver como deixar pra amanh\xE3, seria melhor.
+      Valeu! <sprite index=\"1186\">\n\n<b>Att, Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  - TextOption: Sobre os dados que foram vazados!
+    EmailTitle: Sem Tempo!
+    EmailText: "<b>Ol\xE1, Raquel!</b>\n\nN\xE3o t\xF4 com muito tempo pra ficar
+      enrolando na resposta...<sprite index=\"587\">\n\n<b>Os dados no site de leil\xE3o
+      s\xE3o da PetroCais mesmo! O Gustavo t\xE1 complemente desesperado aqui! Precisamos
+      correr pra resolver isso! <sprite index=\"1144\">\n\nEstarei aqui qualquer
+      coisa. Bora!\n\n<b>Att, Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 1
+  - TextOption: Sobre o Gustavo estar exagerando.
+    EmailTitle: "N\xE3o Tenho Certeza..."
+    EmailText: "<b>Ol\xE1, Raquel! Tudo certo?</b>\n\nEu falei com o Gustavo e ele
+      t\xE1 muito nervoso...<sprite index=\"68\">\n\n<b>Ainda n\xE3o tenho certeza
+      se os dados foram vazados mesmo, acho que ele s\xF3 t\xE1 exagerando mesmo.
+      Por mim, eu ignorava isso tudo. <sprite index=\"1144\">\n\nSe tiver como perguntar
+      pra outra pessoa, eu agrade\xE7o. Valeu! <sprite index=\"1186\">\n\n<b>Att,
+      Tiago</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  HasEventToSend: 0
+  DispatcherInfo:
+    HasEmailEvent: 0
+    HasNormalEvent: 0
+    EmailTypeToCreate: 0
+    EmailEventSended: 0
+    NormalEventSended: 1
