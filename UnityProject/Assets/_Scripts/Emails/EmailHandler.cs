@@ -49,6 +49,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private readonly string _lore11DayTwo = "Lore 11 Day 2";
     private readonly string _news2Day3 = "News 2 Day 3";
     private readonly string _lore4DayThree = "Lore 4 Day 3";
+    private readonly string _loreAO2DayThree = "Lore A02 Day 3";
 
     private readonly string _loreA04 = "Lore A04";
     
@@ -105,8 +106,9 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         || emailIndex == _loreA04
         || _lore11DayTwo == emailIndex
         || _news2Day3 == emailIndex
-        || _lore4DayThree == emailIndex)
-                _writeEmailState = WriteEmailState.CanWrite;
+        || _lore4DayThree == emailIndex
+        || _loreAO2DayThree == emailIndex)
+            _writeEmailState = WriteEmailState.CanWrite;
         else
             _writeEmailState = WriteEmailState.CantWrite;
     }

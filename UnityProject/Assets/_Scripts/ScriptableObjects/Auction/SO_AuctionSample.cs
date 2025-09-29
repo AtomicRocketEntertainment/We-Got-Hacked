@@ -6,6 +6,7 @@ public class SO_AuctionSample : ScriptableObject
 {
     private const int _quantity = 5;
     public bool IsCorrect;
+    public string AuctionName;
     public int LastBid;
     public int BidMadeQuantity;
     public int BidViews;

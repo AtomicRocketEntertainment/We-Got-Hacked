@@ -55,6 +55,7 @@ public class AuctionManager : MonoBehaviour, INeedOpenCanvas
         {
             _alreadyNotify = true;
             EventManager.SpawnEmail(EmailType.NEWS);
+            EventManager.EnablePlayerWriteEmail();
         }
     }
 }

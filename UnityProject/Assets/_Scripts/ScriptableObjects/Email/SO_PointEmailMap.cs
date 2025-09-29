@@ -39,5 +39,9 @@ public enum PointEmailKey
     FirstApkResponseDayTwoN1,
     SecondApkResponseDayTwoN1,
     ThirdApkResponseDayTwoN1,
-    RaquelEmailAboutApkConversationWithTiago
+    RaquelEmailAboutApkConversationWithTiago,
+    LOREA02DAY3,
+    LOREA04DAY3,
+    LOREA05DAY3
+
 }

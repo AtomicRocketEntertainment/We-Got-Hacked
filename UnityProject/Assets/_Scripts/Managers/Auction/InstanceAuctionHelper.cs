@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InstanceAuctionHelper : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _auctionName;
     [SerializeField] private TextMeshProUGUI _lastBid;
     [SerializeField] private TextMeshProUGUI _bidQuantity;
     [SerializeField] private TextMeshProUGUI _bidViews;
@@ -12,6 +13,7 @@ public class InstanceAuctionHelper : MonoBehaviour
 
     public void UpdateInfos(SO_AuctionSample sampleInfos)
     {
+        _auctionName.SetText(sampleInfos.AuctionName);
         _lastBid.SetText($"BrC {sampleInfos.LastBid}");
         _bidQuantity.SetText($"{sampleInfos.BidMadeQuantity}");
         _bidViews.SetText($"{sampleInfos.BidViews}");
