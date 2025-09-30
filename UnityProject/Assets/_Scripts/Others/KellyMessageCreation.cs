@@ -21,6 +21,7 @@ public class KellyMessageCreation : MonoBehaviour
         if (link == _kellyLInk)
         {
             _canvas.SetActive(true);
+            EventManager.MakePlayerThink(ThoughtKey.OpenKellyMessage);
             EventManager.EnablePlayerWriteEmail();
         }
     }

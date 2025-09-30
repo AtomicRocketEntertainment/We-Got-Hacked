@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a170b4e6dec2eb4a82feba9da93e080, type: 3}
+  m_Name: First
+  m_EditorClassIdentifier: 
+  Index: Response 1
+  QuestionText: "Qual seria a resposta mais adequada para lidar com essa quest\xE3o?"
+  ConfirmQuestionText: "Essa \xE9 uma resposta adequada para a situa\xE7\xE3o?"
+  WrongFeedbackQuestionText: "Estou comprometendo o tempo da reuni\xE3o com suposi\xE7\xF5es
+    imprecisas... Preciso retomar o foco."
+  Responses:
+  - TextOption: "A pergunta deve ser respondida pelo analista s\xEAnior."
+    TextToUpdate: "A quest\xE3o apresentada envolve informa\xE7\xF5es t\xE9cnicas
+      e detalhadas sobre a investiga\xE7\xE3o em andamento. Sendo assim, considero
+      mais adequado que ela seja respondida diretamente pelo analista s\xEAnior,
+      que det\xE9m o conhecimento especializado e a vis\xE3o completa do caso."
+    IsCorrectAnswer: 1
+    HasTextToUpdate: 1
+  - TextOption: Consigo responder a pergunta... Provavelmente.
+    TextToUpdate: "Considerando as informa\xE7\xF5es preliminares que obtivemos at\xE9
+      o momento, nossa avalia\xE7\xE3o inicial indica que a origem do vazamento provavelmente
+      est\xE1 relacionada a uma\u2026 ou, diria, possivelmente seria\u2026 existe
+      uma pequena probabilidade de se referir a... um ataque de origem interna, talvez...?"
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: "Essa pergunta \xE9 impertinente."
+    TextToUpdate: "A sua pergunta apresenta uma discrep\xE2ncia consider\xE1vel.
+      N\xE3o a responderei, n\xE3o por falta de conhecimento t\xE9cnico, mas porque
+      considero inapropriado que algu\xE9m com tal n\xEDvel de especializa\xE7\xE3o
+      questione algo sem ter previamente conhecimento s\xF3lido sobre o assunto."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1

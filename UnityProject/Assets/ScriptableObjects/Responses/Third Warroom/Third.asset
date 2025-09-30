@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a170b4e6dec2eb4a82feba9da93e080, type: 3}
+  m_Name: Third
+  m_EditorClassIdentifier: 
+  Index: Response 3
+  QuestionText: "Qual seria a resposta mais adequada para lidar com essa quest\xE3o?"
+  ConfirmQuestionText: "Essa \xE9 uma resposta adequada para a situa\xE7\xE3o?"
+  WrongFeedbackQuestionText: "Estou comprometendo o tempo da reuni\xE3o com suposi\xE7\xF5es
+    imprecisas... Preciso retomar o foco."
+  Responses:
+  - TextOption: Seria pertinente adicionar dados pessoais de todos os suspeitos.
+    TextToUpdate: "Para uma cobertura completa e detalhada do incidente, pode ser
+      pertinente incluir informa\xE7\xF5es pessoais relevantes dos suspeitos, como
+      identidades confirmadas ou antecedentes que contribuam para contextualizar
+      o caso. Poderia acrescentar at\xE9 mesmo fotos faciais, documentos pessoais,
+      contas banc\xE1rias, mapa astral e endere\xE7o residencial dos indiv\xEDduos."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: Todos os detalhes sobre o ataque devem ser compartilhados.
+    TextToUpdate: "Compartilhar todos os detalhes do ataque permite ao p\xFAblico
+      compreender plenamente a extens\xE3o e a gravidade do incidente. Embora informa\xE7\xF5es
+      sens\xEDveis sobre m\xE9todos, vulnerabilidades exploradas ou ferramentas utilizadas
+      possam fornecer conhecimento perigoso a terceiros"
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: "Descreva a\xE7\xF5es tomadas, por\xE9m evite detalhes t\xE9cnicos."
+    TextToUpdate: "Ao relatar as medidas adotadas ap\xF3s o incidente, \xE9 apropriado
+      descrever as a\xE7\xF5es de conten\xE7\xE3o, investiga\xE7\xE3o e mitiga\xE7\xE3o
+      implementadas pela equipe respons\xE1vel. No entanto, detalhes t\xE9cnicos
+      espec\xEDficos, como c\xF3digos, protocolos internos ou configura\xE7\xF5es
+      de sistemas, devem ser omitidos. Dessa forma, a not\xEDcia transmite credibilidade
+      e informa o p\xFAblico, sem comprometer a seguran\xE7a operacional ou a integridade
+      da investiga\xE7\xE3o."
+    IsCorrectAnswer: 1
+    HasTextToUpdate: 1

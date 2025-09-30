@@ -54,5 +54,6 @@ public enum ThoughtKey
     ShouldStartTheMeeting,
     ShouldntSearchOnMalwhere,
     OpenPDFFirstTime,
-    OpenHackedWebsite
+    OpenHackedWebsite,
+    OpenKellyMessage
 }
