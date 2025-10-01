@@ -15,7 +15,6 @@ public class Hyperlink : MonoBehaviour, IPointerClickHandler
         {
             TMP_LinkInfo linkInfo = _textMeshProComponent.textInfo.linkInfo[linkIndex];
             EventManager.ClickLink(linkInfo.GetLinkID());
-            Debug.Log("Link ID: " + linkInfo.GetLinkID());
         }
     }
 }
