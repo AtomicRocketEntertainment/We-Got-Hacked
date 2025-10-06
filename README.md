@@ -7,7 +7,7 @@ Objetivo do Projeto
 -------
 O objetivo de We Got Hacked é gamificar cenários comuns de cibersegurança, oferecendo uma forma dinâmica e interativa de desenvolver as competências de estudantes e profissionais da área. Cada capítulo proporciona uma experiência prática e imersiva, permitindo que os jogadores aprimorem suas habilidades em um ambiente seguro e controlado.
 
-Conheça as Entidades 
+Conheça as Empresas e Entidades
 -------
 ![Entidades](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/EntitiesNew.png)
 
@@ -30,7 +30,7 @@ Conheça os Personagens
 
 **Contato da PatroCais:** Gustavo Ribeiro, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança.
 
-Narrativa
+Conheça o Estilo de Narrativa
 -------
 ![Storyboards](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/StoryboardsNew.png)
 
@@ -40,11 +40,17 @@ O jogo também contará com momentos de múltipla escolha, nos quais o jogador t
 
 ![Decision](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/DecisionNew.png)
 
-Primeiro Cenario (Pichação Ativista)
+Conheça a Historia
 -------
-O jogo será dividido em três dias, cada um abordando um incidente comum enfrentado por empresas de cibersegurança. No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKillers no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
+We Got Hacked sera dividido em três cenarios conectados que se conectam em uma unica historia. Cada cenario ira abordar um tema tipico de cibersegurança.
 
-Plataformas e Ferramentas
+**Pichação Ativista** No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKillers no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
+
+**Pishing, Extorção**: TEXT TEXT TEXT
+
+**Vazamento de Dados** TEXT TEXT TEXT
+
+Conheça as Plataformas e Ferramentas
 -------
 ![Softwares](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Softwares.png)
 
@@ -59,9 +65,9 @@ Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comument
 Estado de Desenvolvimento
 -------
 ![desktop-soc](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC%203.0.png)
-We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (abril) diversos aspectos do jogo já foram definidos e estão em fase de implementação. O jogo será dividido em três dias (três cenários). O primeiro cenário está atualmente quase concluído, e a equipe já iniciou o desenvolvimento do segundo incidente.(Atualizações em breve). 
+We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (outubro) estamos implementando o ultimo cenario do jogo. E depois teremos novembro e dezembro para testes e refinamentos gerais.
 
-Equipe 
+Conheça a Equipe 
 -------
 | Funcionario        | Função               |
 |-------------|-------------------------|
@@ -72,13 +78,6 @@ Equipe
 | [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | Coordenador de Desenvolvimento |
 | [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) | Analista de Segurança |
 | [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer e Producer |
-
-Instruções de Gameplay
--------
-| Tecla        | Ação               |
-|-------------|-------------------------|
-| Botão Esquerdo do Mouse | Realiza todas interações no jogo |
-
 
 ![logo-atomic](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-atomic.png)
 ![logo-rnp](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-rnp-branco.png)
