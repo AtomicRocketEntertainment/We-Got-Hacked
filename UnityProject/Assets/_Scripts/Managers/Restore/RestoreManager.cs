@@ -10,6 +10,7 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     [BoxGroup("UI Dependencies - General")][SerializeField] private Button _loggerBtn;
     [BoxGroup("UI Dependencies - General")][SerializeField] private Button _backupBtn;
     [BoxGroup("UI Dependencies - General")][SerializeField] private Button _controlBtn;
+    [BoxGroup("UI Dependencies - General")][SerializeField] private Button _monitoringBtn;
     [BoxGroup("UI Dependencies - CMD")][SerializeField] private TextMeshProUGUI _cmdLoggerText;
     [BoxGroup("UI Dependencies - Control")][SerializeField] private List<OnOffLoggerToggle> _controlToggles;
     [BoxGroup("UI Dependencies - Backup")][SerializeField] private Button _confirmBackupBtn;
@@ -19,6 +20,7 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     [BoxGroup("Screens")][SerializeField] private GameObject _loggerScreen;
     [BoxGroup("Screens")][SerializeField] private GameObject _backupScreen;
     [BoxGroup("Screens")][SerializeField] private GameObject _controlScreen;
+    [BoxGroup("Screens")][SerializeField] private GameObject _monitoringScreen;
     [BoxGroup("Screens")][SerializeField] private GameObject _cmdScreen;
     [BoxGroup("Screens")][SerializeField] private GameObject _confirmBackupScreen;
 
@@ -48,7 +50,8 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         {
             {_loggerBtn, _loggerScreen},
             {_backupBtn, _backupScreen},
-            {_controlBtn , _controlScreen}
+            {_controlBtn , _controlScreen},
+            {_monitoringBtn , _monitoringScreen},
         };
 
         CreateLoggers();

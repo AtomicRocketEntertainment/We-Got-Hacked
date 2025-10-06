@@ -30,6 +30,8 @@ public static class EventManager
     public static event Action<SiteBackup> OnOpenBackup;
     public static event Action<RestoreState> OnSiteIsOff;
     public static event Action<RestoreState> OnChangeRestoreState;
+    public static event Action<SO_ConsoleInfos> OnConsoleOpened;
+    public static event Action<string> OnConsoleInfoCopied;
 
 
     //Global Gaming Mechanic
@@ -383,6 +385,30 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnChangeRestoreState event.");
+        }
+    }
+
+    public static void OpenRestoreConsole(SO_ConsoleInfos infos)
+    {
+        if (OnConsoleOpened != null)
+        {
+            OnConsoleOpened(infos);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnConsoleOpened event.");
+        }
+    }
+
+    public static void CopyConsole(string key)
+    {
+        if (OnConsoleInfoCopied != null)
+        {
+            OnConsoleInfoCopied(key);
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnConsoleInfoCopied event.");
         }
     }
 
