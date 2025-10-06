@@ -42,7 +42,7 @@ O jogo também contará com momentos de múltipla escolha, nos quais o jogador t
 
 Conheça a Historia
 -------
-We Got Hacked sera dividido em três cenarios conectados que se conectam em uma unica historia. Cada cenario ira abordar um tema tipico de cibersegurança.
+We Got Hacked será dividido em três cenários conectados que se conectam em uma única história. Cada cenário ira abordar um tema tipico de cibersegurança.
 
 **Pichação Ativista** No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKillers no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
 
