@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 {
     [BoxGroup("Screens"), SerializeField] private GameObject _mainCanvas;
-    [BoxGroup("Screens"), SerializeField] private GameObject _mainContentCanvas;
-    [BoxGroup("Screens"), SerializeField] private GameObject _ipCanvas;
+    [BoxGroup("Screens"), SerializeField] private GameObject _domainCanvas;
     [BoxGroup("Screens"), SerializeField] private GameObject _hashCanvas;
+    [BoxGroup("Screens"), SerializeField] private GameObject _ipCanvas;
+
+    [BoxGroup("Buttons"), SerializeField] private Button _domainBtn;
+    [BoxGroup("Buttons"), SerializeField] private Button _hashBtn;
+    [BoxGroup("Buttons"), SerializeField] private Button _ipBtn;
 
     [BoxGroup("Main UI Elements"), SerializeField] private TMP_Dropdown _searchingElementsDp;
     [BoxGroup("Main UI Elements"), SerializeField] private Button _trySearchBtn;
@@ -96,7 +100,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         SO_Ticket selectedIdTicket = _ticketList.Tickets[ticketIndex];
         bool isCorrectTicket = selectedIdTicket.ID == _correctTicket.ID;
 
-        _mainContentCanvas.SetActive(false);
+        _domainCanvas.SetActive(false);
 
         if (isIpSearch)
         {
@@ -153,7 +157,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     }
     private void BackToMain()
     {
-        _mainContentCanvas.SetActive(true);
+        _domainCanvas.SetActive(true);
         _ipCanvas.SetActive(false);
         _hashCanvas.SetActive(false);
     }
