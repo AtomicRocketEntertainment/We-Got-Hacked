@@ -28,6 +28,9 @@ public class SO_Ticket : ScriptableObject
 
     [BoxGroup("Ransomware Infos")] public RansomwareInformations RansomwareInformation;
 
+    [BoxGroup("DataLeak Infos")] public DataLeakInformations DataLeakInformation;
+
+
     public List<TicketObjectives> Objectives;
 
 
@@ -158,6 +161,29 @@ public struct RansomwareInformations
     [Range(0, 100)] public int MaliciousPercentage;
     public int RelatedTimes;
     public int LastAnalysis;
+}
+
+[System.Serializable]
+public class DataLeakInformations
+{
+    public Domain DomainInfo;
+}
+
+[System.Serializable]
+public class Domain
+{
+    public string Name;
+    public string Owner;
+    public string Document;
+    public string Responsable;
+    public string Country;
+    public string ResponsableContact;
+    public string TechnicalContact;
+    public string ServerOne;
+    public string ServerTwo;
+    public string CreatedDate;
+    public string UpdatedDate;
+    public string Status;
 }
 
 public enum Character

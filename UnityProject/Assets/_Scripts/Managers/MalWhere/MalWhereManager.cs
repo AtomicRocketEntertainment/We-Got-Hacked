@@ -10,21 +10,35 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     [BoxGroup("Screens"), SerializeField] private GameObject _domainCanvas;
     [BoxGroup("Screens"), SerializeField] private GameObject _hashCanvas;
     [BoxGroup("Screens"), SerializeField] private GameObject _ipCanvas;
+    [BoxGroup("Screens"), SerializeField] private GameObject _header;
 
     [BoxGroup("Buttons"), SerializeField] private Button _domainBtn;
     [BoxGroup("Buttons"), SerializeField] private Button _hashBtn;
     [BoxGroup("Buttons"), SerializeField] private Button _ipBtn;
 
-    [BoxGroup("Main UI Elements"), SerializeField] private TMP_Dropdown _searchingElementsDp;
-    [BoxGroup("Main UI Elements"), SerializeField] private Button _trySearchBtn;
     [BoxGroup("Main UI Elements"), SerializeField] private Sprite _iconCorrect;
     [BoxGroup("Main UI Elements"), SerializeField] private Sprite _iconIncorrect;
 
+    [BoxGroup("Domain UI Elements"), SerializeField] private TMP_Dropdown _searchDomainDp;
+    [BoxGroup("Domain UI Elements"), SerializeField] private GameObject _domainInfoScreen;
+    [BoxGroup("Domain UI Elements"), SerializeField] private GameObject _domainSearchScreen;
+    [BoxGroup("Domain UI Elements"), SerializeField] private Button _confirmDomainSearchBtn;
+    [BoxGroup("Domain UI Elements"), SerializeField] private Button _backfromDomainBtn;
 
+    [BoxGroup("IP UI Elements"), SerializeField] private TMP_Dropdown _searchIpDp;
+    [BoxGroup("IP UI Elements"), SerializeField] private GameObject _ipInfoScreen;
+    [BoxGroup("IP UI Elements"), SerializeField] private GameObject _ipSearchScreen;
+    [BoxGroup("IP UI Elements"), SerializeField] private Button _confirmIpSearchBtn;
     [BoxGroup("IP UI Elements"), SerializeField] private Button _backfromIpBtn;
 
-
+    [BoxGroup("Hash UI Elements"), SerializeField] private TMP_Dropdown _searchHashDp;
+    [BoxGroup("Hash UI Elements"), SerializeField] private GameObject _hashInfoScreen;
+    [BoxGroup("Hash UI Elements"), SerializeField] private GameObject _hashSearchScreen;
+    [BoxGroup("Hash UI Elements"), SerializeField] private Button _confirmHashSearchBtn;
     [BoxGroup("Hash UI Elements"), SerializeField] private Button _backfromHashBtn;
+
+
+
 
     [BoxGroup("Infos Dependencies")][SerializeField] private SO_TicketList _ticketList;
     [BoxGroup("Infos Dependencies")][SerializeField] private SO_Ticket _correctTicket;
@@ -32,9 +46,12 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     [SerializeField, BoxGroup("State Fluxogram")] private HistoryPartState _currentChoiceState = HistoryPartState.Part_One;
     [SerializeField, BoxGroup("State Fluxogram")] private Character _currentCharacter = Character.None;
 
-    private string _dropdownSelection;
+    //private string _dropdownSelection;
     private MalWhereState _currentState;
     private Dictionary<(Character, HistoryPartState), IChoiceStateHandler> _choiceStateHandlers;
+    private Dictionary<Button, (GameObject, GameObject, GameObject)> _screens;
+    private GameObject _currentScreen;
+    private GameObject _currentSearchScreen;
 
 
 
@@ -44,15 +61,22 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private void Awake()
     {
         InitSearchingOptions();
-        _dropdownSelection = "";
         _currentState = MalWhereState.CantSearch;
-
+        _currentScreen = _domainCanvas;
+        _currentSearchScreen = _domainSearchScreen;
         _choiceStateHandlers = new();
 
         IChoiceStateSetup choiceSetup = _currentCharacter switch
         {
             Character.Rafael_Day_Two => new Day_Two_ChoiceStateSetupMalwhere_Rafael(),
             _ => null
+        };
+
+        _screens = new Dictionary<Button, (GameObject, GameObject, GameObject)>
+        {
+            { _domainBtn, (_domainCanvas, _domainSearchScreen, _domainInfoScreen)},
+            { _ipBtn, (_ipCanvas, _ipSearchScreen, _ipInfoScreen)},
+            { _hashBtn, (_hashCanvas, _hashSearchScreen, _hashInfoScreen) },
         };
 
         choiceSetup?.RegisterStates(_choiceStateHandlers);
@@ -63,10 +87,15 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         EventManager.OnPlayerCanSearchMalwhere += EnableSearch;
         EventManager.OnEventEmailHandlerIsOpen += CheckState;
 
-        _trySearchBtn.onClick.AddListener(TrySearching);
-        _searchingElementsDp.onValueChanged.AddListener(UpdateDropdownSelection);
+        _confirmDomainSearchBtn.onClick.AddListener(TrySearchDomain);
+        _confirmHashSearchBtn.onClick.AddListener(TrySearchHash);
+        _confirmIpSearchBtn.onClick.AddListener(TrySearchIp);
+        _domainBtn.onClick.AddListener(() => OpenScreen(_domainBtn));
+        _hashBtn.onClick.AddListener(() => OpenScreen(_hashBtn));
+        _ipBtn.onClick.AddListener(() => OpenScreen(_ipBtn));
         _backfromHashBtn.onClick.AddListener(BackToMain);
         _backfromIpBtn.onClick.AddListener(BackToMain);
+        _backfromDomainBtn.onClick.AddListener(BackToMain);
     }
 
     private void OnDisable()
@@ -74,54 +103,83 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         EventManager.OnPlayerCanSearchMalwhere -= EnableSearch;
         EventManager.OnEventEmailHandlerIsOpen -= CheckState;
 
-        _trySearchBtn.onClick.RemoveListener(TrySearching);
-        _searchingElementsDp.onValueChanged.RemoveListener(UpdateDropdownSelection);
+        _confirmDomainSearchBtn.onClick.RemoveListener(TrySearchDomain);
+        _confirmHashSearchBtn.onClick.RemoveListener(TrySearchHash);
+        _confirmIpSearchBtn.onClick.RemoveListener(TrySearchIp);
+        _domainBtn.onClick.RemoveAllListeners();
+        _hashBtn.onClick.RemoveAllListeners();
+        _ipBtn.onClick.RemoveAllListeners();
         _backfromHashBtn.onClick.RemoveListener(BackToMain);
         _backfromIpBtn.onClick.RemoveListener(BackToMain);
-
+        _backfromDomainBtn.onClick.RemoveListener(BackToMain);
     }
 
-    private void UpdateDropdownSelection(int value) => _dropdownSelection = _searchingElementsDp.options[value].text;
-
-    private void TrySearching()
+    private void TrySearchDomain()
     {
-        if (_searchingElementsDp.value == 0) return; //Pesquisar selected
+        if (_searchDomainDp.value == 0) return; //Pesquisar selected
 
-        if (_currentState == MalWhereState.CantSearch)
-        {
-            EventManager.WrongChoice();
-            EventManager.MakePlayerThink(ThoughtKey.ShouldntSearchOnMalwhere);
-            return;
-        }
+        if (!CanSearchWithNotify()) return;
 
-        bool isIpSearch = _dropdownSelection.Length <= 15;
-        int optionIndex = _searchingElementsDp.value - 1;
-        int ticketIndex = optionIndex / 2;
-        SO_Ticket selectedIdTicket = _ticketList.Tickets[ticketIndex];
+        int optionIndex = _searchDomainDp.value - 1;
+        SO_Ticket selectedIdTicket = _ticketList.Tickets[optionIndex];
         bool isCorrectTicket = selectedIdTicket.ID == _correctTicket.ID;
 
-        _domainCanvas.SetActive(false);
+        _domainInfoScreen.SetActive(true);
+        _domainSearchScreen.SetActive(false);
+        _header.SetActive(false);
+        UpdateDomainCanvas(isCorrectTicket, selectedIdTicket);
+    }
 
-        if (isIpSearch)
-        {
-            _ipCanvas.SetActive(true);
-            UpdateIpCanvas(isCorrectTicket, selectedIdTicket);
-            return;
-        }
+    private void TrySearchHash()
+    {
+        if (_searchHashDp.value == 0) return; //Pesquisar selected
 
-        _hashCanvas.SetActive(true);
+        if (!CanSearchWithNotify()) return;
+
+        int optionIndex = _searchHashDp.value - 1;
+        SO_Ticket selectedIdTicket = _ticketList.Tickets[optionIndex];
+        bool isCorrectTicket = selectedIdTicket.ID == _correctTicket.ID;
+
+        _hashInfoScreen.SetActive(true);
+        _hashSearchScreen.SetActive(false);
+        _header.SetActive(false);
         UpdateHashCanvas(isCorrectTicket, selectedIdTicket);
+    }
+
+    private void TrySearchIp()
+    {
+        if (_searchIpDp.value == 0) return; //Pesquisar selected
+        
+        if (!CanSearchWithNotify()) return;
+
+        int optionIndex = _searchIpDp.value - 1;
+        SO_Ticket selectedIdTicket = _ticketList.Tickets[optionIndex];
+        bool isCorrectTicket = selectedIdTicket.ID == _correctTicket.ID;
+
+        _ipInfoScreen.SetActive(true);
+        _ipSearchScreen.SetActive(false);
+        _header.SetActive(false);
+        UpdateIpCanvas(isCorrectTicket, selectedIdTicket);
     }
 
     private void UpdateIpCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
         bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two;
 
-        _ipCanvas.TryGetComponent(out MalWhereIPUpdater updater);
+        _ipInfoScreen.TryGetComponent(out MalWhereIPUpdater updater);
         updater?.UpdateIpInfos(ticket.IPOrigem, ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
 
         if (isCorrectTicket && isRafaelDayTwoTime)
             HandleState();
+    }
+
+    private void UpdateDomainCanvas(bool isCorrectTicket, SO_Ticket ticket)
+    {
+        if (isCorrectTicket)
+            HandleState();
+
+        _domainInfoScreen.TryGetComponent(out MalWhereDomainUpdater updater);
+        updater?.UpdateDomainInfos(ticket.DataLeakInformation.DomainInfo);
     }
 
     private void UpdateHashCanvas(bool isCorrectTicket, SO_Ticket ticket)
@@ -129,22 +187,45 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         if (isCorrectTicket)
             HandleState();
 
-        _hashCanvas.TryGetComponent(out MalWhereHashUpdater updater);
+        _hashInfoScreen.TryGetComponent(out MalWhereHashUpdater updater);
         updater?.UpdateHashInfos(ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
     }
 
     private void InitSearchingOptions()
     {
-        _searchingElementsDp.ClearOptions();
-        List<string> searchingOptions = new List<string>() { "hash, domínio, endereço IP, DNS ou URL" };
+        _searchDomainDp.ClearOptions();
+        _searchHashDp.ClearOptions();
+        _searchIpDp.ClearOptions();
+
+        List<string> domainOptions = new List<string>() { "hash, domínio, endereço IP, DNS ou URL" };
+        List<string> ipOptions = new List<string>() { "hash, domínio, endereço IP, DNS ou URL" };
+        List<string> hashOptions = new List<string>() { "hash, domínio, endereço IP, DNS ou URL" };
+
 
         foreach (SO_Ticket ticket in _ticketList.Tickets)
         {
-            searchingOptions.Add(ticket.RansomwareInformation.Hash);
-            searchingOptions.Add(ticket.IPOrigem);
+            hashOptions.Add(ticket.RansomwareInformation.Hash);
+            ipOptions.Add(ticket.IPOrigem);
+            domainOptions.Add(ticket.DataLeakInformation.DomainInfo.Name);
         }
 
-        _searchingElementsDp.AddOptions(searchingOptions);
+        _searchDomainDp.AddOptions(domainOptions);
+        _searchHashDp.AddOptions(hashOptions);
+        _searchIpDp.AddOptions(ipOptions);
+    }
+
+    private bool CanSearchWithNotify()
+    {
+        bool canSearch = _currentState == MalWhereState.CanSearch;
+
+        if (!canSearch)
+        {
+            EventManager.WrongChoice();
+            EventManager.MakePlayerThink(ThoughtKey.ShouldntSearchOnMalwhere);
+            return !canSearch;
+        }
+        
+        return canSearch;
     }
 
     private void CheckState(string emailIndex)
@@ -157,9 +238,30 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     }
     private void BackToMain()
     {
-        _domainCanvas.SetActive(true);
-        _ipCanvas.SetActive(false);
-        _hashCanvas.SetActive(false);
+        DesactiveAllScreens();
+        _header.SetActive(true);
+        _currentScreen.SetActive(true);
+        _currentSearchScreen.SetActive(true);
+    }
+
+    private void OpenScreen(Button btn)
+    {
+        DesactiveAllScreens();
+        _screens.TryGetValue(btn, out var tuple);
+        _currentScreen = tuple.Item1;
+        _currentSearchScreen = tuple.Item2;
+        _currentScreen.SetActive(true);
+        _currentSearchScreen.SetActive(true);
+    }
+
+    private void DesactiveAllScreens()
+    {
+        foreach (var screen in _screens.Values)
+        {
+            screen.Item1.SetActive(false);
+            screen.Item2.SetActive(false);
+            screen.Item3.SetActive(false);
+        }
     }
 
     public void CloseCanvas() => _mainCanvas.SetActive(false);
