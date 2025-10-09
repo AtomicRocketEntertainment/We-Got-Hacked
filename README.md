@@ -65,10 +65,11 @@ Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comument
 Estado de Desenvolvimento
 -------
 ![desktop-soc](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC%203.0.png)
-We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (outubro) estamos implementando o ultimo cenario do jogo. E depois teremos novembro e dezembro para testes e refinamentos gerais.
+We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (outubro) estamos implementando o ultimo cenario do jogo. Logo apos, em novembro e dezembro faremos testes e refinamentos finais.
 
 Conheça a Equipe 
 -------
+![Equipe-Desenvolvimento](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/WGH%20-%20Equipe%20Desenvolvimento.png)
 | Funcionario        | Função               |
 |-------------|-------------------------|
 | [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D e 3D |
