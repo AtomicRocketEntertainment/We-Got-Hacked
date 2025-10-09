@@ -50,11 +50,11 @@ Conheça a Historia
 -------
 We Got Hacked será dividido em três cenários conectados que se conectam em uma única história. Cada cenário ira abordar um tema tipico de cibersegurança.
 
-**Pichação Ativista** No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKillers no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
+**Pichação Ativista** No primeiro cenário, o jogador deverá coordenar as ações da equipe para conter e reparar os danos causados por um ataque de pichação realizado pelo grupo PetroKillers no site da PetroCais. Durante essa situação, o jogador aprenderá conceitos fundamentais de resposta a incidentes, como o uso de ferramentas de análise de sites, o gerenciamento de tickets e a importância de uma comunicação eficaz com o restante da equipe de segurança.
 
-**Pishing, Extorção**: TEXT TEXT TEXT
+**Pishing, Extorção**: No segundo cenário, o desafio será em uma escala maior. A empresa PetroCais tem seus dados criptografados pelos hackers da PetroKillers, que exigem um resgate para devolvê-los, utilizando um ataque hacker de phishing. Nesse contexto, o jogador conhecerá novos personagens; o advogado, a relações públicas e a gerente de comunicação, que terão papéis fundamentais na resolução deste incidente.
 
-**Vazamento de Dados** TEXT TEXT TEXT
+**Vazamento de Dados** No terceiro cenário, informações críticas de funcionários da PetroCais são vazadas na internet. O jogador deverá investigar a origem do vazamento e identificar os responsáveis. Para isso, contará com o apoio de um novo personagem jogável, especialista em análise forense e resposta a incidentes críticos.
 
 Conheça as Plataformas e Ferramentas
 -------
