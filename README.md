@@ -5,7 +5,13 @@ We Got Hacked é um jogo de simulação e treinamento desenvolvido pela GT-IR, G
 
 Objetivo do Projeto
 -------
-O objetivo de We Got Hacked é gamificar cenários comuns de cibersegurança, oferecendo uma forma dinâmica e interativa de desenvolver as competências de estudantes e profissionais da área. Cada capítulo proporciona uma experiência prática e imersiva, permitindo que os jogadores aprimorem suas habilidades em um ambiente seguro e controlado.
+O objetivo de We Got Hacked é gamificar situações reais de cibersegurança, oferecendo uma forma dinâmica e interativa de desenvolver as competências de estudantes e profissionais da área. Cada capítulo proporciona uma experiência prática e imersiva, permitindo que os jogadores aprimorem suas habilidades em um ambiente seguro e controlado.
+
+A proposta surge como resposta à crescente falta de profissionais qualificados para atuar em times de resposta a incidentes. Por meio de uma abordagem lúdica e acessível, We Got Hacked busca reduzir essa lacuna de capacitação, tornando o aprendizado de cibersegurança mais atraente e engajante. Assim, o jogo contribui para a formação de novos talentos e o fortalecimento do ecossistema nacional de segurança digital.
+
+Modelo de Negócio
+-------
+Nossa proposta de negócio baseia-se em um modelo escalável, voltado tanto para instituições quanto para empresas de tecnologia. O jogo será oferecido como um serviço (SaaS), com mensalidades ajustadas conforme o número de jogadores, permitindo que escolas, universidades e organizações utilizem a plataforma para capacitação contínua de suas equipes. Além disso, o projeto prevê a inserção de Product Placement, integrando ferramentas e soluções reais de fabricantes ao enredo do jogo, fortalecendo parcerias estratégicas e proporcionando experiências autênticas e educativas aos jogadores.
 
 Conheça as Empresas e Entidades
 -------
