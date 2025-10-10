@@ -23,9 +23,9 @@ Conheça as Empresas e Entidades
 
 **PetroKillers** surgiu em 2017 como um pequeno servidor hacker criado por um grupo de jovens ativistas. No início, realizavam ataques simples, como pichações em sites e denúncias ambientais. Com o tempo, o grupo passou a atrair membros mais experientes, que contribuíram com o desenvolvimento de malwares personalizados e a exploração de vulnerabilidades em sistemas corporativos do setor petrolífero.
 
-Conheça os Personagens
+Conheça os Personages Jogaveis
 -------
-![Personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
+![Personas C.A.F.E](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20C.A.F.E.png)
 **N1:** Tiago Nogueira Vatto, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe. É bem humorado e sempre fala sobre seus interesses pessoais, como jogos e anime, quando tem a oportunidade. Por trás de uma fachada comum, ele esconde um desejo de fazer a diferença.
 
 **N2:** Rafael Medina Oliveira, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes. Para lidar com o estresse do trabalho, ele tende a criar um universo particular em sua mente, inspirado em filmes e quadrinhos que tanto aprecia.
@@ -33,6 +33,10 @@ Conheça os Personagens
 **N3:** Eduardo Pontes Rodrigues, 34, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança. Calmo sob pressão, é reservado, o que pode dificultar trabalho em equipe. Não costuma falar muito e quando o faz, usa frases curtas e objetivas.
 
 **Gerente:** Raquel Garcia Hent, 43, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável. É profissional em resolver problemas de maneira rápida e distribuir tarefas, porém tem certa dificuldade em resolver conflitos pessoais, o que a leva a situações constrangedoras.
+
+Conheça os Personages Coadjuvantes
+-------
+![Personas PetroCais](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20PetroCais.png)
 
 **Contato da PetroCais:** Gustavo Teodoro Inácio, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança. Geralmente irritado ou exausto devido à natureza desgastante de suas funções, ele não busca fazer amizades novas no trabalho.
 
