@@ -26,15 +26,19 @@ Conheça as Empresas e Entidades
 Conheça os Personagens
 -------
 ![Personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
-**N1:** Tiago Monteiro, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
+**N1:** Tiago Nogueira Vatto, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe. É bem humorado e sempre fala sobre seus interesses pessoais, como jogos e anime, quando tem a oportunidade. Por trás de uma fachada comum, ele esconde um desejo de fazer a diferença.
 
-**N2:** Rafael Martins, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
+**N2:** Rafael Medina Oliveira, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes. Para lidar com o estresse do trabalho, ele tende a criar um universo particular em sua mente, inspirado em filmes e quadrinhos que tanto aprecia.
 
-**N3:** Eduardo Silva, 34, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
+**N3:** Eduardo Pontes Rodrigues, 34, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança. Calmo sob pressão, é reservado, o que pode dificultar trabalho em equipe. Não costuma falar muito e quando o faz, usa frases curtas e objetivas.
 
-**Gerente:** Raquel Oliveira, 43, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
+**Gerente:** Raquel Garcia Hent, 43, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável. É profissional em resolver problemas de maneira rápida e distribuir tarefas, porém tem certa dificuldade em resolver conflitos pessoais, o que a leva a situações constrangedoras.
 
-**Contato da PatroCais:** Gustavo Ribeiro, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança.
+**Contato da PetroCais:** Gustavo Teodoro Inácio, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança. Geralmente irritado ou exausto devido à natureza desgastante de suas funções, ele não busca fazer amizades novas no trabalho.
+
+**Relações-públicas da PetroCais:** Thayná Portalupi Avoss, 38. Formada em Comunicação Social, construiu carreira em assessorias de grandes corporações e é reconhecida por sua habilidade em gerenciar crises de imagem. Sempre mede as palavras com precisão e molda seu tom e jeito de falar de acordo com a pessoal a qual está conversando. Extremamente versátil e nunca fica sem assunto em uma conversa.
+
+**Diretor Jurídico da PetroCais:** André Wogad, 54. Advogado com décadas de experiência em direito empresarial e petróleo, já representou a companhia em disputas internacionais complexas. Preza pela precisão jurídica e não tolera decisões precipitadas. Age com frieza mesmo sob pressão. É extremamente leal à integridade institucional da empresa.
 
 Conheça o Estilo de Narrativa
 -------
