@@ -25,7 +25,7 @@ Conheça as Empresas e Entidades
 
 Conheça os Personages Jogaveis
 -------
-![Personas C.A.F.E](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20C.A.F.E.png)
+![Personas C.A.F.E](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20C.A.F.E%201.0.png)
 **N1:** Tiago Nogueira Vatto, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe. É bem humorado e sempre fala sobre seus interesses pessoais, como jogos e anime, quando tem a oportunidade. Por trás de uma fachada comum, ele esconde um desejo de fazer a diferença.
 
 **N2:** Rafael Medina Oliveira, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes. Para lidar com o estresse do trabalho, ele tende a criar um universo particular em sua mente, inspirado em filmes e quadrinhos que tanto aprecia.
@@ -36,7 +36,7 @@ Conheça os Personages Jogaveis
 
 Conheça os Personages Coadjuvantes
 -------
-![Personas PetroCais](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20PetroCais.png)
+![Personas PetroCais](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20PetroCais%201.0.png)
 
 **Contato da PetroCais:** Gustavo Teodoro Inácio, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança. Geralmente irritado ou exausto devido à natureza desgastante de suas funções, ele não busca fazer amizades novas no trabalho.
 
