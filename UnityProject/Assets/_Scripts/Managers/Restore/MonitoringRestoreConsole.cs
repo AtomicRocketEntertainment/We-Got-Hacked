@@ -52,17 +52,17 @@ public class MonitoringRestoreConsole : MonoBehaviour
             _destinyFields[i].SetText(infos.Destiny[i]);
             _protocolFields[i].SetText(infos.Protocol[i]);
             _archiveFields[i].SetText(infos.Archive[i]);
-            _contentFields[i].SetText(infos.Content[i]);
+            _contentFields[i].SetText(infos.ConsoleContent[i].Name);
 
-            _copyBtns[index].onClick.AddListener(() => CopyClicked(infos.Content[index]));
+            _copyBtns[index].onClick.AddListener(() => CopyClicked(infos.ConsoleContent[index]));
         }
     }
 
-    private void CopyClicked(string key)
+    private void CopyClicked(ConsoleContent content)
     {
         //readed by binary 64
         ShowCopyDisplay();
-        EventManager.CopyConsole(key);
+        EventManager.CopyConsole(content);
     }
 
     private void ShowCopyDisplay() => LeanTween.moveLocalX(_copyDisplayScreen, _copyXTranslate, _timeToAnimate).setEase(_tween);

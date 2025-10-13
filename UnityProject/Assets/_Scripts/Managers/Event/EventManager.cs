@@ -31,7 +31,7 @@ public static class EventManager
     public static event Action<RestoreState> OnSiteIsOff;
     public static event Action<RestoreState> OnChangeRestoreState;
     public static event Action<SO_ConsoleInfos> OnConsoleOpened;
-    public static event Action<string> OnConsoleInfoCopied;
+    public static event Action<ConsoleContent> OnConsoleInfoCopied;
 
 
     //Global Gaming Mechanic
@@ -400,11 +400,11 @@ public static class EventManager
         }
     }
 
-    public static void CopyConsole(string key)
+    public static void CopyConsole(ConsoleContent content)
     {
         if (OnConsoleInfoCopied != null)
         {
-            OnConsoleInfoCopied(key);
+            OnConsoleInfoCopied(content);
         }
         else
         {

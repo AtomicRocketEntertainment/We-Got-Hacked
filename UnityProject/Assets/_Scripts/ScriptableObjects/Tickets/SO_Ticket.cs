@@ -166,6 +166,7 @@ public struct RansomwareInformations
 [System.Serializable]
 public class DataLeakInformations
 {
+    [ResizableTextArea] public string Sample;
     public Domain DomainInfo;
 }
 
