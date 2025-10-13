@@ -5,7 +5,13 @@ We Got Hacked é um jogo de simulação e treinamento desenvolvido pela GT-IR, G
 
 Objetivo do Projeto
 -------
-O objetivo de We Got Hacked é gamificar cenários comuns de cibersegurança, oferecendo uma forma dinâmica e interativa de desenvolver as competências de estudantes e profissionais da área. Cada capítulo proporciona uma experiência prática e imersiva, permitindo que os jogadores aprimorem suas habilidades em um ambiente seguro e controlado.
+O objetivo de We Got Hacked é gamificar situações reais de cibersegurança, oferecendo uma forma dinâmica e interativa de desenvolver as competências de estudantes e profissionais da área. Cada capítulo proporciona uma experiência prática e imersiva, permitindo que os jogadores aprimorem suas habilidades em um ambiente seguro e controlado.
+
+A proposta surge como resposta à crescente falta de profissionais qualificados para atuar em times de resposta a incidentes. Por meio de uma abordagem lúdica e acessível, We Got Hacked busca reduzir essa lacuna de capacitação, tornando o aprendizado de cibersegurança mais atraente e engajante. Assim, o jogo contribui para a formação de novos talentos e o fortalecimento do ecossistema nacional de segurança digital.
+
+Modelo de Negócio
+-------
+Nossa proposta de negócio baseia-se em um modelo escalável, voltado tanto para instituições quanto para empresas de tecnologia. O jogo será oferecido como um serviço (SaaS), com mensalidades ajustadas conforme o número de jogadores, permitindo que escolas, universidades e organizações utilizem a plataforma para capacitação contínua de suas equipes. Além disso, o projeto prevê a inserção de Product Placement, integrando ferramentas e soluções reais de fabricantes ao enredo do jogo, fortalecendo parcerias estratégicas e proporcionando experiências autênticas e educativas aos jogadores.
 
 Conheça as Empresas e Entidades
 -------
@@ -17,18 +23,26 @@ Conheça as Empresas e Entidades
 
 **PetroKillers** surgiu em 2017 como um pequeno servidor hacker criado por um grupo de jovens ativistas. No início, realizavam ataques simples, como pichações em sites e denúncias ambientais. Com o tempo, o grupo passou a atrair membros mais experientes, que contribuíram com o desenvolvimento de malwares personalizados e a exploração de vulnerabilidades em sistemas corporativos do setor petrolífero.
 
-Conheça os Personagens
+Conheça os Personages Jogaveis
 -------
-![Personagens](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personagens%202.0.png?raw=true)
-**N1:** Tiago Monteiro, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe.
+![Personas C.A.F.E](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20C.A.F.E%201.0.png)
+**N1:** Tiago Nogueira Vatto, 20, estudante universitário do curso de Segurança da Informação. Suas tarefas diárias incluem o monitoramento de softwares SIEM e o suporte à equipe. É bem humorado e sempre fala sobre seus interesses pessoais, como jogos e anime, quando tem a oportunidade. Por trás de uma fachada comum, ele esconde um desejo de fazer a diferença.
 
-**N2:** Rafael Martins, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes.
+**N2:** Rafael Medina Oliveira, 29, possui mais de uma década de experiência profissional na área de suporte técnico e redes. Suas tarefas diárias incluem a resposta e solução de incidentes. Para lidar com o estresse do trabalho, ele tende a criar um universo particular em sua mente, inspirado em filmes e quadrinhos que tanto aprecia.
 
-**N3:** Eduardo Silva, 34, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança.
+**N3:** Eduardo Pontes Rodrigues, 34, especialista sênior em segurança cibernética, certificado OSCP e CISM. Suas tarefas diárias incluem a investigação e mitigação de ataques de segurança. Calmo sob pressão, é reservado, o que pode dificultar trabalho em equipe. Não costuma falar muito e quando o faz, usa frases curtas e objetivas.
 
-**Gerente:** Raquel Oliveira, 43, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável.
+**Gerente:** Raquel Garcia Hent, 43, possui MBA em Segurança Cibernética. Suas tarefas diárias incluem a coordenação e o apoio à equipe SOC, pela qual é responsável. É profissional em resolver problemas de maneira rápida e distribuir tarefas, porém tem certa dificuldade em resolver conflitos pessoais, o que a leva a situações constrangedoras.
 
-**Contato da PatroCais:** Gustavo Ribeiro, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança.
+Conheça os Personages Coadjuvantes
+-------
+![Personas PetroCais](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/Personas%20PetroCais%201.0.png)
+
+**Contato da PetroCais:** Gustavo Teodoro Inácio, 37, possui diploma em ciencias da computação e tem mais de 15 anos de experiencia em TI. Trabalha atualmente na PetroCais, e é responsavel por ser o ponto de contato entre a empresa e a C.A.F.E., fornecendo informações e permitindo intervenções da equipe de cibersegurança. Geralmente irritado ou exausto devido à natureza desgastante de suas funções, ele não busca fazer amizades novas no trabalho.
+
+**Relações-públicas da PetroCais:** Thayná Portalupi Avoss, 38. Formada em Comunicação Social, construiu carreira em assessorias de grandes corporações e é reconhecida por sua habilidade em gerenciar crises de imagem. Sempre mede as palavras com precisão e molda seu tom e jeito de falar de acordo com a pessoal a qual está conversando. Extremamente versátil e nunca fica sem assunto em uma conversa.
+
+**Diretor Jurídico da PetroCais:** André Wogad, 54. Advogado com décadas de experiência em direito empresarial e petróleo, já representou a companhia em disputas internacionais complexas. Preza pela precisão jurídica e não tolera decisões precipitadas. Age com frieza mesmo sob pressão. É extremamente leal à integridade institucional da empresa.
 
 Conheça o Estilo de Narrativa
 -------
@@ -44,11 +58,11 @@ Conheça a Historia
 -------
 We Got Hacked será dividido em três cenários conectados que se conectam em uma única história. Cada cenário ira abordar um tema tipico de cibersegurança.
 
-**Pichação Ativista** No primeiro dia, o jogador deverá coordenar as ações da equipe para conter e restaurar os danos causados por um ataque de pichação realizado pela PetroKillers no site da PetroCais. Durante esse dia, o jogador aprenderá conceitos fundamentais sobre como lidar com esse tipo de incidente, incluindo o uso de softwares de análise de sites, gerenciamento de tickets e a importância de tomar decisões corretas ao comunicar informações para o restante da equipe de segurança.
+**Pichação Ativista** No primeiro cenário, o jogador deverá coordenar as ações da equipe para conter e reparar os danos causados por um ataque de pichação realizado pelo grupo PetroKillers no site da PetroCais. Durante essa situação, o jogador aprenderá conceitos fundamentais de resposta a incidentes, como o uso de ferramentas de análise de sites, o gerenciamento de tickets e a importância de uma comunicação eficaz com o restante da equipe de segurança.
 
-**Pishing, Extorção**: TEXT TEXT TEXT
+**Pishing, Extorção**: No segundo cenário, o desafio será em uma escala maior. A empresa PetroCais tem seus dados criptografados pelos hackers da PetroKillers, que exigem um resgate para devolvê-los, utilizando um ataque hacker de phishing. Nesse contexto, o jogador conhecerá novos personagens; o advogado, a relações públicas e a gerente de comunicação, que terão papéis fundamentais na resolução deste incidente.
 
-**Vazamento de Dados** TEXT TEXT TEXT
+**Vazamento de Dados** No terceiro cenário, informações críticas de funcionários da PetroCais são vazadas na internet. O jogador deverá investigar a origem do vazamento e identificar os responsáveis. Para isso, contará com o apoio de um novo personagem jogável, especialista em análise forense e resposta a incidentes críticos.
 
 Conheça as Plataformas e Ferramentas
 -------
@@ -65,10 +79,11 @@ Em We Got Hacked o jogador ira aprender a utilizar diversas ferramentas comument
 Estado de Desenvolvimento
 -------
 ![desktop-soc](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/SOC%203.0.png)
-We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (outubro) estamos implementando o ultimo cenario do jogo. E depois teremos novembro e dezembro para testes e refinamentos gerais.
+We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclusão para dezembro do mesmo ano. Atualmente (outubro) estamos implementando o ultimo cenario do jogo. Logo apos, em novembro e dezembro faremos testes e refinamentos finais.
 
 Conheça a Equipe 
 -------
+![Equipe-Desenvolvimento](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/WGH%20-%20Equipe%20Desenvolvimento3.0.png)
 | Funcionario        | Função               |
 |-------------|-------------------------|
 | [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D e 3D |
