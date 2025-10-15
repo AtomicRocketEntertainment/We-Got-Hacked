@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 7484900456730067290}
   - component: {fileID: 3512509171491351263}
   - component: {fileID: 2838558576083387547}
+  - component: {fileID: 1221112335813698172}
   m_Layer: 0
   m_Name: Btn_MalWhere
   m_TagString: Untagged
@@ -402,7 +403,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 952ea615883e4a248bcc2832e9fe830a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7c13e163b77b05468d42a5a4c9a0f47, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -433,10 +434,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.17254902, g: 0.17254902, b: 0.17254902, a: 1}
-    m_HighlightedColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
-    m_PressedColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
-    m_SelectedColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -456,6 +457,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1221112335813698172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350489508026231030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc86c9811ac65ca4c9440e8f617c09a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteToShow: {fileID: 2956088689371903574}
+  _hasTextFeature: 0
+  _styleToUpdate: 0
+  _normalStyle: 0
+  _text: {fileID: 0}
+  _hasColorFeature: 0
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _updatedColor: {r: 0, g: 0, b: 0, a: 0}
+  _spriteToPaint: {fileID: 0}
 --- !u!1 &5294249429402753851
 GameObject:
   m_ObjectHideFlags: 0
