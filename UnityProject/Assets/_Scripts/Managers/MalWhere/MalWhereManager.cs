@@ -238,7 +238,6 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         {
             EventManager.WrongChoice();
             EventManager.MakePlayerThink(ThoughtKey.ShouldntSearchOnMalwhere);
-            return !canSearch;
         }
 
         return canSearch;
