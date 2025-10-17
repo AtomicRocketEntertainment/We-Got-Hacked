@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d03a1bbc822ffa4fa78b3031c5392f1, type: 3}
+  m_Name: Lore 16
+  m_EditorClassIdentifier: 
+  Index: Lore 16 Day 3
+  StartOpen: 0
+  IsEmailToWrite: 1
+  Receiver:
+    Name: Raquel Garcia Hent
+    Email: raquel.g.hent@cafesoc.com
+  Type: 2
+  Sender:
+    Profile: {fileID: 21300000, guid: 9ec2a48ef0db817429fac67f2f55c766, type: 3}
+    Name: Eduardo Pontes Rodrigues
+    Email: eduardo.p.ro@cafesoc.com
+  Title: 
+  Content: "<b>Tiago,</b>\n\n<b>Gostaria de lembr\xE1-lo de que, ao criar o ticket
+    referente ao incidente atual, pode ser necess\xE1rio consultar o arquivo documento_topologia_petrocais.pdf,
+    que cont\xE9m informa\xE7\xF5es essenciais sobre a estrutura de rede e os endere\xE7os
+    dos principais servidores e equipamentos de seguran\xE7a.</b>\n\nO documento
+    j\xE1 est\xE1 aberto em uma das abas do seu navegador. Antes de finalizar o registro
+    do ticket, revise os detalhes nele contidos para esclarecer d\xFAvidas e garantir
+    que todas as informa\xE7\xF5es estejam corretas e completas.\n\nMantenha o foco.\n\n<b>Raquel
+    G. Hent</b>\L<b>Gerente de Ciber Seguran\xE7a \u2013 C.A.F.E.</b>"
+  HasResponse: 1
+  QuestionText: Quero dizer que...
+  ConfirmQuestionText: "\xC9 isso?"
+  WrongFeedbackQuestionText: "Bah... N\xE3o t\xE1 certo."
+  Responses:
+  - TextOption: Enviei.
+    EmailTitle: Enviei.
+    EmailText: "<b>Gerente</b>\n\n<b>Enviei uma baita quantia de informa\xE7\xF5es
+      em anexo.</b>\L\LD\xE1 uma olhada e me retorna."
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 1
+  - TextOption: "N\xE3o encontrei."
+    EmailTitle: "N\xE3o encontrei."
+    EmailText: "<b>Gerente</b>\n\n<b>N\xE3o encontrei nenhuma informa\xE7\xE3o \xFAtil
+      dos hackers.</b>\L\LDepois dou mais uma conferida."
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  - TextOption: "Assisti um film\xE3o."
+    EmailTitle: "Film\xE3o."
+    EmailText: "<b>Gerente</b>\n\n<b>J\xE1 viu o novo filme do Jo\xE3o Wick?</b>\L\L\xC9
+      bem tri, v\xE1rias cenas de a\xE7\xE3o e tudo mais."
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  HasEventToSend: 0
+  DispatcherInfo:
+    HasEmailEvent: 0
+    HasNormalEvent: 0
+    EmailTypeToCreate: 0
+    EmailEventSended: 0
+    NormalEventSended: 1

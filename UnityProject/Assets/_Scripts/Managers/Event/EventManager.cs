@@ -74,6 +74,8 @@ public static class EventManager
 
     //Malwhere related
     public static event Action OnPlayerCanSearchMalwhere;
+    public static event Action OnPlayerCantSearchMalwhere;
+
 
 
     public static void DisablePlayerWriteEmail()
@@ -639,7 +641,7 @@ public static class EventManager
             Debug.LogWarning("No listeners for OnPlayerSetWrResponse event.");
         }
     }
-    
+
     public static void EnablePlayerSearchMalwhere()
     {
         if (OnPlayerCanSearchMalwhere != null)
@@ -649,6 +651,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnPlayerCanSearchMalwhere event.");
+        }
+    }
+    
+    public static void DisablePlayerSearchMalwhere()
+    {
+        if (OnPlayerCantSearchMalwhere != null)
+        {
+            OnPlayerCantSearchMalwhere();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnPlayerCantSearchMalwhere event.");
         }
     }
 }

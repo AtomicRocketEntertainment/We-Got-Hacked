@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d03a1bbc822ffa4fa78b3031c5392f1, type: 3}
+  m_Name: Lore 12
+  m_EditorClassIdentifier: 
+  Index: Lore 12 Day 3
+  StartOpen: 0
+  IsEmailToWrite: 1
+  Receiver:
+    Name: Raquel Garcia Hent
+    Email: raquel.g.hent@cafesoc.com
+  Type: 2
+  Sender:
+    Profile: {fileID: 21300000, guid: 9ec2a48ef0db817429fac67f2f55c766, type: 3}
+    Name: Eduardo Pontes Rodrigues
+    Email: eduardo.p.ro@cafesoc.com
+  Title: 
+  Content: "<b>Tiago,</b>\n\n<b>Gostaria de lembr\xE1-lo de que, ao criar o ticket
+    referente ao incidente atual, pode ser necess\xE1rio consultar o arquivo documento_topologia_petrocais.pdf,
+    que cont\xE9m informa\xE7\xF5es essenciais sobre a estrutura de rede e os endere\xE7os
+    dos principais servidores e equipamentos de seguran\xE7a.</b>\n\nO documento
+    j\xE1 est\xE1 aberto em uma das abas do seu navegador. Antes de finalizar o registro
+    do ticket, revise os detalhes nele contidos para esclarecer d\xFAvidas e garantir
+    que todas as informa\xE7\xF5es estejam corretas e completas.\n\nMantenha o foco.\n\n<b>Raquel
+    G. Hent</b>\L<b>Gerente de Ciber Seguran\xE7a \u2013 C.A.F.E.</b>"
+  HasResponse: 1
+  QuestionText: "Pe\xE7o pra..."
+  ConfirmQuestionText: "\xC9 isso?"
+  WrongFeedbackQuestionText: "Bah... N\xE3o t\xE1 certo."
+  Responses:
+  - TextOption: Usaram DNS.
+    EmailTitle: Foi DNS.
+    EmailText: "<b>Gerente</b>\n\nDescobri como os dados da PetroCais foram vazados.
+      \L\L<b>Foi com um DNS malicioso.</b>\n\nJ\xE1 pedi pro Gustavo bloquear."
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 1
+  - TextOption: "Tem algu\xE9m infiltrado."
+    EmailTitle: "Algu\xE9m Infiltrado."
+    EmailText: "<b>Gerente</b>\n\n<b>Tem algu\xE9m infiltrado na PetroCais vazando
+      os dados.</b>\L\LPrecisamos dar um jeito nisso."
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  - TextOption: "Est\xE3o nos observando."
+    EmailTitle: "Eles Est\xE3o de Olho Em N\xF3s."
+    EmailText: "<b>Gerente</b>\n\nEu suponho que eles estejam nos observando.\n\L<b>N\xE3o
+      deixe que implantem chips em voc\xEA.</b>"
+    NewReceiver: 
+    HasSpecificReceiver: 0
+    IsCorrectAnswer: 0
+  HasEventToSend: 0
+  DispatcherInfo:
+    HasEmailEvent: 0
+    HasNormalEvent: 0
+    EmailTypeToCreate: 0
+    EmailEventSended: 0
+    NormalEventSended: 1

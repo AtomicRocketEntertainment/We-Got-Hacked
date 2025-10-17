@@ -38,6 +38,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
             Character.Tiago_Day_One => new Day_One_ResponseStateSetup_Tiago(),
             Character.Tiago_Day_Two => new Day_Two_ResponseStateSetup_Tiago(),
             Character.Tiago_Day_Three => new Day_Three_ResponseStateSetup_Tiago(),
+            Character.Eduardo_Day_Three => new Day_Three_ResponseStateSetup_Eduardo(),
             _ => null
         };
 
@@ -49,6 +50,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
             Character.Tiago_Day_Two => new Day_Two_WriteStateSetup_Tiago(),
             Character.Rafael_Day_Two => new Day_Two_WriteStateSetup_Rafael(),
             Character.Tiago_Day_Three => new Day_Three_WriteStateSetup_Tiago(),
+            Character.Eduardo_Day_Three => new Day_Three_WriteStateSetup_Eduardo(),
             _ => null
         };
 

@@ -55,5 +55,6 @@ public enum ThoughtKey
     ShouldntSearchOnMalwhere,
     OpenPDFFirstTime,
     OpenHackedWebsite,
-    OpenKellyMessage
+    OpenKellyMessage,
+    ThinkAboutIPFoundOnMalwhere
 }

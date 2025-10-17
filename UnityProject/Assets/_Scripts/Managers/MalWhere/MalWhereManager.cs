@@ -57,6 +57,10 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     private readonly string _lore11Day2 = "Lore 11 Day 2";
     private readonly string _lore15Day2 = "Lore 15 Day 2";
+    private readonly string _lore9Day3 = "Lore 9 Day 3";
+    private readonly string _lore13Day3 = "Lore 13 Day 3";
+    private readonly string _lore15Day3 = "Lore 15 Day 3";
+    
 
     private void Awake()
     {
@@ -69,6 +73,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         IChoiceStateSetup choiceSetup = _currentCharacter switch
         {
             Character.Rafael_Day_Two => new Day_Two_ChoiceStateSetupMalwhere_Rafael(),
+            Character.Eduardo_Day_Three => new Day_Three_ChoiceStateSetupMalwhere_Eduardo(),
             _ => null
         };
 
@@ -85,6 +90,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private void OnEnable()
     {
         EventManager.OnPlayerCanSearchMalwhere += EnableSearch;
+        EventManager.OnPlayerCantSearchMalwhere += DisableSearch;
         EventManager.OnEventEmailHandlerIsOpen += CheckState;
 
         _confirmDomainSearchBtn.onClick.AddListener(TrySearchDomain);
@@ -101,6 +107,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private void OnDisable()
     {
         EventManager.OnPlayerCanSearchMalwhere -= EnableSearch;
+        EventManager.OnPlayerCantSearchMalwhere -= DisableSearch;
         EventManager.OnEventEmailHandlerIsOpen -= CheckState;
 
         _confirmDomainSearchBtn.onClick.RemoveListener(TrySearchDomain);
@@ -149,7 +156,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private void TrySearchIp()
     {
         if (_searchIpDp.value == 0) return; //Pesquisar selected
-        
+
         if (!CanSearchWithNotify()) return;
 
         int optionIndex = _searchIpDp.value - 1;
@@ -164,18 +171,25 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     private void UpdateIpCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
-        bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two;
+        /*
+            Verificar possibilidade de adicionarmos eventos de gameplay nesses casos. Malwhere é responsável por alertar que verificamos o IP correto. O estado (Day_Two_SecondMalwhereChoice_Rafael ou outro)
+            fica responsável por agir - ou trocar para o próximo estado - quando isso acontece.
+        */
+        bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two && _currentCharacter == Character.Rafael_Day_Two;
+        bool isEduardoDayThreeTime = _currentChoiceState == HistoryPartState.Part_One && _currentCharacter == Character.Eduardo_Day_Three;
+
+        if (isCorrectTicket && (isRafaelDayTwoTime || isEduardoDayThreeTime))
+            HandleState();
 
         _ipInfoScreen.TryGetComponent(out MalWhereIPUpdater updater);
         updater?.UpdateIpInfos(ticket.IPOrigem, ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
-
-        if (isCorrectTicket && isRafaelDayTwoTime)
-            HandleState();
     }
 
     private void UpdateDomainCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
-        if (isCorrectTicket)
+        bool isEduardoDayThreeTime = (_currentChoiceState ==  HistoryPartState.Part_Two || _currentChoiceState == HistoryPartState.Part_Three) && _currentCharacter == Character.Eduardo_Day_Three;
+
+        if (isCorrectTicket && isEduardoDayThreeTime)
             HandleState();
 
         _domainInfoScreen.TryGetComponent(out MalWhereDomainUpdater updater);
@@ -184,7 +198,9 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     private void UpdateHashCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
-        if (isCorrectTicket)
+        bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_One && _currentCharacter == Character.Rafael_Day_Two;
+
+        if (isCorrectTicket && isRafaelDayTwoTime)
             HandleState();
 
         _hashInfoScreen.TryGetComponent(out MalWhereHashUpdater updater);
@@ -224,13 +240,13 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
             EventManager.MakePlayerThink(ThoughtKey.ShouldntSearchOnMalwhere);
             return !canSearch;
         }
-        
+
         return canSearch;
     }
 
     private void CheckState(string emailIndex)
     {
-        if (emailIndex == _lore15Day2)
+        if (emailIndex == _lore15Day2 || emailIndex == _lore9Day3 || emailIndex == _lore13Day3 || emailIndex == _lore15Day3)
             EnableSearch();
 
         if (emailIndex == _lore11Day2)
@@ -273,7 +289,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     {
         _currentChoiceState = state;
     }
-    
+
     private void HandleState()
     {
         if (_choiceStateHandlers.TryGetValue((_currentCharacter, _currentChoiceState), out var handler))

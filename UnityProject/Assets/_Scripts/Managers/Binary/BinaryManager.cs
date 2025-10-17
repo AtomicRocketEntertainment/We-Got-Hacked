@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BinaryManager : MonoBehaviour, INeedOpenCanvas
+public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 {
     [SerializeField] private GameObject _mainCanvas;
 
@@ -29,6 +30,11 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas
     [BoxGroup("Configs"), SerializeField] private string _wrongMessage64 = "<color=red>Error:</color> Invalid base64 characters";
     [BoxGroup("Configs"), SerializeField] private string _wrongMessageHex = "<color=red>Error:</color> Invalid hex characters";
 
+    [SerializeField, BoxGroup("State Fluxogram")] private HistoryPartState _currentChoiceState = HistoryPartState.Part_One;
+    [SerializeField, BoxGroup("State Fluxogram")] private Character _currentCharacter = Character.None;
+
+    private Dictionary<(Character, HistoryPartState), IChoiceStateHandler> _choiceStateHandlers;
+
     private bool _isCorrectSearch;
     private bool _isCorrectMessage;
     private bool _canDecrypt;
@@ -41,6 +47,15 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas
         _canDecrypt = false;
         _currentCryptedMessage = "";
         _wrongMessage = _wrongMessage32;
+
+        
+        IChoiceStateSetup choiceSetup = _currentCharacter switch
+        {
+            Character.Eduardo_Day_Three => new Day_Three_ChoiceStateSetupBinary_Eduardo(),
+            _ => null
+        };
+
+        choiceSetup?.RegisterStates(_choiceStateHandlers);
     }
 
     private void OnEnable()
@@ -96,7 +111,14 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas
     {
         if (!_canDecrypt) return;
 
-        _decryptedMessage.SetText(_isCorrectMessage && _isCorrectSearch ? _currentCryptedMessage : _wrongMessage);
+        bool playerIsCorrect = _isCorrectMessage && _isCorrectSearch;
+
+        if (playerIsCorrect)
+            HandleState();
+        else
+            EventManager.WrongChoice();
+
+        _decryptedMessage.SetText(playerIsCorrect ? _currentCryptedMessage : _wrongMessage);
     }
 
     private void UpdatePasteInfo(ConsoleContent content)
@@ -105,6 +127,23 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas
         _currentCryptedMessage = content.DecryptedMessage;
     }
 
+    private void HandleState()
+    {
+        if (_choiceStateHandlers.TryGetValue((_currentCharacter, _currentChoiceState), out var handler))
+        {
+            handler.Handle(this);
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum handler para este estado/personagem.");
+        }
+    }
+
     public void CloseCanvas() => _mainCanvas.SetActive(false);
     public void OpenCanvas() => _mainCanvas.SetActive(true);
+
+    public void ChangeChoiceState(HistoryPartState state)
+    {
+        _currentChoiceState = state;
+    }
 }
