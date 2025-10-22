@@ -4,7 +4,8 @@ using UnityEngine;
 public class SO_MeetingPerson : ScriptableObject
 {
     public string Name;
-    public Sprite Idle;
+    public Sprite IdleStreaming;
+    public Sprite IdleAwaiting;
     public Sprite Talking;
     public MeetingPersonLines Lines;
 }

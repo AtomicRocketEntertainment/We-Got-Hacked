@@ -10,6 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
+      propertyPath: _meetingPersons.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
       propertyPath: _speakerTimeline.Array.size
       value: 14
       objectReference: {fileID: 0}
@@ -17,36 +22,36 @@ PrefabInstance:
         type: 3}
       propertyPath: _meetingPersons.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 79cdf05cb8023ba438c70163e0ad405f,
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _meetingPersons.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 86fd663c570c7d44d9db41aecfb898e4,
+      objectReference: {fileID: 11400000, guid: b74c4230a75cedc46bdc45e87e1eac91,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _meetingPersons.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: f062606522a0df944baa419c6c20f075,
+      objectReference: {fileID: 11400000, guid: 29650fe93a49903429a09e60d08dfb24,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _meetingPersons.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 8826de2d3d4f5b549b2d1957bf3d16aa,
+      objectReference: {fileID: 11400000, guid: 4cf5cb3f22bf9964d85c6415dabccea5,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _meetingPersons.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 978b9f6cd08aeb1488e7b6b74be4a448,
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.size
-      value: 14
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
@@ -112,90 +117,198 @@ PrefabInstance:
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: f062606522a0df944baa419c6c20f075,
+      objectReference: {fileID: 11400000, guid: 29650fe93a49903429a09e60d08dfb24,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 8826de2d3d4f5b549b2d1957bf3d16aa,
+      objectReference: {fileID: 11400000, guid: b74c4230a75cedc46bdc45e87e1eac91,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 79cdf05cb8023ba438c70163e0ad405f,
+      objectReference: {fileID: 11400000, guid: 29650fe93a49903429a09e60d08dfb24,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 79cdf05cb8023ba438c70163e0ad405f,
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 79cdf05cb8023ba438c70163e0ad405f,
+      objectReference: {fileID: 11400000, guid: b74c4230a75cedc46bdc45e87e1eac91,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: 86fd663c570c7d44d9db41aecfb898e4,
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 8826de2d3d4f5b549b2d1957bf3d16aa,
+      objectReference: {fileID: 11400000, guid: b74c4230a75cedc46bdc45e87e1eac91,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: 978b9f6cd08aeb1488e7b6b74be4a448,
+      objectReference: {fileID: 11400000, guid: b74c4230a75cedc46bdc45e87e1eac91,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[8]
       value: 
-      objectReference: {fileID: 11400000, guid: f062606522a0df944baa419c6c20f075,
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[9]
       value: 
-      objectReference: {fileID: 11400000, guid: 79cdf05cb8023ba438c70163e0ad405f,
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[10]
       value: 
-      objectReference: {fileID: 11400000, guid: 86fd663c570c7d44d9db41aecfb898e4,
+      objectReference: {fileID: 11400000, guid: 4cf5cb3f22bf9964d85c6415dabccea5,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[11]
       value: 
-      objectReference: {fileID: 11400000, guid: 978b9f6cd08aeb1488e7b6b74be4a448,
+      objectReference: {fileID: 11400000, guid: 29650fe93a49903429a09e60d08dfb24,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[12]
       value: 
-      objectReference: {fileID: 11400000, guid: f062606522a0df944baa419c6c20f075,
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
         type: 2}
     - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: _speakerTimelineSO.Array.data[13]
       value: 
-      objectReference: {fileID: 11400000, guid: 8826de2d3d4f5b549b2d1957bf3d16aa,
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[14]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cf5cb3f22bf9964d85c6415dabccea5,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[16]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cf5cb3f22bf9964d85c6415dabccea5,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[17]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[18]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[19]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[20]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[21]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[22]
+      value: 
+      objectReference: {fileID: 11400000, guid: 29650fe93a49903429a09e60d08dfb24,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[23]
+      value: 
+      objectReference: {fileID: 11400000, guid: 29650fe93a49903429a09e60d08dfb24,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[24]
+      value: 
+      objectReference: {fileID: 11400000, guid: b74c4230a75cedc46bdc45e87e1eac91,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[25]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[26]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[27]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[28]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c51ed901e29b84fa69b3b9eccfe98e,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[29]
+      value: 
+      objectReference: {fileID: 11400000, guid: 29650fe93a49903429a09e60d08dfb24,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[30]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dbb784f836753419a3eeb323ae6abb,
+        type: 2}
+    - target: {fileID: 2322522466389535978, guid: a7e13ac531ade46479838f7cfbce7366,
+        type: 3}
+      propertyPath: _speakerTimelineSO.Array.data[31]
+      value: 
+      objectReference: {fileID: 11400000, guid: b74c4230a75cedc46bdc45e87e1eac91,
         type: 2}
     - target: {fileID: 3438951244814683016, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}
       propertyPath: m_Name
-      value: '[AcampaMeet_SystemPartTwo]'
+      value: '[AcampaMeet_SystemPartTwoDayThree]'
       objectReference: {fileID: 0}
     - target: {fileID: 7512226996102766347, guid: a7e13ac531ade46479838f7cfbce7366,
         type: 3}

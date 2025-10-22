@@ -183,7 +183,7 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
         newCard.LeanScale(Vector3.one, 0.15f);
 
         newCard.TryGetComponent(out AwaitingCardInstance instance);
-        instance.UpdateMyCard(person.Idle);
+        instance.UpdateMyCard(person.IdleAwainting);
     }
 
     private void SpawnStreaming(MeetingPerson person)
@@ -194,7 +194,7 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
         newCard.TryGetComponent(out IMeetingPersonInstance instance);
         person.InjectPersonCard(instance);
-        instance.UpdateMyCard(person.Idle);
+        instance.UpdateMyCard(person.IdleStreaming);
     }
 
     public void CloseCanvas() => _mainCanvas.SetActive(false);

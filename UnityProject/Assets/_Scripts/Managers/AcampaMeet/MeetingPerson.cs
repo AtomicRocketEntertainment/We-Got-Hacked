@@ -3,18 +3,21 @@ using UnityEngine;
 public class MeetingPerson
 {
     private string _name;
-    private Sprite _idle;
+    private Sprite _idleStreaming;
+    private Sprite _idleAwaiting;
     private Sprite _talking;
     private MeetingPersonLines _lines;
     private IMeetingPersonInstance _personCardInstance;
 
     public string Name => _name;
-    public Sprite Idle => _idle;
+    public Sprite IdleStreaming => _idleStreaming;
+    public Sprite IdleAwainting => _idleAwaiting;
 
     public MeetingPerson(SO_MeetingPerson infos)
     {
         _name = infos.Name;
-        _idle = infos.Idle;
+        _idleStreaming = infos.IdleStreaming;
+        _idleAwaiting = infos.IdleAwaiting;
         _talking = infos.Talking;
         this._lines = new MeetingPersonLines(infos.Lines.Lines);
     }
