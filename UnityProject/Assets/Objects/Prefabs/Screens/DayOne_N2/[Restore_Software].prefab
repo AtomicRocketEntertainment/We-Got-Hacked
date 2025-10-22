@@ -323,7 +323,7 @@ MonoBehaviour:
   m_text: "Backups Dispon\xEDveis"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_text: Hora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_text: Hora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1900,6 +1900,7 @@ GameObject:
   - component: {fileID: 800300488670321128}
   - component: {fileID: 2268803881666310722}
   - component: {fileID: 4980654553491934463}
+  - component: {fileID: 8159276255740204163}
   m_Layer: 0
   m_Name: Btn_Logger
   m_TagString: Untagged
@@ -1988,8 +1989,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.9568628, g: 0.43137258, b: 0.2627451, a: 1}
     m_HighlightedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_PressedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_SelectedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
+    m_PressedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2009,6 +2010,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8159276255740204163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279727719656496387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc86c9811ac65ca4c9440e8f617c09a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteToShow: {fileID: 0}
+  _hasTextFeature: 0
+  _styleToUpdate: 0
+  _normalStyle: 0
+  _text: {fileID: 0}
+  _hasColorFeature: 1
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _updatedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+  _spriteToPaint: {fileID: 2268803881666310722}
 --- !u!1 &1284118442567834945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,7 +2424,7 @@ MonoBehaviour:
   m_text: PetroCais | Parceiros
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3248,7 +3270,7 @@ MonoBehaviour:
   m_text: Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4791,6 +4813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4007305052524605199}
   - component: {fileID: 2409803955195964335}
+  - component: {fileID: 8938223279050956258}
   m_Layer: 0
   m_Name: Server_Production
   m_TagString: Untagged
@@ -4829,6 +4852,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3247626706989854493}
   m_CullTransparentMesh: 1
+--- !u!114 &8938223279050956258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3247626706989854493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689727ea24ef7814ea54544781818052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttons:
+  - {fileID: 6069944506209659187}
+  - {fileID: 8046039302889177911}
+  - {fileID: 3154964062655479655}
+  - {fileID: 7182419743421909596}
+  - {fileID: 811272601679372281}
+  - {fileID: 8001993282972593816}
+  _firstButtonActive: 0
+  _firstButton: {fileID: 0}
 --- !u!1 &3254352244522925420
 GameObject:
   m_ObjectHideFlags: 0
@@ -5417,7 +5461,7 @@ MonoBehaviour:
   m_text: Hora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -6255,7 +6299,7 @@ MonoBehaviour:
   m_text: "PetroCais | Inova\xE7\xE3o e Tech"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -6600,7 +6644,7 @@ MonoBehaviour:
   m_text: Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7053,7 +7097,7 @@ MonoBehaviour:
   m_text: PetroCais | Sustentabiliade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7582,6 +7626,7 @@ GameObject:
   - component: {fileID: 7001198083579909102}
   - component: {fileID: 5948219504827882697}
   - component: {fileID: 5500633968995280244}
+  - component: {fileID: 1949278998815291955}
   m_Layer: 0
   m_Name: Btn_Monitoring
   m_TagString: Untagged
@@ -7670,8 +7715,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.9568628, g: 0.43137258, b: 0.2627451, a: 1}
     m_HighlightedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_PressedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_SelectedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
+    m_PressedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -7691,6 +7736,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1949278998815291955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085948649435627396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc86c9811ac65ca4c9440e8f617c09a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteToShow: {fileID: 0}
+  _hasTextFeature: 0
+  _styleToUpdate: 0
+  _normalStyle: 0
+  _text: {fileID: 0}
+  _hasColorFeature: 1
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _updatedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+  _spriteToPaint: {fileID: 5948219504827882697}
 --- !u!1 &5117058433846234258
 GameObject:
   m_ObjectHideFlags: 0
@@ -8589,7 +8655,7 @@ MonoBehaviour:
   m_text: Hora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9406,7 +9472,7 @@ MonoBehaviour:
   m_text: Monitoramento de Sites
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9542,7 +9608,7 @@ MonoBehaviour:
   m_text: Hora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9697,7 +9763,7 @@ MonoBehaviour:
   m_text: PetroCais | Imprensa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -10547,7 +10613,7 @@ MonoBehaviour:
   m_text: "PetroCais | Hist\xF3ria"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -10934,7 +11000,7 @@ MonoBehaviour:
   m_text: Hora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11165,7 +11231,7 @@ MonoBehaviour:
   m_text: Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11456,7 +11522,7 @@ MonoBehaviour:
   m_text: Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11555,6 +11621,7 @@ GameObject:
   - component: {fileID: 6828152658198082125}
   - component: {fileID: 2753897064354647316}
   - component: {fileID: 4689270917155617336}
+  - component: {fileID: 6571096730933311168}
   m_Layer: 0
   m_Name: Btn_Control
   m_TagString: Untagged
@@ -11643,8 +11710,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.9568628, g: 0.43137258, b: 0.2627451, a: 1}
     m_HighlightedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_PressedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_SelectedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
+    m_PressedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -11664,6 +11731,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6571096730933311168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052341041970936859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc86c9811ac65ca4c9440e8f617c09a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteToShow: {fileID: 0}
+  _hasTextFeature: 0
+  _styleToUpdate: 0
+  _normalStyle: 0
+  _text: {fileID: 0}
+  _hasColorFeature: 1
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _updatedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+  _spriteToPaint: {fileID: 2753897064354647316}
 --- !u!1 &7091582476807783173
 GameObject:
   m_ObjectHideFlags: 0
@@ -11770,7 +11858,7 @@ MonoBehaviour:
   m_text: Hora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12371,7 +12459,7 @@ MonoBehaviour:
   m_text: PetroCais | Funcionamento
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12920,7 +13008,7 @@ MonoBehaviour:
   m_text: Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13150,7 +13238,7 @@ MonoBehaviour:
   m_text: "PetroCais | P\xE1gina Inicial"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13470,6 +13558,7 @@ GameObject:
   - component: {fileID: 8016696987429146626}
   - component: {fileID: 845056403582345885}
   - component: {fileID: 4155956435807585260}
+  - component: {fileID: 7715243265547778651}
   m_Layer: 0
   m_Name: Btn_Backups
   m_TagString: Untagged
@@ -13558,8 +13647,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.9568628, g: 0.43137258, b: 0.2627451, a: 1}
     m_HighlightedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_PressedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
-    m_SelectedColor: {r: 0.8862746, g: 0.18823531, b: 0.078431375, a: 1}
+    m_PressedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -13579,6 +13668,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7715243265547778651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149878167374471958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc86c9811ac65ca4c9440e8f617c09a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteToShow: {fileID: 0}
+  _hasTextFeature: 0
+  _styleToUpdate: 0
+  _normalStyle: 0
+  _text: {fileID: 0}
+  _hasColorFeature: 1
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _updatedColor: {r: 0.8862745, g: 0.1882353, b: 0.078431375, a: 1}
+  _spriteToPaint: {fileID: 845056403582345885}
 --- !u!1 &8205085037683193575
 GameObject:
   m_ObjectHideFlags: 0
@@ -13783,7 +13893,7 @@ MonoBehaviour:
   m_text: Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13882,6 +13992,7 @@ GameObject:
   - component: {fileID: 4840598452809429412}
   - component: {fileID: 7274583794224772753}
   - component: {fileID: 3892772182374067993}
+  - component: {fileID: 8208766548908983212}
   m_Layer: 0
   m_Name: Content_Grey_Stripe
   m_TagString: Untagged
@@ -13976,6 +14087,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8208766548908983212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8376838864159289171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689727ea24ef7814ea54544781818052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttons:
+  - {fileID: 4980654553491934463}
+  - {fileID: 4155956435807585260}
+  - {fileID: 4689270917155617336}
+  - {fileID: 5500633968995280244}
+  _firstButtonActive: 0
+  _firstButton: {fileID: 0}
 --- !u!1 &8384131522960259283
 GameObject:
   m_ObjectHideFlags: 0
@@ -14508,7 +14638,7 @@ MonoBehaviour:
   m_text: Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
-  m_sharedMaterial: {fileID: -8686295212686770976, guid: 3cfd9cf088c304d48aed5a11bd57e4a5,
+  m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -15995,6 +16125,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b339d3bf7d54ff24b9d4ef3fe846f84c, type: 3}
+--- !u!114 &6069944506209659187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6679972598775134286, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
+    type: 3}
+  m_PrefabInstance: {fileID: 614954592410554749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8816757832142435178 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8274145478449193495, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
@@ -17896,6 +18038,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3683172303067102073}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8046039302889177911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6679972598775134286, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3683172303067102073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3726954990622807766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18026,6 +18180,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3726954990622807766}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8001993282972593816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6679972598775134286, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3726954990622807766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4106851480978197917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18345,6 +18511,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4546686310210859538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7182419743421909596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6679972598775134286, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4546686310210859538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4778460270797786813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18981,6 +19159,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b339d3bf7d54ff24b9d4ef3fe846f84c, type: 3}
+--- !u!114 &811272601679372281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6679972598775134286, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6338323403686979511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2676709332096173472 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8274145478449193495, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
@@ -20408,6 +20598,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8609942090130278185}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3154964062655479655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6679972598775134286, guid: b339d3bf7d54ff24b9d4ef3fe846f84c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8609942090130278185}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8721883592046793016
 PrefabInstance:
   m_ObjectHideFlags: 0

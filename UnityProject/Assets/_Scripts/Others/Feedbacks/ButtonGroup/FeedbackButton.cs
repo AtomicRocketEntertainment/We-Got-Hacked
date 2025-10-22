@@ -20,26 +20,34 @@ public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
 
     public void ActiveFeedback()
     {
-        _spriteToShow.SetActive(true);
+        if(_spriteToShow != null) _spriteToShow.SetActive(true);
 
-        if (!_hasTextFeature) return;
+        if (_hasTextFeature)
+        {
+            _text.fontStyle = _styleToUpdate;
+        }
 
-        _text.fontStyle = _styleToUpdate;
 
-        if (!_hasColorFeature) return;
-
-        _spriteToPaint.color = _updatedColor;
+        if (_hasColorFeature)
+        { 
+            _spriteToPaint.color = _updatedColor;
+        }
     }
+    
     public void DesactiveFeedback()
     {
-        _spriteToShow.SetActive(false);
+        if (_spriteToShow != null) _spriteToShow.SetActive(false);
 
-        if (!_hasTextFeature) return;
+        if (_hasTextFeature)
+        {
+            _text.fontStyle = _normalStyle;
+        }
 
-        _text.fontStyle = _normalStyle;
 
-        if (!_hasColorFeature) return;
+        if (_hasColorFeature)
+        {
+            _spriteToPaint.color = _defaultColor;
+        }
 
-        _spriteToPaint.color = _defaultColor;
     }
 }

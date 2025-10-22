@@ -32,7 +32,6 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     [SerializeField, BoxGroup("State Fluxogram")] private HistoryPartState _currentChoiceState = HistoryPartState.Part_One;
     [SerializeField, BoxGroup("State Fluxogram")] private Character _currentCharacter = Character.None;
-
     private Dictionary<(Character, HistoryPartState), IChoiceStateHandler> _choiceStateHandlers;
 
     private bool _isCorrectSearch;
@@ -40,15 +39,20 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private bool _canDecrypt;
     private string _currentCryptedMessage;
     private string _wrongMessage;
+    private BinaryState _currentState;
+
+    private readonly string _email10Day3 = "Lore 10 Day 3";
 
     private void Awake()
     {
+        _currentState = BinaryState.CantSearch;
         _isCorrectSearch = false;
         _canDecrypt = false;
         _currentCryptedMessage = "";
         _wrongMessage = _wrongMessage32;
 
-        
+        _choiceStateHandlers = new();
+
         IChoiceStateSetup choiceSetup = _currentCharacter switch
         {
             Character.Eduardo_Day_Three => new Day_Three_ChoiceStateSetupBinary_Eduardo(),
@@ -61,6 +65,7 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private void OnEnable()
     {
         EventManager.OnConsoleInfoCopied += UpdatePasteInfo;
+        EventManager.OnEventEmailHandlerIsOpen += CheckState;
 
         _cleanFieldBtn.onClick.AddListener(ResetSearch);
         _decryptBtn.onClick.AddListener(DecryptedMessage);
@@ -70,18 +75,10 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         _hexBtn.onClick.AddListener(() => ChangeScreen(_messageHex, _wrongMessageHex, isCorrectSearch: false));
     }
 
-    private void TryPaste()
-    {
-        if (_currentCryptedMessage == string.Empty) return;
-
-        _canDecrypt = true;
-        _pasteScreen.SetActive(false);
-        _sampleTextScreen.SetActive(true);
-    }
-
     private void OnDisable()
     {
         EventManager.OnConsoleInfoCopied -= UpdatePasteInfo;
+        EventManager.OnEventEmailHandlerIsOpen -= CheckState;
 
         _cleanFieldBtn.onClick.RemoveAllListeners();
         _decryptBtn.onClick.RemoveAllListeners();
@@ -89,6 +86,15 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         _binary32Btn.onClick.RemoveAllListeners();
         _binary64Btn.onClick.RemoveAllListeners();
         _hexBtn.onClick.RemoveAllListeners();
+    }
+
+    private void TryPaste()
+    {
+        if (_currentCryptedMessage == string.Empty) return;
+
+        _canDecrypt = true;
+        _pasteScreen.SetActive(false);
+        _sampleTextScreen.SetActive(true);
     }
 
     private void ChangeScreen(string text, string wrongMessage, bool isCorrectSearch)
@@ -111,6 +117,12 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     {
         if (!_canDecrypt) return;
 
+        if (_currentState == BinaryState.CantSearch)
+        {
+            EventManager.MakePlayerThink(ThoughtKey.WrongTimeToSearchOnBinary);
+            return;
+        }
+
         bool playerIsCorrect = _isCorrectMessage && _isCorrectSearch;
 
         if (playerIsCorrect)
@@ -124,6 +136,7 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     private void UpdatePasteInfo(ConsoleContent content)
     {
         _isCorrectMessage = content.IsCorrect;
+        _pastedMessage.SetText(content.Name);
         _currentCryptedMessage = content.DecryptedMessage;
     }
 
@@ -139,6 +152,12 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         }
     }
 
+    private void CheckState(string emailIndex)
+    {
+        if (emailIndex == _email10Day3)
+            _currentState = BinaryState.CanSearch;
+    }
+
     public void CloseCanvas() => _mainCanvas.SetActive(false);
     public void OpenCanvas() => _mainCanvas.SetActive(true);
 
@@ -146,4 +165,9 @@ public class BinaryManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
     {
         _currentChoiceState = state;
     }
+}
+
+public enum BinaryState
+{
+    CanSearch, CantSearch
 }

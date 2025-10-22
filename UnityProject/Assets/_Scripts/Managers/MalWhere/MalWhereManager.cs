@@ -251,6 +251,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         if (emailIndex == _lore11Day2)
             DisableSearch();
     }
+    
     private void BackToMain()
     {
         DesactiveAllScreens();

@@ -56,5 +56,6 @@ public enum ThoughtKey
     OpenPDFFirstTime,
     OpenHackedWebsite,
     OpenKellyMessage,
-    ThinkAboutIPFoundOnMalwhere
+    ThinkAboutIPFoundOnMalwhere,
+    WrongTimeToSearchOnBinary
 }

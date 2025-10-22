@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 476144671334906979}
   - component: {fileID: 6679972598775134286}
   - component: {fileID: 7776806100777504551}
+  - component: {fileID: 1693120033519395380}
   m_Layer: 0
   m_Name: Prefab_Btn_Monitoring
   m_TagString: Untagged
@@ -406,3 +407,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _btn: {fileID: 6679972598775134286}
+  _infos: {fileID: 0}
+--- !u!114 &1693120033519395380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8654794822876441437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc86c9811ac65ca4c9440e8f617c09a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteToShow: {fileID: 0}
+  _hasTextFeature: 0
+  _styleToUpdate: 0
+  _normalStyle: 0
+  _text: {fileID: 0}
+  _hasColorFeature: 1
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _updatedColor: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
+  _spriteToPaint: {fileID: 476144671334906979}
