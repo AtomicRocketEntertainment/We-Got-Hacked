@@ -30,6 +30,8 @@ public class GenericChoices : MonoBehaviour, IChoiceContext
         {
             Character.Rafael_Day_One => new Day_One_ChoiceStateSetup_Rafael(),
             Character.Raquel_Day_Two => new Day_Two_ChoiceStateSetupe_Raquel(),
+            Character.Raquel_Day_Three => new Day_Three_ChoiceStateSetup_Raquel(),
+            Character.Raquel_Day_Three_Part_Two => new Day_Three_Part_Two_ChoiceSetup_Raquel(),
             _ => null
         };
 

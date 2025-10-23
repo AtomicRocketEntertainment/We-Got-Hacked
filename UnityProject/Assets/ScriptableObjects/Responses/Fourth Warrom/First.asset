@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a170b4e6dec2eb4a82feba9da93e080, type: 3}
+  m_Name: First
+  m_EditorClassIdentifier: 
+  Index: Response 1
+  QuestionText: "Qual seria a resposta mais adequada para lidar com essa quest\xE3o?"
+  ConfirmQuestionText: "Essa \xE9 uma resposta adequada para a situa\xE7\xE3o?"
+  WrongFeedbackQuestionText: "Estou comprometendo o tempo da reuni\xE3o com suposi\xE7\xF5es
+    imprecisas... Preciso retomar o foco."
+  Responses:
+  - TextOption: "\xC9 sempre recomendado a cautela, por\xE9m, estamos protegidos."
+    TextToUpdate: "De fato, sempre existe a possibilidade de um novo ataque. No entanto,
+      n\xE3o podemos ignorar que todas as medidas necess\xE1rias foram tomadas para
+      fortalecer e blindar nossas defesas. Sendo assim, acredito que os senhores
+      possam manter a tranquilidade quanto \xE0 situa\xE7\xE3o atual. \xC9 claro
+      que n\xE3o devemos jamais desligar a aten\xE7\xE3o completamente, mas podemos
+      nos permitir relaxar e tomar um suco de laranja."
+    IsCorrectAnswer: 1
+    HasTextToUpdate: 1
+  - TextOption: "As chances de um novo ataque s\xE3o praticamente inexistentes."
+    TextToUpdate: "As chances de um novo ataque s\xE3o praticamente inexistentes.
+      O grupo hacktivista foi completamente neutralizado gra\xE7as aos nossos esfor\xE7os
+      estrat\xE9gicos e opera\xE7\xF5es bem-sucedidas. \xC9 prov\xE1vel que agora
+      estejam em prantos, recolhidos em suas casas em posi\xE7\xE3o fetal. Nossa
+      rede encontra-se sob total controle, a ponto de podermos, inclusive, desativar
+      alguns sistemas de seguran\xE7a sem comprometer a estabilidade da infraestrutura."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1
+  - TextOption: Acredito que o grupo hacktivista ainda esteja presente na rede.
+    TextToUpdate: "O grupo hacktivista pode estar presente em qualquer ponto da rede,
+      incluindo servidores internos, sistemas de autentica\xE7\xE3o, entre outros.
+      Podem at\xE9 estar presentes em nossos dispositivos nesse momento! Acredito
+      que ser\xE1 necess\xE1rio arquivar e isolar todos os servidores para realizar
+      uma verifica\xE7\xE3o de grande porte. Espero que sejamos recompensados financeiramente
+      por todo o esfor\xE7o envolvido neste trabalho."
+    IsCorrectAnswer: 0
+    HasTextToUpdate: 1

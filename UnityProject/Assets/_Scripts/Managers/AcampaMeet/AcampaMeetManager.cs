@@ -46,6 +46,7 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
         if (_shouldStartAutomatic)
         {
             SpawnPeople();
+            SetPersonToAnswer();
             StartStreaming();
         }
     }
@@ -91,13 +92,12 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
     private IEnumerator LoginPeople()
     {
         //First person starts the meeting, already in the call and responsable to answer the questions
-        KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
-        SpawnAwainting(firstPerson.Value);
-        firstPerson.Value.SubscribeEvents();
+        KeyValuePair<string, MeetingPerson> first = SetPersonToAnswer();
+        SpawnAwainting(first.Value);
 
         foreach (var key in _peopleAtCall)
         {
-            if (key.Key != firstPerson.Key)
+            if (key.Key != first.Key)
             {
                 int randomSec = Random.Range(1, 4);
                 yield return new WaitForSeconds(randomSec);
@@ -199,6 +199,13 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     public void CloseCanvas() => _mainCanvas.SetActive(false);
     public void OpenCanvas() => _mainCanvas.SetActive(true);
+
+    private KeyValuePair<string, MeetingPerson> SetPersonToAnswer()
+    {
+        KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
+        firstPerson.Value.SubscribeEvents();
+        return firstPerson;
+    }
 
     private void OnDestroy()
     {
