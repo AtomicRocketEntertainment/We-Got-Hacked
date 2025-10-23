@@ -176,18 +176,18 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
             fica responsável por agir - ou trocar para o próximo estado - quando isso acontece.
         */
         bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two && _currentCharacter == Character.Rafael_Day_Two;
-        bool isEduardoDayThreeTime = _currentChoiceState == HistoryPartState.Part_One && _currentCharacter == Character.Eduardo_Day_Three;
+        bool isEduardoDayThreeTime = (_currentChoiceState ==  HistoryPartState.Part_One || _currentChoiceState == HistoryPartState.Part_Two) && _currentCharacter == Character.Eduardo_Day_Three;
 
         if (isCorrectTicket && (isRafaelDayTwoTime || isEduardoDayThreeTime))
             HandleState();
 
         _ipInfoScreen.TryGetComponent(out MalWhereIPUpdater updater);
-        updater?.UpdateIpInfos(ticket.IPOrigem, ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
+        updater?.UpdateIpInfos(ticket.IPDestiny, ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
     }
 
     private void UpdateDomainCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
-        bool isEduardoDayThreeTime = (_currentChoiceState ==  HistoryPartState.Part_Two || _currentChoiceState == HistoryPartState.Part_Three) && _currentCharacter == Character.Eduardo_Day_Three;
+        bool isEduardoDayThreeTime = _currentChoiceState == HistoryPartState.Part_Three && _currentCharacter == Character.Eduardo_Day_Three;
 
         if (isCorrectTicket && isEduardoDayThreeTime)
             HandleState();
@@ -221,7 +221,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         foreach (SO_Ticket ticket in _ticketList.Tickets)
         {
             hashOptions.Add(ticket.RansomwareInformation.Hash);
-            ipOptions.Add(ticket.IPOrigem);
+            ipOptions.Add(ticket.IPDestiny);
             domainOptions.Add(ticket.DataLeakInformation.DomainInfo.Name);
         }
 
