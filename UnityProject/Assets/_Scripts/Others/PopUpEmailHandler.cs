@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class KellyMessageCreation : MonoBehaviour
+public class PopUpEmailHandler : MonoBehaviour
 {
     [SerializeField] private GameObject _canvas;
 
-    private readonly string _kellyLInk = "Caveira"; 
+    [SerializeField] private string _textLinkToCheck; 
 
     void OnEnable()
     {
@@ -18,7 +18,7 @@ public class KellyMessageCreation : MonoBehaviour
 
     private void OpenCanvas(string link)
     {
-        if (link == _kellyLInk)
+        if (link == _textLinkToCheck)
         {
             _canvas.SetActive(true);
             EventManager.MakePlayerThink(ThoughtKey.OpenKellyMessage);
