@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GridObjectActiveHandler : MonoBehaviour
 {
+    [SerializeField] private Transform _feedbackToAvoidActive;
+
     public void Active()
     {
         Component[] components = GetComponents<Component>();
@@ -19,7 +21,8 @@ public class GridObjectActiveHandler : MonoBehaviour
 
         foreach (Transform child in this.transform)
         {
-            child.gameObject.SetActive(true);
+            if(_feedbackToAvoidActive != child)
+                child.gameObject.SetActive(true);
         }
     }
 }
