@@ -13,15 +13,21 @@ MonoBehaviour:
   m_Name: N2 Logger
   m_EditorClassIdentifier: 
   Index: Response 1
-  QuestionText: "Ent\xE3o \xE9 aqui que a festa come\xE7ou... Agora, qual desses
-    blocos de c\xF3digo carrega a bomba deixada pelos invasores?"
-  ConfirmQuestionText: "Ser\xE1 que \xE9 essa mesmo a jogada correta?"
-  WrongFeedbackQuestionText: "Santa Indecis\xE3o! Acho que dei uma viajada legal
-    aqui... Preciso pensar melhor sobre isso."
+  QuestionText: "\"Ent\xE3o \xE9 aqui que a festa come\xE7ou\u2026 Agora, qual desses
+    logs carrega a bomba deixada pelos invasores?\""
+  ConfirmQuestionText: "Rafael, ser\xE1 que \xE9 essa mesmo a jogada correta?"
+  WrongFeedbackQuestionText: "Maldi\xE7\xE3o, n\xE3o \xE9 isso! Rafael, voc\xEA precisa
+    pensar um pouco mais..."
   Responses:
   - TextOption: "A bomba t\xE1 em cima."
+    TextToUpdate: 
     IsCorrectAnswer: 0
+    HasTextToUpdate: 0
   - TextOption: "A bomba t\xE1 embaixo."
+    TextToUpdate: 
     IsCorrectAnswer: 1
-  - TextOption: "A bomba t\xE1 em ambos?"
+    HasTextToUpdate: 0
+  - TextOption: "Est\xE1 em todo lugar! Vai explodir!"
+    TextToUpdate: 
     IsCorrectAnswer: 0
+    HasTextToUpdate: 0

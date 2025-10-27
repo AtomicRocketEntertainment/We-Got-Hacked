@@ -26,53 +26,55 @@ MonoBehaviour:
   Title: "Atualiza\xE7\xE3o e Solicita\xE7\xE3o de Autoriza\xE7\xE3o"
   Content: 
   HasResponse: 1
-  QuestionText: "Qual \xE9 o melhor jeito de explicar o que nossos inimigos virtuais
-    est\xE3o fazendo?"
-  ConfirmQuestionText: "\xC9 realmente isso que quero falar para o mestre das tecnologias?"
-  WrongFeedbackQuestionText: "Maldi\xE7\xE3o, isso t\xE1 errado! O tempo \xE9 um
-    artefato raro, e n\xE3o posso me dar ao luxo de desperdi\xE7\xE1-lo mais uma
-    vez."
+  QuestionText: Como podemos derrotar nossos inimigos?
+  ConfirmQuestionText: "Rafael, \xE9 isso mesmo que voc\xEA deseja informar ao Lorde
+    das Tecnologias?"
+  WrongFeedbackQuestionText: "Santa indecis\xE3o! O tempo \xE9 um artefato raro,
+    e n\xE3o posso me dar ao luxo de desperdi\xE7\xE1-lo mais uma vez."
   Responses:
-  - TextOption: Vulnerabilidade C.A.F.E-KB-0010
-    EmailTitle: 
-    EmailText: "<b>Ol\xE1, Gustavo,</b>\r\n\r\nEncontramos o ponto fraco. A brecha
-      usada pelos invasores foi confirmada: usu\xE1rios conseguiram fazer upload
-      de novas p\xE1ginas direto no site da PetroCais. Em termos pr\xE1ticos? Um
-      ataque com comando PUT, que permitiu atualizar ou injetar arquivos no servidor.\r\n\r\n<b>A
-      vulnerabilidade foi catalogada como C.A.F.E-KB-0010, e a corre\xE7\xE3o recomendada
-      \xE9 a aplica\xE7\xE3o imediata do patch WebServer-2025-043.</b>\r\n\r\nEsse
-      refor\xE7o vai selar o ponto de entrada, impedir novos envios maliciosos e
-      restaurar a seguran\xE7a da infraestrutura.\r\n\r\nCom isso, selamos novamente
-      os port\xF5es e ficamos protegidos do inimigo.\r\n\r\nAvante!\r\n\r\n<b>Atenciosamente,</b>\r\n<b>Rafael
-      Martins</b>"
+  - TextOption: WebServer-2021-043
+    EmailTitle: "Feiti\xE7os de Dentro pra Fora"
+    EmailText: "<b>Sauda\xE7\xF5es, Lorde das Tecnologias,</b>\n\nEncontramos o ponto
+      fraco. A brecha usada pelos invasores foi confirmada!\n\n<b>Os usu\xE1rios
+      conseguiram fazer upload de novas p\xE1ginas direto no site da PetroCais. Um
+      ataque com comando PUT permitiu injetar arquivos no servidor. \xC9 como se
+      tivessem lan\xE7ando feiti\xE7os de dentro para fora!</b>\n\n<b>A vulnerabilidade
+      foi catalogada como C.A.F.E-KB-0010 e o artefato que ir\xE1 dar dano cr\xEDtico
+      no alvo \xE9 o patch WebServer-2021-043!</b>\n\nEsse refor\xE7o vai impedir
+      novos envios maliciosos e restaurar a seguran\xE7a da infraestrutura.\n\nCom
+      isso, selamos novamente os port\xF5es e ficamos protegidos do inimigo.\n\nAvante!\n\n<b>Escudeiro
+      Digital,</b>\n<b>Rafael Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 1
-  - TextOption: "Eu n\xE3o tenho inimigos, ningu\xE9m tem."
-    EmailTitle: 
-    EmailText: "<b>Ol\xE1, Gustavo,</b>\r\n\r\nMuitos chamam de inimigos aqueles
-      que invadem sistemas, violam p\xE1ginas e deixam suas marcas digitais como
-      bandeiras em territ\xF3rio alheio. Mas a verdade \xE9 que n\xE3o existem inimigos,
-      apenas eventos que acontecem fora do nosso controle.\r\n\r\nN\xE3o controlamos
-      o desejo de um hacker ativista. Mas podemos controlar a nossa resposta. Escolher
-      agir com clareza e com o foco para manter de p\xE9 aquilo que juramos proteger.
-      Eles n\xE3o s\xE3o nossos inimigos. S\xE3o apenas parte do cen\xE1rio.\r\n\r\n<b>Hoje
-      restauramos mais que um site, mas refor\xE7amos um princ\xEDpio: n\xE3o seremos
-      pegos de surpresa, mas tamb\xE9m n\xE3o deixaremos a surpresa nos pegar.</b>\r\n\r\nAvante!\r\n\r\n<b>Atenciosamente,</b>\r\n<b>Rafael
-      Martins</b>"
+  - TextOption: "N\xE3o Existem Maneira Conhecida"
+    EmailTitle: "N\xE3o Existem Fraquezas"
+    EmailText: "<<b>Sauda\xE7\xF5es, Lorde das Tecnologias,</b>\n\nAp\xF3s analisar
+      todos os tipos de vulnerabilidades dispon\xEDveis, percebi algo\u2026 Talvez
+      nossos inimigos n\xE3o tenham fraquezas.\n\n\xC9 como em Trampos & Boletos,
+      o melhor RPG que conhe\xE7o, onde certos personagens s\xE3o t\xE3o poderosos
+      que voc\xEA precisa tirar tr\xEAs dados perfeitos somente para ter uma chance
+      de acert\xE1-los.\n\L<b>Esses vil\xF5es digitais\u2026 parecem estar sempre
+      um passo \xE0 nossa frente, prevendo cada movimento, cada estrat\xE9gia, como
+      se j\xE1 estivessem em um mapa da quarta dimens\xE3o, que nem conseguimos enxergar
+      por completo.</b>\n\nSe n\xE3o conseguimos destru\xED-los\u2026 Teremos que
+      aprender a conviver no mesmo tabuleiro.\n\n<b>Escudeiro Digital,</b>\n<b>Rafael
+      Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 0
-  - TextOption: Vulnerabilidade C.A.F.E-KB-0011
-    EmailTitle: 
-    EmailText: "<b>Ol\xE1, Gustavo,</b>\r\n\r\nEncontramos o ponto fraco. A brecha
-      usada pelos invasores foi confirmada: usu\xE1rios previamente autenticados
-      est\xE3o conseguindo fazer upload de scripts diretamente para diret\xF3rios
-      espec\xEDficos do servidor.\r\n\r\n<b>O identificador interno da falha \xE9
-      C.A.F.E-KB-0011. A corre\xE7\xE3o recomendada \xE9 aplicar o patch WebServer-2025-055.</b>\r\n\r\nEle
-      desativa a execu\xE7\xE3o remota n\xE3o autorizada e fortalece os filtros de
-      upload.\r\n\r\nCom isso, selamos essa entrada e impedimos novos ataques dos
-      inimigos.\r\n\r\nAvante!\r\n\r\n<b>Atenciosamente,</b>\r\n<b>Rafael Martins</b>"
+  - TextOption: WebServer-2021-055
+    EmailTitle: "Runas Amaldi\xE7oadas"
+    EmailText: "<b>Sauda\xE7\xF5es, Lorde das Tecnologias,</b>\n\nEncontramos o ponto
+      fraco. A brecha usada pelos invasores foi confirmada!\n\n<b>Os usu\xE1rios
+      previamente autenticados est\xE3o conseguindo fazer upload de scripts diretamente
+      para diret\xF3rios espec\xEDficos do servidor. Esses malditos est\xE3o colocando
+      runas amaldi\xE7oadas no nosso castelo\u2026</b>\n\n<b>A vulnerabilidade foi
+      catalogada como C.A.F.E-KB-0011 e o artefato que ir\xE1 dar dano cr\xEDtico
+      no alvo \xE9 o patch WebServer-2021-055!</b>\n\nEle desativa a execu\xE7\xE3o
+      remota n\xE3o autorizada e fortalece os filtros de upload.\n\nCom isso, selamos
+      essa entrada e impedimos novos ataques dos inimigos.\n\nAvante!\n\n<b>Escudeiro
+      Digital,</b>\n<b>Rafael Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 0

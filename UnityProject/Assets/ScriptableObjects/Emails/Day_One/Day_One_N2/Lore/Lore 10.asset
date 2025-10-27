@@ -27,60 +27,52 @@ MonoBehaviour:
   Content: 
   HasResponse: 1
   QuestionText: "Qual ser\xE1 a melhor decis\xE3o a fazer para proteger a fortaleza
-    digital de mais ataques?"
-  ConfirmQuestionText: "\xC9 realmente isso que quero falar para o mestre das tecnologias?"
-  WrongFeedbackQuestionText: "Maldi\xE7\xE3o, isso t\xE1 errado! O tempo \xE9 um
-    artefato raro, e n\xE3o posso me dar ao luxo de desperdi\xE7\xE1-lo mais uma
-    vez."
+    digital dos inimigos?"
+  ConfirmQuestionText: "Rafael, \xE9 isso mesmo que voc\xEA deseja informar ao Lorde
+    das Tecnologias?"
+  WrongFeedbackQuestionText: "Santa indecis\xE3o! O tempo \xE9 um artefato raro,
+    e n\xE3o posso me dar ao luxo de desperdi\xE7\xE1-lo mais uma vez."
   Responses:
-  - TextOption: "Pedir Autoriza\xE7\xE3o para Iniciar a Restaura\xE7\xE3o"
-    EmailTitle: 
-    EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nToda fortaleza, por mais imponente que
-      seja, pode ser alvo de invasores. Identificamos um grupo radical tentando entrar
-      nas muralhas digitais da PetroCais. Essa amea\xE7a tr\xE1s uma escolha... Ignorar
-      e arriscar ru\xEDnas maiores ou agir r\xE1pido para restaurar a seguran\xE7a.\n\n<b>A
-      decis\xE3o est\xE1 em suas m\xE3os. Com sua autoriza\xE7\xE3o, podemos iniciar
-      a restaura\xE7\xE3o e garantir que essa fortaleza continue de p\xE9, protegida
-      contra novos ataques.</b>\n\nAssim que der o sinal verde, come\xE7amos. Se
-      houver algo que precise ser considerado antes da miss\xE3o, me avise.\n\nEstamos
-      prontos para agir.\n\nAvante!\n\n<b>Atenciosamente,</b>\n<b>Rafael Martins</b>"
+  - TextOption: Questionar se devemos agir.
+    EmailTitle: Devemos Agir?
+    EmailText: "<b>Sauda\xE7\xF5es, Lorde das Tecnologias,</b>\n\nToda fortaleza,
+      por mais imponente que seja, pode ser alvo de invasores. Identificamos um grupo
+      rebelde que est\xE1 tentando sujar a imagem do nosso reino petrol\xEDfero.
+      Essa amea\xE7a traz uma escolha\u2026 Ignorar e arriscar cat\xE1strofes maiores
+      ou agir r\xE1pido para restaurar a seguran\xE7a?\n\n<b>A decis\xE3o est\xE1
+      em suas m\xE3os. Com sua autoriza\xE7\xE3o, podemos iniciar a restaura\xE7\xE3o
+      e garantir que essa fortaleza continue de p\xE9, protegida contra novos ataques.</b>\n\nAssim
+      que der o sinal, come\xE7amos. Se houver algo que precise ser considerado antes
+      da miss\xE3o, me avise.\n\nEstamos prontos para agir.\n\nAvante!\n\n<b>Escudeiro
+      Digital,</b>\n<b>Rafael Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 1
-  - TextOption: "Come\xE7ar a Restaura\xE7\xE3o Imediatamente"
-    EmailTitle: 
-    EmailText: "<b>Ol\xE1, Gustavo,</b>\r\n\r\nQuando a seguran\xE7a \xE9 comprometida,
-      a \xFAnica resposta aceit\xE1vel \xE9 agir. A picha\xE7\xE3o no site da PetroCais
-      deixou claro que esperar n\xE3o era uma op\xE7\xE3o.\r\n\r\n<b>A restaura\xE7\xE3o
-      j\xE1 come\xE7ou. Cada segundo conta, e estamos garantindo que essa fortaleza
-      digital volte a ser impenetr\xE1vel.</b>\r\n\r\nSe houver algo a acrescentar,
-      me avise. Mas, no que realmente importa, j\xE1 estamos resolvendo.\r\n\r\n<b>Atenciosamente,</b>\r\n<b>Rafael
-      Martins</b>"
+  - TextOption: "N\xE3o posso perder tempo!"
+    EmailTitle: "Her\xF3is N\xE3o Perdem Tempo"
+    EmailText: "<b>Sauda\xE7\xF5es, Lorde das Tecnologias,</b>\n\nQuando a seguran\xE7a
+      \xE9 comprometida, a \xFAnica resposta aceit\xE1vel \xE9 agir. Identificamos
+      um grupo rebelde que est\xE1 tentando sujar a imagem do nosso reino petrol\xEDfero
+      e tomamos a \xFAnica medida plaus\xEDvel.\n\n<b>A restaura\xE7\xE3o j\xE1 come\xE7ou.
+      Cada segundo conta, e estamos garantindo que essa fortaleza digital volte a
+      ser impenetr\xE1vel. Pois um verdadeiro her\xF3i n\xE3o perde tempo!</b>\n\nSe
+      houver algo a acrescentar, me avise. Mas, no que realmente importa, j\xE1 estamos
+      resolvendo.\n\n<b>Escudeiro Digital,</b>\n<b>Rafael Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 0
-  - TextOption: A Era de Ouro acabou?
-    EmailTitle: 
-    EmailText: "<b>Ol\xE1, Gustavo,</b>\n\nN\xE3o sei se voc\xEA tem acompanhado,
-      mas as coisas n\xE3o est\xE3o nada boas pra Maravi. Eu ainda amo os quadrinhos,
-      mas o universo cinematogr\xE1fico j\xE1 n\xE3o me agrada mais como antes.\n\nAquele
-      filme novo da Litor\xE2nea, voc\xEA chegou a ver? Nossa... broxei demais.\n\nEu
-      sempre gostei dela nos quadrinhos, era uma hero\xEDna bem tranquilona. Tinha
-      v\xE1rias hist\xF3rias dela relaxando na praia ou fazendo amizade com os animais
-      marinhos, junto com umas reflex\xF5es complexas sobre valorizar as coisas simples
-      da vida. Mas esse novo longa simplesmente jogou tudo isso no lixo...\n\n<b>Transformaram
-      a Litor\xE2nea em mais uma personagem feminina gen\xE9rica com frases de efeito
-      horr\xEDveis. Todas as quest\xF5es filos\xF3ficas dela foram resumidas a coment\xE1rios
-      de coachs de internet. O vestido de ondas todo detalhado que parecia vivo nas
-      m\xE3os de alguns ilustradores virou s\xF3 mais um uniforme borrachudo feito
-      com CGI vagabundo de jogo mobile. Ela era o cora\xE7\xE3o da equipe, o ponto
-      de equil\xEDbrio, mas agora \xE9 s\xF3 mais uma mulher briguenta com um trauma
-      de inf\xE2ncia inventado por diretores de est\xFAdio.</b>\n\nMinha experi\xEAncia
-      assistindo esse filme foi p\xE9ssima. Preferia ter ido ver uma biografia de
-      um jogador de futebol brasileiro famoso. N\xE3o sei se a culpa \xE9 dos roteiristas,
-      do est\xFAdio ou de todo mundo junto. S\xF3 sei que n\xE3o d\xE1 mais!\n\nMas
-      e voc\xEA? Acha que ainda d\xE1 pra tirar um caldo ou a fonte secou? Quero
-      saber sua opini\xE3o.\n\n<b>Atenciosamente,</b>\n<b>Rafael Martins</b>"
+  - TextOption: "N\xF3s realmente temos inimigos...?"
+    EmailTitle: "Ningu\xE9m Tem Inimigos"
+    EmailText: "<b>Sauda\xE7\xF5es, Lorde das Tecnologias,</b>\n\nIdentificamos um
+      grupo rebelde que est\xE1 tentando sujar a imagem do nosso reino petrol\xEDfero.
+      Por\xE9m, algo nessa situa\xE7\xE3o me trouxe uma reflex\xE3o\u2026\n\nMuitos
+      chamam de inimigos aqueles que invadem sistemas, violam p\xE1ginas e deixam
+      suas marcas digitais como bandeiras de territ\xF3rio conquistado. Mas a verdade
+      \xE9 que n\xE3o existem inimigos, somente eventos que acontecem fora do nosso
+      controle.\n\n<b>Escute com aten\xE7\xE3o, Gustavo. Voc\xEA n\xE3o tem inimigos.
+      Ningu\xE9m tem, nenhum inimigo. N\xE3o existe ningu\xE9m no mundo que mere\xE7a
+      ser machucado\u2026 ou, nesse caso, rastreado.</b>\n\n<b>Escudeiro Digital,</b>\n<b>Rafael
+      Medi. Oliveira</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 0

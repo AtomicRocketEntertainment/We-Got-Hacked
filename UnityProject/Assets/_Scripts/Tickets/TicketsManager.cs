@@ -161,7 +161,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
     private void TrySendTicket()
     {
-        if(_currentState != SoftwareState.FullAccess)
+        if (_currentState != SoftwareState.FullAccess)
         {
             EventManager.MakePlayerThink(ThoughtKey.WrongTimeCreateTicket);
             return;
@@ -169,23 +169,23 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
         _newTicketCanvas.TryGetComponent(out TicketScreen ticket);
 
-        if(!ticket.AllInfoAreSelected())
+        if (!ticket.AllInfoAreSelected())
         {
             EventManager.MakePlayerThink(ThoughtKey.TicketWithoutInfo);
             return;
         }
 
-        if(!ticket.CheckInfo(_correctTicket))
+        if (!ticket.CheckInfo(_correctTicket))
         {
             EventManager.CreateEspecificEmail(PointEmailKey.OneTimeWrongTicketCreated);
             _ticketCreatedWrongOneTime = true;
             EventManager.WrongChoice();
             return;
         }
-        
-        if(ticket.CheckInfo(_correctTicket) && _ticketCreatedWrongOneTime)
+
+        if (ticket.CheckInfo(_correctTicket) && _ticketCreatedWrongOneTime)
         {
-            if (_currentCharacter == Character.Tiago_Day_Two)
+            if (_currentCharacter == Character.Tiago_Day_Two || _currentCharacter == Character.Tiago_Day_Three)
             {
                 EventManager.ShowStoryBoard();
                 return;   
@@ -202,7 +202,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
         
         if(ticket.CheckInfo(_correctTicket) && !_ticketCreatedWrongOneTime)
         {
-            if (_currentCharacter == Character.Tiago_Day_Two)
+            if (_currentCharacter == Character.Tiago_Day_Two || _currentCharacter == Character.Tiago_Day_Three)
             {
                 EventManager.ShowStoryBoard();
                 return;   
