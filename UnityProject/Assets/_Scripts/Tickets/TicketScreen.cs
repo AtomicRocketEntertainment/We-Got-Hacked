@@ -23,6 +23,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _criptoWallet;
     [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _hashDp;
 
+    [BoxGroup("Data Leak Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _clientDataleakDp;
+    [BoxGroup("Data Leak Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _dateDataleakDp;
+
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _blockedCanvas;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _emptyPlaybookScreen;
     [BoxGroup("Playbook's Screens"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private GameObject _pichacaoScreen;
@@ -61,6 +64,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private string _dateSelect = "";
     private string _walletSelect = "";
     private string _hashSelect = "";
+    private string _dataLeakClientSelect = "";
+    private string _dataLeakDateSelect = "";
     private bool _canOpenPopUp = false;
 
     public ScreenType CurrentType => _screenType;
@@ -78,6 +83,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp?.onValueChanged.AddListener(UpdateDateSelected);
         _criptoWallet?.onValueChanged.AddListener(UpdateWalletSelected);
         _hashDp?.onValueChanged.AddListener(UpdateHashSelected);
+        _clientDataleakDp?.onValueChanged.AddListener(UpdateDataLeakClientSelected);
+        _dateDataleakDp?.onValueChanged.AddListener(UpdateDataLeakDateSelected);
     }
 
 
@@ -101,12 +108,54 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     {
         _playbookSelect = _playbookDp.options[value].text;
 
+        if (_playbookSelect != PlaybookType.VazamentoDeDados.ToString())
+            EnableAllDps();
+        else
+            DisableDps();
+
         foreach (GameObject screen in _playbookScreens)
-            screen.SetActive(false);
+                screen.SetActive(false);
 
         if (value >= 0 && value <= _playbookScreens.Count)
             _playbookScreens[value].SetActive(true);
     }
+
+    private void DisableDps()
+    {
+        if(_idDp != null)
+            _idDp.interactable = false;
+
+        if(_ipODp != null)
+            _ipODp.interactable = false;
+
+        if(_geolocationDp != null)
+            _geolocationDp.interactable = false;
+
+        if(_dateDp != null)
+            _dateDp.interactable = false;
+
+        if(_originType != null)
+            _originType.interactable = false;
+    }
+
+    private void EnableAllDps()
+    {
+        if(_idDp != null)
+            _idDp.interactable = true;
+
+        if(_ipODp != null)
+            _ipODp.interactable = true;
+
+        if(_geolocationDp != null)
+            _geolocationDp.interactable = true;
+
+        if(_dateDp != null)
+            _dateDp.interactable = true;
+
+        if(_originType != null)
+            _originType.interactable = true;
+    }
+
     private void UpdateIdSelected(int value) { _idSelect = _idDp.options[value].text; }
     private void UpdateIpOSelected(int value) { _ipOSelect = _ipODp.options[value].text; }
     private void UpdateIpDSelected(int value) { _ipDSelect = _ipDDp.options[value].text; }
@@ -116,6 +165,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void UpdateDateSelected(int value) { _dateSelect = _dateDp.options[value].text; }
     private void UpdateWalletSelected(int value) { _walletSelect = _criptoWallet.options[value].text; }
     private void UpdateHashSelected(int value) { _hashSelect = _hashDp.options[value].text; }
+    private void UpdateDataLeakDateSelected(int value) { _dataLeakDateSelect = _dateDataleakDp.options[value].text; }
+    private void UpdateDataLeakClientSelected(int value) { _dataLeakClientSelect = _clientDataleakDp.options[value].text; }
 
 
 
@@ -152,6 +203,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp.ClearOptions();
         _criptoWallet.ClearOptions();
         _hashDp.ClearOptions();
+        _dateDataleakDp.ClearOptions();
+        _clientDataleakDp.ClearOptions();
 
         if (softwareState != SoftwareState.FullAccess) return;
 
@@ -174,6 +227,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         List<string> dateOptions = new List<string> { _dateSelect };
         List<string> criptWalletOptions = new List<string> { _walletSelect };
         List<string> hashOptions = new List<string> { _hashSelect };
+        List<string> clientOptions = new List<string> { _dataLeakClientSelect };
+        List<string> dateDataLeakOptions = new List<string> { _dataLeakDateSelect };
+
 
 
         foreach (SO_Ticket ticket in ticketList.Tickets)
@@ -198,6 +254,12 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             if (!hashOptions.Contains(ticket.RansomwareInformation.Hash))
                 hashOptions.Add(ticket.RansomwareInformation.Hash);
 
+            if (!clientOptions.Contains(ticket.DataLeakInformation.CompanyName))
+                clientOptions.Add(ticket.DataLeakInformation.CompanyName);
+
+            if (!dateDataLeakOptions.Contains(ticket.DataLeakInformation.DateLeaked))
+                dateDataLeakOptions.Add(ticket.DataLeakInformation.DateLeaked);
+
             dateOptions.Add($"{ticket.DateDay} - {ticket.DateHour}");
         }
 
@@ -208,6 +270,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         IListExtensions.Shuffle(deviceOptions);
         IListExtensions.Shuffle(originOptions);
         IListExtensions.Shuffle(dateOptions);
+        IListExtensions.Shuffle(clientOptions);
+        IListExtensions.Shuffle(dateDataLeakOptions);
 
         _playbookDp.AddOptions(playBookOptions);
         _idDp.AddOptions(idOptions);
@@ -219,6 +283,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp.AddOptions(dateOptions);
         _criptoWallet.AddOptions(criptWalletOptions);
         _hashDp.AddOptions(hashOptions);
+        _clientDataleakDp.AddOptions(clientOptions);
+        _dateDataleakDp.AddOptions(dateDataLeakOptions);
     }
 
     private void UpdateCurrentTicket(Ticket currentTicket)
@@ -355,14 +421,27 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         bool isPlaybookInfoSelected = PlaybookInfosAreSelected(_playbookSelect);
         Debug.Log($"[CheckSelectedInfos] PlaybookInfosAreSelected: {isPlaybookInfoSelected}");
 
-        bool allSelected = isPlaybookInfoSelected &&
-            _idSelect != "" &&
-            _ipOSelect != "" &&
-            _ipDSelect != "" &&
-            _geolocationSelect != "" &&
-            _deviceSelect != "" &&
-            _originSelect != "" &&
-            _dateSelect != "";
+        bool allSelected;
+
+        if (_playbookSelect != PlaybookType.VazamentoDeDados.ToString())
+        {
+            allSelected = isPlaybookInfoSelected &&
+                 _idSelect != "" &&
+                 _ipOSelect != "" &&
+                 _ipDSelect != "" &&
+                 _geolocationSelect != "" &&
+                 _deviceSelect != "" &&
+                 _originSelect != "" &&
+                 _dateSelect != "";
+        }
+        else
+        {
+            allSelected = isPlaybookInfoSelected &&
+                 _ipDSelect != "" &&
+                 _deviceSelect != "" &&
+                 _dataLeakClientSelect != "" &&
+                 _dataLeakDateSelect != "";
+        }
 
         Debug.Log($"[CheckSelectedInfos] Resultado final: {allSelected}");
         return allSelected;
@@ -383,6 +462,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             case nameof(PlaybookType.Ransomware):
                 Debug.Log($"[PlaybookInfosAreSelected] Wallet selecionado: {_walletSelect}, Hash selecionado: {_hashSelect}");
                 areSelected = !string.IsNullOrEmpty(_hashSelect) && !string.IsNullOrEmpty(_walletSelect);
+                break;
+            case nameof(PlaybookType.VazamentoDeDados):
+                areSelected = !string.IsNullOrEmpty(_dataLeakClientSelect) && !string.IsNullOrEmpty(_dataLeakDateSelect);
                 break;
             default:
                 Debug.Log("[PlaybookInfosAreSelected] Nenhuma verificação especial para esse playbook.");
@@ -407,6 +489,9 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             case nameof(PlaybookType.Ransomware):
                 Debug.Log($"[VerifyPlaybookInfos] Verificando Ransomware. Ticket.Ransomware={ticket.RansomwareInfos.RansomwareName}, Wallet={ticket.RansomwareInfos.CriptoWallet}");
                 isCorrect = VerifyRansomware(ticket.RansomwareInfos.CriptoWallet, ticket.RansomwareInfos.Hash);
+                break;
+            case nameof(PlaybookType.VazamentoDeDados):
+                isCorrect = VerifyDataleak(ticket.DataLeakInfos.CompanyName, ticket.DataLeakInfos.DateLeaked);
                 break;
             default:
                 Debug.Log("[VerifyPlaybookInfos] Playbook sem verificações específicas.");
@@ -444,8 +529,11 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         Debug.Log($"Date: {selectedDate} == {ticket.DateDay} - {ticket.DateHour}");
         Debug.Log($"Risk: {selectedRisk} == {ticket.RiskLevel}");
 
-        bool isCorrect = 
-            selectedId == ticket.ID &&
+        bool isCorrect;
+
+        if (_playbookSelect != PlaybookType.VazamentoDeDados.ToString())
+        {
+            isCorrect = selectedId == ticket.ID &&
             selectedIpO == ticket.IPOrigem &&
             selectedIpD == ticket.IPDestiny &&
             selectedLocation == ticket.Location &&
@@ -453,6 +541,13 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             selectedOrigin == ticket.Origin.ToString() &&
             selectedDate == $"{ticket.DateDay} - {ticket.DateHour}" &&
             selectedRisk == ticket.RiskLevel;
+        }
+        else
+        {
+            isCorrect = selectedIpD == ticket.IPDestiny &&
+            selectedDevice == ticket.DeviceAttacked.ToString();
+        }
+
 
         Debug.Log($"[VerifyCommonInfos] Resultado final: {isCorrect}");
         return isCorrect;
@@ -483,15 +578,19 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private bool VerifyRansomware(string wallet, string hash)
     {
         Debug.Log($"[VerifyRansomware] Entrou na função. Wallet esperada: {wallet}, Hash esperada: {hash}");
+        Debug.Log($"[VerifyRansomware] Wallet selecionada: {_walletSelect}, Hash selecionada: {_hashSelect}");
 
-        string selectedWallet = _criptoWallet.options[_criptoWallet.value].text;
-        string selectedHash = _hashDp.options[_hashDp.value].text;
-
-        Debug.Log($"[VerifyRansomware] Wallet selecionada: {selectedWallet}, Hash selecionada: {selectedHash}");
-
-        bool isCorrect = selectedWallet == wallet && selectedHash == hash;
+        bool isCorrect = _walletSelect == wallet && _hashSelect == hash;
 
         Debug.Log($"[VerifyRansomware] Comparação: (SelectedName==Esperado && SelectedWallet==Esperada) => {isCorrect}");
+        return isCorrect;
+    }
+
+    private bool VerifyDataleak(string client, string date)
+    {
+        bool isCorrect = _dataLeakDateSelect == date && _dataLeakClientSelect == client;
+
+        Debug.Log($"[VerifyDataleak] Comparação: (_dataLeakDateSelect==Esperado && _dataLeakClientSelect==Esperada) => {isCorrect}");
         return isCorrect;
     }
 
@@ -516,6 +615,8 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dateDp.ClearOptions();
         _criptoWallet.ClearOptions();
         _hashDp.ClearOptions();
+        _clientDataleakDp.ClearOptions();
+        _dateDataleakDp.ClearOptions();
 
         foreach (var toggle in _RisktoggleGroup.GetComponentsInChildren<Toggle>())
             toggle.isOn = false;

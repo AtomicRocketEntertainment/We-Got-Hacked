@@ -13,6 +13,7 @@ public class Ticket
     private int _riskLevel;
     private SiteType _site;
     private RansomwareInformations _ransomwareInfos;
+    private DataLeakInformations _dataLeakInfos;
     private List<TicketObjectives> _objectives;
     private List<TicketLog> _logs;
     private string _siemLog;
@@ -31,6 +32,8 @@ public class Ticket
     public int RiskLevel => _riskLevel;
     public SiteType Site => _site;
     public RansomwareInformations RansomwareInfos => _ransomwareInfos;
+    public DataLeakInformations DataLeakInfos => _dataLeakInfos;
+
     public List<TicketObjectives> Objectives => _objectives;
     public List<TicketLog> Logs => _logs;
     public string SiemLog => _siemLog;
@@ -50,6 +53,7 @@ public class Ticket
         _riskLevel = infos.RiskLevel;
         _site = infos.CorrectSite;
         _ransomwareInfos = infos.RansomwareInformation;
+        _dataLeakInfos = infos.DataLeakInformation;
 
         _objectives = new List<TicketObjectives>();
         _logs = infos.Loggs;

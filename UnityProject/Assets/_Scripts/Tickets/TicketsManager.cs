@@ -29,6 +29,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
     [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore4Day1 = "Lore 4";
     [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore9Day1 = "Lore 9";
     [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore8Day2 = "Lore 8 Day 2";
+    [BoxGroup("Lore to Update State")][SerializeField] private readonly string _lore6Day3 = "Lore 6 Day 3";
 
 
 
@@ -148,7 +149,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
 
         if (emailIndex == _lore2Day1)
             _currentState = SoftwareState.FirstTimeOpened;
-        else if (emailIndex == _lore4Day1 || emailIndex == _lore9Day1 || emailIndex == _lore8Day2)
+        else if (emailIndex == _lore4Day1 || emailIndex == _lore9Day1 || emailIndex == _lore8Day2 || emailIndex == _lore6Day3)
         {
             _currentState = SoftwareState.FullAccess;
             _newTicketCanvas.TryGetComponent(out TicketScreen ticketUpdater);
