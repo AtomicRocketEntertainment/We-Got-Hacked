@@ -145,6 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5601992756814692284}
   - component: {fileID: 9170492793054386200}
+  - component: {fileID: 3818797245739183026}
   m_Layer: 0
   m_Name: Active_Auction
   m_TagString: Untagged
@@ -193,6 +194,21 @@ MonoBehaviour:
   _bidQuantity: {fileID: 7003029003134410920}
   _bidViews: {fileID: 7828272681296050912}
   _auctionBtn: {fileID: 5415447670128385011}
+--- !u!114 &3818797245739183026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557403653210795029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8761785399d4246479449c2cfb2e886a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animTime: 0.1
+  _tweenCurve: 5
+  _scaleToGo: {x: 1.05, y: 1.05, z: 1.05}
 --- !u!1 &1741397427299093854
 GameObject:
   m_ObjectHideFlags: 0
