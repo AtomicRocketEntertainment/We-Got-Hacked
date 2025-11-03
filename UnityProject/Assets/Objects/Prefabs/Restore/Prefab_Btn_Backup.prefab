@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7688198530147238335}
   - component: {fileID: 3503355714151269778}
   - component: {fileID: 13683922808338757}
+  - component: {fileID: 515404270113025702}
   m_Layer: 0
   m_Name: Prefab_Btn_Backup
   m_TagString: Untagged
@@ -138,6 +139,21 @@ MonoBehaviour:
   _backupButton: {fileID: 3503355714151269778}
   _date: {fileID: 621515699865145525}
   _hour: {fileID: 5394377289725261074}
+--- !u!114 &515404270113025702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456473383393252993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8761785399d4246479449c2cfb2e886a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animTime: 0.2
+  _tweenCurve: 6
+  _scaleToGo: {x: 1.1, y: 1.1, z: 1.1}
 --- !u!1 &3851754179084546576
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,15 +263,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -382,15 +400,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
