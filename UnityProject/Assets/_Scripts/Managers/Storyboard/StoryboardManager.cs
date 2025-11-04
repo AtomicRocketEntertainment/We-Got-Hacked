@@ -35,7 +35,7 @@ public class StoryboardManager : MonoBehaviour
         while (currentContent.HaveFrameToShow)
         {
             currentContent.ShowFrame();
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(6f);
         }
 
         _currentContentIndex++;
