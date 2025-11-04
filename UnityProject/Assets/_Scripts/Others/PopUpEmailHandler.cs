@@ -3,8 +3,8 @@ using UnityEngine;
 public class PopUpEmailHandler : MonoBehaviour
 {
     [SerializeField] private GameObject _canvas;
-
     [SerializeField] private string _textLinkToCheck; 
+    [SerializeField] private bool _isTiagoSideStory = true; 
 
     void OnEnable()
     {
@@ -21,8 +21,12 @@ public class PopUpEmailHandler : MonoBehaviour
         if (link == _textLinkToCheck)
         {
             _canvas.SetActive(true);
-            EventManager.MakePlayerThink(ThoughtKey.OpenKellyMessage);
-            EventManager.EnablePlayerWriteEmail();
+
+            if (_isTiagoSideStory)
+            {
+                EventManager.MakePlayerThink(ThoughtKey.OpenKellyMessage);
+                EventManager.EnablePlayerWriteEmail();
+            }
         }
     }
 }
