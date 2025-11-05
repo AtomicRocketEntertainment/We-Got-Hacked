@@ -51,7 +51,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         _dataLeakScreen
     };
 
-    private readonly int _maxObjectiveWithoutScale = 5;
+    private readonly int _maxObjectiveWithoutScale = 4;
     private readonly float _scaleGapForObjective = -50f;
 
     private string _playbookSelect = "";

@@ -5,6 +5,7 @@ public class Day_Three_ThirdWrite_Eduardo : IEmailStateHandler
         EventManager.SpawnEmail(EmailType.SPAM);
         EventManager.SpawnEmail(EmailType.LORE);
         EventManager.DisablePlayerWriteEmail();
+        EventManager.TicketObjectiveCompleted();
         context.ChangeWriteState(HistoryPartState.Part_Four);
     }
 }

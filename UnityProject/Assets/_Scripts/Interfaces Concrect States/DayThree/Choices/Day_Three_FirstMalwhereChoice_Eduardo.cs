@@ -5,6 +5,7 @@ public class Day_Three_FirstMalwhereChoice_Eduardo : IChoiceStateHandler
         EventManager.SpawnEmail(EmailType.LORE);
         EventManager.SpawnEmail(EmailType.NEWS);
         EventManager.DisablePlayerSearchMalwhere();
+        EventManager.TicketObjectiveCompleted();
         EventManager.MakePlayerThink(ThoughtKey.ThinkAboutIPFoundOnMalwhere);
         context.ChangeChoiceState(HistoryPartState.Part_Two);
     }

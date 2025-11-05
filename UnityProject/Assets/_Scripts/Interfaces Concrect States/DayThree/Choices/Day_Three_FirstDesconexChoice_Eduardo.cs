@@ -1,11 +1,13 @@
-public class Day_Three_FirstBinaryChoice_Eduardo : IChoiceStateHandler
+public class Day_Three_FirstDesconexChoice_Eduardo : IChoiceStateHandler
 {
     public void Handle(IChoiceContext context)
     {
-        EventManager.SpawnEmail(EmailType.LORE);
-        EventManager.SpawnEmail(EmailType.SPAM);
         EventManager.TicketObjectiveCompleted();
         context.ChangeChoiceState(HistoryPartState.Part_Two);
     }
 }
+
+
+
+
 

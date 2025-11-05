@@ -4,6 +4,7 @@ public class Day_Three_ThirdMalwhereChoice_Eduardo : IChoiceStateHandler
     {
         EventManager.EnablePlayerWriteEmail();
         EventManager.DisablePlayerSearchMalwhere();
+        EventManager.TicketObjectiveCompleted();
         context.ChangeChoiceState(HistoryPartState.Part_Four);
     }
 }

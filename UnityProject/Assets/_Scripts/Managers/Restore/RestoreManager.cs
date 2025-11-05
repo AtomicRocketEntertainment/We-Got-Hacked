@@ -63,6 +63,7 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         {
             Character.Rafael_Day_One => new Day_One_ChoiceStateSetupDesconex_Rafael(),
             Character.Rafael_Day_Two => new Day_Two_ChoiceStateSetupDesconex_Rafael(),
+            Character.Eduardo_Day_Three => new Day_Three_ChoiceStateDesconexSetup_Eduardo(),
             _ => null
         };
 
@@ -100,6 +101,9 @@ public class RestoreManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
         if (_restoreScreens.ContainsKey(key))
             _restoreScreens[key].SetActive(true);
+
+        if (key == _monitoringBtn && _currentCharacter == Character.Eduardo_Day_Three && _currentChoiceState == HistoryPartState.Part_One)
+            HandleState();
     }
 
     void OnDisable()
