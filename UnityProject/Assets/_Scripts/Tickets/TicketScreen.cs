@@ -123,19 +123,34 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     private void DisableDps()
     {
         if(_idDp != null)
+        {
             _idDp.interactable = false;
+            _idDp.value = 0;   
+        }
 
         if(_ipODp != null)
+        {
             _ipODp.interactable = false;
+            _ipODp.value = 0;   
+        }
 
         if(_geolocationDp != null)
+        {
             _geolocationDp.interactable = false;
+            _geolocationDp.value = 0;   
+        }
 
         if(_dateDp != null)
+        {
             _dateDp.interactable = false;
+            _dateDp.value = 0;   
+        }
 
         if(_originType != null)
+        {
             _originType.interactable = false;
+            _originType.value = 0;   
+        }
     }
 
     private void EnableAllDps()

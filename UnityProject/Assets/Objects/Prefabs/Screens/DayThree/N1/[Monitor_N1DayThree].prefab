@@ -563,15 +563,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -654,7 +656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Conhecimento
+  m_text: Documento.pdf
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cc0f8926192f054497c9086591a2141, type: 2}
   m_sharedMaterial: {fileID: 5896909752060814302, guid: 9cc0f8926192f054497c9086591a2141,
@@ -698,15 +700,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -889,19 +893,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[0]
+      propertyPath: '_softwares.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 0e2279b94cb91ae4db9e56f1f048cf9f,
         type: 2}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[1]
+      propertyPath: '_softwares.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 51b813649e8e693459bdbc6edfb22cda,
         type: 2}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[2]
+      propertyPath: '_softwares.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 164c6784586b99049b7f804685de8e78,
         type: 2}
@@ -912,7 +916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwareButtons.Array.data[2]
+      propertyPath: '_softwareButtons.Array.data[2]'
       value: 
       objectReference: {fileID: 3266015144161334484}
     - target: {fileID: 786005721353754398, guid: 94faa059179f0cf4bb87a2f454445621,
@@ -949,6 +953,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180113907125985653, guid: 94faa059179f0cf4bb87a2f454445621,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 1420755242341376764, guid: 94faa059179f0cf4bb87a2f454445621,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 1462630294237230146, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
@@ -1102,12 +1116,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3058909033891196484, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[2]
+      propertyPath: '_buttons.Array.data[2]'
       value: 
       objectReference: {fileID: 647326360395146540}
     - target: {fileID: 3058909033891196484, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[3]
+      propertyPath: '_buttons.Array.data[3]'
       value: 
       objectReference: {fileID: 3829072240828934017}
     - target: {fileID: 3913908098577528006, guid: 94faa059179f0cf4bb87a2f454445621,
@@ -1312,35 +1326,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[2]
+      propertyPath: '_buttons.Array.data[2]'
       value: 
       objectReference: {fileID: 647326360395146540}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[3]
+      propertyPath: '_buttons.Array.data[3]'
       value: 
       objectReference: {fileID: 3829072240828934017}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[0]
+      propertyPath: '_softwares.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 5e90b0da4ca6a2d4aa1bce46b13bad90,
         type: 2}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[1]
+      propertyPath: '_softwares.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: f667bbedb5e36bc4393dbeb09ff028f3,
         type: 2}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[2]
+      propertyPath: '_softwares.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 59dff85fb3f5bfa489185334edf5fd8b,
         type: 2}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[3]
+      propertyPath: '_softwares.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: bdb2f9777e3318247a52a94a8dc007cb,
         type: 2}
@@ -1368,6 +1382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612385628429474743, guid: 94faa059179f0cf4bb87a2f454445621,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9136150493707559199, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}

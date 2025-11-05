@@ -329,15 +329,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -518,6 +520,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 923381082982607619, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082992801224353930, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 1349527734595954889, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -535,19 +547,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1831122508905851619, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[0]
+      propertyPath: '_softwares.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 6b6152d430641e14c90ba23b2c39559f,
         type: 2}
     - target: {fileID: 1831122508905851619, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[1]
+      propertyPath: '_softwares.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 2720b0f1a70d2184baa231216c1d3641,
         type: 2}
     - target: {fileID: 1831122508905851619, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[2]
+      propertyPath: '_softwares.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 69e732c6a98d02949be500e3e964eda5,
         type: 2}
@@ -558,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1831122508905851619, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwareButtons.Array.data[2]
+      propertyPath: '_softwareButtons.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2306706716209566074, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
@@ -674,18 +686,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3824795101484754875, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _buttons.Array.data[3]
+      propertyPath: '_buttons.Array.data[3]'
       value: 
       objectReference: {fileID: 9133869513116961896}
     - target: {fileID: 3824795101484754875, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _buttons.Array.data[4]
+      propertyPath: '_buttons.Array.data[4]'
       value: 
       objectReference: {fileID: 3841472999121921145}
     - target: {fileID: 4075049473482494143, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153110784558765463, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
+        type: 3}
+      propertyPath: m_text
+      value: Documento.pdf
       objectReference: {fileID: 0}
     - target: {fileID: 4260288072972693388, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
@@ -908,6 +925,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347157396840690524, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557704791602860616, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 7865480391008058040, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -945,41 +972,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7885729742657477597, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _buttons.Array.data[3]
+      propertyPath: '_buttons.Array.data[3]'
       value: 
       objectReference: {fileID: 9133869513116961896}
     - target: {fileID: 7885729742657477597, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _buttons.Array.data[4]
+      propertyPath: '_buttons.Array.data[4]'
       value: 
       objectReference: {fileID: 3841472999121921145}
     - target: {fileID: 7885729742657477597, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[0]
+      propertyPath: '_softwares.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 1ed13f51c80a1a54d9d1fef677043480,
         type: 2}
     - target: {fileID: 7885729742657477597, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[1]
+      propertyPath: '_softwares.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: d7cdd2d635038cc419bffd60d9f86ba3,
         type: 2}
     - target: {fileID: 7885729742657477597, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[2]
+      propertyPath: '_softwares.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 5878d9e57ac01304ca94b4125943606e,
         type: 2}
     - target: {fileID: 7885729742657477597, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[3]
+      propertyPath: '_softwares.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: 9e851be37ec70684a8e1fc606e8aeee4,
         type: 2}
     - target: {fileID: 7885729742657477597, guid: 9d1c7b28f5b4c4643bfc95687e02add9,
         type: 3}
-      propertyPath: _softwares.Array.data[4]
+      propertyPath: '_softwares.Array.data[4]'
       value: 
       objectReference: {fileID: 11400000, guid: 9c0c97ee072bf18459bd2c3c45cff638,
         type: 2}

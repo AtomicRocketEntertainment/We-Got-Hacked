@@ -587,15 +587,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -783,19 +785,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[0]
+      propertyPath: '_softwares.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 31a1f5c1ecae8b04fb581541ae5657d2,
         type: 2}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[1]
+      propertyPath: '_softwares.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: ea33b9993e0b929459d1da9bb3e707c4,
         type: 2}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[2]
+      propertyPath: '_softwares.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 69e1c610d77bb0348bf02bc13ce20c8f,
         type: 2}
@@ -806,7 +808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436426222125736732, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwareButtons.Array.data[2]
+      propertyPath: '_softwareButtons.Array.data[2]'
       value: 
       objectReference: {fileID: 9138200031855521954}
     - target: {fileID: 453250344106545590, guid: 94faa059179f0cf4bb87a2f454445621,
@@ -869,6 +871,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1180113907125985653, guid: 94faa059179f0cf4bb87a2f454445621,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 1267777165184766200, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
       propertyPath: m_Name
@@ -878,6 +885,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: anexusmail.com/rafael-martins
+      objectReference: {fileID: 0}
+    - target: {fileID: 1420755242341376764, guid: 94faa059179f0cf4bb87a2f454445621,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 1462630294237230146, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
@@ -1012,7 +1024,7 @@ PrefabInstance:
     - target: {fileID: 2793880140064382056, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
       propertyPath: m_text
-      value: Conhecimento
+      value: Documento.pdf
       objectReference: {fileID: 0}
     - target: {fileID: 2852281469682843943, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
@@ -1061,12 +1073,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3058909033891196484, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[2]
+      propertyPath: '_buttons.Array.data[2]'
       value: 
       objectReference: {fileID: 2838558576083387547}
     - target: {fileID: 3058909033891196484, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[3]
+      propertyPath: '_buttons.Array.data[3]'
       value: 
       objectReference: {fileID: 7901319353400855238}
     - target: {fileID: 3115776435696784300, guid: 94faa059179f0cf4bb87a2f454445621,
@@ -1375,35 +1387,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[2]
+      propertyPath: '_buttons.Array.data[2]'
       value: 
       objectReference: {fileID: 2838558576083387547}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _buttons.Array.data[3]
+      propertyPath: '_buttons.Array.data[3]'
       value: 
       objectReference: {fileID: 7901319353400855238}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[0]
+      propertyPath: '_softwares.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 71df108fbef34c94c9233cdaa9c08e01,
         type: 2}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[1]
+      propertyPath: '_softwares.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 8d4543a6781de1d4a91960bb603b555e,
         type: 2}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[2]
+      propertyPath: '_softwares.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: fa0d13b0fe684944bb34b5e2935d5ead,
         type: 2}
     - target: {fileID: 8217017656052716066, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
-      propertyPath: _softwares.Array.data[3]
+      propertyPath: '_softwares.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: d39b03500d815b04abec5370d41df766,
         type: 2}
@@ -1443,6 +1455,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: cda40e25fbe68bb46a6261dbf91f020a,
         type: 3}
+    - target: {fileID: 8612385628429474743, guid: 94faa059179f0cf4bb87a2f454445621,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 8782252545586360943, guid: 94faa059179f0cf4bb87a2f454445621,
         type: 3}
       propertyPath: _feedbackToAvoidActive
