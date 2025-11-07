@@ -52,6 +52,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     };
 
     private readonly int _maxObjectiveWithoutScale = 4;
+    private int _lastExtraObjective = -1;
     private readonly float _scaleGapForObjective = -50f;
 
     private string _playbookSelect = "";
@@ -349,13 +350,16 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             UpdateObjective(obj, currentTicket, i);
         }
 
-        ScaleObjectiveScreen(completedObjectives);
+        ScaleObjectiveScreen(completedObjectives + needToShowNext);
     }
 
     private void ScaleObjectiveScreen(int objectiveQuantity)
     {
         int extraObjective = objectiveQuantity - _maxObjectiveWithoutScale;
         if (extraObjective <= 0) return;
+        if (_lastExtraObjective == extraObjective) return; //Fix the problem that scaling forever
+
+        _lastExtraObjective = extraObjective;
 
         _mainCurrentObjectiveScreen.TryGetComponent(out RectTransform rect);
         float newBottom = rect.offsetMin.y + (extraObjective * _scaleGapForObjective);
