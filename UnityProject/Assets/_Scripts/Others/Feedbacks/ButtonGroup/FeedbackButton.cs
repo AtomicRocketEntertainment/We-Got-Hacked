@@ -17,6 +17,8 @@ public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
     [BoxGroup("Color Feature"), ShowIf(nameof(_hasColorFeature)), SerializeField] private Color _updatedColor;
     [BoxGroup("Color Feature"), ShowIf(nameof(_hasColorFeature)), SerializeField] private Image _spriteToPaint;
 
+    [BoxGroup("Animated Seetings"), SerializeField] private bool _shouldGoBackToColor = false;
+
 
     public void ActiveFeedback()
     {
@@ -51,5 +53,9 @@ public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
 
     }
 
-    private void OnDisable() => DesactiveFeedback();
+    private void OnDisable()
+    {
+        if (_shouldGoBackToColor)
+            DesactiveFeedback();
+    }
 }
