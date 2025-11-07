@@ -10,4 +10,6 @@ public class AnimatedHoverFeedback : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerEnter(PointerEventData eventData) => LeanTween.scale(this.gameObject, _scaleToGo, _animTime).setEase(_tweenCurve);
     public void OnPointerExit(PointerEventData eventData) => LeanTween.scale(this.gameObject, Vector3.one, _animTime).setEase(_tweenCurve);
+
+    void OnDisable() => this.gameObject.transform.localScale = Vector3.one;
 }

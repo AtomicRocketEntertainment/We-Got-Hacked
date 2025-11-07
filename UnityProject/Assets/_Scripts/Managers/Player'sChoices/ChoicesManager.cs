@@ -106,7 +106,7 @@ public class ChoicesManager : MonoBehaviour
 
     private IEnumerator CloseScreen(GameObject screen)
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(6.0f);
         screen.SetActive(false);
     }
 

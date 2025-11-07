@@ -20,7 +20,7 @@ public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
 
     public void ActiveFeedback()
     {
-        if(_spriteToShow != null) _spriteToShow.SetActive(true);
+        if (_spriteToShow != null) _spriteToShow.SetActive(true);
 
         if (_hasTextFeature)
         {
@@ -29,11 +29,11 @@ public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
 
 
         if (_hasColorFeature)
-        { 
+        {
             _spriteToPaint.color = _updatedColor;
         }
     }
-    
+
     public void DesactiveFeedback()
     {
         if (_spriteToShow != null) _spriteToShow.SetActive(false);
@@ -50,4 +50,6 @@ public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
         }
 
     }
+
+    private void OnDisable() => DesactiveFeedback();
 }
