@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Playbook: 0
   ID: 7493
-  IPOrigem: 229.6.165.23
-  IPDestiny: 209.7.095.11
+  IPOrigem: 198.51.100.10
+  IPDestiny: 192.0.2.14
   Location: America do Sul - Brasil
   DeviceAttacked: 1
   Origin: 3
   DateDay: 20/05/2022
   DateHour: 23:27:46
   RiskLevel: 5
+  SiemLogName: 
   SiemLog: 
   Loggs:
   - IsCorrect: 0
@@ -36,8 +37,39 @@ MonoBehaviour:
     Sprite: {fileID: 0}
     IsCorrectUser: 0
   CorrectSite: 0
-  RansomwareName: 
-  CriptoWallet: 
+  RansomwareInformation:
+    RansomwareName: 
+    ManufacterNameOne: 
+    ManufacterNameTwo: 
+    DomainName: 
+    Country: 
+    State: 
+    City: 
+    Description: 
+    Size: 0
+    CriptoWallet: 
+    Hash: 
+    Exe: 
+    IsInTheBank: 
+    MaliciousPercentage: 0
+    RelatedTimes: 0
+    LastAnalysis: 0
+  DataLeakInformation:
+    DomainInfo:
+      Name: 
+      Owner: 
+      Document: 
+      Responsable: 
+      Country: 
+      ResponsableContact: 
+      TechnicalContact: 
+      ServerOne: 
+      ServerTwo: 
+      CreatedDate: 
+      UpdatedDate: 
+      Status: 
+    CompanyName: 
+    DateLeaked: 
   Objectives:
   - Name: "Identificar qual p\xE1gina(s) ou plataforma sofreu o ataque, e criar ticket
       sobre."
@@ -65,8 +97,8 @@ MonoBehaviour:
     Text: "Indicar corre\xE7\xE3o para a vulnerabilidade."
     IsCompleted: 0
     ShouldShow: 0
-  - Name: "Restaurar b\uFEFFackup do site pr\xE9-ataque."
-    Text: "Restaurar b\uFEFFackup do site pr\xE9-ataque."
+  - Name: "Restaurar backup do site pr\xE9-ataque."
+    Text: "Restaurar backup do site pr\xE9-ataque."
     IsCompleted: 0
     ShouldShow: 0
   - Name: Restaurar o site no ar.

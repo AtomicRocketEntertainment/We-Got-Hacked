@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Playbook: 1
   ID: 1894
-  IPOrigem: 200.147.34.56
+  IPOrigem: 198.51.100.17
   IPDestiny: 229.6.255.10
   Location: "Europa - It\xE1lia"
-  Dispositive:
-    Type: 2
-    Icon: {fileID: 21300000, guid: 56e5ccc9eca65fb43b91f3e0ccf6fd7b, type: 3}
+  DeviceAttacked: 1
+  Origin: 4
   DateDay: 20/05/2022
   DateHour: 23:21:56
   RiskLevel: 3
+  SiemLogName: 
+  SiemLog: 
   Loggs:
   - IsCorrect: 0
     Log: 200.147.34.56 [20/Mai/2022:11:20:56 -0300] "POST /form_submit HTTP/1.1"
@@ -32,5 +33,42 @@ MonoBehaviour:
   - IsCorrect: 0
     Log: 229.6.255.10 [20/Mai/2022:11:21:24 -0300] "GET /user/123 HTTP/1.1" 293 "https://sustentabilidade.petrocais.com.br"
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0"
-  Objectives: []
+  RemotopiaUser:
+    Name: 
+    Sprite: {fileID: 0}
+    IsCorrectUser: 0
   CorrectSite: 1
+  RansomwareInformation:
+    RansomwareName: 
+    ManufacterNameOne: 
+    ManufacterNameTwo: 
+    DomainName: 
+    Country: 
+    State: 
+    City: 
+    Description: 
+    Size: 0
+    CriptoWallet: 
+    Hash: 
+    Exe: 
+    IsInTheBank: 
+    MaliciousPercentage: 0
+    RelatedTimes: 0
+    LastAnalysis: 0
+  DataLeakInformation:
+    DomainInfo:
+      Name: 
+      Owner: 
+      Document: 
+      Responsable: 
+      Country: 
+      ResponsableContact: 
+      TechnicalContact: 
+      ServerOne: 
+      ServerTwo: 
+      CreatedDate: 
+      UpdatedDate: 
+      Status: 
+    CompanyName: 
+    DateLeaked: 
+  Objectives: []
