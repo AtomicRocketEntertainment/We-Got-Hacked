@@ -17,7 +17,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _originType;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _dateDp;
     [BoxGroup("New Ticket Components"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private ToggleGroup _RisktoggleGroup;
-
+    
     [BoxGroup("Pichacao Toggles"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private Transform _SitetoggleGroup;
 
     [BoxGroup("Ransomware Infos"), ShowIf(nameof(NewTicketEditorChecker))][SerializeField] private TMP_Dropdown _criptoWallet;
