@@ -49,8 +49,12 @@ public class OnOffLoggerToggle : MonoBehaviour, IPointerClickHandler
         _active = !_active;
         float goTo = _active ? Xon : Xoff;
         Color color = _active ? _circleOnColor : _circleOffColor;
+        Color headerColor = _active ? _headerOnColor : _headerOffColor;
+        Color componentColor = _active ? _backgroundOnColor : _backgroundOffColor;
 
         _circleBackground.color = color;
+        _headerBackground.color = headerColor;
+        _componentBackground.color = componentColor;
         LeanTween.moveLocalX(_circle, goTo, 0.2f).setEase(LeanTweenType.easeOutQuad);
     }
 
