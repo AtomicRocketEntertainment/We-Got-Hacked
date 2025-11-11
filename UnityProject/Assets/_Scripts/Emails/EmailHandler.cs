@@ -8,8 +8,8 @@ using System.Collections;
 
 public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 {
-    [BoxGroup("Player Initial Status")] [SerializeField] private WriteEmailState _writeEmailState;
-    [BoxGroup("Player Initial Status")] [SerializeField] private List<SO_Email> _firstEmails = new List<SO_Email>();
+    [BoxGroup("Player Initial Status")][SerializeField] private WriteEmailState _writeEmailState;
+    [BoxGroup("Player Initial Status")][SerializeField] private List<SO_Email> _firstEmails = new List<SO_Email>();
     [SerializeField] private List<SO_Email> _spamToSend = new List<SO_Email>();
     [SerializeField] private List<SO_Email> _loreToSend = new List<SO_Email>();
     [SerializeField] private List<SO_Email> _hackingToSend = new List<SO_Email>();
@@ -17,22 +17,22 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
 
     [HorizontalLine(color: EColor.Red)]
-    [BoxGroup("Canvases")] [SerializeField] private GameObject _mainCanvas;
-    [BoxGroup("Canvases")] [SerializeField] private Transform _homeEmailCanvas;
-    [BoxGroup("Canvases")] [SerializeField] private Transform _readingEmailCanvas;
-    [BoxGroup("Canvases")] [SerializeField] private Transform _writingEmailCanvas;
+    [BoxGroup("Canvases")][SerializeField] private GameObject _mainCanvas;
+    [BoxGroup("Canvases")][SerializeField] private Transform _homeEmailCanvas;
+    [BoxGroup("Canvases")][SerializeField] private Transform _readingEmailCanvas;
+    [BoxGroup("Canvases")][SerializeField] private Transform _writingEmailCanvas;
 
-    [BoxGroup("Email to Read Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailTitle;
-    [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _senderName;
-    [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _senderEmail;
-    [BoxGroup("Email to Read Content")] [SerializeField] private TextMeshProUGUI _emailContent;
-    [BoxGroup("Email to Read Content")] [SerializeField] private Image _senderProfilePicture;
+    [BoxGroup("Email to Read Content"), HorizontalLine(color: EColor.Green)][SerializeField] private TextMeshProUGUI _emailTitle;
+    [BoxGroup("Email to Read Content")][SerializeField] private TextMeshProUGUI _senderName;
+    [BoxGroup("Email to Read Content")][SerializeField] private TextMeshProUGUI _senderEmail;
+    [BoxGroup("Email to Read Content")][SerializeField] private TextMeshProUGUI _emailContent;
+    [BoxGroup("Email to Read Content")][SerializeField] private Image _senderProfilePicture;
 
-    [BoxGroup("Email to Write Content"), HorizontalLine(color: EColor.Green)] [SerializeField] private TextMeshProUGUI _emailWriteTitle;
-    [BoxGroup("Email to Write Content")] [SerializeField] private TextMeshProUGUI _receiverEmail;
-    [BoxGroup("Email to Write Content")] [SerializeField] private TextMeshProUGUI _emailWriteContent;
+    [BoxGroup("Email to Write Content"), HorizontalLine(color: EColor.Green)][SerializeField] private TextMeshProUGUI _emailWriteTitle;
+    [BoxGroup("Email to Write Content")][SerializeField] private TextMeshProUGUI _receiverEmail;
+    [BoxGroup("Email to Write Content")][SerializeField] private TextMeshProUGUI _emailWriteContent;
 
-    [BoxGroup("Prefabs"), HorizontalLine(color: EColor.Yellow)] [SerializeField] private GameObject _emailPrefab;
+    [BoxGroup("Prefabs"), HorizontalLine(color: EColor.Yellow)][SerializeField] private GameObject _emailPrefab;
     [SerializeField] private Button _writeEmailBtn;
 
     private Dictionary<GameObject, Email> _emailsInstanciados = new Dictionary<GameObject, Email>();
@@ -50,11 +50,12 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private readonly string _news2Day3 = "News 2 Day 3";
     private readonly string _lore4DayThree = "Lore 4 Day 3";
     private readonly string _loreAO2DayThree = "Lore A02 Day 3";
+    private readonly string _lore6Day3 = "Lore 6 Day 3";
     private readonly string _lore11Day3 = "Lore 11 Day 3";
     private readonly string _lore17Day3 = "Lore 17 Day 3";
 
     private readonly string _loreA04 = "Lore A04";
-    
+
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
 
     private void OnEnable()
@@ -99,7 +100,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void UpdateState(string emailIndex)
     {
-        if(emailIndex == _lore8DayTwo)
+        if (emailIndex == _lore8DayTwo)
             return;
 
         if (emailIndex == _lore9DayOne
@@ -110,6 +111,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         || _news2Day3 == emailIndex
         || _lore4DayThree == emailIndex
         || _loreAO2DayThree == emailIndex
+        || _lore6Day3 == emailIndex
         || _lore11Day3 == emailIndex
         || _lore17Day3 == emailIndex)
             _writeEmailState = WriteEmailState.CanWrite;
