@@ -36,6 +36,8 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private void Awake()
     {
+        _peopleAtCall = new Dictionary<string, MeetingPerson>();
+        CreatePersons();
         _avanceLinesButton.gameObject.SetActive(false);
         _currentSpeaker = 0;
         _lastPerson = null;
@@ -60,7 +62,7 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private void OnDisable()
     {
-        EventManager.OnPlayerAnswerWrQuestion += ContinueWr;
+        EventManager.OnPlayerAnswerWrQuestion -= ContinueWr;
         _startMeetingButton.onClick.RemoveListener(StartMeeting);
         _avanceLinesButton.onClick.RemoveListener(AvanceLine);
     }
@@ -75,18 +77,21 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
         StartCoroutine(LoginPeople());
     }
 
-    private void SpawnPeople()
+    private void CreatePersons()
     {
-        _peopleAtCall = new Dictionary<string, MeetingPerson>();
-
         for (int personIndex = 0; personIndex < _meetingPersons.Count; personIndex++)
         {
             MeetingPerson newPerson = new MeetingPerson(_meetingPersons[personIndex]);
-            SpawnStreaming(newPerson);
 
             if (!_peopleAtCall.ContainsKey(newPerson.Name))
                 _peopleAtCall.Add(newPerson.Name, newPerson);
         }
+    }
+
+    private void SpawnPeople()
+    {
+        foreach (var key in _peopleAtCall)
+            SpawnStreaming(key.Value);   
     }
 
     private IEnumerator LoginPeople()
@@ -108,7 +113,7 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
         yield return new WaitForSeconds(2f);
         EventManager.MakePlayerThink(ThoughtKey.ShouldStartTheMeeting);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         StartStreaming();
     }
 
@@ -161,6 +166,12 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private void ContinueWr()
     {
+        if (_peopleAtCall == null || _peopleAtCall.Count == 0)
+        {
+            Debug.LogWarning("⚠️ _peopleAtCall está nulo ou vazio em ContinueWr");
+            return;
+        }
+
         KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
         _lastPerson?.StopTalkin();
 
@@ -202,6 +213,12 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private KeyValuePair<string, MeetingPerson> SetPersonToAnswer()
     {
+        if (_peopleAtCall == null || _peopleAtCall.Count == 0)
+        {
+            Debug.LogWarning("⚠️ _peopleAtCall está nulo ou vazio em ContinueWr");
+            return default;
+        }
+
         KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
         firstPerson.Value.SubscribeEvents();
         return firstPerson;
@@ -209,6 +226,9 @@ public class AcampaMeetManager : MonoBehaviour, INeedOpenCanvas
 
     private void OnDestroy()
     {
+        if (_peopleAtCall == null || _peopleAtCall.Count == 0)
+            return;
+       
         KeyValuePair<string, MeetingPerson> firstPerson = _peopleAtCall.FirstOrDefault();
         firstPerson.Value.UnsubscribeEvents();
     }

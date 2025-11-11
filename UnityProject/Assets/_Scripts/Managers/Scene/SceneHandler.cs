@@ -23,6 +23,12 @@ public class SceneHandler : MonoBehaviour
         _currentScene = _firstScene;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F7))
+            ChangeScene();
+    }
+
     void OnEnable()
     {
         EventManager.OnEndStoryBoard += ChangeScene;

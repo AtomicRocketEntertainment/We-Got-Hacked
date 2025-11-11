@@ -145,7 +145,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
         int optionIndex = _searchHashDp.value - 1;
         SO_Ticket selectedIdTicket = _ticketList.Tickets[optionIndex];
-        bool isCorrectTicket = selectedIdTicket.ID == _correctTicket.ID;
+        bool isCorrectTicket = selectedIdTicket.RansomwareInformation.Hash == _correctTicket.RansomwareInformation.Hash;
 
         _hashInfoScreen.SetActive(true);
         _hashSearchScreen.SetActive(false);
@@ -161,7 +161,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
         int optionIndex = _searchIpDp.value - 1;
         SO_Ticket selectedIdTicket = _ticketList.Tickets[optionIndex];
-        bool isCorrectTicket = selectedIdTicket.ID == _correctTicket.ID;
+        bool isCorrectTicket = selectedIdTicket.IPOrigem == _correctTicket.IPOrigem;
 
         _ipInfoScreen.SetActive(true);
         _ipSearchScreen.SetActive(false);
@@ -182,7 +182,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
             HandleState();
 
         _ipInfoScreen.TryGetComponent(out MalWhereIPUpdater updater);
-        updater?.UpdateIpInfos(ticket.IPDestiny, ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
+        updater?.UpdateIpInfos(ticket.IPOrigem, ticket.RansomwareInformation, isCorrectTicket ? _iconIncorrect : _iconCorrect);
     }
 
     private void UpdateDomainCanvas(bool isCorrectTicket, SO_Ticket ticket)
@@ -221,7 +221,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
         foreach (SO_Ticket ticket in _ticketList.Tickets)
         {
             hashOptions.Add(ticket.RansomwareInformation.Hash);
-            ipOptions.Add(ticket.IPDestiny);
+            ipOptions.Add(ticket.IPOrigem);
             domainOptions.Add(ticket.DataLeakInformation.DomainInfo.Name);
         }
 
