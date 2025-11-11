@@ -176,7 +176,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
             fica responsável por agir - ou trocar para o próximo estado - quando isso acontece.
         */
         bool isRafaelDayTwoTime = _currentChoiceState == HistoryPartState.Part_Two && _currentCharacter == Character.Rafael_Day_Two;
-        bool isEduardoDayThreeTime = (_currentChoiceState ==  HistoryPartState.Part_One || _currentChoiceState == HistoryPartState.Part_Two) && _currentCharacter == Character.Eduardo_Day_Three;
+        bool isEduardoDayThreeTime = _currentChoiceState ==  HistoryPartState.Part_One && _currentCharacter == Character.Eduardo_Day_Three;
 
         if (isCorrectTicket && (isRafaelDayTwoTime || isEduardoDayThreeTime))
             HandleState();
@@ -187,7 +187,7 @@ public class MalWhereManager : MonoBehaviour, INeedOpenCanvas, IChoiceContext
 
     private void UpdateDomainCanvas(bool isCorrectTicket, SO_Ticket ticket)
     {
-        bool isEduardoDayThreeTime = _currentChoiceState == HistoryPartState.Part_Three && _currentCharacter == Character.Eduardo_Day_Three;
+        bool isEduardoDayThreeTime = (_currentChoiceState == HistoryPartState.Part_Two || _currentChoiceState == HistoryPartState.Part_Three) && _currentCharacter == Character.Eduardo_Day_Three;
 
         if (isCorrectTicket && isEduardoDayThreeTime)
             HandleState();
