@@ -53,7 +53,7 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     private readonly int _maxObjectiveWithoutScale = 4;
     private int _lastExtraObjective = -1;
-    private readonly float _scaleGapForObjective = -50f;
+    private readonly float _scaleGapForObjective = -25f;
 
     private string _playbookSelect = "";
     private string _idSelect = "";
