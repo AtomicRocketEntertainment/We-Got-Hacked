@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Net.Mail;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _loginParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _loginBtnParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _playBtnParent;
+    [BoxGroup("Element's Parent"), SerializeField] private GameObject _disclaimerParent;
+    [BoxGroup("Element's Parent"), SerializeField] private GameObject _allScreensParent;
 
     [BoxGroup("General Feedback"), SerializeField] private TextMeshProUGUI _feedbackText;
 
@@ -25,10 +28,13 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Login related Buttons"), SerializeField] private Button _confirmLoginBtn;
     [BoxGroup("Login related Buttons"), SerializeField] private Button _loginBtn;
 
+    [BoxGroup("Disclaimer"), SerializeField] private Button _closeDisclaimer;
+
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _startBtn;
 
     void OnEnable()
     {
+        _closeDisclaimer.onClick.AddListener(CloseDisclaimer);
         _startBtn.onClick.AddListener(StartGame);
         _createBtn.onClick.AddListener(ShowCreateMenu);
         _loginBtn.onClick.AddListener(ShowLoginMenu);
@@ -43,6 +49,7 @@ public class MenuManager : MonoBehaviour
 
     void OnDisable()
     {
+        _closeDisclaimer.onClick.RemoveListener(CloseDisclaimer);
         _startBtn.onClick.RemoveListener(StartGame);
         _createBtn.onClick.RemoveListener(ShowCreateMenu);
         _loginBtn.onClick.RemoveListener(ShowLoginMenu);
@@ -52,6 +59,12 @@ public class MenuManager : MonoBehaviour
         EventManager.OnPlayerLoggedIn -= FeedbackPlayerLoggedIn;
         EventManager.OnAuthError -= GenericFeedback;
         EventManager.OnDatabaseEror -= GenericFeedback;
+    }
+
+    private void CloseDisclaimer()
+    {
+        _disclaimerParent.SetActive(false);
+        _allScreensParent.SetActive(true);
     }
 
     private void TryLoginPlayer()
