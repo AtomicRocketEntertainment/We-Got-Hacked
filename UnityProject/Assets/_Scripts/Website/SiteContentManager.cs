@@ -1,16 +1,12 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
 {
-    [SerializeField] private GameObject _siteHeaderTitle;
     [SerializeField] private GameObject _siteHeaderBg;
     [SerializeField] private RectTransform _buttonsTransform;
     [SerializeField] private GameObject _mainCanvas;
-    [SerializeField] private GameObject _petrolinhoLeft;
-    [SerializeField] private GameObject _petrolinhoRight;
     [SerializeField] private Button[] _siteButtons;
     [SerializeField] private GameObject[] _siteContentScreens;
 
@@ -62,24 +58,20 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
         if (_screenHandler.TryGetValue(btn, out GameObject screenToActivate))
         {
             screenToActivate.SetActive(true);
-
-            if(btn != _siteButtons[0]) //not home screen
-            {
-                _petrolinhoLeft.gameObject.SetActive(false);
-                _petrolinhoRight.gameObject.SetActive(false);
-                _siteHeaderBg.SetActive(false);
-                _siteHeaderTitle.SetActive(false);
-                _buttonsTransform.anchoredPosition = new Vector2(_buttonsTransform.anchoredPosition.x, 290f);
-            }
-            else //home screen
-            {
-                _petrolinhoLeft.gameObject.SetActive(true);
-                _petrolinhoRight.gameObject.SetActive(true);
-                _siteHeaderBg.SetActive(true);
-                _siteHeaderTitle.SetActive(true);
-                _buttonsTransform.anchoredPosition = new Vector2(_buttonsTransform.anchoredPosition.x, 5f);
-            }
+            bool isHomeScreen = btn == _siteButtons[0];
+            ResizeHeader(isHomeScreen);
         }
+    }
+
+    private void ResizeHeader(bool isHomeScreen)
+    {
+        Vector2 newPos = _buttonsTransform.anchoredPosition;
+        float newY = isHomeScreen ? 0f : 250f;
+        newPos.y = newY;
+        _siteHeaderBg.SetActive(!isHomeScreen);
+        _siteHeaderBg.SetActive(isHomeScreen);
+
+        _buttonsTransform.anchoredPosition = newPos;
     }
 
 
