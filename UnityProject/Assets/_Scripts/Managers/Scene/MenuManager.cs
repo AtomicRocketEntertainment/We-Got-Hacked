@@ -118,7 +118,6 @@ public class MenuManager : MonoBehaviour
 
     private void FeedbackPlayerLoggedIn(string playerName)
     {
-        PersistanceDataManager.Instance?.StartNewRun();
         _feedbackText.text = $"Seja bem vindo {playerName}";
         _loginParent.SetActive(false);
         _playBtnParent.SetActive(true);

@@ -55,6 +55,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private readonly string _lore17Day3 = "Lore 17 Day 3";
 
     private readonly string _loreA04 = "Lore A04";
+    private readonly string _emailSpacement = "\n\n\n\n\n<color=#00000000>.</color>";
 
     private const int LORE_TO_OPEN_WRITE_EMAIL = 5;
 
@@ -227,7 +228,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
         {
             _currentEmailOpen = instance;
             _emailTitle.text = instance.Title;
-            _emailContent.text = instance.Content;
+            _emailContent.text = instance.Content + _emailSpacement;
             _senderName.text = instance.Sender.Name;
             _senderEmail.text = instance.Sender.Email;
             _senderProfilePicture.sprite = instance.Sender.Profile;
@@ -243,7 +244,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
         _currentEmailOpen = email;
         _emailWriteTitle.text = email.Title;
-        _emailWriteContent.text = email.Content;
+        _emailWriteContent.text = email.Content + _emailSpacement;
         _receiverEmail.text = email.Receiver.Email;
     }
 
@@ -265,7 +266,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private void ChangeEmailContent(string newEmailText)
     {
         _emailContent.text = newEmailText;
-        _emailWriteContent.text = newEmailText;
+        _emailWriteContent.text = newEmailText + _emailSpacement;
     }
 
     private void ChangeEmailTitle(string newTitle)
@@ -276,7 +277,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
     private void ReturnEmailContent()
     {
         _emailContent.text = _currentEmailOpen.Content;
-        _emailWriteContent.text = _currentEmailOpen.Content;
+        _emailWriteContent.text = _currentEmailOpen.Content + _emailSpacement;
         _receiverEmail.text = _currentEmailOpen.Receiver.Email;
         _emailWriteTitle.text = _currentEmailOpen.Title;
     }

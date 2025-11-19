@@ -99,6 +99,15 @@ public class PersistanceDataManager : MonoBehaviour
     {
         _currentPlayerData = data;
 
+        bool isOldSave = _currentPlayerData.Runs == null || _currentPlayerData.Runs.Count == 0;
+
+        if (isOldSave)
+        {
+            StartNewRun();
+            SaveGame();
+            return;
+        }
+
         RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
 
         _playerDataAnswerList = new List<PlayerDataAnswer>(run.Answers);
@@ -119,7 +128,7 @@ public class PersistanceDataManager : MonoBehaviour
         PrepareDataToSave();
         FirebaseDatabaseHandler.Instance?.UpdatePlayer();
     }
-    
+
     public bool TryGetCompanyMeta(string companyName, out SO_Stock companyMeta)
     {
         return _stockMetaByCompany.TryGetValue(companyName, out companyMeta);
