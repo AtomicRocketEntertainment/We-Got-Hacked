@@ -52,20 +52,37 @@ public class PersistanceDataManager : MonoBehaviour
     public void CreatePlayerData(string playerName)
     {
         _currentPlayerData = new PlayerDatabaseData(playerName);
+        StartNewRun();
+    }
 
+    public void StartNewRun()
+    {
+        var newRun = new RunData();
+        _currentPlayerData.Runs.Add(newRun);
+        _currentPlayerData.CurrentRun = _currentPlayerData.Runs.Count - 1;
+
+        _playerDataAnswerList = new List<PlayerDataAnswer>();
+
+        _stockDataByCompany.Clear();
         foreach (var company in _companys)
             _stockDataByCompany[company.CompanyName] = new List<int>(company.Values);
-
-        PrepareDataToSave();
     }
 
     public void PrepareDataToSave()
     {
-        _currentPlayerData.PopulateAnswers(_playerDataAnswerList);
-        _currentPlayerData.ClearCompaniesInData();
+        RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
 
+        run.Answers = new List<PlayerDataAnswer>(_playerDataAnswerList);
+
+        run.Companies.Clear();
         foreach (var pair in _stockDataByCompany)
-            _currentPlayerData.PopulateCompanyStatus(pair.Value, pair.Key);
+        {
+            run.Companies.Add(new CompanyStockData
+            {
+                CompanyName = pair.Key,
+                StockValues = pair.Value.ToArray()
+            });
+        }
     }
 
     public void AddStockValue(string companyName, int valueToAdd)
@@ -82,14 +99,16 @@ public class PersistanceDataManager : MonoBehaviour
     {
         _currentPlayerData = data;
 
-        _stockDataByCompany.Clear();
+        RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
 
+        _playerDataAnswerList = new List<PlayerDataAnswer>(run.Answers);
+
+        _stockDataByCompany.Clear();
         foreach (var company in _companys)
         {
-            var savedCompanyData = _currentPlayerData.Companies.Find(c => c.CompanyName == company.CompanyName);
-
-            if (savedCompanyData != null)
-                _stockDataByCompany[company.CompanyName] = new List<int>(savedCompanyData.StockValues);
+            var saved = run.Companies.Find(c => c.CompanyName == company.CompanyName);
+            if (saved != null)
+                _stockDataByCompany[company.CompanyName] = new List<int>(saved.StockValues);
             else
                 _stockDataByCompany[company.CompanyName] = new List<int>(company.Values);
         }
@@ -111,30 +130,13 @@ public class PersistanceDataManager : MonoBehaviour
 public class PlayerDatabaseData
 {
     public string Name;
-    public List<PlayerDataAnswer> Answers = new();
-    public List<CompanyStockData> Companies = new();
-
+    public int CurrentRun = 0;
+    public List<RunData> Runs = new();
 
     public PlayerDatabaseData(string name)
     {
         Name = name;
-        Answers = new List<PlayerDataAnswer>();
-        Companies = new List<CompanyStockData>();
-    }
-
-    public void PopulateAnswers(List<PlayerDataAnswer> list)
-    {
-        Answers = list;
-    }
-
-    public void PopulateCompanyStatus(List<int> list, string companyName)
-    {
-        Companies.Add(new CompanyStockData { CompanyName = companyName, StockValues = list.ToArray() });
-    }
-
-    public void ClearCompaniesInData()
-    {
-        Companies.Clear();
+        Runs = new List<RunData>();
     }
 }
 
@@ -158,4 +160,11 @@ public class CompanyStockData
 {
     public string CompanyName;
     public int[] StockValues;
+}
+
+[Serializable]
+public class RunData
+{
+    public List<PlayerDataAnswer> Answers = new();
+    public List<CompanyStockData> Companies = new();
 }
