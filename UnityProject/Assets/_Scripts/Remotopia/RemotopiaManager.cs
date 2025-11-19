@@ -101,7 +101,10 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
 
         foreach (SO_Ticket ticket in _listOfTickets[(int)_currentUser].Tickets)
+        {
+            if(!loginOptions.Contains(ticket.IPDestiny))
                 loginOptions.Add(ticket.IPDestiny);
+        }
 
         _dropDownLogin.AddOptions(loginOptions);
     }
