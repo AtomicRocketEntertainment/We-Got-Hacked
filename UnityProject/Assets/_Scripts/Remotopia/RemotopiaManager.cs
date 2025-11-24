@@ -19,6 +19,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
 
     [BoxGroup("Current User infos Display")][SerializeField] private TextMeshProUGUI _userNameProfileDisplay;
     [BoxGroup("Current User infos Display")][SerializeField] private Image _userProfileDisplay;
+    [BoxGroup("Current User infos Display")][SerializeField] private Image _userDesktop;
 
     [BoxGroup("Login Dependencies")][SerializeField] private TMP_Dropdown _dropDownLogin;
     [BoxGroup("Login Dependencies")][SerializeField] private TextMeshProUGUI _userNameDisplay;
@@ -120,6 +121,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             RemotopiaUserLogin userSelected = _listOfTickets[(int)_currentUser].Tickets[value - 1].RemotopiaUser; 
             textToDisplay = userSelected.Name;
             _userProfileDisplay.sprite = userSelected.Sprite;
+            _userDesktop.sprite = userSelected.Desktop;
             _selectedCorrectUser = userSelected.IsCorrectUser;
             userSelect = true;
         }
@@ -325,5 +327,6 @@ public struct RemotopiaUserLogin
 {
     public string Name;
     public Sprite Sprite;
+    public Sprite Desktop;
     public bool IsCorrectUser;
 }
