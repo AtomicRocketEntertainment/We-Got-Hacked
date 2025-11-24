@@ -50,8 +50,8 @@ public class SceneHandler : MonoBehaviour
 
     public void GoToGameOver()
     {
-        int goToIndex = _gameOverScene.GoToScene.SceneIndex;
-        _currentScene = _gameOverScene.GoToScene;
+        int goToIndex = _gameOverScene.SceneIndex;
+        _currentScene = _gameOverScene;
 
         SceneManager.LoadScene(goToIndex);
     }
