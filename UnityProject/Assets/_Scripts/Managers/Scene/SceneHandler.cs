@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 public class SceneHandler : MonoBehaviour
 {
 
-    public static SceneHandler Instance { get; private set;}
-    [SerializeField] private SO_Scene _firstScene; 
-    [SerializeField] private SO_Scene _menuScene; 
+    public static SceneHandler Instance { get; private set; }
+    [SerializeField] private SO_Scene _firstScene;
+    [SerializeField] private SO_Scene _menuScene;
+    [SerializeField] private SO_Scene _gameOverScene;
     private SO_Scene _currentScene;
 
     void Awake()
@@ -43,6 +44,14 @@ public class SceneHandler : MonoBehaviour
     {
         int goToIndex = _currentScene.GoToScene.SceneIndex;
         _currentScene = _currentScene.GoToScene;
+
+        SceneManager.LoadScene(goToIndex);
+    }
+
+    public void GoToGameOver()
+    {
+        int goToIndex = _gameOverScene.GoToScene.SceneIndex;
+        _currentScene = _gameOverScene.GoToScene;
 
         SceneManager.LoadScene(goToIndex);
     }
