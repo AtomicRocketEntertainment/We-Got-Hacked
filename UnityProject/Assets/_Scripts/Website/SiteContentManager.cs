@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
 {
-    [SerializeField] private GameObject _siteHeaderBg;
     [SerializeField] private RectTransform _buttonsTransform;
     [SerializeField] private GameObject _mainCanvas;
     [SerializeField] private Button[] _siteButtons;
@@ -56,22 +55,7 @@ public class SiteContentManager : MonoBehaviour, INeedOpenCanvas
             screen.SetActive(false);
 
         if (_screenHandler.TryGetValue(btn, out GameObject screenToActivate))
-        {
             screenToActivate.SetActive(true);
-            bool isHomeScreen = btn == _siteButtons[0];
-            ResizeHeader(isHomeScreen);
-        }
-    }
-
-    private void ResizeHeader(bool isHomeScreen)
-    {
-        Vector2 newPos = _buttonsTransform.anchoredPosition;
-        float newY = isHomeScreen ? 0f : 250f;
-        newPos.y = newY;
-        _siteHeaderBg.SetActive(!isHomeScreen);
-        _siteHeaderBg.SetActive(isHomeScreen);
-
-        _buttonsTransform.anchoredPosition = newPos;
     }
 
 
