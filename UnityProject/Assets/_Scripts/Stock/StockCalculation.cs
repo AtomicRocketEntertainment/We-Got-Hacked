@@ -4,15 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class StockCalculation : MonoBehaviour
 {
-    [SerializeField] private int _rangeDownOtherCompany = 5;
-    [SerializeField] private int _rangeUpOtherCompany = 5;
+    [SerializeField] private int _rangeDownOtherCompanyDayOne = 10;
+    [SerializeField] private int _rangeUpOtherCompanyDayOne = 20;
+    [SerializeField] private int _rangeDownOtherCompanyDayTwo = 15;
+    [SerializeField] private int _rangeUpOtherCompanyDayTwo = 10;
+    [SerializeField] private int _rangeDownOtherCompanyDayThree = 10;
+    [SerializeField] private int _rangeUpOtherCompanyDayThree = 3;
+
     private CurrentDay _currentDay;
-    private int _addDayOne = 3;
-    private int _loseDayOne = 5;
-    private int _addDayTwo = 4;
-    private int _loseDayTwo = 6;
-    private int _addDayThree = 6;
-    private int _loseDayThree = 10;
+    private int _currentTopCap;
+    private int _currentBottomCap;
+    private readonly int _addDayOne = 3;
+    private readonly int _loseDayOne = 5;
+    private readonly int _addDayTwo = 4;
+    private readonly int _loseDayTwo = 6;
+    private readonly int _addDayThree = 6;
+    private readonly int _loseDayThree = 10;
+    private readonly int _petroMin = 10;
 
     void Awake()
     {
@@ -22,12 +30,18 @@ public class StockCalculation : MonoBehaviour
         {
             case "DayOne":
                 _currentDay = CurrentDay.One;
+                _currentTopCap = _rangeUpOtherCompanyDayOne;
+                _currentBottomCap = _rangeDownOtherCompanyDayOne;
                 break;
             case "DayTwo":
                 _currentDay = CurrentDay.Two;
+                _currentTopCap = _rangeUpOtherCompanyDayTwo;
+                _currentBottomCap = _rangeDownOtherCompanyDayTwo;
                 break;
             case "DayThree":
                 _currentDay = CurrentDay.Three;
+                _currentTopCap = _rangeUpOtherCompanyDayThree;
+                _currentBottomCap = _rangeDownOtherCompanyDayThree;
                 break;
         }
     }
@@ -46,6 +60,12 @@ public class StockCalculation : MonoBehaviour
         {
             int lastPetroCaisStock = values[values.Count - 1];
             valuePetroCais = isCorrectChoice ? lastPetroCaisStock + valueToAdd : lastPetroCaisStock - valueToLose;
+
+            if (valuePetroCais < _petroMin)
+            {
+                SceneHandler.Instance.GoToGameOver();
+                return;
+            }
         }
 
         foreach (var pair in PersistanceDataManager.Instance.StocksInfos)
@@ -63,8 +83,8 @@ public class StockCalculation : MonoBehaviour
             {
                 do
                 {
-                    valueOtherOne = Random.Range(valuePetroCais - _rangeDownOtherCompany, valuePetroCais + _rangeUpOtherCompany + 1);
-                    valueOtherTwo = Random.Range(valuePetroCais - _rangeDownOtherCompany, valuePetroCais + _rangeUpOtherCompany + 1);
+                    valueOtherOne = Random.Range(valuePetroCais - _currentBottomCap, valuePetroCais + _currentTopCap + 1);
+                    valueOtherTwo = Random.Range(valuePetroCais - _currentBottomCap, valuePetroCais + _currentTopCap + 1);
                 } while ( valueOtherOne == valueOtherTwo || valueOtherOne == valuePetroCais || valueOtherTwo == valuePetroCais);
 
                 valueToSend = oneOtherGone ? valueOtherOne : valueOtherTwo;
