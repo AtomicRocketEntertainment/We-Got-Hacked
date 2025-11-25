@@ -62,8 +62,6 @@ public class StockCalculation : MonoBehaviour
             int lastPetroCaisStock = values[values.Count - 1];
             valuePetroCais = isCorrectChoice ? lastPetroCaisStock + valueToAdd : lastPetroCaisStock - valueToLose;
 
-            Debug.Log("Valor da petrocais: " + valuePetroCais);
-
             if (valuePetroCais <= _petroMinThouth)
                 EventManager.MakePlayerThink(ThoughtKey.StockValueLow);
 
