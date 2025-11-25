@@ -1,9 +1,10 @@
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
+public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton, IPointerExitHandler
 {
     [SerializeField] private GameObject _spriteToShow;
 
@@ -57,5 +58,10 @@ public class FeedbackButton : MonoBehaviour, IFeedbackGroupButton
     {
         if (_shouldGoBackToColor)
             DesactiveFeedback();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

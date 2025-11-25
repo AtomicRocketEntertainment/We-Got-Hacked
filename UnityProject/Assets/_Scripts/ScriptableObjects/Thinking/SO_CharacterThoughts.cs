@@ -57,5 +57,6 @@ public enum ThoughtKey
     OpenHackedWebsite,
     OpenKellyMessage,
     ThinkAboutIPFoundOnMalwhere,
-    WrongTimeToSearchOnBinary
+    WrongTimeToSearchOnBinary,
+    StockValueLow
 }

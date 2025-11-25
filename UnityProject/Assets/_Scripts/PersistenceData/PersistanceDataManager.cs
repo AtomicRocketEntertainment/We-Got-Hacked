@@ -100,10 +100,10 @@ public class PersistanceDataManager : MonoBehaviour
         _currentPlayerData = data;
 
         bool isOldSave = _currentPlayerData.Runs == null || _currentPlayerData.Runs.Count == 0;
+        StartNewRun();
 
         if (isOldSave)
         {
-            StartNewRun();
             SaveGame();
             return;
         }

@@ -64,6 +64,7 @@ public class StockCalculation : MonoBehaviour
             if (valuePetroCais < _petroMin)
             {
                 SceneHandler.Instance.GoToGameOver();
+                EventManager.MakePlayerThink(ThoughtKey.StockValueLow);
                 return;
             }
         }
