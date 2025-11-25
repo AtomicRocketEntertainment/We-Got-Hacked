@@ -21,6 +21,7 @@ public class StockCalculation : MonoBehaviour
     private readonly int _addDayThree = 6;
     private readonly int _loseDayThree = 10;
     private readonly int _petroMin = 10;
+    private readonly int _petroMinThouth = 20;
 
     void Awake()
     {
@@ -61,10 +62,14 @@ public class StockCalculation : MonoBehaviour
             int lastPetroCaisStock = values[values.Count - 1];
             valuePetroCais = isCorrectChoice ? lastPetroCaisStock + valueToAdd : lastPetroCaisStock - valueToLose;
 
-            if (valuePetroCais < _petroMin)
+            Debug.Log("Valor da petrocais: " + valuePetroCais);
+
+            if (valuePetroCais <= _petroMinThouth)
+                EventManager.MakePlayerThink(ThoughtKey.StockValueLow);
+
+            if (valuePetroCais <= _petroMin)
             {
                 SceneHandler.Instance.GoToGameOver();
-                EventManager.MakePlayerThink(ThoughtKey.StockValueLow);
                 return;
             }
         }
