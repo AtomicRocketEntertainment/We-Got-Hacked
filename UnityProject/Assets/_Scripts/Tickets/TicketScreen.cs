@@ -250,13 +250,13 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
         foreach (SO_Ticket ticket in ticketList.Tickets)
         {
-            if (!idOptions.Contains(ticket.Location))
+            if (!idOptions.Contains(ticket.ID))
                 idOptions.Add(ticket.ID);
 
-            if (!ipOOptions.Contains(ticket.Location))
+            if (!ipOOptions.Contains(ticket.IPOrigem))
                 ipOOptions.Add(ticket.IPOrigem);
 
-            if (!ipDOptions.Contains(ticket.Location))
+            if (!ipDOptions.Contains(ticket.IPDestiny))
                 ipDOptions.Add(ticket.IPDestiny);
             
             if (!geolocationOptions.Contains(ticket.Location))
