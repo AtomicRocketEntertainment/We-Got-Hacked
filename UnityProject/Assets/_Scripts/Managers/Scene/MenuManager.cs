@@ -30,6 +30,9 @@ public class MenuManager : MonoBehaviour
 
     [BoxGroup("Disclaimer"), SerializeField] private Button _closeDisclaimer;
 
+    [BoxGroup("Credits"), SerializeField] private Button _openCreditBtn;
+    [BoxGroup("Credits"), SerializeField] private CreditManager _creditManager;
+
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _startBtn;
 
     void OnEnable()
@@ -40,6 +43,7 @@ public class MenuManager : MonoBehaviour
         _loginBtn.onClick.AddListener(ShowLoginMenu);
         _confirmCreateBtn.onClick.AddListener(TryCreatePlayer);
         _confirmLoginBtn.onClick.AddListener(TryLoginPlayer);
+        _openCreditBtn.onClick.AddListener(OpenCredit);
         EventManager.OnPlayerCreated += FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn += FeedbackPlayerLoggedIn;
         EventManager.OnAuthError += GenericFeedback;
@@ -55,10 +59,16 @@ public class MenuManager : MonoBehaviour
         _loginBtn.onClick.RemoveListener(ShowLoginMenu);
         _confirmCreateBtn.onClick.RemoveListener(TryCreatePlayer);
         _confirmLoginBtn.onClick.RemoveListener(TryLoginPlayer);
+        _openCreditBtn.onClick.RemoveListener(OpenCredit);
         EventManager.OnPlayerCreated -= FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn -= FeedbackPlayerLoggedIn;
         EventManager.OnAuthError -= GenericFeedback;
         EventManager.OnDatabaseEror -= GenericFeedback;
+    }
+
+    private void OpenCredit()
+    {
+        _creditManager.StartCredits();
     }
 
     private void CloseDisclaimer()
