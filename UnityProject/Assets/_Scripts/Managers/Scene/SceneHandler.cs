@@ -14,7 +14,6 @@ public class SceneHandler : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.Log($"There can be only one instance of {name}");
             Destroy(this.gameObject);
             return;
         }

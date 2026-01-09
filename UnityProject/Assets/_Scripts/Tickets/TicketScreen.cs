@@ -413,37 +413,21 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
 
     public bool CheckInfo(Ticket ticket)
     {
-        Debug.Log($"[CheckInfo] Entrou na função. Ticket: ID={ticket.ID}, Playbook={ticket.Playbook}, IPOrigem={ticket.IPOrigem}, IPDestiny={ticket.IPDestiny}");
-
-        Debug.Log($"[CheckInfo] Comparando Playbook selecionado '{_playbookSelect}' com Ticket.Playbook '{ticket.Playbook}'");
         if (ticket.Playbook.ToString() != _playbookSelect) 
-        {
-            Debug.Log("[CheckInfo] Falhou: Playbook selecionado é diferente do ticket, retornando FALSE.");
             return false;
-        }
 
         bool isCommonInfoCorrect = VerifyCommonInfos(ticket);
-        Debug.Log($"[CheckInfo] Resultado de VerifyCommonInfos: {isCommonInfoCorrect}");
-
         bool isPlaybookCorrect = VerifyPlaybookInfos(_playbookSelect, ticket);
-        Debug.Log($"[CheckInfo] Resultado de VerifyPlaybookInfos: {isPlaybookCorrect}");
 
         return isCommonInfoCorrect && isPlaybookCorrect;
     }
 
     private bool CheckSelectedInfos()
     {
-        Debug.Log("[CheckSelectedInfos] Entrou na função.");
-        Debug.Log($"[CheckSelectedInfos] _playbookDp.value: {_playbookDp.value}");
         if (_playbookSelect == "")
-        {
-            Debug.Log("[CheckSelectedInfos] Playbook não selecionado, retornando FALSE.");
             return false;
-        }
 
         bool isPlaybookInfoSelected = PlaybookInfosAreSelected(_playbookSelect);
-        Debug.Log($"[CheckSelectedInfos] PlaybookInfosAreSelected: {isPlaybookInfoSelected}");
-
         bool allSelected;
 
         if (_playbookSelect != PlaybookType.VazamentoDeDados.ToString())
@@ -466,69 +450,56 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
                  _dataLeakDateSelect != "";
         }
 
-        Debug.Log($"[CheckSelectedInfos] Resultado final: {allSelected}");
         return allSelected;
     }
 
     private bool PlaybookInfosAreSelected(string playbook)
     {
-        Debug.Log($"[PlaybookInfosAreSelected] Entrou na função. Playbook: {playbook}");
         bool areSelected = false;
 
         switch (playbook)
         {
             case nameof(PlaybookType.Pichacao):
                 int pichacaoCount = GetPichacaoSiteSelected().Count;
-                Debug.Log($"[PlaybookInfosAreSelected] Pichacao sites selecionados: {pichacaoCount}");
                 areSelected = pichacaoCount > 0;
                 break;
             case nameof(PlaybookType.Ransomware):
-                Debug.Log($"[PlaybookInfosAreSelected] Wallet selecionado: {_walletSelect}, Hash selecionado: {_hashSelect}");
                 areSelected = !string.IsNullOrEmpty(_hashSelect) && !string.IsNullOrEmpty(_walletSelect);
                 break;
             case nameof(PlaybookType.VazamentoDeDados):
                 areSelected = !string.IsNullOrEmpty(_dataLeakClientSelect) && !string.IsNullOrEmpty(_dataLeakDateSelect);
                 break;
             default:
-                Debug.Log("[PlaybookInfosAreSelected] Nenhuma verificação especial para esse playbook.");
                 break;
         }
 
-        Debug.Log($"[PlaybookInfosAreSelected] Resultado final: {areSelected}");
         return areSelected;
     }
 
     private bool VerifyPlaybookInfos(string playbook, Ticket ticket)
     {
-        Debug.Log($"[VerifyPlaybookInfos] Entrou na função. Playbook: {playbook}, Ticket: ID={ticket.ID}");
         bool isCorrect = false;
 
         switch (playbook)
         {
             case nameof(PlaybookType.Pichacao):
-                Debug.Log($"[VerifyPlaybookInfos] Verificando Pichacao. Ticket.Site={ticket.Site}");
                 isCorrect = VerifyPichacao(ticket.Site);
                 break;
             case nameof(PlaybookType.Ransomware):
-                Debug.Log($"[VerifyPlaybookInfos] Verificando Ransomware. Ticket.Ransomware={ticket.RansomwareInfos.RansomwareName}, Wallet={ticket.RansomwareInfos.CriptoWallet}");
                 isCorrect = VerifyRansomware(ticket.RansomwareInfos.CriptoWallet, ticket.RansomwareInfos.Hash);
                 break;
             case nameof(PlaybookType.VazamentoDeDados):
                 isCorrect = VerifyDataleak(ticket.DataLeakInfos.CompanyName, ticket.DataLeakInfos.DateLeaked);
                 break;
             default:
-                Debug.Log("[VerifyPlaybookInfos] Playbook sem verificações específicas.");
                 break;
         }
 
-        Debug.Log($"[VerifyPlaybookInfos] Resultado final: {isCorrect}");
         return isCorrect;
     }
 
     private bool VerifyCommonInfos(Ticket ticket)
     {
-        Debug.Log($"[VerifyCommonInfos] Entrou na função. Ticket ID={ticket.ID}");
-
         string selectedId = _idDp.options[_idDp.value].text;
         string selectedIpD = _ipDDp.options[_ipDDp.value].text;
         string selectedIpO = _ipODp.options[_ipODp.value].text;
@@ -541,16 +512,6 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
         int selectedRisk = 0;
         if (selectedRiskToggle != null && selectedRiskToggle.TryGetComponent(out ImRiskHolder riskLevel))
             selectedRisk = riskLevel.RiskLevel;
-
-        Debug.Log($"[VerifyCommonInfos] Comparando cada campo com o ticket:");
-        Debug.Log($"ID: {selectedId} == {ticket.ID}");
-        Debug.Log($"IPOrigem: {selectedIpO} == {ticket.IPOrigem}");
-        Debug.Log($"IPDestiny: {selectedIpD} == {ticket.IPDestiny}");
-        Debug.Log($"Location: {selectedLocation} == {ticket.Location}");
-        Debug.Log($"Device: {selectedDevice} == {ticket.DeviceAttacked}");
-        Debug.Log($"Origin: {selectedOrigin} == {ticket.Origin}");
-        Debug.Log($"Date: {selectedDate} == {ticket.DateDay} - {ticket.DateHour}");
-        Debug.Log($"Risk: {selectedRisk} == {ticket.RiskLevel}");
 
         bool isCorrect;
 
@@ -571,49 +532,32 @@ public class TicketScreen : MonoBehaviour, IScreenInfoUpdater
             selectedDevice == ticket.DeviceAttacked.ToString();
         }
 
-
-        Debug.Log($"[VerifyCommonInfos] Resultado final: {isCorrect}");
         return isCorrect;
     }
 
     private bool VerifyPichacao(SiteType site)
     {
-        Debug.Log($"[VerifyPichacao] Entrou na função. Site esperado: {site}");
-
         List<SiteType> selectedSites = new List<SiteType>();
 
         foreach (var toggle in GetPichacaoSiteSelected())
         {
             if (toggle.TryGetComponent(out ImSiteHolder siteHolder))
-            {
                 selectedSites.Add(siteHolder.Site);
-                Debug.Log($"[VerifyPichacao] Site selecionado: {siteHolder.Site}");
-            }
         }
 
-        Debug.Log($"[VerifyPichacao] Total de sites selecionados: {selectedSites.Count}");
         bool isCorrectSiteSelected = selectedSites.Count == 1 && selectedSites[0] == site;
-
-        Debug.Log($"[VerifyPichacao] Comparação: (Count==1 && Selected[0]==SiteEsperado) => {isCorrectSiteSelected}");
         return isCorrectSiteSelected;
     }
 
     private bool VerifyRansomware(string wallet, string hash)
     {
-        Debug.Log($"[VerifyRansomware] Entrou na função. Wallet esperada: {wallet}, Hash esperada: {hash}");
-        Debug.Log($"[VerifyRansomware] Wallet selecionada: {_walletSelect}, Hash selecionada: {_hashSelect}");
-
         bool isCorrect = _walletSelect == wallet && _hashSelect == hash;
-
-        Debug.Log($"[VerifyRansomware] Comparação: (SelectedName==Esperado && SelectedWallet==Esperada) => {isCorrect}");
         return isCorrect;
     }
 
     private bool VerifyDataleak(string client, string date)
     {
         bool isCorrect = _dataLeakDateSelect == date && _dataLeakClientSelect == client;
-
-        Debug.Log($"[VerifyDataleak] Comparação: (_dataLeakDateSelect==Esperado && _dataLeakClientSelect==Esperada) => {isCorrect}");
         return isCorrect;
     }
 

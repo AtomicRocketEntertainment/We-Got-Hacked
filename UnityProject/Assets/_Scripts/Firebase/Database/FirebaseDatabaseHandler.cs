@@ -47,7 +47,7 @@ public class FirebaseDatabaseHandler : MonoBehaviour
 
     private void PlayerUpdated(string data)
     {
-        Debug.Log("Dados do jogador foram atualizados no banco de dados." + PersistanceDataManager.Instance?.PlayerData.Name);
+        Debug.Log("Dados do jogador foram atualizados no banco de dados.");
     }
 
 
@@ -56,7 +56,7 @@ public class FirebaseDatabaseHandler : MonoBehaviour
         PersistanceDataManager.Instance?.FetchPlayerData(JsonUtility.FromJson<PlayerDatabaseData>(data));
         string playerName = PersistanceDataManager.Instance?.PlayerData.Name;
         EventManager.PlayerLoggedIn(playerName);
-        Debug.Log("Dados do jogador estão no bd e foram armazenados localmente." + PersistanceDataManager.Instance?.PlayerData.Name);
+        Debug.Log("Dados adquiridos do banco de dados.");
     }
 
     private void OnPlayerCreated(string message)
