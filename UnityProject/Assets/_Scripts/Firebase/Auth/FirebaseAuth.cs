@@ -34,8 +34,15 @@ namespace _Scripts.Firebase.Auth
         /// <param name="onUserSignedOut"> Name of the method to call when the operation was unsuccessful. Method must have signature: void Method(string output) </param>
         [DllImport("__Internal")]
         public static extern void OnAuthStateChanged(string objectName, string onUserSignedIn, string onUserSignedOut);
-        
+
         [DllImport("__Internal")]
         public static extern void OnUserSignOut(string objectName, string onUserSignedOut);
+
+        [DllImport("__Internal")]
+        public static extern void ReloadCurrentUser(string objectName, string callback, string fallback);
+        
+        [DllImport("__Internal")]
+        public static extern void SendEmailVerification(string objectName, string callback, string fallback);
+
     }
 }

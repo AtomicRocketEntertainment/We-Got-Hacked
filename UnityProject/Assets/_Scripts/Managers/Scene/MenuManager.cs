@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _playBtnParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _disclaimerParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _allScreensParent;
+    [BoxGroup("Element's Parent"), SerializeField] private GameObject _emailConfirmationParent;
 
     [BoxGroup("General Feedback"), SerializeField] private TextMeshProUGUI _feedbackText;
 
@@ -27,6 +28,8 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Login related Buttons"), SerializeField] private Button _confirmCreateBtn;
     [BoxGroup("Login related Buttons"), SerializeField] private Button _confirmLoginBtn;
     [BoxGroup("Login related Buttons"), SerializeField] private Button _loginBtn;
+    [BoxGroup("Login related Buttons"), SerializeField] private Button _playerConfirmedVerifiedBtn;
+    [BoxGroup("Login related Buttons"), SerializeField] private Button _reSendConfirmationEmailBtn;
 
     [BoxGroup("Disclaimer"), SerializeField] private Button _closeDisclaimer;
 
@@ -44,6 +47,8 @@ public class MenuManager : MonoBehaviour
         _confirmCreateBtn.onClick.AddListener(TryCreatePlayer);
         _confirmLoginBtn.onClick.AddListener(TryLoginPlayer);
         _openCreditBtn.onClick.AddListener(OpenCredit);
+        _playerConfirmedVerifiedBtn.onClick.AddListener(PlayerConfirmedVerification);
+        _reSendConfirmationEmailBtn.onClick.AddListener(ReSendConfirmationEmail);
         EventManager.OnPlayerCreated += FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn += FeedbackPlayerLoggedIn;
         EventManager.OnAuthError += GenericFeedback;
@@ -60,10 +65,18 @@ public class MenuManager : MonoBehaviour
         _confirmCreateBtn.onClick.RemoveListener(TryCreatePlayer);
         _confirmLoginBtn.onClick.RemoveListener(TryLoginPlayer);
         _openCreditBtn.onClick.RemoveListener(OpenCredit);
+        _playerConfirmedVerifiedBtn.onClick.RemoveListener(PlayerConfirmedVerification);
+        _reSendConfirmationEmailBtn.onClick.RemoveListener(ReSendConfirmationEmail);
         EventManager.OnPlayerCreated -= FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn -= FeedbackPlayerLoggedIn;
         EventManager.OnAuthError -= GenericFeedback;
         EventManager.OnDatabaseEror -= GenericFeedback;
+    }
+
+    private void ReSendConfirmationEmail()
+    {
+        FirebaseAuthHandler.Instance.ResendEmailVerification();
+        _reSendConfirmationEmailBtn.interactable = false;
     }
 
     private void OpenCredit()
@@ -121,16 +134,31 @@ public class MenuManager : MonoBehaviour
 
     private void FeedbackPlayerCreated(string feedbackMessage)
     {
-        _feedbackText.text = $"<color=green>Usuário criado com sucesso. Obrigado por jogar. :)</color>";
+        _feedbackText.text = "";
         _createParent.SetActive(false);
-        _playBtnParent.SetActive(true);
+        _emailConfirmationParent.SetActive(true);
     }
 
     private void FeedbackPlayerLoggedIn(string playerName)
     {
-        _feedbackText.text = $"Seja bem vindo {playerName}";
-        _loginParent.SetActive(false);
-        _playBtnParent.SetActive(true);
+        if (FirebaseAuthHandler.Instance.PlayerIsVerfied)
+        {
+            _feedbackText.text = $"Seja bem vindo {playerName}";
+            _loginParent.SetActive(false);
+            _emailConfirmationParent.SetActive(false);
+            _playBtnParent.SetActive(true);
+        }
+        else
+        {
+            _feedbackText.text = $"Por favor, valide seu e-mail.";
+            _loginParent.SetActive(false);
+            _emailConfirmationParent.SetActive(true);
+        }
+    }
+
+    private void PlayerConfirmedVerification()
+    {
+        FirebaseAuthHandler.Instance.CheckEmailVerification();
     }
 
     private void GenericFeedback(string feedback)

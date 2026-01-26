@@ -9,6 +9,7 @@ mergeInto(LibraryManager.library, {
 
         try {
         window.firebaseAuth.createUserWithEmailAndPassword(window.firebaseAuth.auth, parsedEmail, parsedPassword).then(function (userCredential) {
+                window.firebaseAuth.sendEmailVerification(userCredential.user);
                 window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(userCredential.user));
             }).catch(function (error) {
                 window.unityInstance.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
@@ -63,5 +64,55 @@ mergeInto(LibraryManager.library, {
             .catch(function (error) {
                 window.unityInstance.SendMessage(parsedObjectName, parsedOnUserSignedOut, "Sign-out failed: " + error.message);
             });
+    },
+
+    ReloadCurrentUser: function (objectName, callback, fallback) {
+        const user = window.firebaseAuth.auth.currentUser;
+
+        var parsedObjectName = UTF8ToString(objectName);
+        var parsedCallback = UTF8ToString(callback);
+        var parsedFallback = UTF8ToString(fallback);
+
+        if (!user) {
+            window.unityInstance.SendMessage(parsedObjectName, parsedFallback, "No user logged in");
+            return;
+        }
+
+        window.firebaseAuth.reload(user)
+            .then(() => {
+                window.unityInstance.SendMessage(
+                    parsedObjectName,
+                    parsedCallback,
+                    JSON.stringify(user)
+                );
+            })
+            .catch(error => {
+                window.unityInstance.SendMessage(
+                    parsedObjectName,
+                    parsedFallback,
+                    JSON.stringify(error, Object.getOwnPropertyNames(error))
+                );
+            });
+    },
+
+    SendEmailVerification: function (objectName, callback, fallback) {
+        const user = window.firebaseAuth.auth.currentUser;
+
+        var parsedObjectName = UTF8ToString(objectName);
+        var parsedCallback = UTF8ToString(callback);
+        var parsedFallback = UTF8ToString(fallback);
+
+        if (!user) {
+           window.unityInstance.SendMessage(parsedObjectName, parsedFallback, "Sem usuário autenticado.");
+            return;
+        }
+
+        window.firebaseAuth.sendEmailVerification(user)
+        .then(() => {
+           window.unityInstance.SendMessage(parsedObjectName, parsedCallback, "Reenviamos o e-mail.");
+        })
+        .catch((error) => {
+           window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
+        });
     }
 });

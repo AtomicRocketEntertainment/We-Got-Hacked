@@ -6,6 +6,7 @@ public class FirebaseAuthHandler : MonoBehaviour
     private FirebaseUser _currentUser;
     private string _userNameHandler;
     public string CurrentUserId => _currentUser.uid;
+    public bool PlayerIsVerfied => _currentUser.emailVerified;
 
     public static FirebaseAuthHandler Instance { get; private set; }
 
@@ -50,6 +51,13 @@ public class FirebaseAuthHandler : MonoBehaviour
     public void LogUser(string user)
     {
         _currentUser = JsonUtility.FromJson<FirebaseUser>(user);
+
+        if (!_currentUser.emailVerified)
+        {
+            EventManager.AuthError("<color=red>Você precisa verificar seu e-mail antes de jogar.</color>");
+            return;
+        }
+
         FirebaseDatabaseHandler.Instance.FetchPlayer(_currentUser.uid);
     }
 
@@ -79,6 +87,36 @@ public class FirebaseAuthHandler : MonoBehaviour
         }
 
     }
+
+    public void CheckEmailVerification()
+    {
+        FirebaseAuth.ReloadCurrentUser(gameObject.name, nameof(OnUserReloaded), nameof(NotifyError));
+    }
+
+    public void ResendEmailVerification()
+    {
+        FirebaseAuth.SendEmailVerification(gameObject.name, nameof(OnVerificationEmailSent), nameof(NotifyError));
+    }
+
+    private void OnVerificationEmailSent(string feedback)
+    {
+        EventManager.AuthError("E-mail reenviado. Caso não tenha recebido, por favor, reinicie o jogo e tente novamente.");
+    }
+
+    private void OnUserReloaded(string user)
+    {
+        _currentUser = JsonUtility.FromJson<FirebaseUser>(user);
+
+        if (_currentUser.emailVerified)
+        {
+            FirebaseDatabaseHandler.Instance.FetchPlayer(_currentUser.uid);
+        }
+        else
+        {
+            EventManager.AuthError("Email ainda não foi verificado.");
+        }
+    }
+
 }
 
 [System.Serializable]
@@ -86,6 +124,7 @@ public class FirebaseUser
 {
     public string email;
     public string uid;
+    public bool emailVerified;
 }
 
 [System.Serializable]
