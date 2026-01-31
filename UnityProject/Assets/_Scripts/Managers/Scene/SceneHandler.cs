@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,10 +7,16 @@ public class SceneHandler : MonoBehaviour
 {
 
     public static SceneHandler Instance { get; private set; }
-    [SerializeField] private SO_Scene _firstScene;
-    [SerializeField] private SO_Scene _menuScene;
-    [SerializeField] private SO_Scene _gameOverScene;
+    [BoxGroup("Initial Configs"), SerializeField] private SO_Scene _firstScene;
+    [BoxGroup("Initial Configs"), SerializeField] private SO_Scene _menuScene;
+    [BoxGroup("Initial Configs"), SerializeField] private SO_Scene _gameOverScene;
+    [BoxGroup("Scenes Mapping"), SerializeField] private SO_Scene[] _allGameScenes;
+
     private SO_Scene _currentScene;
+    private int _currentSceneIndex;
+    private Dictionary<int, SO_Scene> _sceneMap;
+
+    public int CurrentSceneIndex => _currentSceneIndex;
 
     void Awake()
     {
@@ -18,15 +26,25 @@ public class SceneHandler : MonoBehaviour
             return;
         }
 
-        Instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        _currentScene = _firstScene;
+        PrepareSettings();
     }
 
-    private void Update()
+    private void PrepareSettings()
     {
-        if (Input.GetKeyDown(KeyCode.F7))
-            ChangeScene();
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
+        _currentScene = _firstScene;
+        _currentSceneIndex = _currentScene.SceneIndex;
+
+        _sceneMap = new Dictionary<int, SO_Scene>();
+        int currentSceneIndex = 0;
+
+        foreach (SO_Scene scene in _allGameScenes)
+        {
+            _sceneMap[currentSceneIndex] = scene;
+            currentSceneIndex++;
+        }
     }
 
     void OnEnable()
@@ -41,18 +59,26 @@ public class SceneHandler : MonoBehaviour
 
     public void ChangeScene()
     {
-        int goToIndex = _currentScene.GoToScene.SceneIndex;
+        _currentSceneIndex = _currentScene.GoToScene.SceneIndex;
         _currentScene = _currentScene.GoToScene;
 
-        SceneManager.LoadScene(goToIndex);
+        SceneManager.LoadScene(_currentSceneIndex);
     }
 
     public void GoToGameOver()
     {
-        int goToIndex = _gameOverScene.SceneIndex;
+        _currentSceneIndex = _gameOverScene.SceneIndex;
         _currentScene = _gameOverScene;
 
-        SceneManager.LoadScene(goToIndex);
+        SceneManager.LoadScene(_currentSceneIndex);
     }
 
+    public void StartGame() => SceneManager.LoadScene(_firstScene.GoToScene.SceneIndex);
+    public void ContinueGame()
+    {
+        _currentSceneIndex = _currentScene.SceneIndex;
+        SceneManager.LoadScene(_currentSceneIndex);
+    } 
+    public void SetSceneByIndex(int sceneIndex) => _currentScene = sceneIndex == 0 ? _firstScene : _sceneMap[sceneIndex - 1]; //Minus one because game scene starts at index 1.
+    public bool IsGameplayScene() => _currentScene.IsGamePlayScene;
 }

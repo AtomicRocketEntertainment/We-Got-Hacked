@@ -187,7 +187,6 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         CreateSeparators();
         UpdateStockGraph();
         EventManager.NotifyBrowser();
-        PersistanceDataManager.Instance?.SaveGame();
     }
 
     private void WrongChoice()
@@ -197,7 +196,6 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         CreateSeparators();
         UpdateStockGraph();
         EventManager.NotifyBrowser();
-        PersistanceDataManager.Instance?.SaveGame();
     }
 
     private void UpdateStockGraph()

@@ -100,7 +100,7 @@ public class FirebaseAuthHandler : MonoBehaviour
 
     private void OnVerificationEmailSent(string feedback)
     {
-        EventManager.AuthError("E-mail reenviado. Caso não tenha recebido, por favor, reinicie o jogo e tente novamente.");
+        EventManager.AuthError("E-mail reenviado, o processo pode levar cerca de 30 minutos.");
     }
 
     private void OnUserReloaded(string user)
@@ -116,6 +116,22 @@ public class FirebaseAuthHandler : MonoBehaviour
             EventManager.AuthError("Email ainda não foi verificado.");
         }
     }
+
+    public void SendPasswordReset(string email)
+    {
+        FirebaseAuth.SendPasswordResetEmail(
+            email,
+            gameObject.name,
+            nameof(OnPasswordResetSent),
+            nameof(DisplayErrorObject)
+        );
+    }
+
+    private void OnPasswordResetSent(string message)
+    {
+        EventManager.AuthError(message);
+    }
+
 
 }
 

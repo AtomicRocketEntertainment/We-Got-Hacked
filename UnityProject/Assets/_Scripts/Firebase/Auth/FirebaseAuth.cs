@@ -40,9 +40,11 @@ namespace _Scripts.Firebase.Auth
 
         [DllImport("__Internal")]
         public static extern void ReloadCurrentUser(string objectName, string callback, string fallback);
-        
+
         [DllImport("__Internal")]
         public static extern void SendEmailVerification(string objectName, string callback, string fallback);
-
+        
+        [DllImport("__Internal")]
+        public static extern void SendPasswordResetEmail(string email, string objectName, string callback, string fallback);
     }
 }

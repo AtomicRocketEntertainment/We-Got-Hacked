@@ -114,5 +114,31 @@ mergeInto(LibraryManager.library, {
         .catch((error) => {
            window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
         });
+    },
+
+    SendPasswordResetEmail: function (email, objectName, callback, fallback) {
+        var parsedEmail = UTF8ToString(email);
+        var parsedObjectName = UTF8ToString(objectName);
+        var parsedCallback = UTF8ToString(callback);
+        var parsedFallback = UTF8ToString(fallback);
+
+        window.firebaseAuth.sendPasswordResetEmail(
+            window.firebaseAuth.auth,
+            parsedEmail
+        )
+        .then(() => {
+            window.unityInstance.SendMessage(
+                parsedObjectName,
+                parsedCallback,
+                "Enviamos um e-mail para reset de senha. O processo de envio pode levar até 30 minutos."
+            );
+        })
+        .catch((error) => {
+            window.unityInstance.SendMessage(
+                parsedObjectName,
+                parsedFallback,
+                JSON.stringify(error, Object.getOwnPropertyNames(error))
+            );
+        });
     }
 });

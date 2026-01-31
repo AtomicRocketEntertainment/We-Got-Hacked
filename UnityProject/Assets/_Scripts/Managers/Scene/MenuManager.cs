@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _disclaimerParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _allScreensParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _emailConfirmationParent;
+    [BoxGroup("Element's Parent"), SerializeField] private GameObject _resetPasswordParent;
 
     [BoxGroup("General Feedback"), SerializeField] private TextMeshProUGUI _feedbackText;
 
@@ -30,6 +31,11 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Login related Buttons"), SerializeField] private Button _loginBtn;
     [BoxGroup("Login related Buttons"), SerializeField] private Button _playerConfirmedVerifiedBtn;
     [BoxGroup("Login related Buttons"), SerializeField] private Button _reSendConfirmationEmailBtn;
+    [BoxGroup("Login related Buttons"), SerializeField] private Button _forgotPasswordBtn;
+
+    [BoxGroup("Reset password related"), SerializeField] private Button _sendForgotPassword;
+    [BoxGroup("Reset password related"), SerializeField] private Button _backFromResetPassword;
+    [BoxGroup("Reset password related"), SerializeField] private TMP_InputField _emailToSendForgotPassword;
 
     [BoxGroup("Disclaimer"), SerializeField] private Button _closeDisclaimer;
 
@@ -37,11 +43,15 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Credits"), SerializeField] private CreditManager _creditManager;
 
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _startBtn;
+    [BoxGroup("Gameplay Buttons"), SerializeField] private Button _newGameBtn;
+    [BoxGroup("Gameplay Buttons"), SerializeField] private Button _continueBtn;
 
     void OnEnable()
     {
         _closeDisclaimer.onClick.AddListener(CloseDisclaimer);
         _startBtn.onClick.AddListener(StartGame);
+        _newGameBtn.onClick.AddListener(StartNewGame);
+        _continueBtn.onClick.AddListener(ContinueGame);
         _createBtn.onClick.AddListener(ShowCreateMenu);
         _loginBtn.onClick.AddListener(ShowLoginMenu);
         _confirmCreateBtn.onClick.AddListener(TryCreatePlayer);
@@ -49,17 +59,24 @@ public class MenuManager : MonoBehaviour
         _openCreditBtn.onClick.AddListener(OpenCredit);
         _playerConfirmedVerifiedBtn.onClick.AddListener(PlayerConfirmedVerification);
         _reSendConfirmationEmailBtn.onClick.AddListener(ReSendConfirmationEmail);
+        _forgotPasswordBtn.onClick.AddListener(OpenResetPassword);
+        _sendForgotPassword.onClick.AddListener(ForgotPasswordClicked);
+        _backFromResetPassword.onClick.AddListener(CloseForgotPassword);
         EventManager.OnPlayerCreated += FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn += FeedbackPlayerLoggedIn;
         EventManager.OnAuthError += GenericFeedback;
         EventManager.OnDatabaseEror += GenericFeedback;
 
+        _continueBtn.gameObject.SetActive(false); //only available if player login in.
+        _newGameBtn.gameObject.SetActive(false); //only available if player login in.
     }
 
     void OnDisable()
     {
         _closeDisclaimer.onClick.RemoveListener(CloseDisclaimer);
         _startBtn.onClick.RemoveListener(StartGame);
+        _newGameBtn.onClick.RemoveListener(StartNewGame);
+        _continueBtn.onClick.RemoveListener(ContinueGame);
         _createBtn.onClick.RemoveListener(ShowCreateMenu);
         _loginBtn.onClick.RemoveListener(ShowLoginMenu);
         _confirmCreateBtn.onClick.RemoveListener(TryCreatePlayer);
@@ -67,6 +84,9 @@ public class MenuManager : MonoBehaviour
         _openCreditBtn.onClick.RemoveListener(OpenCredit);
         _playerConfirmedVerifiedBtn.onClick.RemoveListener(PlayerConfirmedVerification);
         _reSendConfirmationEmailBtn.onClick.RemoveListener(ReSendConfirmationEmail);
+        _forgotPasswordBtn.onClick.RemoveListener(OpenResetPassword);
+        _sendForgotPassword.onClick.RemoveListener(ForgotPasswordClicked);
+        _backFromResetPassword.onClick.RemoveListener(CloseForgotPassword);
         EventManager.OnPlayerCreated -= FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn -= FeedbackPlayerLoggedIn;
         EventManager.OnAuthError -= GenericFeedback;
@@ -98,7 +118,10 @@ public class MenuManager : MonoBehaviour
         bool informationsAreSet = !string.IsNullOrEmpty(email) || !string.IsNullOrEmpty(password);
 
         if (informationsAreSet)
+        {
+            HandleButtonsToShow();
             FirebaseAuthHandler.Instance.SignInWithEmailAndPassword(email, password);
+        }
         else
             GenericFeedback("Todos os campos devem ser preenchidos.");
     }
@@ -128,6 +151,8 @@ public class MenuManager : MonoBehaviour
 
     private void ShowLoginMenu()
     {
+        _emailLoginInputField.SetTextWithoutNotify("");
+        _passwordLoginInputField.SetTextWithoutNotify("");
         _loginBtnParent.SetActive(false);
         _loginParent.SetActive(true);
     }
@@ -156,11 +181,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void PlayerConfirmedVerification()
-    {
-        FirebaseAuthHandler.Instance.CheckEmailVerification();
-    }
-
     private void GenericFeedback(string feedback)
     {
         switch (feedback)
@@ -174,16 +194,49 @@ public class MenuManager : MonoBehaviour
         }
 
     }
-
-    public void ClearText()
+    
+    private void ForgotPasswordClicked()
     {
-        _feedbackText.text = "";
+        string email = _emailToSendForgotPassword.text;
+
+        if (string.IsNullOrEmpty(email) && IsValidEmail(email))
+        {
+            EventManager.AuthError("Informe o e-mail.");
+            return;
+        }
+
+        _sendForgotPassword.interactable = false;
+        FirebaseAuthHandler.Instance.SendPasswordReset(email);
     }
 
-    private void StartGame()
+    private void OpenResetPassword()
     {
-        SceneHandler.Instance.ChangeScene();
+        _emailToSendForgotPassword.SetTextWithoutNotify("");
+        _loginParent.SetActive(false);
+        _resetPasswordParent.SetActive(true);
     }
+
+    private void CloseForgotPassword()
+    {
+        _resetPasswordParent.SetActive(false);
+        _loginBtnParent.SetActive(true);
+    }
+
+    private void HandleButtonsToShow()
+    {
+        _newGameBtn.gameObject.SetActive(true);
+        _continueBtn.gameObject.SetActive(true);
+        _startBtn.gameObject.SetActive(false);
+    }
+
+    private void StartNewGame()
+    {
+        PersistanceDataManager.Instance.PlayerWantsNewRun();
+        StartGame();
+    }
+    private void PlayerConfirmedVerification() => FirebaseAuthHandler.Instance.CheckEmailVerification();
+    private void StartGame() => SceneHandler.Instance.StartGame();
+    private void ContinueGame() => SceneHandler.Instance.ContinueGame();
     
     bool IsValidEmail(string email)
     {
