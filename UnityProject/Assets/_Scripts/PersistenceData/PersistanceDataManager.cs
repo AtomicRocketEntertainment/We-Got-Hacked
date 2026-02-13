@@ -6,17 +6,16 @@ using UnityEngine.SceneManagement;
 public class PersistanceDataManager : MonoBehaviour
 {
     [SerializeField] private List<SO_Stock> _companys;
-    private List<PlayerDataAnswer> _playerDataAnswerList;
+    public static PersistanceDataManager Instance { get; private set; }
 
+    private List<PlayerDataAnswer> _playerDataAnswerList;
     private PlayerDatabaseData _currentPlayerData;
     private Dictionary<string, List<int>> _stockDataByCompany = new Dictionary<string, List<int>>();
-
     public PlayerDatabaseData PlayerData => _currentPlayerData;
     public Dictionary<string, List<int>> StocksInfos => _stockDataByCompany;
     private Dictionary<string, SO_Stock> _stockMetaByCompany = new Dictionary<string, SO_Stock>();
+    private readonly int _firstSceneIndex = 1;
 
-
-    public static PersistanceDataManager Instance { get; private set; }
 
 
     private void Awake()
@@ -98,7 +97,7 @@ public class PersistanceDataManager : MonoBehaviour
         bool isPlayerInMenu = SceneHandler.Instance.CurrentSceneIndex == 0;
         bool playerShouldGoToFirstScene = isPlayerInMenu || playerNeedRestart;
 
-        _currentPlayerData.CurrentScene = playerShouldGoToFirstScene ? 1 : SceneHandler.Instance.CurrentSceneIndex; 
+        _currentPlayerData.CurrentScene = playerShouldGoToFirstScene ? _firstSceneIndex : SceneHandler.Instance.CurrentSceneIndex; 
         RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
 
         foreach (PlayerDataAnswer answer in _playerDataAnswerList)

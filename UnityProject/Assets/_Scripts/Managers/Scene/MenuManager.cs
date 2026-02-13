@@ -46,6 +46,8 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _newGameBtn;
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _continueBtn;
 
+    private readonly int _firstSceneIndex = 1;
+
     void OnEnable()
     {
         _closeDisclaimer.onClick.AddListener(CloseDisclaimer);
@@ -119,7 +121,6 @@ public class MenuManager : MonoBehaviour
 
         if (informationsAreSet)
         {
-            HandleButtonsToShow();
             FirebaseAuthHandler.Instance.SignInWithEmailAndPassword(email, password);
         }
         else
@@ -169,6 +170,8 @@ public class MenuManager : MonoBehaviour
         if (FirebaseAuthHandler.Instance.PlayerIsVerfied)
         {
             _feedbackText.text = $"Seja bem vindo {playerName}";
+
+            HandleButtonsToShow();
             _loginParent.SetActive(false);
             _emailConfirmationParent.SetActive(false);
             _playBtnParent.SetActive(true);
@@ -176,6 +179,7 @@ public class MenuManager : MonoBehaviour
         else
         {
             _feedbackText.text = $"Por favor, valide seu e-mail.";
+
             _loginParent.SetActive(false);
             _emailConfirmationParent.SetActive(true);
         }
@@ -225,8 +229,11 @@ public class MenuManager : MonoBehaviour
     private void HandleButtonsToShow()
     {
         _newGameBtn.gameObject.SetActive(true);
-        _continueBtn.gameObject.SetActive(true);
         _startBtn.gameObject.SetActive(false);
+
+        //botão de continue só faz sentido se o jogador estiver depois da primeira cena. 
+        bool isPlayerInFirstScene = PersistanceDataManager.Instance.PlayerData.CurrentScene == _firstSceneIndex; 
+        _continueBtn.gameObject.SetActive(!isPlayerInFirstScene);
     }
 
     private void StartNewGame()
