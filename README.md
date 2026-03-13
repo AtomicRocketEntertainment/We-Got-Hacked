@@ -85,14 +85,14 @@ Conheça a Equipe
 -------
 ![Equipe-Desenvolvimento](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/WGH%20-%20Equipe%20Desenvolvimento3.0.png)
 |------------|
-| [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) (Artista 2D e 3D) |
-| [Frank Vega](https://www.linkedin.com/in/frank-vega-24a721282/) (Artista 2D e 3D) |
-| [Igor Flores](https://www.linkedin.com/in/igorflores96/) (Desenvolvedor) |
-| [Jairo Augusto](https://www.artstation.com/jairoaugusto13) (Roteirista) |
-| [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) (Coordenador Acadêmico) |
-| [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) (Coordenador de Desenvolvimento) |
-| [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) (Analista de Segurança) |
-| [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) (Game Designer e Producer) |
+| [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | (Artista 2D e 3D) | Teste |
+| [Frank Vega](https://www.linkedin.com/in/frank-vega-24a721282/) | (Artista 2D e 3D) | Teste |
+| [Igor Flores](https://www.linkedin.com/in/igorflores96/) | (Desenvolvedor) | Teste |
+| [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | (Roteirista) | Teste |
+| [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | (Coordenador Acadêmico) | Teste |
+| [Mauricio Gehling](https://www.linkedin.com/in/mbg3dmind/) | (Coordenador de Desenvolvimento) | Teste |
+| [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) | (Analista de Segurança) | Teste |
+| [Tiago Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | (Game Designer e Producer) | Teste |
 
 ![logo-atomic](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-atomic.png)
 ![logo-rnp](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-rnp-branco.png)
