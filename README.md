@@ -92,7 +92,7 @@ Conheça a Equipe
 | [Jairo A. de C. Augusto](https://www.artstation.com/jairoaugusto13) | Roteirista | 01/2025 - Presente |
 | [Luciano B. Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Coordenador Acadêmico | 01/2025 - Presente |
 | [Mauricio B. Gehling](https://www.linkedin.com/in/mbg3dmind/) | Coordenador de Desenvolvimento | 01/2025 - Presente |
-| [Nicolay Hoff](google.com) | Desenvolvedor | 04/2026 - Presente |
+| [Nicolay Hoff](https://www.linkedin.com/in/nicolayhoff/) | Desenvolvedor | 04/2026 - Presente |
 | [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) | Analista de Segurança | 01/2025 - Presente |
 | [Tiago U. Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Designer | 01/2025 - Presente |
 
