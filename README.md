@@ -94,7 +94,7 @@ Conheça a Equipe
 | [Mauricio B. Gehling](https://www.linkedin.com/in/mbg3dmind/) | Coordenador de Desenvolvimento | 01/2025 - Presente |
 | [Nicolay Hoff](google.com) | Desenvolvedor | 04/2026 - Presente |
 | [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) | Analista de Segurança | 01/2025 - Presente |
-| [Tiago U. Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer e Producer | 01/2025 - Presente |
+| [Tiago U. Gazzola](https://www.linkedin.com/in/tiago-gazzola/) | Game Designer | 01/2025 - Presente |
 
 ![logo-atomic](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-atomic.png)
 ![logo-rnp](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/logo-rnp-branco.png)
