@@ -84,8 +84,9 @@ We Got Hacked iniciou sua produção em janeiro de 2025, com previsão de conclu
 Conheça a Equipe 
 -------
 ![Equipe-Desenvolvimento](https://github.com/AtomicRocketEntertainment/We-Got-Hacked/blob/main/Imagens/WGH%20-%20Equipe%20Desenvolvimento3.0.png)
-|------------|
-| [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D e 3D |
+| Nome | Função | Periodo |
+|----|----|----|
+| [Bernardo Klein](https://www.linkedin.com/in/bernardo-klein-a393262b7/) | Artista 2D e 3D | 
 | [Frank Vega](https://www.linkedin.com/in/frank-vega-24a721282/) | (Artista 2D e 3D) | Teste |
 | [Igor Flores](https://www.linkedin.com/in/igorflores96/) | (Desenvolvedor) | Teste |
 | [Jairo Augusto](https://www.artstation.com/jairoaugusto13) | (Roteirista) | Teste |
