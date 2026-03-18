@@ -10282,69 +10282,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626273430}
   m_CullTransparentMesh: 1
---- !u!1 &1637041740
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1637041742}
-  - component: {fileID: 1637041741}
-  m_Layer: 0
-  m_Name: MusicaFundoTeste
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1637041741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637041740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 762476911
-      Data2: 1254127991
-      Data3: 1097308835
-      Data4: -1264272957
-    Path: event:/Music/Other/MainMenu
-  Event: 
-  EventPlayTrigger: 1
-  EventStopTrigger: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!4 &1637041742
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637041740}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 545.1192, y: 184.89856, z: -11.206415}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1643154585
 GameObject:
   m_ObjectHideFlags: 0
@@ -13332,6 +13269,104 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139575431}
   m_CullTransparentMesh: 1
+--- !u!1001 &7926670060014015058
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1155444582392230106, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_Name
+      value: '[Music_System]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808450901094301402, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: _musicTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808450901094301402, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: _musicTracks.Array.data[0].Path
+      value: event:/Music/Other/MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808450901094301402, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: _musicTracks.Array.data[0].Guid.Data1
+      value: 762476911
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808450901094301402, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: _musicTracks.Array.data[0].Guid.Data2
+      value: 1254127991
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808450901094301402, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: _musicTracks.Array.data[0].Guid.Data3
+      value: 1097308835
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808450901094301402, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: _musicTracks.Array.data[0].Guid.Data4
+      value: -1264272957
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766901010299253466, guid: 504b6db5bad0fac49b54efda5362689a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 504b6db5bad0fac49b54efda5362689a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -13342,4 +13377,4 @@ SceneRoots:
   - {fileID: 1002863736}
   - {fileID: 1857245388}
   - {fileID: 420606165}
-  - {fileID: 1637041742}
+  - {fileID: 7926670060014015058}
