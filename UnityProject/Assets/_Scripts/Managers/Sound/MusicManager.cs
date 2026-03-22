@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using FMODUnity;
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,24 +9,22 @@ public class MusicManager : MonoBehaviour
 {
     [Header("Playlist")] 
     [SerializeField] private List<EventReference> _musicTracks;
-    [SerializeField] private EventReference _ambienceTrack;
 
     private int _currentIndex = 0;
     private EventInstance _currentMusic;
-    private EventInstance _ambienceInstance;
 
     private void Start()
     {
         _currentIndex = 0;
-        if(_musicTracks.Count > 0) PlayCurrentTrack();
+        if (_musicTracks.Count == 0) return;
 
-        if(!_ambienceTrack.IsNull) PlayAmbianceTrack();
+        LoadMusicBank();
     }
 
     private void OnDestroy()
     {
-        _ambienceInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        _ambienceInstance.release();
+        _currentMusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        _currentMusic.release();
     }
 
     private void Update()
@@ -37,19 +36,23 @@ public class MusicManager : MonoBehaviour
         if(state == PLAYBACK_STATE.STOPPED) NextTrack();
     }
 
-    void PlayAmbianceTrack()
+    private void LoadMusicBank()
     {
-        _ambienceInstance = RuntimeManager.CreateInstance(_ambienceTrack);
-        _ambienceInstance.start();
+        RuntimeManager.LoadBank("Master");
+        RuntimeManager.LoadBank("Music");
+
+        RuntimeManager.WaitForAllSampleLoading();
+
+        PlayCurrentTrack();
     }
 
-    void PlayCurrentTrack()
+    private void PlayCurrentTrack()
     {
         _currentMusic = RuntimeManager.CreateInstance(_musicTracks[_currentIndex]);
         _currentMusic.start();
     }
 
-    void NextTrack()
+    private void NextTrack()
     {
         _currentMusic.release();
 

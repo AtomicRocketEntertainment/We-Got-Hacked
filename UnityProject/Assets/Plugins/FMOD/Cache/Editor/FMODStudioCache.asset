@@ -216,6 +216,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 138866
+--- !u!114 &-3563337574043369543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambient.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Ambient.bank
+  Name: Ambient
+  StudioPath: bank:/Ambient
+  lastModified: 639095363737282956
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-3548486774172975359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,10 +249,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639094503864555704
+  lastModified: 639095363566899747
   FileSizes:
   - Name: 
-    Value: 1918
+    Value: 1968
   Exists: 1
 --- !u!114 &-3366830769088921843
 MonoBehaviour:
@@ -336,7 +354,7 @@ MonoBehaviour:
     Data3: -262584942
     Data4: -1612971635
   Banks:
-  - {fileID: 1331701675621142196}
+  - {fileID: -3563337574043369543}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -414,6 +432,7 @@ MonoBehaviour:
   - {fileID: -3548486774172975359}
   - {fileID: 6959312825988072231}
   - {fileID: 1331701675621142196}
+  - {fileID: -3563337574043369543}
   EditorEvents:
   - {fileID: 6579056082831465808}
   - {fileID: -415093668860099304}
@@ -442,7 +461,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -3548486774172975359}
   cacheVersion: 131858
-  cacheTime: 639094503866832519
+  cacheTime: 639095363737282956
   SerializableEventsDict:
   - key: event:/Music/Other/WarRoom
     index: 0
@@ -528,7 +547,7 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639094503866832519
+  lastModified: 639095363736788481
   FileSizes: []
   Exists: 1
 --- !u!114 &1610872508904130072
@@ -550,7 +569,7 @@ MonoBehaviour:
     Data3: -149405772
     Data4: 1566066734
   Banks:
-  - {fileID: 1331701675621142196}
+  - {fileID: -3563337574043369543}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -577,7 +596,7 @@ MonoBehaviour:
     Data3: 867437993
     Data4: 90194338
   Banks:
-  - {fileID: 1331701675621142196}
+  - {fileID: -3563337574043369543}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -654,7 +673,7 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639094503864545663
+  lastModified: 639095363566884702
   FileSizes: []
   Exists: 1
 --- !u!114 &7079162343120129009
