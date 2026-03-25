@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3161302988716099452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7965753400825587939}
+  - component: {fileID: 5962336118279221776}
+  m_Layer: 0
+  m_Name: '[Music_System]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7965753400825587939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161302988716099452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5962336118279221776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161302988716099452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4bbb4d4c64ce4947916ec3e7b2b7b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicTracks:
+  - Guid:
+      Data1: 324288094
+      Data2: 1324145396
+      Data3: 870391950
+      Data4: -1081406535
+    Path: event:/Music/Eduardo/01. Eduardo Music
+  - Guid:
+      Data1: -996671258
+      Data2: 1300494622
+      Data3: -546288224
+      Data4: 1560957147
+    Path: event:/Music/Eduardo/02. Eduardo Music
+  - Guid:
+      Data1: -1912673634
+      Data2: 1299579384
+      Data3: -1387958118
+      Data4: 900222598
+    Path: event:/Music/Eduardo/03. Eduardo Music
+  _ambienceTrack:
+    Guid:
+      Data1: -424684017
+      Data2: 1301385768
+      Data3: -149405772
+      Data4: 1566066734
+    Path: event:/Ambient/1. AmbientFarm (Eduardo)
