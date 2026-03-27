@@ -1,12 +1,14 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MiniClassRoom
 {
     public class MiniClassroomUI : MonoBehaviour
     {
         [SerializeField] private List<ActorUI> _actorsUI;
+        [SerializeField] private Image _slideImg;
         [SerializeField] private TextBoxUI _textBox;
 
         public void SetConversation(DialogueLine line)
@@ -23,6 +25,7 @@ namespace MiniClassRoom
                 }
             }
 
+            if(line.background != null) _slideImg.sprite = line.background;
             _textBox.SetDialogue(line.dialogueText, line.actorHighlightedID);
         }
 
