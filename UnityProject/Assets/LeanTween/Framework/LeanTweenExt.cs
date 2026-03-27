@@ -138,7 +138,7 @@ public static class LeanTweenExt
     //LeanTween.scaleZ
     public static LTDescr LeanScaleZ(this GameObject gameObject, float to, float time) { return LeanTween.scaleZ(gameObject, to, time); }
     public static LTDescr LeanScaleZ(this Transform transform, float to, float time) { return LeanTween.scaleZ(transform.gameObject, to, time); }
-    //LeanTween.sequence
+    //LeanTween._sequence
     //LeanTween.size (RectTransform)
     public static LTDescr LeanSize(this RectTransform rectTransform, Vector2 to, float time) { return LeanTween.size(rectTransform, to, time); }
     //LeanTween.tweensRunning

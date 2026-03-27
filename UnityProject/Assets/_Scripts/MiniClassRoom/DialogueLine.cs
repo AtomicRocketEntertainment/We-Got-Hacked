@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MiniClassRoom
@@ -5,14 +6,19 @@ namespace MiniClassRoom
     [System.Serializable]
     public class DialogueLine
     {
-        public Actor actorLeft;
-        public Actor actorLeftSecond;
+        public List<ActorData> actors; //Setting Actors in scene (only 3 - first is left, second is right, third is right second)
 
-        public Actor actorRight;
-        public Actor actorRightSecond;
-
-        public string actorHighlighted;
+        public string actorHighlightedID;
 
         public Sprite background;
+        public string dialogueText;
+    }
+
+    [System.Serializable]
+    public class ActorData
+    {
+        public ActorSO actor;
+        public string bodyID;
+        public string headID;
     }
 }

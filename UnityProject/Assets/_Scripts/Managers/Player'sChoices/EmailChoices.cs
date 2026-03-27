@@ -198,7 +198,7 @@ public class EmailChoices : MonoBehaviour, IEmailContext
             EventManager.SpawnEmail(EmailType.LORE);
             EventManager.SpawnEmail(EmailType.NEWS);
 
-            if (_currentResponseState == HistoryPartState.Part_One) //Enable player write for apks even if continue with the normal history line.
+            if (_currentResponseState == HistoryPartState.Part_One) //Enable player write for apks even if continue with the normal _history line.
                 EventManager.EnablePlayerWriteEmail();
             else
                 EventManager.DisablePlayerWriteEmail();

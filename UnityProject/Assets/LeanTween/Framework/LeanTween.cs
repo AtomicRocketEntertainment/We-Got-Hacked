@@ -624,7 +624,7 @@ public class LeanTween : MonoBehaviour {
             init();
             int backId = uniqueId & 0xFFFF;
             int backCounter = uniqueId >> 16;
-            if (backId > tweens.Length - 1) { // sequence
+            if (backId > tweens.Length - 1) { // _sequence
                 int sequenceId = backId - tweens.Length;
                 LTSeq seq = sequences[sequenceId];
                 // Debug.Log("sequenceId:" + sequenceId+" maxSequences:"+maxSequences+" prev:"+seq.previous);
@@ -1043,10 +1043,10 @@ public class LeanTween : MonoBehaviour {
 
     #if !UNITY_3_5 && !UNITY_4_0 && !UNITY_4_0_1 && !UNITY_4_1 && !UNITY_4_2 && !UNITY_4_3 && !UNITY_4_5
     /**
-    * <summary>Play a sequence of images on a Unity UI Object</summary>
+    * <summary>Play a _sequence of images on a Unity UI Object</summary>
     * 
     * @method LeanTween.play
-    * @param {RectTransform} rectTransform:RectTransform RectTransform that you want to play the sequence of sprites on
+    * @param {RectTransform} rectTransform:RectTransform RectTransform that you want to play the _sequence of sprites on
     * @param {Sprite[]} sprites:Sprite[] Sequence of sprites to be played
     * @return {LTDescr} LTDescr an object that distinguishes the tween <br />
     * @example
@@ -1063,10 +1063,10 @@ public class LeanTween : MonoBehaviour {
     /**
     * <summary>Retrieve a sequencer object where you can easily chain together tweens and methods one after another</summary>
     * 
-    * @method LeanTween.sequence
+    * @method LeanTween._sequence
     * @return {LTSeq} LTSeq an object that you can add tweens, methods and time on to
     * @example
-    * var seq = LeanTween.sequence();<br />
+    * var seq = LeanTween._sequence();<br />
     * seq.add(1f); // delay everything one second<br />
     * seq.add( () => { // fire an event before start<br />
     * &#160;Debug.Log("I have started");<br />
@@ -1079,7 +1079,7 @@ public class LeanTween : MonoBehaviour {
     public static LTSeq sequence(bool initSequence = true)
     {
         init(maxTweens);
-        // Loop through and find available sequence
+        // Loop through and find available _sequence
         for (int i = 0; i < sequences.Length; i++)
         {
             //          Debug.Log("i:" + i + " sequences[i]:" + sequences[i]);

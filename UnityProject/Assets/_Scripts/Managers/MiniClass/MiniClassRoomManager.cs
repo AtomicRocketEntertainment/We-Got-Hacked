@@ -5,40 +5,43 @@ namespace MiniClassRoom
 {
     public class MiniClassRoomManager : MonoBehaviour
     {
-        public Conversation sequence;
+        [SerializeField] private ConversationSO _sequence;
+        [SerializeField] private MiniClassroomUI _miniClassroomUI;
 
-        private int currentIndex = 0;
-        private List<DialogueLine> history = new();
+        private int _currentIndex = 0;
+        private List<DialogueLine> _history = new();
 
-        public void StartDialogue(Conversation seq)
+        public void StartDialogue()
         {
-            sequence = seq;
-            currentIndex = 0;
-            history.Clear();
+            _miniClassroomUI.ClearConversation();
+
+            _currentIndex = 0;
+            _history.Clear();
             ShowLine();
         }
 
         public void Next()
         {
-            if (currentIndex >= sequence.lines.Count - 1) return;
+            if (_currentIndex >= _sequence.lines.Count - 1) return;
 
-            currentIndex++;
+            _currentIndex++;
             ShowLine();
         }
 
         public void Previous()
         {
-            if (currentIndex <= 0) return;
+            if (_currentIndex <= 0) return;
 
-            currentIndex--;
+            _currentIndex--;
             ShowLine();
         }
 
         void ShowLine()
         {
-            var line = sequence.lines[currentIndex];
+            var line = _sequence.lines[_currentIndex];
+            _miniClassroomUI.SetConversation(line);
 
-            history.Add(line);
+            _history.Add(line);
 
         }
     }

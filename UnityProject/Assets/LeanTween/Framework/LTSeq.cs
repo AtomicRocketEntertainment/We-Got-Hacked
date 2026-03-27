@@ -6,7 +6,7 @@ using UnityEngine;
 * Internal Representation of a Sequence<br>
 * <br>
 * &nbsp;&nbsp;<h4>Example:</h4> 
-* var seq = LeanTween.sequence();<br>
+* var seq = LeanTween._sequence();<br>
 * seq.append(1f); <span style="color:gray">// delay everything one second</span><br>
 * seq.append( () => { <span style="color:gray">// fire an event before start</span><br>
 * &nbsp;Debug.Log("I have started");<br>
@@ -92,11 +92,11 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a time delay to the sequence
+	* Add a time delay to the _sequence
 	* @method append (delay)
-	* @param {float} delay:float amount of time to add to the sequence
+	* @param {float} delay:float amount of time to add to the _sequence
 	* @return {LTSeq} LTDescr an object that distinguishes the tween
-	* var seq = LeanTween.sequence();<br>
+	* var seq = LeanTween._sequence();<br>
 	* seq.append(1f); // delay everything one second<br>
 	* seq.append( LeanTween.move(cube1, Vector3.one * 10f, 1f) ); // do a tween<br>
 	*/
@@ -107,12 +107,12 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a time delay to the sequence
+	* Add a time delay to the _sequence
 	* @method append (method)
 	* @param {System.Action} callback:System.Action method you want to be called
 	* @return {LTSeq} LTSeq an object that you can add tweens, methods and time on to
 	* @example
-	* var seq = LeanTween.sequence();<br>
+	* var seq = LeanTween._sequence();<br>
 	* seq.append( () => { // fire an event before start<br>
 	* &nbsp;Debug.Log("I have started");<br>
 	* });<br>
@@ -128,12 +128,12 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a time delay to the sequence
+	* Add a time delay to the _sequence
 	* @method add (method(object))
 	* @param {System.Action} callback:System.Action method you want to be called
 	* @return {LTSeq} LTSeq an object that you can add tweens, methods and time on to
 	* @example
-	* var seq = LeanTween.sequence();<br>
+	* var seq = LeanTween._sequence();<br>
 	* seq.append( () => { // fire an event before start<br>
 	* &nbsp;Debug.Log("I have started");<br>
 	* });<br>
@@ -167,7 +167,7 @@ public class LTSeq {
 	* @method add (tween)
 	* @return {LTSeq} LTSeq an object that you can add tweens, methods and time on to
 	* @example
-	* var seq = LeanTween.sequence();<br>
+	* var seq = LeanTween._sequence();<br>
 	* seq.append( LeanTween.move(cube1, Vector3.one * 10f, 1f) ); // do a move tween<br>
 	* seq.append( LeanTween.rotateAround( avatar1, Vector3.forward, 360f, 1f ) ); // then do a rotate tween<br>
 	*/
