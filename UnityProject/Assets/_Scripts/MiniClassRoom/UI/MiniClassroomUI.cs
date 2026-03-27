@@ -11,12 +11,14 @@ namespace MiniClassRoom
 
         public void SetConversation(DialogueLine line)
         {
+            ClearConversation();
+
             if (line.actors != null && line.actors.Count > 0)
             {
                 int actorCount = 0;
                 foreach(ActorData actor in line.actors)
                 {
-                    _actorsUI[actorCount].SetActor(actor.actor, actor.bodyID, actor.bodyID);
+                    _actorsUI[actorCount].SetActor(actor.actor, actor.headID, actor.bodyID);
                     actorCount++;
                 }
             }

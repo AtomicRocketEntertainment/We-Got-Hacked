@@ -5,18 +5,21 @@ namespace MiniClassRoom
 {
     public class ActorUI : MonoBehaviour
     {
-        [SerializeField] private Image _spriteBody;
         [SerializeField] private Image _spriteHead;
+        [SerializeField] private Image _spriteBody;
 
         private ActorSO _actorSO;
 
-        public void SetActor(ActorSO actorSO, string bodyID, string headID)
+        public void SetActor(ActorSO actorSO, string headID, string bodyID)
         {
             _actorSO = actorSO;
             gameObject.SetActive(true);
 
-            _spriteBody.sprite = _actorSO.GetBodySprite(bodyID);
-            _spriteHead.sprite = _actorSO.GetHeadSprite(headID);
+            Sprite body = _actorSO.GetBodySprite(bodyID);
+            Sprite head = _actorSO.GetHeadSprite(headID);
+
+            if(body != null) _spriteBody.sprite = body;
+            if(head != null) _spriteHead.sprite = head;
         }
 
         public void ClearActor()
