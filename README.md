@@ -90,7 +90,7 @@ Conheça a Equipe
 | [Frank V. Vega](https://www.linkedin.com/in/frank-vega-24a721282/) | Artista 2D e 3D | 02/2026 - Presente |
 | [Igor Flores](https://www.linkedin.com/in/igorflores96/) | Desenvolvedor | 01/2025 - 02/2026 |
 | [Jairo A. de C. Augusto](https://www.artstation.com/jairoaugusto13) | Roteirista | 01/2025 - Presente |
-| [Luciano B. Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Coordenador Acadêmico | 01/2025 - Presente |
+| [Luciano Ignaczak](https://www.linkedin.com/in/luciano-ignaczak/) | Coordenador Acadêmico | 01/2025 - Presente |
 | [Mauricio B. Gehling](https://www.linkedin.com/in/mbg3dmind/) | Coordenador de Desenvolvimento | 01/2025 - Presente |
 | [Nicolay Hoff](https://www.linkedin.com/in/nicolayhoff/) | Desenvolvedor | 04/2026 - Presente |
 | [Rodrigo Steigleder](https://www.linkedin.com/in/rodrigosteigleder/) | Analista de Segurança | 01/2025 - Presente |
