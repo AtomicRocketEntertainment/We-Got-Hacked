@@ -17,22 +17,33 @@ namespace MiniClassRoom
             _dialogue.text = "";
         }
 
-        public void SetDialogue(string dialogueText, string titleName = "")
+        public void SetActorName(string titleName = "")
         {
-            if (dialogueText == null) return;
+            SetTitleName(titleName);
+        }
 
-            if(titleName == null || titleName == "")
+        public void SetDialogue(string dialogueText)
+        {
+            
+
+            if (dialogueText == null) return;
+            if (_dialogue.text == dialogueText) return;
+            StartCoroutine(TypeText(dialogueText));
+        }
+
+        private void SetTitleName(string titleName = "")
+        {
+            if (titleName == null || titleName == "")
             {
                 _title.text = "";
                 _titlePanel.gameObject.SetActive(false);
             }
             else
             {
+                if (_title.text == titleName) return;
                 _title.text = titleName;
                 _titlePanel.gameObject.SetActive(true);
             }
-
-            StartCoroutine(TypeText(dialogueText));
         }
 
         private IEnumerator TypeText(string text)

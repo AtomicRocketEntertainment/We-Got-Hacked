@@ -33,7 +33,10 @@ namespace MiniClassRoom
             if (_currentIndex <= 0) return;
 
             _currentIndex--;
+            var line = _sequence.lines[_currentIndex];
+
             ShowLine();
+            _history.Remove(line);
         }
 
         void ShowLine()
