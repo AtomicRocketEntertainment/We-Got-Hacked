@@ -7,6 +7,7 @@ namespace MiniClassRoom
     public class ActorSO : ScriptableObject
     {
         public string id;
+        public Color corAtor;
         public List<HeadData> headList;
         public List<BodyData> bodyList;
 

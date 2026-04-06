@@ -18,7 +18,7 @@ namespace MiniClassRoom
     public class ActorData
     {
         public ActorSO actor;
-        public string bodyID;
         public string headID;
+        public string bodyID;
     }
 }
