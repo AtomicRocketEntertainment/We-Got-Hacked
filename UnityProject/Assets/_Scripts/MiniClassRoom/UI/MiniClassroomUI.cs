@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,24 +8,46 @@ namespace MiniClassRoom
 {
     public class MiniClassroomUI : MonoBehaviour
     {
+        [SerializeField] private MiniClassRoomManager _manager;
+        [SerializeField] private LogPanel _logUI;
         [SerializeField] private List<ActorUI> _actorsUI;
         [SerializeField] private Image _slideImg;
         [SerializeField] private TextBoxUI _textBox;
 
-        DialogueLine _currentLine;
-        ActorSO _currentActorHighlighted;
+        private DialogueLine _currentLine;
+        private ActorSO _currentActorHighlighted;
+
+        private int _pendingAnimations = 0;
 
         private void SetActors()
         {
+            _pendingAnimations = 0;
+
             if (_currentLine.actors != null && _currentLine.actors.Count > 0)
             {
                 int actorCount = 0;
+                
                 foreach (ActorUI actor in _actorsUI)
                 {
                     if (actorCount >= _currentLine.actors.Count)
                     {
-                        actor.RemoveActor();
+                        _pendingAnimations++;
+
+                        actor.RemoveActor(() =>
+                        {
+                            CheckAnimationsComplete(SetDialogue);
+                        });
                         continue;
+                    }
+
+                    if (actor.ActorID == null || actor.ActorID == "")
+                    {
+                        _pendingAnimations++;
+
+                        actor.OnAnimationComplete = () =>
+                        {
+                            CheckAnimationsComplete(SetDialogue);
+                        };
                     }
 
                     actor.SetActor(_currentLine.actors[actorCount].actor, _currentLine.actors[actorCount].headID, _currentLine.actors[actorCount].bodyID);
@@ -37,6 +60,21 @@ namespace MiniClassRoom
                         actor.SetNormalActor();
                     actorCount++;
                 }
+            }
+
+            if (_pendingAnimations == 0)
+            {
+                SetDialogue();
+            }
+        }
+
+        private void CheckAnimationsComplete(Action onComplete)
+        {
+            _pendingAnimations--;
+
+            if (_pendingAnimations <= 0)
+            {
+                onComplete?.Invoke();
             }
         }
 
@@ -69,6 +107,11 @@ namespace MiniClassRoom
             return null;
         }
 
+        public void OpenLogHistory(List<DialogueLine> lines)
+        {
+            _logUI.OpenLog(lines);
+        }
+
         public void SetConversation(DialogueLine line)
         {
             _currentLine = line;
@@ -78,8 +121,6 @@ namespace MiniClassRoom
             SetActors();
 
             SetBackground();
-
-            SetDialogue();
         }
 
         public void ClearConversation()

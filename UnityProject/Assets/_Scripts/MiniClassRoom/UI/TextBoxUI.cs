@@ -24,8 +24,6 @@ namespace MiniClassRoom
 
         public void SetDialogue(string dialogueText)
         {
-            
-
             if (dialogueText == null) return;
             if (_dialogue.text == dialogueText) return;
             StartCoroutine(TypeText(dialogueText));

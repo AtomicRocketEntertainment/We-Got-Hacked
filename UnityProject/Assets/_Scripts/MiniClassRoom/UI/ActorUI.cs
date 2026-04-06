@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 namespace MiniClassRoom
 {
@@ -24,6 +25,8 @@ namespace MiniClassRoom
 
         public string ActorID => _actorSO != null ? _actorSO.id : "";
 
+        public Action OnAnimationComplete;
+
         public void SetActor(ActorSO actorSO, string headID, string bodyID)
         {
             if (_actorSO == actorSO) return;
@@ -41,26 +44,8 @@ namespace MiniClassRoom
             PlayEnterAnimation();
         }
 
-        public void PlayEnterAnimation()
-        {
-            float startX = _leftActor ? -_animPosition : _animPosition;
-
-            // posição inicial fora da tela
-            _rectTransform.anchoredPosition = new Vector2(startX, _rectTransform.anchoredPosition.y);
-
-            // invisível
-            _canvasGroup.alpha = 0;
-
-            // anima
-            Sequence seq = DOTween.Sequence();
-
-            seq.Join(_rectTransform.DOAnchorPosX(0, _animDuration).SetEase(Ease.OutCubic));
-            seq.Join(_canvasGroup.DOFade(1, _animDuration));
-        }
-
         public void SetHighlight(bool isHighlighted)
         {
-            if(isHighlighted) Debug.Log($"Highlighting actor {ActorID}");
             float targetScale = isHighlighted ? 1.1f : 1f;
             Color targetColor = isHighlighted ? _colorNormal : _colorFaded;
             float scaleLeft = _leftActor ? 1f : -1f;
@@ -78,17 +63,47 @@ namespace MiniClassRoom
             _spriteBody.color = _colorNormal;
         }
 
-        public void RemoveActor()
+        public void PlayEnterAnimation()
         {
-            if (_actorSO == null) return;
+            float startX = _leftActor ? -_animPosition : _animPosition;
+
+            // posição inicial fora da tela
+            _rectTransform.anchoredPosition = new Vector2(startX, _rectTransform.anchoredPosition.y);
+
+            // invisível
+            _canvasGroup.alpha = 0;
+
+            // anima
+            Sequence seq = DOTween.Sequence();
+
+            seq.Join(_rectTransform.DOAnchorPosX(0, _animDuration).SetEase(Ease.OutCubic));
+            seq.Join(_canvasGroup.DOFade(1, _animDuration));
+
+            seq.OnComplete(() =>
+            {
+                OnAnimationComplete?.Invoke();
+            });
+        }
+
+        public void RemoveActor(Action onComplete = null)
+        {
+            if (_actorSO == null)
+            {
+                onComplete?.Invoke();
+                return;
+            }
             Sequence seq = DOTween.Sequence();
 
             float endX = _leftActor ? -_animPosition : _animPosition;
             seq.Join(_canvasGroup.DOFade(0, _animDuration));
-            seq.Join(_rectTransform.DOAnchorPosX(endX, _animDuration).SetEase(Ease.OutCubic)).onComplete += () =>
+            seq.Join(_rectTransform.DOAnchorPosX(endX, _animDuration).SetEase(Ease.OutCubic));
+
+            seq.OnComplete(() =>
             {
                 ClearActor();
-            };
+                onComplete?.Invoke();
+                OnAnimationComplete?.Invoke();
+            });
         }
 
         public void ClearActor()
