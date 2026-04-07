@@ -54,6 +54,7 @@ public class MusicManager : MonoBehaviour
 
     private void NextTrack()
     {
+        _currentMusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         _currentMusic.release();
 
         _currentIndex++;

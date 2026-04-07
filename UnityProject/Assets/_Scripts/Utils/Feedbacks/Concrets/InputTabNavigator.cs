@@ -23,30 +23,18 @@ public class InputTabNavigator : MonoBehaviour
         {
             bool shift = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-            GameObject current = EventSystem.current.currentSelectedGameObject;
-
-            for (int i = 0; i < _inputFields.Count; i++)
+            int nextIndex = shift ? _currentIndex - 1 : _currentIndex + 1;
+            if (!_loopNavigation)
             {
-                if (_inputFields[i].gameObject == current)
-                {
-                    int nextIndex = shift ? i - 1 : i + 1;
-
-                    if (_loopNavigation)
-                    {
-                        if (nextIndex < 0) nextIndex = _inputFields.Count - 1;
-                        if (nextIndex >= _inputFields.Count) nextIndex = 0;
-                    }
-                    else
-                    {
-                        if (nextIndex < 0) nextIndex = 0;
-                        if (nextIndex >= _inputFields.Count) nextIndex = _inputFields.Count - 1;
-                    }
-                    _currentIndex = nextIndex;
-
-                    SelectField();
-                    break;
-                }
+                if (nextIndex < 0 || nextIndex >= _inputFields.Count) return;
             }
+
+            if (nextIndex < 0) nextIndex = _inputFields.Count - 1;
+            if (nextIndex >= _inputFields.Count) nextIndex = 0;
+
+            _currentIndex = nextIndex;
+
+            SelectField();
         }
     }
 
