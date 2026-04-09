@@ -18,7 +18,7 @@ public class MusicManager : MonoBehaviour
         _currentIndex = 0;
         if (_musicTracks.Count == 0) return;
 
-        LoadMusicBank();
+        StartCoroutine(LoadMusicBank());
     }
 
     private void OnDestroy()
@@ -36,13 +36,22 @@ public class MusicManager : MonoBehaviour
         if(state == PLAYBACK_STATE.STOPPED) NextTrack();
     }
 
-    private void LoadMusicBank()
+    private IEnumerator LoadMusicBank()
     {
         RuntimeManager.LoadBank("Master");
         RuntimeManager.LoadBank("Music");
 
-        RuntimeManager.WaitForAllSampleLoading();
+        while (!RuntimeManager.HaveAllBanksLoaded)
+        {
+            yield return null;
+        }
 
+        RuntimeManager.CoreSystem.mixerSuspend();
+        RuntimeManager.CoreSystem.mixerResume();
+
+        yield return new WaitForSeconds(0.1f);
+
+        VolumeManager.instance.LoadVolume();
         PlayCurrentTrack();
     }
 
@@ -54,6 +63,7 @@ public class MusicManager : MonoBehaviour
 
     private void NextTrack()
     {
+        _currentMusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         _currentMusic.release();
 
         _currentIndex++;
