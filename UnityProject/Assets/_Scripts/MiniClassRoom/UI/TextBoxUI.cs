@@ -1,58 +1,87 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 namespace MiniClassRoom
 {
     public class TextBoxUI : MonoBehaviour
     {
-        [SerializeField] private RectTransform _titlePanel;
+        [SerializeField] private MiniClassroomUI _managerUI;
+        [SerializeField] private Image _titlePanel;
         [SerializeField] private TextMeshProUGUI _title;
         [SerializeField] private TextMeshProUGUI _dialogue;
 
+        [SerializeField] private Color _defaultTitlePanelColor = new Color(0.42f, 0.42f, 0.42f, 1);
+        [SerializeField] private Color _defaultTitleTextColor = Color.white;
+        [SerializeField] private float _typingSpeed = 0.02f;
+
+        private Coroutine _typingCoroutine;
+        private string _currentText = "";
+
         public void ClearDialogue()
         {
+            _currentText = "";
             _title.text = "";
             _titlePanel.gameObject.SetActive(false);
             _dialogue.text = "";
         }
 
-        public void SetActorName(string titleName = "")
+        public void SetActorName(ActorSO titleActor = null)
         {
-            SetTitleName(titleName);
+           
+            SetTitleName(titleActor);
         }
 
         public void SetDialogue(string dialogueText)
         {
             if (dialogueText == null) return;
             if (_dialogue.text == dialogueText) return;
-            StartCoroutine(TypeText(dialogueText));
+
+            _currentText = dialogueText;
+            _typingCoroutine = StartCoroutine(TypeText());
         }
 
-        private void SetTitleName(string titleName = "")
+        private void SetTitleName(ActorSO titleActor = null)
         {
-            if (titleName == null || titleName == "")
+            if (titleActor == null || titleActor.name == "")
             {
                 _title.text = "";
+                _titlePanel.color = _defaultTitlePanelColor;
+                _title.color = _defaultTitleTextColor;
                 _titlePanel.gameObject.SetActive(false);
             }
             else
             {
-                if (_title.text == titleName) return;
-                _title.text = titleName;
+                if (_title.text == titleActor.name) return;
+                _title.text = titleActor.name;
+                _titlePanel.color = titleActor.colorBKGAtor;
+                _title.color = titleActor.colorTitleAtor;
                 _titlePanel.gameObject.SetActive(true);
             }
         }
 
-        private IEnumerator TypeText(string text)
+        private IEnumerator TypeText()
         {
             _dialogue.text = "";
 
-            foreach (char c in text)
+            foreach (char c in _currentText)
             {
                 _dialogue.text += c;
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(_typingSpeed);
             }
+
+            _managerUI.DialogueTextReady();
+        }
+
+        public void SkipText()
+        {
+            if(_typingCoroutine != null) StopCoroutine(_typingCoroutine);
+            _typingCoroutine = null;
+
+            _dialogue.text = _currentText;
+            _managerUI.DialogueTextReady();
         }
     }
 }

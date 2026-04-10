@@ -23,6 +23,8 @@ namespace MiniClassRoom
 
         private ActorSO _actorSO;
 
+        private Tween _currentTween;
+
         public string ActorID => _actorSO != null ? _actorSO.id : "";
 
         public Action OnAnimationComplete;
@@ -33,6 +35,8 @@ namespace MiniClassRoom
             bool firstActor = (_actorSO == null);
             _actorSO = actorSO;
             gameObject.SetActive(true);
+
+            _currentTween = null;
 
             Sprite body = _actorSO.GetBodySprite(bodyID);
             Sprite head = _actorSO.GetHeadSprite(headID);
@@ -81,14 +85,24 @@ namespace MiniClassRoom
 
             seq.OnComplete(() =>
             {
+                _currentTween = null;
                 OnAnimationComplete?.Invoke();
             });
+
+            _currentTween = seq;
+        }
+
+        public void SkipAnimation()
+        {
+            if(_currentTween == null) return;
+            _currentTween?.Kill(true);
         }
 
         public void RemoveActor(Action onComplete = null)
         {
             if (_actorSO == null)
             {
+                _currentTween = null;
                 onComplete?.Invoke();
                 return;
             }
@@ -104,11 +118,14 @@ namespace MiniClassRoom
                 onComplete?.Invoke();
                 OnAnimationComplete?.Invoke();
             });
+
+            _currentTween = seq;
         }
 
         public void ClearActor()
         {
             _actorSO = null;
+            _currentTween = null;
             _spriteBody.sprite = null;
             _spriteHead.sprite = null;
             gameObject.SetActive(false);

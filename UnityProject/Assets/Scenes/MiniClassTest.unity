@@ -510,6 +510,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2036331820}
+    - target: {fileID: 2165709773541077334, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartConversation
+      objectReference: {fileID: 0}
     - target: {fileID: 3856686815128589265, guid: 41f4d5c767262d5429cbb717848fce4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -675,11 +680,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniClassroomCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8530894471808956021, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: _manager
+      value: 
+      objectReference: {fileID: 2036331820}
+    - target: {fileID: 8852209502746923992, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852209502746923992, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8852209502746923992, guid: 41f4d5c767262d5429cbb717848fce4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2036331820}
+    - target: {fileID: 8852209502746923992, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852209502746923992, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNextClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852209502746923992, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MiniClassRoom.MiniClassRoomManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852209502746923992, guid: 41f4d5c767262d5429cbb717848fce4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
