@@ -12,6 +12,7 @@ namespace MiniClassRoom
         [SerializeField] private Image _titlePanel;
         [SerializeField] private TextMeshProUGUI _title;
         [SerializeField] private TextMeshProUGUI _dialogue;
+        [SerializeField] private Image _arrowFinishImg;
 
         [SerializeField] private Color _defaultTitlePanelColor = new Color(0.42f, 0.42f, 0.42f, 1);
         [SerializeField] private Color _defaultTitleTextColor = Color.white;
@@ -25,6 +26,7 @@ namespace MiniClassRoom
             _currentText = "";
             _title.text = "";
             _titlePanel.gameObject.SetActive(false);
+            _arrowFinishImg.gameObject.SetActive(false);
             _dialogue.text = "";
         }
 
@@ -38,6 +40,8 @@ namespace MiniClassRoom
         {
             if (dialogueText == null) return;
             if (_dialogue.text == dialogueText) return;
+
+            _arrowFinishImg.gameObject.SetActive(false);
 
             _currentText = dialogueText;
             _typingCoroutine = StartCoroutine(TypeText());
@@ -72,6 +76,12 @@ namespace MiniClassRoom
                 yield return new WaitForSeconds(_typingSpeed);
             }
 
+            TextFinish();
+        }
+
+        private void TextFinish()
+        {
+            _arrowFinishImg.gameObject.SetActive(true);
             _managerUI.DialogueTextReady();
         }
 
@@ -81,7 +91,7 @@ namespace MiniClassRoom
             _typingCoroutine = null;
 
             _dialogue.text = _currentText;
-            _managerUI.DialogueTextReady();
+            _arrowFinishImg.gameObject.SetActive(true);
         }
     }
 }

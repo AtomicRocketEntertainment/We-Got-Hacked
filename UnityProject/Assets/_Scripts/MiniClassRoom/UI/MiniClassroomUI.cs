@@ -9,6 +9,7 @@ namespace MiniClassRoom
     public class MiniClassroomUI : MonoBehaviour
     {
         [SerializeField] private MiniClassRoomManager _manager;
+        [SerializeField] private DialogueInput _dialogueInput;
         [SerializeField] private LogPanel _logUI;
         [SerializeField] private List<ActorUI> _actorsUI;
         [SerializeField] private Image _slideImg;
@@ -22,7 +23,7 @@ namespace MiniClassRoom
 
         private void Start()
         {
-            _screenButton.onClick.AddListener(_manager.OnNextClick);
+            _screenButton.onClick.AddListener(_dialogueInput.OnNextClick);
         }
 
         private void CheckAnimationsComplete(Action onComplete)
@@ -136,18 +137,19 @@ namespace MiniClassRoom
             }
         }
 
-        public void SkipActorsAnim()
+        public void SkipActorsAnim(bool proceed = true)
         {
             foreach (ActorUI actor in _actorsUI)
             {
                 actor.SkipAnimation();
             }
-            OnActorAnimationsComplete();
+            if(proceed) OnActorAnimationsComplete();
         }
 
-        public void SkipDialogue()
+        public void SkipDialogue(bool proceed = true)
         {
              _textBox.SkipText();
+            if(proceed) DialogueTextReady();
         }
 
         public void DialogueTextReady()

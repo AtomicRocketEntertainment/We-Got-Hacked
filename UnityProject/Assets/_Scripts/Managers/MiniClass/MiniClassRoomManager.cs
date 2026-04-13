@@ -7,6 +7,9 @@ namespace MiniClassRoom
     {
         [SerializeField] private ConversationSO _sequence;
         [SerializeField] private MiniClassroomUI _miniClassroomUI;
+        [SerializeField] private DialogueLoader _loader;
+
+        //private List<DialogueLine> _sequence; sequence para loader
 
         private DialogueState _currentState;
         private DialogueLine _currentLine;
@@ -15,6 +18,11 @@ namespace MiniClassRoom
         private List<DialogueLine> _history = new();
 
         public DialogueState State => _currentState;
+
+        private void Start()
+        {
+            StartConversation();
+        }
 
         private void StartDialogue()
         {
@@ -63,14 +71,6 @@ namespace MiniClassRoom
             SwitchState(DialogueState.StartDialog);
         }
 
-        public void Next()
-        {
-            if (_currentIndex >= _sequence.lines.Count - 1) return;
-
-            _currentIndex++;
-            SwitchState(DialogueState.StartDialog);
-        }
-
         public void OnNextClick()
         {
             switch(_currentState)
@@ -85,6 +85,32 @@ namespace MiniClassRoom
                     Next();
                     break;
             }
+        }
+
+        public void OnPreviousClick()
+        {
+            switch (_currentState)
+            {
+                case DialogueState.ActorsAnimating:
+                    _miniClassroomUI.SkipActorsAnim(false);
+                    Previous();
+                    break;
+                case DialogueState.WritingDialog:
+                    _miniClassroomUI.SkipDialogue(false);
+                    Previous();
+                    break;
+                case DialogueState.DialogFinished:
+                    Previous();
+                    break;
+            }
+        }
+
+        public void Next()
+        {
+            if (_currentIndex >= _sequence.lines.Count - 1) return;
+
+            _currentIndex++;
+            SwitchState(DialogueState.StartDialog);
         }
 
         public void Previous()
