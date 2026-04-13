@@ -15,9 +15,9 @@ namespace MiniClassRoom
 
             string[] rows = _csvFile.text.Split('\n');
 
-            for (int i = 2; i < rows.Length; i++) // pula header
+            for (int i = 0; i < rows.Length; i++)
             {
-                string[] cols = rows[i].Split(';');
+                string[] cols = rows[i].Split(',');
 
                 DialogueLine line = new DialogueLine();
                 line.actors = new List<ActorData>();
@@ -25,17 +25,22 @@ namespace MiniClassRoom
                 // Primeiro ator
                 if (!string.IsNullOrEmpty(cols[1]))
                 {
-                    line.actors.Add(CreateActor(cols[1], cols[2], cols[3]));
+                    line.actors.Add(CreateActor("Rq", cols[1], cols[2]));
                 }
 
                 // Segundo ator
-                if (!string.IsNullOrEmpty(cols[4]))
+                if (!string.IsNullOrEmpty(cols[3]))
                 {
-                    line.actors.Add(CreateActor(cols[4], cols[5], cols[6]));
+                    line.actors.Add(CreateActor("Rb", cols[3], cols[4]));
+                }
+
+                if (!string.IsNullOrEmpty(cols[5]))
+                {
+                    line.actors.Add(CreateActor("Rf", cols[5], cols[6]));
                 }
 
                 line.actorHighlightedID = cols[7];
-                line.dialogueText = cols[9];
+                line.dialogueText = cols[8];
 
                 lines.Add(line);
             }
@@ -43,9 +48,11 @@ namespace MiniClassRoom
             return lines;
         }
 
-        private ActorData CreateActor(string actorID, string headID, string bodyID)
+        private ActorData CreateActor(string actorID, string bodyID, string headID)
         {
             ActorSO actor = _actorsDatabase.Find(a => a.id == actorID);
+
+            if (actor == null) return null;
 
             return new ActorData
             {

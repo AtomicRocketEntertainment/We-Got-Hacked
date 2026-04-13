@@ -5,11 +5,11 @@ namespace MiniClassRoom
 {
     public class MiniClassRoomManager : MonoBehaviour
     {
-        [SerializeField] private ConversationSO _sequence;
+        //[SerializeField] private ConversationSO _sequence;
         [SerializeField] private MiniClassroomUI _miniClassroomUI;
-        [SerializeField] private DialogueLoader _loader;
+        [SerializeField] private DialogueLoaderSO _loader;
 
-        //private List<DialogueLine> _sequence; sequence para loader
+        private List<DialogueLine> _sequence;
 
         private DialogueState _currentState;
         private DialogueLine _currentLine;
@@ -21,12 +21,13 @@ namespace MiniClassRoom
 
         private void Start()
         {
+            _sequence = _loader.LoadDialogue();
             StartConversation();
         }
 
         private void StartDialogue()
         {
-            _currentLine = _sequence.lines[_currentIndex];
+            _currentLine = _sequence[_currentIndex];
             _history.Add(_currentLine);
             _miniClassroomUI.SetConversation(_currentLine);
         }
@@ -107,7 +108,7 @@ namespace MiniClassRoom
 
         public void Next()
         {
-            if (_currentIndex >= _sequence.lines.Count - 1) return;
+            if (_currentIndex >= _sequence.Count - 1) return;
 
             _currentIndex++;
             SwitchState(DialogueState.StartDialog);
@@ -117,12 +118,12 @@ namespace MiniClassRoom
         {
             if (_currentIndex <= 0) return;
 
-            var lineRemove = _sequence.lines[_currentIndex];
+            var lineRemove = _sequence[_currentIndex];
             if(lineRemove != null)
                 _history.Remove(lineRemove);
 
             _currentIndex--;
-            var line = _sequence.lines[_currentIndex];
+            var line = _sequence[_currentIndex];
             if (line != null)
                 _history.Remove(line);
             SwitchState(DialogueState.StartDialog);
