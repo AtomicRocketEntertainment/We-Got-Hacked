@@ -42,6 +42,11 @@ namespace MiniClassRoom
             _miniClassroomUI.SetDialogue();
         }
 
+        private void EndOFScene()
+        {
+            EventManager.StoryBoardIsEnded();
+        }
+
         public void SwitchState(DialogueState state)
         {
             _currentState = state;
@@ -108,10 +113,14 @@ namespace MiniClassRoom
 
         public void Next()
         {
-            if (_currentIndex >= _sequence.Count - 1) return;
+            if (_currentIndex >= _sequence.Count - 1)
+                EndOFScene();
+            else
+            {
+                _currentIndex++;
+                SwitchState(DialogueState.StartDialog);
+            }
 
-            _currentIndex++;
-            SwitchState(DialogueState.StartDialog);
         }
 
         public void Previous()
