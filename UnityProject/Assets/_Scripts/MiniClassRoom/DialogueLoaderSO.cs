@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -10,6 +11,7 @@ namespace MiniClassRoom
     {
         public TextAsset _csvFile;
         public List<ActorSO> _actorsDatabase;
+        public List<Sprite> _backgrounds;
 
         public List<DialogueLine> LoadDialogue()
         {
@@ -17,19 +19,29 @@ namespace MiniClassRoom
 
             string[] rows = _csvFile.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 0; i < rows.Length; i++)
+            for (int i = 1; i < rows.Length; i++)
             {
-
                 if (rows == null || rows.Count() == 0) break;
 
                 string actorId = "";
                 string bodyId = "";
                 string headId = "";
+                Sprite background = null;
 
-                string[] cols = rows[i].Split(',');
+                string[] cols = rows[i].Split(';');
 
                 DialogueLine line = new DialogueLine();
                 line.actors = new List<ActorData>();
+
+                //Seta background
+                if(_backgrounds.Count > 0)
+                {
+                    if (int.TryParse(cols[0], out int bgIndex))
+                    {
+                        background = (bgIndex >= 0 && bgIndex < _backgrounds.Count) ? _backgrounds[bgIndex] : _backgrounds[0];
+                    }
+                }
+                line.background = background;
 
                 // Primeiro ator (Raquel)
                 //if (!string.IsNullOrEmpty(cols[1]))

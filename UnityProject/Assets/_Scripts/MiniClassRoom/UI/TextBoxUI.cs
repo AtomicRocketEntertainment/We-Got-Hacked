@@ -58,8 +58,8 @@ namespace MiniClassRoom
             }
             else
             {
-                if (_title.text == titleActor.name) return;
-                _title.text = titleActor.name;
+                if (_title.text == titleActor.actorName) return;
+                _title.text = titleActor.actorName;
                 _titlePanel.color = titleActor.colorBKGAtor;
                 _title.color = titleActor.colorTitleAtor;
                 _titlePanel.gameObject.SetActive(true);

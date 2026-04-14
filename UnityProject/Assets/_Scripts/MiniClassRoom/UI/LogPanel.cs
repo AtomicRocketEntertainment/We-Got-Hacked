@@ -34,7 +34,8 @@ namespace MiniClassRoom
             foreach (var line in _lines)
             {
                 TextMeshProUGUI log = Instantiate(_logTextPrefab, _container.transform);
-                log.text = (line.actorHighlightedID != null && line.actorHighlightedID != "") ? $"{line.actorHighlightedID}: {line.dialogueText}" : $"{line.dialogueText}";
+                ActorSO actorSpeaker = line.GetHighlightedActor();
+                log.text = (actorSpeaker != null && actorSpeaker.actorName != "") ? $"{actorSpeaker.actorName}: {line.dialogueText}" : $"{line.dialogueText}";
                 _linesText.Add(log);
             }
             gameObject.SetActive(true);

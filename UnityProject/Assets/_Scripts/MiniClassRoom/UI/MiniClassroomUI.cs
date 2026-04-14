@@ -49,19 +49,6 @@ namespace MiniClassRoom
             _slideImg.sprite = _currentLine.background;
         }
 
-        private ActorSO GetHighlightedActor()
-        {
-            if (_currentLine.actors == null || _currentLine.actors.Count == 0) return null;
-            foreach (var actor in _currentLine.actors)
-            {
-                if (actor.actor.id == _currentLine.actorHighlightedID)
-                {
-                    return actor.actor;
-                }
-            }
-            return null;
-        }
-
         public void OpenLogHistory(List<DialogueLine> lines)
         {
             _logUI.OpenLog(lines);
@@ -71,7 +58,7 @@ namespace MiniClassRoom
         {
             _currentLine = line;
 
-            _currentActorHighlighted = GetHighlightedActor();
+            _currentActorHighlighted = _currentLine.GetHighlightedActor();
 
             SetBackground();
 

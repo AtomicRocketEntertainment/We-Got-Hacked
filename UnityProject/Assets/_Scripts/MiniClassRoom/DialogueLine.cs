@@ -12,6 +12,19 @@ namespace MiniClassRoom
 
         public Sprite background;
         public string dialogueText;
+
+        public ActorSO GetHighlightedActor()
+        {
+            if (actors == null || actors.Count == 0) return null;
+            foreach (var actor in actors)
+            {
+                if (actor.actor.id == actorHighlightedID)
+                {
+                    return actor.actor;
+                }
+            }
+            return null;
+        }
     }
 
     [System.Serializable]
