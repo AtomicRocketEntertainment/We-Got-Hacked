@@ -8,6 +8,7 @@ namespace MiniClassRoom
     {
         [SerializeField] private TextMeshProUGUI _logTextPrefab;
         [SerializeField] private RectTransform _container;
+        [SerializeField] private Color _textColorStandard;
 
         private List<DialogueLine> _lines;
         private List<TextMeshProUGUI> _linesText;
@@ -35,7 +36,17 @@ namespace MiniClassRoom
             {
                 TextMeshProUGUI log = Instantiate(_logTextPrefab, _container.transform);
                 ActorSO actorSpeaker = line.GetHighlightedActor();
-                log.text = (actorSpeaker != null && actorSpeaker.actorName != "") ? $"{actorSpeaker.actorName}: {line.dialogueText}" : $"{line.dialogueText}";
+                if (actorSpeaker != null && actorSpeaker.actorName != "")
+                {
+                    log.text = $"{actorSpeaker.actorName}: {line.dialogueText}";
+                    log.color = actorSpeaker.colorAtorText;
+                }
+                else
+                {
+                    log.text = $"{line.dialogueText}";
+                    log.color = _textColorStandard;
+                }
+                    
                 _linesText.Add(log);
             }
             gameObject.SetActive(true);

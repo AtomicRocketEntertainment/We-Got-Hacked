@@ -45,7 +45,7 @@ namespace MiniClassRoom
 
                 // Primeiro ator (Raquel)
                 //if (!string.IsNullOrEmpty(cols[1]))
-                actorId = "Rq";
+                actorId = _actorsDatabase[0].id;
                 bodyId = (cols[1] != null) ? cols[1] : "idle";
                 headId = (cols[2] != null) ? cols[2] : "idle";
 
@@ -53,14 +53,14 @@ namespace MiniClassRoom
 
                 // Segundo ator (Rebeca)
                 //if (!string.IsNullOrEmpty(cols[3]))
-                actorId = "Rb";
+                actorId = _actorsDatabase[1].id;
                 bodyId = (cols[3] != null) ? cols[3] : "idle";
                 headId = (cols[4] != null) ? cols[4] : "idle";
                 line.actors.Add(CreateActor(actorId, bodyId, headId));
 
                 // Terceiro ator (Rafael)
                 //if (!string.IsNullOrEmpty(cols[5]))
-                actorId = "Rf";
+                actorId = _actorsDatabase[2].id;
                 bodyId = (cols[5] != null) ? cols[5] : "idle";
                 headId = (cols[6] != null) ? cols[6] : "idle";
                 line.actors.Add(CreateActor(actorId, bodyId, headId));
