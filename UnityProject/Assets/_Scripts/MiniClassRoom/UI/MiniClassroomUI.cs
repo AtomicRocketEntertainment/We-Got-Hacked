@@ -14,6 +14,7 @@ namespace MiniClassRoom
         [SerializeField] private List<ActorUI> _actorsUI;
         [SerializeField] private Image _slideImg;
         [SerializeField] private TextBoxUI _textBox;
+        [SerializeField] private Button _autoRunButton;
         [SerializeField] private Button _screenButton;
 
         private DialogueLine _currentLine;
@@ -23,6 +24,7 @@ namespace MiniClassRoom
 
         private void Start()
         {
+            _autoRunButton.onClick.AddListener(ToggleAutoRun);
             _screenButton.onClick.AddListener(_dialogueInput.OnNextClick);
         }
 
@@ -47,6 +49,18 @@ namespace MiniClassRoom
             if (_currentLine.background == null) return;
             if (_slideImg.sprite == _currentLine.background) return;
             _slideImg.sprite = _currentLine.background;
+        }
+
+        private void ToggleAutoRun()
+        {
+            _manager.ToggleAutoMode();
+            ToggleAutoRunButton();
+        }
+
+        public void ToggleAutoRunButton()
+        {
+            Transform pressedHighlight = _autoRunButton.transform.Find("Pressed");
+            pressedHighlight.gameObject.SetActive(_manager.AutoMode);
         }
 
         public void OpenLogHistory(List<DialogueLine> lines)

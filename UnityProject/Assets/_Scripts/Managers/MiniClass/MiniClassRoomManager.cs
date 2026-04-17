@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,11 @@ namespace MiniClassRoom
         private int _currentIndex = 0;
         private List<DialogueLine> _history = new();
 
+        private bool _autoMode = false;
+        private Coroutine _autoCoroutine;
+
         public DialogueState State => _currentState;
+        public bool AutoMode => _autoMode;
 
         private void Start()
         {
@@ -47,6 +52,42 @@ namespace MiniClassRoom
             EventManager.StoryBoardIsEnded();
         }
 
+        private float GetAutoDelay()
+        {
+            int charCount = _currentLine.dialogueText.Length;
+
+            return Mathf.Clamp(charCount * 0.05f, 1.5f, 5f);
+        }
+
+        private void StartAuto()
+        {
+            StopAuto();
+            _autoMode = true;
+
+            _autoCoroutine = StartCoroutine(AutoRoutine());
+        }
+
+        private void StopAuto()
+        {
+            _autoMode = false;
+
+            if (_autoCoroutine != null)
+            {
+                StopCoroutine(_autoCoroutine);
+                _autoCoroutine = null;
+            }
+            _miniClassroomUI.ToggleAutoRunButton();
+        }
+
+        private IEnumerator AutoRoutine()
+        {
+            yield return new WaitForSeconds(GetAutoDelay());
+
+            if (!_autoMode) yield break;
+
+            Next();
+        }
+
         public void SwitchState(DialogueState state)
         {
             _currentState = state;
@@ -63,6 +104,8 @@ namespace MiniClassRoom
                     SetDialogue();
                     break;
                 case DialogueState.DialogFinished:
+                    if (_autoMode)
+                        StartAuto();
                     break;
             }
         }
@@ -79,7 +122,9 @@ namespace MiniClassRoom
 
         public void OnNextClick()
         {
-            switch(_currentState)
+            StopAuto();
+            
+            switch (_currentState)
             {
                 case DialogueState.ActorsAnimating:
                     _miniClassroomUI.SkipActorsAnim();
@@ -95,6 +140,8 @@ namespace MiniClassRoom
 
         public void OnPreviousClick()
         {
+            StopAuto();
+
             switch (_currentState)
             {
                 case DialogueState.ActorsAnimating:
@@ -109,6 +156,19 @@ namespace MiniClassRoom
                     Previous();
                     break;
             }
+        }
+
+        public void ToggleAutoMode()
+        {
+            _autoMode = !_autoMode;
+
+            if (_autoMode && _currentState == DialogueState.DialogFinished)
+            {
+                StartAuto();
+            }
+
+            if(!_autoMode)
+                StopAuto();
         }
 
         public void Next()
