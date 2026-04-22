@@ -76,6 +76,8 @@ public static class EventManager
     public static event Action OnPlayerCanSearchMalwhere;
     public static event Action OnPlayerCantSearchMalwhere;
 
+    //Music related
+    public static event Action OnMusicBanksLoaded;
 
 
     public static void DisablePlayerWriteEmail()
@@ -663,6 +665,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnPlayerCantSearchMalwhere event.");
+        }
+    }
+
+    public static void MusicBanksLoaded()
+    {
+        if (OnMusicBanksLoaded != null)
+        {
+            OnMusicBanksLoaded();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnMusicBanksLoaded event.");
         }
     }
 }

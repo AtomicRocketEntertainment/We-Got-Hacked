@@ -1,9 +1,10 @@
+using DG.Tweening;
 using NaughtyAttributes;
+using System;
+using System.Net.Mail;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Net.Mail;
-using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _loginBtnParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _playBtnParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _disclaimerParent;
-    [BoxGroup("Element's Parent"), SerializeField] private GameObject _allScreensParent;
+    [BoxGroup("Element's Parent"), SerializeField] private CanvasGroup _allScreensParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _emailConfirmationParent;
     [BoxGroup("Element's Parent"), SerializeField] private GameObject _resetPasswordParent;
 
@@ -42,6 +43,9 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Credits"), SerializeField] private Button _openCreditBtn;
     [BoxGroup("Credits"), SerializeField] private CreditManager _creditManager;
 
+    [BoxGroup("Intro Scene"), SerializeField] private CanvasGroup _introPanel;
+    [BoxGroup("Intro Scene"), SerializeField] private Button _introBtn;
+
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _startBtn;
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _newGameBtn;
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _continueBtn;
@@ -64,10 +68,12 @@ public class MenuManager : MonoBehaviour
         _forgotPasswordBtn.onClick.AddListener(OpenResetPassword);
         _sendForgotPassword.onClick.AddListener(ForgotPasswordClicked);
         _backFromResetPassword.onClick.AddListener(CloseForgotPassword);
+        _introBtn.onClick.AddListener(ShowMenu);
         EventManager.OnPlayerCreated += FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn += FeedbackPlayerLoggedIn;
         EventManager.OnAuthError += GenericFeedback;
         EventManager.OnDatabaseEror += GenericFeedback;
+        EventManager.OnMusicBanksLoaded += MenuReady;
 
         _continueBtn.gameObject.SetActive(false); //only available if player login in.
         _newGameBtn.gameObject.SetActive(false); //only available if player login in.
@@ -89,16 +95,35 @@ public class MenuManager : MonoBehaviour
         _forgotPasswordBtn.onClick.RemoveListener(OpenResetPassword);
         _sendForgotPassword.onClick.RemoveListener(ForgotPasswordClicked);
         _backFromResetPassword.onClick.RemoveListener(CloseForgotPassword);
+        _introBtn.onClick.RemoveListener(ShowMenu);
         EventManager.OnPlayerCreated -= FeedbackPlayerCreated;
         EventManager.OnPlayerLoggedIn -= FeedbackPlayerLoggedIn;
         EventManager.OnAuthError -= GenericFeedback;
         EventManager.OnDatabaseEror -= GenericFeedback;
+        EventManager.OnMusicBanksLoaded -= MenuReady;
     }
 
     private void ReSendConfirmationEmail()
     {
         FirebaseAuthHandler.Instance.ResendEmailVerification();
         _reSendConfirmationEmailBtn.interactable = false;
+    }
+
+    private void MenuReady()
+    {
+        Sequence seq = DOTween.Sequence();
+        seq.Join(_introPanel.DOFade(1, 0.5f));
+        _introPanel.interactable = true;
+        VolumeManager.instance.LoadVolume();
+    }
+
+    private void ShowMenu()
+    {
+        Sequence seq = DOTween.Sequence();
+        _introPanel.gameObject.SetActive(false);
+        seq.Join(_allScreensParent.DOFade(1, 0.5f));
+
+        MusicManager.instance.StartTrack();
     }
 
     private void OpenCredit()
@@ -109,7 +134,7 @@ public class MenuManager : MonoBehaviour
     private void CloseDisclaimer()
     {
         _disclaimerParent.SetActive(false);
-        _allScreensParent.SetActive(true);
+        _allScreensParent.gameObject.SetActive(true);
     }
 
     private void TryLoginPlayer()
