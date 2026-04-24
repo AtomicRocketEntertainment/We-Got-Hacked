@@ -30,6 +30,16 @@ namespace MiniClassRoom
         {
             _autoRunButton.onClick.AddListener(ToggleAutoRun);
             _screenButton.onClick.AddListener(_dialogueInput.OnNextClick);
+            _skipButton.onClick.AddListener(ShowSkipPanel);
+            _cancelSkipButton.onClick.AddListener(HideSkipPanel);
+            _confirmSkipButton.onClick.AddListener(_manager.FinishScene);
+        }
+
+        private void OnDisable()
+        {
+            _autoRunButton.onClick.RemoveAllListeners();
+            _screenButton.onClick.RemoveAllListeners();
+            _skipButton.onClick.RemoveAllListeners();
         }
 
         private void CheckAnimationsComplete(Action onComplete)
@@ -61,9 +71,14 @@ namespace MiniClassRoom
             ToggleAutoRunButton();
         }
 
-        private void ToggleSkipPanel()
+        private void ShowSkipPanel()
         {
+            _skipPanel.gameObject.SetActive(true);
+        }
 
+        private void HideSkipPanel()
+        {
+            _skipPanel.gameObject.SetActive(false);
         }
 
         public void ToggleAutoRunButton()
