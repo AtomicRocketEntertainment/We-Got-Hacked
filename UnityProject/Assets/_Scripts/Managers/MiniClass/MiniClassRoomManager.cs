@@ -203,5 +203,10 @@ namespace MiniClassRoom
         {
             _miniClassroomUI.OpenLogHistory(_history);
         }
+
+        public void FinishScene()
+        {
+            EndOFScene();
+        }
     }
 }

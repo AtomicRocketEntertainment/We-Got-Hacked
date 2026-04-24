@@ -16,6 +16,10 @@ namespace MiniClassRoom
         [SerializeField] private TextBoxUI _textBox;
         [SerializeField] private Button _autoRunButton;
         [SerializeField] private Button _screenButton;
+        [SerializeField] private RectTransform _skipPanel;
+        [SerializeField] private Button _skipButton;
+        [SerializeField] private Button _confirmSkipButton;
+        [SerializeField] private Button _cancelSkipButton;
 
         private DialogueLine _currentLine;
         private ActorSO _currentActorHighlighted;
@@ -55,6 +59,11 @@ namespace MiniClassRoom
         {
             _manager.ToggleAutoMode();
             ToggleAutoRunButton();
+        }
+
+        private void ToggleSkipPanel()
+        {
+
         }
 
         public void ToggleAutoRunButton()

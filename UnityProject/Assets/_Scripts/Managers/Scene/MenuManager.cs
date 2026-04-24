@@ -44,6 +44,7 @@ public class MenuManager : MonoBehaviour
     [BoxGroup("Credits"), SerializeField] private CreditManager _creditManager;
 
     [BoxGroup("Intro Scene"), SerializeField] private CanvasGroup _introPanel;
+    [BoxGroup("Intro Scene"), SerializeField] private TextMeshProUGUI _introText;
     [BoxGroup("Intro Scene"), SerializeField] private Button _introBtn;
 
     [BoxGroup("Gameplay Buttons"), SerializeField] private Button _startBtn;
@@ -111,8 +112,7 @@ public class MenuManager : MonoBehaviour
 
     private void MenuReady()
     {
-        Sequence seq = DOTween.Sequence();
-        seq.Join(_introPanel.DOFade(1, 0.5f));
+        _introText.text = "[Clique para Começar]";
         _introPanel.interactable = true;
         VolumeManager.instance.LoadVolume();
     }
