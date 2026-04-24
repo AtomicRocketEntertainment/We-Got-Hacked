@@ -10,6 +10,7 @@ namespace MiniClassRoom
         public string actorName;
         public Color colorBKGAtor;
         public Color colorTitleAtor;
+        public Color colorAtorText;
         public List<HeadData> headList;
         public List<BodyData> bodyList;
 

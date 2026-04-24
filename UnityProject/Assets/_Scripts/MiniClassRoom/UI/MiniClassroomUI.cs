@@ -14,7 +14,12 @@ namespace MiniClassRoom
         [SerializeField] private List<ActorUI> _actorsUI;
         [SerializeField] private Image _slideImg;
         [SerializeField] private TextBoxUI _textBox;
+        [SerializeField] private Button _autoRunButton;
         [SerializeField] private Button _screenButton;
+        [SerializeField] private RectTransform _skipPanel;
+        [SerializeField] private Button _skipButton;
+        [SerializeField] private Button _confirmSkipButton;
+        [SerializeField] private Button _cancelSkipButton;
 
         private DialogueLine _currentLine;
         private ActorSO _currentActorHighlighted;
@@ -23,7 +28,18 @@ namespace MiniClassRoom
 
         private void Start()
         {
+            _autoRunButton.onClick.AddListener(ToggleAutoRun);
             _screenButton.onClick.AddListener(_dialogueInput.OnNextClick);
+            _skipButton.onClick.AddListener(ShowSkipPanel);
+            _cancelSkipButton.onClick.AddListener(HideSkipPanel);
+            _confirmSkipButton.onClick.AddListener(_manager.FinishScene);
+        }
+
+        private void OnDisable()
+        {
+            _autoRunButton.onClick.RemoveAllListeners();
+            _screenButton.onClick.RemoveAllListeners();
+            _skipButton.onClick.RemoveAllListeners();
         }
 
         private void CheckAnimationsComplete(Action onComplete)
@@ -47,6 +63,28 @@ namespace MiniClassRoom
             if (_currentLine.background == null) return;
             if (_slideImg.sprite == _currentLine.background) return;
             _slideImg.sprite = _currentLine.background;
+        }
+
+        private void ToggleAutoRun()
+        {
+            _manager.ToggleAutoMode();
+            ToggleAutoRunButton();
+        }
+
+        private void ShowSkipPanel()
+        {
+            _skipPanel.gameObject.SetActive(true);
+        }
+
+        private void HideSkipPanel()
+        {
+            _skipPanel.gameObject.SetActive(false);
+        }
+
+        public void ToggleAutoRunButton()
+        {
+            Transform pressedHighlight = _autoRunButton.transform.Find("Pressed");
+            pressedHighlight.gameObject.SetActive(_manager.AutoMode);
         }
 
         public void OpenLogHistory(List<DialogueLine> lines)

@@ -7,11 +7,24 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    public static MusicManager instance;
+
+    [SerializeField] private bool _playOnStart = true;
     [Header("Playlist")] 
     [SerializeField] private List<EventReference> _musicTracks;
 
     private int _currentIndex = 0;
     private EventInstance _currentMusic;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
@@ -32,9 +45,9 @@ public class MusicManager : MonoBehaviour
         if (!_currentMusic.isValid()) return;
 
         _currentMusic.getPlaybackState(out var state);
-
-        if(state == PLAYBACK_STATE.STOPPED) NextTrack();
+    if(state == PLAYBACK_STATE.STOPPED) NextTrack();
     }
+    
 
     private IEnumerator LoadMusicBank()
     {
@@ -50,9 +63,10 @@ public class MusicManager : MonoBehaviour
         RuntimeManager.CoreSystem.mixerResume();
 
         yield return new WaitForSeconds(0.1f);
-
-        VolumeManager.instance.LoadVolume();
-        PlayCurrentTrack();
+        
+        EventManager.MusicBanksLoaded();
+        if (_playOnStart)
+            PlayCurrentTrack();
     }
 
     private void PlayCurrentTrack()
@@ -69,6 +83,11 @@ public class MusicManager : MonoBehaviour
         _currentIndex++;
         if(_currentIndex >= _musicTracks.Count) _currentIndex = 0;
 
+        PlayCurrentTrack();
+    }
+
+    public void StartTrack()
+    {
         PlayCurrentTrack();
     }
 }
