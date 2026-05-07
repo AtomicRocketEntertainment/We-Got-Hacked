@@ -1,17 +1,30 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MiniClassRoom
 {
     public class LogPanel : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _logTextPrefab;
+        [SerializeField] private LogElement _logTextActorPrefab;
+        [SerializeField] private LogElement _logTextNarratorPrefab;
         [SerializeField] private RectTransform _container;
         [SerializeField] private Color _textColorStandard;
 
         private List<DialogueLine> _lines;
-        private List<TextMeshProUGUI> _linesText;
+        private List<LogElement> _linesText;
+
+        bool _updateCanvas = false;
+
+        private void Update()
+        {
+            if (!_updateCanvas) return;
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_container);
+            Canvas.ForceUpdateCanvases();
+            _updateCanvas = false;
+        }
 
         public void ClearLog() {            
             _lines = null;
@@ -34,22 +47,24 @@ namespace MiniClassRoom
             _linesText = new();
             foreach (var line in _lines)
             {
-                TextMeshProUGUI log = Instantiate(_logTextPrefab, _container.transform);
+                LogElement log = new();
                 ActorSO actorSpeaker = line.GetHighlightedActor();
                 if (actorSpeaker != null && actorSpeaker.actorName != "")
                 {
-                    log.text = $"{actorSpeaker.actorName}: {line.dialogueText}";
-                    log.color = actorSpeaker.colorAtorText;
+                    log = Instantiate(_logTextActorPrefab, _container.transform);
+                    log.Init(line);
                 }
                 else
                 {
-                    log.text = $"{line.dialogueText}";
-                    log.color = _textColorStandard;
+                    log = Instantiate(_logTextNarratorPrefab, _container.transform);
+                    log.Init(line);
                 }
                     
                 _linesText.Add(log);
             }
             gameObject.SetActive(true);
+
+            _updateCanvas = true;
         }
     }
 }

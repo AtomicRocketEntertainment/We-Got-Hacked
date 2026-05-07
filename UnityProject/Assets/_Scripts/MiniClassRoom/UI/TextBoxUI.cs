@@ -9,6 +9,7 @@ namespace MiniClassRoom
     public class TextBoxUI : MonoBehaviour
     {
         [SerializeField] private MiniClassroomUI _managerUI;
+        [SerializeField] private RectTransform _titlePanel;
         [SerializeField] private Image _titleActorColor;
         [SerializeField] private TextMeshProUGUI _titleName;
         [SerializeField] private TextMeshProUGUI _dialogue;
@@ -54,6 +55,7 @@ namespace MiniClassRoom
                 _titleName.text = "";
                 _titleName.color = _defaultTitleTextColor;
                 _titleActorColor.color = _defaultTitlePanelColor;
+                _titlePanel.gameObject.SetActive(false);
             }
             else
             {
@@ -61,6 +63,7 @@ namespace MiniClassRoom
                 _titleName.text = titleActor.actorName;
                 _titleName.color = titleActor.colorTitleAtor;
                 _titleActorColor.color = titleActor.colorBKGAtor;
+                _titlePanel.gameObject.SetActive(true);
             }
         }
 
