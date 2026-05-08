@@ -14,9 +14,11 @@ namespace MiniClassRoom
         [SerializeField] private List<ActorUI> _actorsUI;
         [SerializeField] private Image _slideImg;
         [SerializeField] private TextBoxUI _textBox;
-        [SerializeField] private Button _autoRunButton;
-        [SerializeField] private Button _screenButton;
         [SerializeField] private RectTransform _skipPanel;
+        [SerializeField] private Button _screenButton;
+        [SerializeField] private Button _autoRunButton;
+        [SerializeField] private Button _StopButton;
+        [SerializeField] private Button _logButton;
         [SerializeField] private Button _skipButton;
         [SerializeField] private Button _confirmSkipButton;
         [SerializeField] private Button _cancelSkipButton;
@@ -28,8 +30,10 @@ namespace MiniClassRoom
 
         private void Start()
         {
-            _autoRunButton.onClick.AddListener(ToggleAutoRun);
             _screenButton.onClick.AddListener(_dialogueInput.OnNextClick);
+            _autoRunButton.onClick.AddListener(ToggleAutoRun);
+            _StopButton.onClick.AddListener(ToggleAutoRun);
+            _logButton.onClick.AddListener(OpenLogHistory);
             _skipButton.onClick.AddListener(ShowSkipPanel);
             _cancelSkipButton.onClick.AddListener(HideSkipPanel);
             _confirmSkipButton.onClick.AddListener(_manager.FinishScene);
@@ -83,12 +87,13 @@ namespace MiniClassRoom
 
         public void ToggleAutoRunButton()
         {
-            Transform pressedHighlight = _autoRunButton.transform.Find("Pressed");
-            pressedHighlight.gameObject.SetActive(_manager.AutoMode);
+            _StopButton.gameObject.SetActive(_manager.AutoMode);
+            _autoRunButton.gameObject.SetActive(!_manager.AutoMode);
         }
 
-        public void OpenLogHistory(List<DialogueLine> lines)
+        public void OpenLogHistory()
         {
+            List<DialogueLine> lines = _manager.History;
             _logUI.OpenLog(lines);
         }
 

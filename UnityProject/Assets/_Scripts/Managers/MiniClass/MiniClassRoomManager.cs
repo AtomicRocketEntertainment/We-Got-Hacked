@@ -23,6 +23,7 @@ namespace MiniClassRoom
 
         public DialogueState State => _currentState;
         public bool AutoMode => _autoMode;
+        public List<DialogueLine> History => _history;
 
         private void Start()
         {
@@ -76,7 +77,6 @@ namespace MiniClassRoom
                 StopCoroutine(_autoCoroutine);
                 _autoCoroutine = null;
             }
-            _miniClassroomUI.ToggleAutoRunButton();
         }
 
         private IEnumerator AutoRoutine()
@@ -123,7 +123,8 @@ namespace MiniClassRoom
         public void OnNextClick()
         {
             StopAuto();
-            
+            _miniClassroomUI.ToggleAutoRunButton();
+
             switch (_currentState)
             {
                 case DialogueState.ActorsAnimating:
@@ -141,6 +142,7 @@ namespace MiniClassRoom
         public void OnPreviousClick()
         {
             StopAuto();
+            _miniClassroomUI.ToggleAutoRunButton();
 
             switch (_currentState)
             {
@@ -196,12 +198,6 @@ namespace MiniClassRoom
             if (line != null)
                 _history.Remove(line);
             SwitchState(DialogueState.StartDialog);
-        }
-        
-
-        public void OpenLogHistory()
-        {
-            _miniClassroomUI.OpenLogHistory(_history);
         }
 
         public void FinishScene()
