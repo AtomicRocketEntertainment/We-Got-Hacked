@@ -47,7 +47,7 @@ namespace MiniClassRoom
             _linesText = new();
             foreach (var line in _lines)
             {
-                LogElement log = new();
+                LogElement log;
                 ActorSO actorSpeaker = line.GetHighlightedActor();
                 if (actorSpeaker != null && actorSpeaker.actorName != "")
                 {

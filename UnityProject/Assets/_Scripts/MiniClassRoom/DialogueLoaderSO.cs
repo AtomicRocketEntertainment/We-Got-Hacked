@@ -38,7 +38,8 @@ namespace MiniClassRoom
                 {
                     if (int.TryParse(cols[0], out int bgIndex))
                     {
-                        background = (bgIndex >= 0 && bgIndex < _backgrounds.Count) ? _backgrounds[bgIndex] : _backgrounds[0];
+                        int index = bgIndex - 1;
+                        background = (index >= 0 && index < _backgrounds.Count) ? _backgrounds[index] : _backgrounds[0];
                     }
                 }
                 line.background = background;

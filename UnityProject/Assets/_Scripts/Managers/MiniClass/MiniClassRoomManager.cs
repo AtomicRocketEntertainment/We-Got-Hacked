@@ -77,7 +77,6 @@ namespace MiniClassRoom
                 StopCoroutine(_autoCoroutine);
                 _autoCoroutine = null;
             }
-            _miniClassroomUI.ToggleAutoRunButton();
         }
 
         private IEnumerator AutoRoutine()
@@ -124,7 +123,8 @@ namespace MiniClassRoom
         public void OnNextClick()
         {
             StopAuto();
-            
+            _miniClassroomUI.ToggleAutoRunButton();
+
             switch (_currentState)
             {
                 case DialogueState.ActorsAnimating:
@@ -142,6 +142,7 @@ namespace MiniClassRoom
         public void OnPreviousClick()
         {
             StopAuto();
+            _miniClassroomUI.ToggleAutoRunButton();
 
             switch (_currentState)
             {
