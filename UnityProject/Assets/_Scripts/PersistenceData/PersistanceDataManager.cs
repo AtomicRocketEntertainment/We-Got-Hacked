@@ -82,6 +82,8 @@ public class PersistanceDataManager : MonoBehaviour
         _currentPlayerData.Runs.Add(newRun);
         _playerDataAnswerList = new List<PlayerDataAnswer>();
 
+        Debug.Log($"Start Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
+
         SaveGame();
     }
 
@@ -96,6 +98,8 @@ public class PersistanceDataManager : MonoBehaviour
         //player should be on the gameplay scene 1 if have lost the game, or wants to restart game at main menu.
         bool isPlayerInMenu = SceneHandler.Instance.CurrentSceneIndex == 0;
         bool playerShouldGoToFirstScene = isPlayerInMenu || playerNeedRestart;
+
+        Debug.Log($"Prepare Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
 
         _currentPlayerData.CurrentScene = playerShouldGoToFirstScene ? _firstSceneIndex : SceneHandler.Instance.CurrentSceneIndex; 
         RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
@@ -113,6 +117,8 @@ public class PersistanceDataManager : MonoBehaviour
             });
         }
 
+        Debug.Log($"Run data to save - Answers: {run.Answers.Count} - Companies: {run.Companies.Count}");
+
         _playerDataAnswerList.Clear();
     }
 
@@ -129,7 +135,7 @@ public class PersistanceDataManager : MonoBehaviour
     public void FetchPlayerData(PlayerDatabaseData data)
     {
         _currentPlayerData = data;
-
+        Debug.Log($"Fetch Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
         RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
         SceneHandler.Instance.SetSceneByIndex(_currentPlayerData.CurrentScene);
 
