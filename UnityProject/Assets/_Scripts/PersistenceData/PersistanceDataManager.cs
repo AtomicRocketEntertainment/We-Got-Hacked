@@ -102,7 +102,8 @@ public class PersistanceDataManager : MonoBehaviour
         Debug.Log($"Prepare Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
 
         _currentPlayerData.CurrentScene = playerShouldGoToFirstScene ? _firstSceneIndex : SceneHandler.Instance.CurrentSceneIndex; 
-        RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
+        int runIndex = _currentPlayerData.Runs.Count - 1;
+        RunData run = _currentPlayerData.Runs[runIndex];
 
         foreach (PlayerDataAnswer answer in _playerDataAnswerList)
             run.Answers.Add(answer);
@@ -136,7 +137,8 @@ public class PersistanceDataManager : MonoBehaviour
     {
         _currentPlayerData = data;
         Debug.Log($"Fetch Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
-        RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
+        int runIndex = _currentPlayerData.Runs.Count - 1;
+        RunData run = _currentPlayerData.Runs[runIndex];
         SceneHandler.Instance.SetSceneByIndex(_currentPlayerData.CurrentScene);
 
         _stockDataByCompany.Clear();
