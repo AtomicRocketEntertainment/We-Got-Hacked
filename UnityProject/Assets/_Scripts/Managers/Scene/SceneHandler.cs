@@ -34,8 +34,7 @@ public class SceneHandler : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        _currentScene = _firstScene;
-        _currentSceneIndex = _currentScene.SceneIndex;
+        ResetCurrentSceneToFirst();
 
         _sceneMap = new Dictionary<int, SO_Scene>();
         int currentSceneIndex = 0;
@@ -45,6 +44,12 @@ public class SceneHandler : MonoBehaviour
             _sceneMap[currentSceneIndex] = scene;
             currentSceneIndex++;
         }
+    }
+
+    private void ResetCurrentSceneToFirst()
+    {
+        _currentScene = _firstScene;
+        _currentSceneIndex = _currentScene.SceneIndex;
     }
 
     void OnEnable()
@@ -73,7 +78,11 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene(_currentSceneIndex);
     }
 
-    public void StartGame() => SceneManager.LoadScene(_firstScene.GoToScene.SceneIndex);
+    public void StartGame()
+    {
+        //ResetCurrentSceneToFirst();
+        SceneManager.LoadScene(_firstScene.GoToScene.SceneIndex);
+    }
     public void ContinueGame()
     {
         _currentSceneIndex = _currentScene.SceneIndex;

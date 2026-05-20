@@ -46,23 +46,23 @@ namespace MiniClassRoom
                 // Primeiro ator (Raquel)
                 //if (!string.IsNullOrEmpty(cols[1]))
                 actorId = _actorsDatabase[0].id;
-                bodyId = (cols[1] != null) ? cols[1] : "idle";
-                headId = (cols[2] != null) ? cols[2] : "idle";
+                bodyId = (cols[1] != null && cols[1] != "") ? cols[1] : "Idle";
+                headId = (cols[2] != null && cols[2] != "") ? cols[2] : "Idle";
 
                 line.actors.Add(CreateActor(actorId, bodyId, headId));
 
-                // Segundo ator (Rebeca)
+                // Segundo ator (Rafael)
                 //if (!string.IsNullOrEmpty(cols[3]))
                 actorId = _actorsDatabase[1].id;
-                bodyId = (cols[3] != null) ? cols[3] : "idle";
-                headId = (cols[4] != null) ? cols[4] : "idle";
+                bodyId = (cols[3] != null && cols[3] != "") ? cols[3] : "Idle";
+                headId = (cols[4] != null && cols[4] != "") ? cols[4] : "Idle";
                 line.actors.Add(CreateActor(actorId, bodyId, headId));
 
-                // Terceiro ator (Rafael)
+                // Terceiro ator (Rebeca)
                 //if (!string.IsNullOrEmpty(cols[5]))
                 actorId = _actorsDatabase[2].id;
-                bodyId = (cols[5] != null) ? cols[5] : "idle";
-                headId = (cols[6] != null) ? cols[6] : "idle";
+                bodyId = (cols[5] != null && cols[5] != "") ? cols[5] : "Idle";
+                headId = (cols[6] != null && cols[6] != "") ? cols[6] : "Idle";
                 line.actors.Add(CreateActor(actorId, bodyId, headId));
 
                 line.actorHighlightedID = cols[7];
