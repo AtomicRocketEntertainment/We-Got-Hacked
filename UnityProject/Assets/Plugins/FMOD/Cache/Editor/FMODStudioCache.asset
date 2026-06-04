@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639161040980500035
+  lastModified: 639161871728748147
   FileSizes:
   - Name: Desktop
     Value: 904032
@@ -386,10 +386,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639161040980057758
+  lastModified: 639161874330131912
   FileSizes:
   - Name: Desktop
-    Value: 2638
+    Value: 2676
   Exists: 1
 --- !u!114 &-3366830769088921843
 MonoBehaviour:
@@ -518,6 +518,7 @@ MonoBehaviour:
     Data3: -262584942
     Data4: -1612971635
   Banks:
+  - {fileID: -876494259968718809}
   - {fileID: 1331701675621142196}
   IsStream: 1
   Is3D: 0
@@ -553,6 +554,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1500
+--- !u!114 &-876494259968718809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambient.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Ambient.bank
+  Name: Ambient
+  StudioPath: bank:/Ambient
+  lastModified: 639161874332573512
+  FileSizes:
+  - Name: Desktop
+    Value: 12328000
+  Exists: 1
 --- !u!114 &-675201915164742248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +645,7 @@ MonoBehaviour:
   - {fileID: 6959312825988072231}
   - {fileID: 1331701675621142196}
   - {fileID: -8195756868578175828}
+  - {fileID: -876494259968718809}
   EditorEvents:
   - {fileID: 6579056082831465808}
   - {fileID: -415093668860099304}
@@ -664,7 +686,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -3548486774172975359}
   cacheVersion: 131858
-  cacheTime: 639161040980500035
+  cacheTime: 639161874332573512
   SerializableEventsDict:
   - key: event:/Music/Other/WarRoom
     index: 0
@@ -774,7 +796,7 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639112608467553986
+  lastModified: 639161874332182749
   FileSizes:
   - Name: Desktop
     Value: 49592736
@@ -798,6 +820,7 @@ MonoBehaviour:
     Data3: -149405772
     Data4: 1566066734
   Banks:
+  - {fileID: -876494259968718809}
   - {fileID: 1331701675621142196}
   IsStream: 1
   Is3D: 0
@@ -825,6 +848,7 @@ MonoBehaviour:
     Data3: 867437993
     Data4: 90194338
   Banks:
+  - {fileID: -876494259968718809}
   - {fileID: 1331701675621142196}
   IsStream: 1
   Is3D: 0
@@ -983,7 +1007,7 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639161040980057758
+  lastModified: 639161874330121878
   FileSizes:
   - Name: Desktop
     Value: 1684
