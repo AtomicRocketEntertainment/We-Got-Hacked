@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4bbb4d4c64ce4947916ec3e7b2b7b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playOnStart: 1
   _musicTracks:
   - Guid:
       Data1: 237227548
@@ -57,10 +58,84 @@ MonoBehaviour:
       Data3: -1580267872
       Data4: 1525021363
     Path: event:/Music/Raquel/02. Raquel Music
-  _ambienceTrack:
-    Guid:
-      Data1: -629565568
-      Data2: 1263054271
-      Data3: -262584942
-      Data4: -1612971635
-    Path: event:/Ambient/2. AmbientOffice (Tiago_Raquel)
+  _soundEffects:
+  - key: account_created
+    sfx:
+      Guid:
+        Data1: 377609173
+        Data2: 1083208319
+        Data3: -1698129749
+        Data4: 1316821241
+      Path: event:/SFX/Menu/Account-created
+  - key: erro_dialogos
+    sfx:
+      Guid:
+        Data1: 1896245980
+        Data2: 1228124595
+        Data3: -2145160262
+        Data4: 1924587373
+      Path: event:/SFX/SucessFailure/erro_dialogos
+  - key: erro_software
+    sfx:
+      Guid:
+        Data1: -121650204
+        Data2: 1247851565
+        Data3: -1439780472
+        Data4: 111944570
+      Path: event:/SFX/SucessFailure/erro_software
+  - key: sucess
+    sfx:
+      Guid:
+        Data1: -1377511597
+        Data2: 1301613171
+        Data3: -1740280939
+        Data4: 2042082317
+      Path: event:/SFX/SucessFailure/sucess
+  - key: mail_text_changed
+    sfx:
+      Guid:
+        Data1: -1099904419
+        Data2: 1182711314
+        Data3: 1612189832
+        Data4: -1508973821
+      Path: event:/SFX/Mail/mail_text_changed
+  - key: petrokais_web
+    sfx:
+      Guid:
+        Data1: 8025382
+        Data2: 1328737059
+        Data3: -1909277013
+        Data4: 316287703
+      Path: event:/SFX/Website/petrokais_web
+  - key: ticked_sucess
+    sfx:
+      Guid:
+        Data1: 1523371732
+        Data2: 1221265949
+        Data3: 1048535681
+        Data4: -1603639879
+      Path: event:/SFX/TickTask/ticktask
+  - key: remotinik_connect
+    sfx:
+      Guid:
+        Data1: -873017898
+        Data2: 1155528641
+        Data3: -117856887
+        Data4: -522250455
+      Path: event:/SFX/Remotinik/connect
+  - key: remotinik_disconnect
+    sfx:
+      Guid:
+        Data1: 1502959255
+        Data2: 1217931029
+        Data3: -1388421211
+        Data4: 1296025636
+      Path: event:/SFX/Remotinik/desconnect
+  - key: cutscene
+    sfx:
+      Guid:
+        Data1: 1119932336
+        Data2: 1152815442
+        Data3: 556919730
+        Data4: -925626797
+      Path: event:/SFX/Curscene/Cutscene

@@ -461,10 +461,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 0
-  HasPlatforms: 0
-  sourceProjectPath: ../FMod - WeGotHacked/FMod - WeGotHacked.fspro
-  sourceBankPath: FMOD/Build/Desktop
+  HasSourceProject: 1
+  HasPlatforms: 1
+  sourceProjectPath: FMOD/FMOD.fspro
+  sourceBankPath: FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -490,6 +490,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Music
+  - SFX
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

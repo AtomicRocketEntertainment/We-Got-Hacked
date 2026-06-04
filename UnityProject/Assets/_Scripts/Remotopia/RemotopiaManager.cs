@@ -140,6 +140,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
             return;
         }
 
+        MusicManager.instance?.PlayKeySfx("remotinik_connect");
         EventManager.DisableToolbar();
         PrepareButtons();
         _accessScreen.SetActive(false);
@@ -258,6 +259,7 @@ public class RemotopiaManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext
     private void QuitUser()
     {
         ResetToInitialSetting();
+        MusicManager.instance?.PlayKeySfx("remotinik_disconnect");
 
         if (_currentUser == CurrentRemotopiaUser.Remotopia_Raquel_Day_Two)
             EventManager.SpawnEmail(EmailType.LORE);
