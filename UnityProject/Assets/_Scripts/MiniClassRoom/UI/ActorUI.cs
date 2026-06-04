@@ -31,7 +31,6 @@ namespace MiniClassRoom
 
         public void SetActor(ActorSO actorSO, string headID, string bodyID)
         {
-            if (_actorSO == actorSO) return;
             bool firstActor = (_actorSO == null);
             _actorSO = actorSO;
             gameObject.SetActive(true);
@@ -40,8 +39,8 @@ namespace MiniClassRoom
 
             Sprite body = _actorSO.GetBodySprite(bodyID);
             Sprite head = _actorSO.GetHeadSprite(headID);
-
-            if(body != null) _spriteBody.sprite = body;
+            
+            if (body != null) _spriteBody.sprite = body;
             if(head != null) _spriteHead.sprite = head;
 
             if (!firstActor) return;

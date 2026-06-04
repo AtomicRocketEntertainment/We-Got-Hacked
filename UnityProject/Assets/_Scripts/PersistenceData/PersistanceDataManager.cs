@@ -82,6 +82,8 @@ public class PersistanceDataManager : MonoBehaviour
         _currentPlayerData.Runs.Add(newRun);
         _playerDataAnswerList = new List<PlayerDataAnswer>();
 
+        Debug.Log($"Start Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
+
         SaveGame();
     }
 
@@ -97,8 +99,11 @@ public class PersistanceDataManager : MonoBehaviour
         bool isPlayerInMenu = SceneHandler.Instance.CurrentSceneIndex == 0;
         bool playerShouldGoToFirstScene = isPlayerInMenu || playerNeedRestart;
 
+        Debug.Log($"Prepare Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
+
         _currentPlayerData.CurrentScene = playerShouldGoToFirstScene ? _firstSceneIndex : SceneHandler.Instance.CurrentSceneIndex; 
-        RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
+        int runIndex = _currentPlayerData.Runs.Count - 1;
+        RunData run = _currentPlayerData.Runs[runIndex];
 
         foreach (PlayerDataAnswer answer in _playerDataAnswerList)
             run.Answers.Add(answer);
@@ -112,6 +117,8 @@ public class PersistanceDataManager : MonoBehaviour
                 StockValues = pair.Value.ToArray()
             });
         }
+
+        Debug.Log($"Run data to save - Answers: {run.Answers.Count} - Companies: {run.Companies.Count}");
 
         _playerDataAnswerList.Clear();
     }
@@ -129,8 +136,9 @@ public class PersistanceDataManager : MonoBehaviour
     public void FetchPlayerData(PlayerDatabaseData data)
     {
         _currentPlayerData = data;
-
-        RunData run = _currentPlayerData.Runs[_currentPlayerData.CurrentRun];
+        Debug.Log($"Fetch Current run: {_currentPlayerData.CurrentRun} - runs lenght: {_currentPlayerData.Runs.Count}");
+        int runIndex = _currentPlayerData.Runs.Count - 1;
+        RunData run = _currentPlayerData.Runs[runIndex];
         SceneHandler.Instance.SetSceneByIndex(_currentPlayerData.CurrentScene);
 
         _stockDataByCompany.Clear();
