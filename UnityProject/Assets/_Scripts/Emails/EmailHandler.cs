@@ -265,6 +265,7 @@ public class EmailHandler : MonoBehaviour, INeedOpenCanvas
 
     private void ChangeEmailContent(string newEmailText)
     {
+        MusicManager.instance?.PlayKeySfx("mail_text_changed");
         _emailContent.text = newEmailText;
         _emailWriteContent.text = newEmailText + _emailSpacement;
     }
