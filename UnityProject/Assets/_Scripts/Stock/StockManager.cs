@@ -182,6 +182,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
 
     private void CorrectChoice()
     {
+        MusicManager.instance?.PlayKeySfx("sucess");
         _stockCalculation.Calculate(_playerCompany, isCorrectChoice: true);
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();
@@ -191,6 +192,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
 
     private void WrongChoice()
     {
+        MusicManager.instance?.PlayKeySfx("erro_dialogos");
         _stockCalculation.Calculate(_playerCompany, isCorrectChoice: false);
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();

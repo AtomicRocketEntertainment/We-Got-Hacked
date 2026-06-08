@@ -185,6 +185,7 @@ public class MenuManager : MonoBehaviour
 
     private void FeedbackPlayerCreated(string feedbackMessage)
     {
+        MusicManager.instance?.PlayKeySfx("account_created");
         _feedbackText.text = "";
         _createParent.SetActive(false);
         _emailConfirmationParent.SetActive(true);

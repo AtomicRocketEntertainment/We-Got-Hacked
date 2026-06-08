@@ -193,6 +193,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
             }
 
             //Tiago Day One
+            MusicManager.instance?.PlayKeySfx("ticked_sucess");
             EventManager.CreateEspecificEmail(PointEmailKey.CorrectTicketAfterWrongCreated);
             UpdateTicketProgress();
             ticket.ResetNewTicketInfos();
@@ -209,6 +210,7 @@ public class TicketsManager : MonoBehaviour, INeedOpenCanvas, ISoftwareContext, 
                 return;   
             }
 
+            MusicManager.instance?.PlayKeySfx("ticked_sucess");
             EventManager.SpawnEmail(EmailType.LORE);
             UpdateTicketProgress();
             ticket.ResetNewTicketInfos();

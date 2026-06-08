@@ -12,6 +12,8 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private bool _playOnStart = true;
     [Header("Playlist")] 
     [SerializeField] private List<EventReference> _musicTracks;
+    [Header("Sound Effects")]
+    [SerializeField] private List<SoundEffects> _soundEffects;
 
     private int _currentIndex = 0;
     private EventInstance _currentMusic;
@@ -45,7 +47,7 @@ public class MusicManager : MonoBehaviour
         if (!_currentMusic.isValid()) return;
 
         _currentMusic.getPlaybackState(out var state);
-    if(state == PLAYBACK_STATE.STOPPED) NextTrack();
+        if(state == PLAYBACK_STATE.STOPPED) NextTrack();
     }
     
 
@@ -86,8 +88,32 @@ public class MusicManager : MonoBehaviour
         PlayCurrentTrack();
     }
 
+    private void PlaySFX(EventReference sfx)
+    {
+        var instance = RuntimeManager.CreateInstance(sfx);
+
+        instance.start();
+        instance.release();
+    }
+
     public void StartTrack()
     {
         PlayCurrentTrack();
     }
+
+    public void PlayKeySfx(string key)
+    {
+        var sfx = _soundEffects.Find(se => se.key == key);
+        if (sfx != null)
+        {
+            PlaySFX(sfx.sfx);
+        }
+    }
+}
+
+[System.Serializable]
+public class SoundEffects
+{
+    public string key;
+    public EventReference sfx;
 }
