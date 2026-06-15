@@ -8,6 +8,7 @@ namespace MiniClassRoom
     {
         //[SerializeField] private ConversationSO _sequence;
         [SerializeField] private MiniClassroomUI _miniClassroomUI;
+        [SerializeField] private DialogueInput _dialogueInput;
         [SerializeField] private DialogueLoaderSO _loader;
 
         private List<DialogueLine> _sequence;
@@ -19,6 +20,7 @@ namespace MiniClassRoom
         private List<DialogueLine> _history = new();
 
         private bool _autoMode = false;
+        private bool _isTopicJump = false;
         private Coroutine _autoCoroutine;
 
         public DialogueState State => _currentState;
@@ -35,6 +37,11 @@ namespace MiniClassRoom
         {
             _currentLine = _sequence[_currentIndex];
             _history.Add(_currentLine);
+
+            _dialogueInput.ToggleInputs(true);
+
+            _isTopicJump = (_currentLine.slideToJump > 0) ? true : false;
+
             _miniClassroomUI.SetConversation(_currentLine);
         }
 
@@ -104,6 +111,12 @@ namespace MiniClassRoom
                     SetDialogue();
                     break;
                 case DialogueState.DialogFinished:
+                    if (_isTopicJump)
+                    {
+                        _dialogueInput.ToggleInputs(false);
+                        _miniClassroomUI.ShowSkipTopicPanel();
+                    }
+
                     if (_autoMode)
                         StartAuto();
                     break;
@@ -198,6 +211,29 @@ namespace MiniClassRoom
             if (line != null)
                 _history.Remove(line);
             SwitchState(DialogueState.StartDialog);
+        }
+
+        public void SkipTopic()
+        {
+            int index = _currentIndex;
+            var slideToJump = _sequence[_currentIndex].slideToJump - 1;
+
+            bool canSkip = false;
+            for (int i = index + 1; i < _sequence.Count; i++)
+            {
+                if (_sequence[i].slideIndex == slideToJump)
+                {
+                    _currentIndex = i;
+                    canSkip = true;
+                    continue;
+                }
+            }
+
+            if (canSkip)
+            {
+                _miniClassroomUI.HideSkipTopicPanel();
+                Next();
+            }
         }
 
         public void FinishScene()

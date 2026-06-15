@@ -14,14 +14,19 @@ namespace MiniClassRoom
         [SerializeField] private List<ActorUI> _actorsUI;
         [SerializeField] private Image _slideImg;
         [SerializeField] private TextBoxUI _textBox;
-        [SerializeField] private RectTransform _skipPanel;
+        [SerializeField] private RectTransform _skipTopicPanel;
+        [SerializeField] private RectTransform _skipClassPanel;
         [SerializeField] private Button _screenButton;
         [SerializeField] private Button _autoRunButton;
-        [SerializeField] private Button _StopButton;
+        [SerializeField] private Button _stopButton;
         [SerializeField] private Button _logButton;
-        [SerializeField] private Button _skipButton;
-        [SerializeField] private Button _confirmSkipButton;
-        [SerializeField] private Button _cancelSkipButton;
+
+        [SerializeField] private Button _confirmTopicButton;
+        [SerializeField] private Button _cancelTopicButton;
+
+        [SerializeField] private Button _skipClassButton;
+        [SerializeField] private Button _confirmSkipClassButton;
+        [SerializeField] private Button _cancelSkipClassButton;
 
         private DialogueLine _currentLine;
         private ActorSO _currentActorHighlighted;
@@ -32,18 +37,30 @@ namespace MiniClassRoom
         {
             _screenButton.onClick.AddListener(_dialogueInput.OnNextClick);
             _autoRunButton.onClick.AddListener(ToggleAutoRun);
-            _StopButton.onClick.AddListener(ToggleAutoRun);
+            _stopButton.onClick.AddListener(ToggleAutoRun);
             _logButton.onClick.AddListener(OpenLogHistory);
-            _skipButton.onClick.AddListener(ShowSkipPanel);
-            _cancelSkipButton.onClick.AddListener(HideSkipPanel);
-            _confirmSkipButton.onClick.AddListener(_manager.FinishScene);
+
+            _confirmTopicButton.onClick.AddListener(_manager.SkipTopic);
+            _cancelTopicButton.onClick.AddListener(CancelSkipTopic);
+
+            _skipClassButton.onClick.AddListener(ShowSkipClassPanel);
+            _cancelSkipClassButton.onClick.AddListener(HideSkipClassPanel);
+            _confirmSkipClassButton.onClick.AddListener(_manager.FinishScene);
         }
 
         private void OnDisable()
         {
-            _autoRunButton.onClick.RemoveAllListeners();
             _screenButton.onClick.RemoveAllListeners();
-            _skipButton.onClick.RemoveAllListeners();
+            _autoRunButton.onClick.RemoveAllListeners();
+            _stopButton.onClick.RemoveAllListeners();
+            _logButton.onClick.RemoveAllListeners();
+
+            _confirmSkipClassButton.onClick.RemoveAllListeners();
+            _cancelTopicButton.onClick.RemoveAllListeners();
+
+            _skipClassButton.onClick.RemoveAllListeners();
+            _cancelSkipClassButton.onClick.RemoveAllListeners();
+            _confirmSkipClassButton.onClick.RemoveAllListeners();
         }
 
         private void CheckAnimationsComplete(Action onComplete)
@@ -64,9 +81,9 @@ namespace MiniClassRoom
 
         private void SetBackground()
         {
-            if (_currentLine.background == null) return;
-            if (_slideImg.sprite == _currentLine.background) return;
-            _slideImg.sprite = _currentLine.background;
+            if (_currentLine.slide == null) return;
+            if (_slideImg.sprite == _currentLine.slide) return;
+            _slideImg.sprite = _currentLine.slide;
         }
 
         private void ToggleAutoRun()
@@ -75,19 +92,25 @@ namespace MiniClassRoom
             ToggleAutoRunButton();
         }
 
-        private void ShowSkipPanel()
+        private void CancelSkipTopic()
         {
-            _skipPanel.gameObject.SetActive(true);
+            HideSkipTopicPanel();
+            _manager.Next();
         }
 
-        private void HideSkipPanel()
+        private void ShowSkipClassPanel()
         {
-            _skipPanel.gameObject.SetActive(false);
+            _skipClassPanel.gameObject.SetActive(true);
+        }
+
+        private void HideSkipClassPanel()
+        {
+            _skipClassPanel.gameObject.SetActive(false);
         }
 
         public void ToggleAutoRunButton()
         {
-            _StopButton.gameObject.SetActive(_manager.AutoMode);
+            _stopButton.gameObject.SetActive(_manager.AutoMode);
             _autoRunButton.gameObject.SetActive(!_manager.AutoMode);
         }
 
@@ -95,6 +118,16 @@ namespace MiniClassRoom
         {
             List<DialogueLine> lines = _manager.History;
             _logUI.OpenLog(lines);
+        }
+
+        public void ShowSkipTopicPanel()
+        {
+            _skipTopicPanel.gameObject.SetActive(true);
+        }
+
+        public void HideSkipTopicPanel()
+        {
+            _skipTopicPanel.gameObject.SetActive(false);
         }
 
         public void SetConversation(DialogueLine line)

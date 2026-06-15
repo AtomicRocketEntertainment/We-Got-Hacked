@@ -10,8 +10,11 @@ namespace MiniClassRoom
 
         public string actorHighlightedID;
 
-        public Sprite background;
+        public Sprite slide;
+        public int slideIndex;
         public string dialogueText;
+
+        public int slideToJump = 0; //pular tópico
 
         public ActorSO GetHighlightedActor()
         {
