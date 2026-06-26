@@ -67,6 +67,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
 
     private void OnEnable()
     {
+        Debug.Log("StockManager OnEnable: Subscribing to events.");
         EventManager.OnCorrectChoice += CorrectChoice;
         EventManager.OnWrongChoice += WrongChoice;
 
@@ -187,6 +188,8 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();
         UpdateStockGraph();
+        int valueDay = _stockCalculation.GetValueDay();
+        PopupNotification.Instance?.OnStockUp(_playerCompany, valueDay);
         EventManager.NotifyBrowser();
     }
 
@@ -197,6 +200,10 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();
         UpdateStockGraph();
+        Debug.Log("Wrong choice, Stock is down! Showing popup notification.");
+        int minValue = _stockCalculation.GetMinValue();
+        int valueDay = _stockCalculation.GetValueDay();
+        PopupNotification.Instance?.OnStockDown(_playerCompany, valueDay, minValue);
         EventManager.NotifyBrowser();
     }
 
