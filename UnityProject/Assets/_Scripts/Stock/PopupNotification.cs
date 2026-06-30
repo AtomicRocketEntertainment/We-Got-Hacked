@@ -31,7 +31,6 @@ public class PopupNotification : MonoBehaviour
         _defaultPosition = _rectTransform.anchoredPosition;
 
         _canvasGroup.alpha = 0;
-        gameObject.SetActive(false);
 
         _closeBtn.onClick.AddListener(PopupClose);
     }
@@ -51,7 +50,6 @@ public class PopupNotification : MonoBehaviour
         DOTween.Kill(_rectTransform);
         DOTween.Kill(_canvasGroup);
 
-        gameObject.SetActive(true);
         _messageText.text = message;
 
         _canvasGroup.alpha = 0;
@@ -82,7 +80,7 @@ public class PopupNotification : MonoBehaviour
 
         seq.OnComplete(() =>
         {
-            gameObject.SetActive(false);
+            _canvasGroup.alpha = 0;
         });
     }
 
@@ -91,7 +89,7 @@ public class PopupNotification : MonoBehaviour
         DOTween.Kill(_rectTransform);
         DOTween.Kill(_canvasGroup);
 
-        gameObject.SetActive(false);
+        _canvasGroup.alpha = 0;
     }
 
     public void OnStockDown(string playerCompany,int valueDay, int minValue)
