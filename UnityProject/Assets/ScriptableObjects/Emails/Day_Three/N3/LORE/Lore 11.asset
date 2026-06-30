@@ -24,37 +24,35 @@ MonoBehaviour:
     Name: "Gustavo Teodoro In\xE1cio"
     Email: gustavo.t.i@petrocais.com
   Title: Alguma Novidade?
-  Content: "<b>Boa noite, Eduardo,</b>\r\n\r\nCara, eu t\xF4 arrancando os poucos
-    cabelos que me restam com isso\u2026\r\n\r\nAinda n\xE3o acredito que conseguiram
-    vazar nossos dados. Que merda!\r\n\r\n<b>Voc\xEA j\xE1 descobriu alguma coisa
-    nova sobre esse vazamento? Tem algo que eu possa fazer agora pra ajudar?</b>\r\n\r\nPorque,
-    sinceramente, minhas ideias j\xE1 acabaram.\r\n\r\n<b>Se descobrir algo, n\xE3o
-    esquece de dar um aviso l\xE1 na Raquel.</b>\r\n\r\n<b>Att, Gustavo T. In\xE1cio</b>"
+  Content: "<b>Boa noite, Eduardo,</b>\n\nCara, eu t\xF4 arrancando os poucos cabelos
+    que me restam com isso\u2026\n\nAinda n\xE3o acredito que conseguiram vazar nossos
+    dados. Que merda!\n\n<b>Voc\xEA j\xE1 descobriu alguma coisa nova sobre esse
+    vazamento? Tem algo que eu possa fazer agora pra ajudar?</b>\n\nPorque, sinceramente,
+    minhas ideias j\xE1 acabaram.\n\n<b>Se descobrir algo, n\xE3o esquece de dar
+    um aviso l\xE1 na Raquel.</b>\n\n<b>Att, Gustavo T. In\xE1cio</b>"
   HasResponse: 1
   QuestionText: "Pe\xE7o pra..."
   ConfirmQuestionText: "\xC9 isso?"
   WrongFeedbackQuestionText: "Bah... N\xE3o t\xE1 certo."
   Responses:
   - TextOption: "N\xE3o bloquear"
-    EmailTitle: 
+    EmailTitle: "Ainda n\xE3o."
     EmailText: "<b>Gustavo</b>\n\nN\xE3o descobri nada ainda.\n\L<b>Mas vou continuar
       fu\xE7ando aqui.</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 0
   - TextOption: Bloquear
-    EmailTitle: 
-    EmailText: "<b>Gustavo</b>\n\nDescobri que o servidor de Log\xEDstica est\xE1
-      enviando requisi\xE7\xF5es DNS com partes codificadas do arquivo em quest\xE3o.
-      \n\nPrecisamos bloquear o endere\xE7o 203.0.113.159.\n\L<b>Precisa bloquear
-      no servidor.</b>"
+    EmailTitle: Sim, bloqueie.
+    EmailText: "<b>Gustavo</b>\n\nSim, descobri que futricaram no DNS.\n\L<b>Precisa
+      bloquear no servidor.</b>\n\n"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 1
   - TextOption: Desligar
-    EmailTitle: 
-    EmailText: "<b>Gustavo</b>\n\nSim, descobri alguns problemas.\n\L<b>Preciso que
-      desligue o servidor de log\xEDstica.</b>"
+    EmailTitle: Sim, desligue.
+    EmailText: "<b>Gustavo</b>\n\nSim, descobri alguns pepino pra resolver.\n\L<b>Preciso
+      que desligue o servidor de log\xEDstica.</b>"
     NewReceiver: 
     HasSpecificReceiver: 0
     IsCorrectAnswer: 0
