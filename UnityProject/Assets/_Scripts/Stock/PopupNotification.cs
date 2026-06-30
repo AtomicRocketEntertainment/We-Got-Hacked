@@ -102,7 +102,7 @@ public class PopupNotification : MonoBehaviour
 
             int remainingErrors = Mathf.Max(0, ((lastPetroCaisStock - minValue) / valueDay) - 1);
             string remainingMsg = (remainingErrors > 0) ? $"você só pode cometer mais {remainingErrors} erros" : $"cuidado essa é sua ultima chance";
-            string message = $"Aviso o stock caiu por -{valueDay}, {remainingMsg}";
+            string message = $"Desição incorreta! O stock caiu por -{valueDay}, {remainingMsg}";
             ShowPopup(message);
         }
     }
@@ -112,7 +112,7 @@ public class PopupNotification : MonoBehaviour
         if (PersistanceDataManager.Instance.StocksInfos.TryGetValue(playerCompany, out List<int> values))
         {
             int lastPetroCaisStock = values[values.Count - 1];
-            string message = $"Aviso o stock subiu em {valueDay}";
+            string message = $"Desição correta! O stock subiu em {valueDay}";
             ShowPopup(message);
         }
     }
