@@ -187,6 +187,8 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();
         UpdateStockGraph();
+        int valDay = _stockCalculation.GetValueDayAdd();
+        PopupNotification.Instance?.OnStockUp(_playerCompany, valDay);
         EventManager.NotifyBrowser();
     }
 
@@ -197,6 +199,9 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
         CalculateGraphBounds(out _yMininumValue, out _yMaximumValue);
         CreateSeparators();
         UpdateStockGraph();
+        int valDay = _stockCalculation.GetValueDayLose();
+        int min = _stockCalculation.MinValue();
+        PopupNotification.Instance?.OnStockDown(_playerCompany, valDay, min);
         EventManager.NotifyBrowser();
     }
 
