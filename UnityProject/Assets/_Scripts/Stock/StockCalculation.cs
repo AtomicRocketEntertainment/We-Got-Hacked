@@ -121,6 +121,44 @@ public class StockCalculation : MonoBehaviour
                 break;
         }
     }
+
+    public int GetValueDayAdd()
+    {
+        int valueToAdd = 0;
+        switch (_currentDay)
+        {
+            case CurrentDay.One:
+                valueToAdd = _addDayOne;
+                break;
+            case CurrentDay.Two:
+                valueToAdd = _addDayTwo;
+                break;
+            case CurrentDay.Three:
+                valueToAdd = _addDayThree;
+                break;
+        }
+        return valueToAdd;
+    }
+
+    public int GetValueDayLose()
+    {
+        int valueToLose = 0;
+        switch (_currentDay)
+        {
+            case CurrentDay.One:
+                valueToLose = _loseDayOne;
+                break;
+            case CurrentDay.Two:
+                valueToLose = _loseDayTwo;
+                break;
+            case CurrentDay.Three:
+                valueToLose = _loseDayThree;
+                break;
+        }
+        return valueToLose;
+    }
+
+    public int MinValue() => _petroMin;
 }
 
 public enum CurrentDay
