@@ -36,6 +36,7 @@ public static class EventManager
 
     //Global Gaming Mechanic
     public static event Action OnEndStoryBoard;
+    public static event Action OnAlternativeEndingBoard;
     public static event Action OnStoryBoardNeeded;
     public static event Action OnCorrectChoice;
     public static event Action OnWrongChoice;
@@ -281,6 +282,18 @@ public static class EventManager
         else
         {
             Debug.LogWarning("No listeners for OnEndStoryBoard event.");
+        }
+    }
+    
+    public static void AlternativeEndingBoard()
+    {
+        if (OnAlternativeEndingBoard != null)
+        {
+            OnAlternativeEndingBoard();
+        }
+        else
+        {
+            Debug.LogWarning("No listeners for OnAlternativeEndingBoard event.");
         }
     }
 

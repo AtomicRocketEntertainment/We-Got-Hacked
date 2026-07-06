@@ -10,6 +10,7 @@ namespace MiniClassRoom
     public class DialogueLoaderSO : ScriptableObject
     {
         public TextAsset _csvFile;
+        public bool _alternativeEnding;
         public List<ActorSO> _actorsDatabase;
         public List<Sprite> _slides;
 

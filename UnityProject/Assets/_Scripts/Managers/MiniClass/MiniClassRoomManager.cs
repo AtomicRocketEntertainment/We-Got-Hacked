@@ -10,6 +10,9 @@ namespace MiniClassRoom
         [SerializeField] private MiniClassroomUI _miniClassroomUI;
         [SerializeField] private DialogueInput _dialogueInput;
         [SerializeField] private DialogueLoaderSO _loader;
+        //SecretEnding
+        [SerializeField] private SecretEndingController _secretEndingController;
+        [SerializeField] private int _secretEndingSlide = 0;
 
         private List<DialogueLine> _sequence;
 
@@ -22,6 +25,8 @@ namespace MiniClassRoom
         private bool _autoMode = false;
         private bool _isTopicJump = false;
         private Coroutine _autoCoroutine;
+
+        private bool _alternativeEnding = false;
 
         public DialogueState State => _currentState;
         public bool AutoMode => _autoMode;
@@ -42,6 +47,13 @@ namespace MiniClassRoom
 
             _isTopicJump = (_currentLine.slideToJump > 0) ? true : false;
 
+            if(_secretEndingController != null || _secretEndingSlide > 0) { 
+                if(_currentLine.slideIndex == _secretEndingSlide)
+                    _secretEndingController.EnableButton();
+                else
+                    _secretEndingController.DisableButton();
+            }
+
             _miniClassroomUI.SetConversation(_currentLine);
         }
 
@@ -57,7 +69,10 @@ namespace MiniClassRoom
 
         private void EndOFScene()
         {
-            EventManager.StoryBoardIsEnded();
+            if (_alternativeEnding)
+                EventManager.AlternativeEndingBoard();
+            else
+                EventManager.StoryBoardIsEnded();
         }
 
         private float GetAutoDelay()
@@ -234,6 +249,11 @@ namespace MiniClassRoom
                 _miniClassroomUI.HideSkipTopicPanel();
                 Next();
             }
+        }
+
+        public void UnlockEnding()
+        {
+            _alternativeEnding = true;
         }
 
         public void FinishScene()
