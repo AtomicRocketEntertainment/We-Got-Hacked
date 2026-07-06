@@ -10,6 +10,7 @@ public class SceneHandler : MonoBehaviour
     [BoxGroup("Initial Configs"), SerializeField] private SO_Scene _firstScene;
     [BoxGroup("Initial Configs"), SerializeField] private SO_Scene _menuScene;
     [BoxGroup("Initial Configs"), SerializeField] private SO_Scene _gameOverScene;
+    [BoxGroup("Initial Configs"), SerializeField] private SO_Scene _alternativeEndingScene;
     [BoxGroup("Scenes Mapping"), SerializeField] private SO_Scene[] _allGameScenes;
 
     private SO_Scene _currentScene;
@@ -55,17 +56,27 @@ public class SceneHandler : MonoBehaviour
     void OnEnable()
     {
         EventManager.OnEndStoryBoard += ChangeScene;
+        EventManager.OnAlternativeEndingBoard += AlternativeEnding;
     }
 
     void OnDisable()
     {
         EventManager.OnEndStoryBoard -= ChangeScene;
+        EventManager.OnAlternativeEndingBoard -= AlternativeEnding;
     }
 
     public void ChangeScene()
     {
         _currentSceneIndex = _currentScene.GoToScene.SceneIndex;
         _currentScene = _currentScene.GoToScene;
+
+        SceneManager.LoadScene(_currentSceneIndex);
+    }
+
+    public void AlternativeEnding()
+    {
+        _currentSceneIndex = _alternativeEndingScene.SceneIndex;
+        _currentScene = _alternativeEndingScene;
 
         SceneManager.LoadScene(_currentSceneIndex);
     }
