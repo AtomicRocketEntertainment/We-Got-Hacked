@@ -98,7 +98,7 @@ public class PopupNotification : MonoBehaviour
         {
             int lastPetroCaisStock = values[values.Count - 1];
 
-            int remainingErrors = Mathf.Max(0, ((lastPetroCaisStock - minValue) / valueDay) - 1);
+            int remainingErrors = Mathf.Max(0, ((lastPetroCaisStock - minValue) / valueDay));
             string remainingMsg = (remainingErrors > 1) ? $"Agora você só pode cometer mais {remainingErrors} erros" : $"Cuidado essa é sua ultima chance";
             string message = $"Decisão incorreta! Perda de {valueDay} pontos, {remainingMsg}";
             ShowPopup(message);
