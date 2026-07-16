@@ -20,6 +20,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
     [Header("Graph Infos")]
     [SerializeField] private StockCalculation _stockCalculation;
     [SerializeField] private RectTransform _graphContainer;
+    [SerializeField] private RectTransform _graphContainerValues;
     [SerializeField] private RectTransform _yLabelTemplate;
     [SerializeField] private RectTransform _yDashTemplate;
     [SerializeField] private float _xSpaceBetweenDots = 50f;
@@ -83,7 +84,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
     private GameObject CreateCircle(Vector2 anchoredPosition, Color companyColor)
     {
         GameObject newPoint = new GameObject("point", typeof(Image));
-        newPoint.transform.SetParent(_graphContainer, false);
+        newPoint.transform.SetParent(_graphContainerValues, false);
         
         newPoint.TryGetComponent(out Image image);
         newPoint.TryGetComponent(out RectTransform rect);
@@ -160,7 +161,7 @@ public class StockManager : MonoBehaviour, INeedOpenCanvas
     private GameObject CreateDotConnection(Vector2 dotPositionA, Vector2 dotPositionB, Color companyColor)
     {
         GameObject dotLine = new GameObject("dotConnection", typeof(Image));
-        dotLine.transform.SetParent(_graphContainer, false);
+        dotLine.transform.SetParent(_graphContainerValues, false);
 
         dotLine.TryGetComponent(out RectTransform rect);
         dotLine.TryGetComponent(out Image image);
